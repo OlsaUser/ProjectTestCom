@@ -39,11 +39,16 @@ public class t2_AccountSettings_UserStory {
     private String propertyFilePath = "src/test/resources/login.properties";
     //private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
+    private String email_now = PropertyLoader.getProperty(propertyFilePath, "email_now");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
     private String profileFilePath = "src/test/resources/profile.properties";
     private String FirstName_En = PropertyLoader.getProperty(profileFilePath, "FirstName_En");
+    private String FirstName_En_now = PropertyLoader.getProperty(profileFilePath, "FirstName_En_now");
+    private String FirstName_En_exp = PropertyLoader.getProperty(profileFilePath, "FirstName_En_exp");
+    private String FirstName_Ar_exp = PropertyLoader.getProperty(profileFilePath, "FirstName_Ar_exp");
     private String LastName_En = PropertyLoader.getProperty(profileFilePath, "LastName_En");
+    private String UserName_En_now = PropertyLoader.getProperty(profileFilePath, "UserName_En_now");
     private String UserName_En = PropertyLoader.getProperty(profileFilePath, "UserName_En");
     private String FirstName_Ar = PropertyLoader.getProperty(profileFilePath, "FirstName_Ar");
     private String LastName_Ar = PropertyLoader.getProperty(profileFilePath, "LastName_Ar");
@@ -51,24 +56,38 @@ public class t2_AccountSettings_UserStory {
     private String Symbols = PropertyLoader.getProperty(profileFilePath, "Symbols");
     private String Numbers = PropertyLoader.getProperty(profileFilePath, "Numbers");
     private String Name_51_symbols = PropertyLoader.getProperty(profileFilePath, "Name_51_symbols");
-    private String location = PropertyLoader.getProperty(profileFilePath, "location");
+    //private String location = PropertyLoader.getProperty(profileFilePath, "location");
     private String Male = PropertyLoader.getProperty(profileFilePath, "Male");
+    private String gender_now = PropertyLoader.getProperty(profileFilePath, "gender_now");
     private String Female = PropertyLoader.getProperty(profileFilePath, "Female");
     private String single = PropertyLoader.getProperty(profileFilePath, "Single");
     private String married = PropertyLoader.getProperty(profileFilePath, "Married");
+    private String status_now = PropertyLoader.getProperty(profileFilePath, "status_now");
+    private String birth_now = PropertyLoader.getProperty(profileFilePath, "birth_now");
+    private String birth_exp = PropertyLoader.getProperty(profileFilePath, "birth_exp");
     private String BriefInfo = PropertyLoader.getProperty(profileFilePath, "BriefInfo");
-    private String mobile = PropertyLoader.getProperty(profileFilePath, "mobile");
-    private String landline = PropertyLoader.getProperty(profileFilePath, "landline");
+    private String BriefInfo_now = PropertyLoader.getProperty(profileFilePath, "BriefInfo_now");
+    private String mobile_exp = PropertyLoader.getProperty(profileFilePath, "mobile_exp");
+    private String landline_exp = PropertyLoader.getProperty(profileFilePath, "landline_exp");
+    private String mobile_now = PropertyLoader.getProperty(profileFilePath, "mobile_now");
+    private String landline_now = PropertyLoader.getProperty(profileFilePath, "landline_now");
     private String Facebook = PropertyLoader.getProperty(profileFilePath, "Facebook");
     private String Instagram = PropertyLoader.getProperty(profileFilePath, "Instagram");
     private String Twitter = PropertyLoader.getProperty(profileFilePath, "Twitter");
     private String LinkedIn = PropertyLoader.getProperty(profileFilePath, "LinkedIn");
     private String Snapchat = PropertyLoader.getProperty(profileFilePath, "Snapchat");
-    private String WebSite = PropertyLoader.getProperty(profileFilePath, "WebSite");
+    private String WebSite_now = PropertyLoader.getProperty(profileFilePath, "WebSite_now");
+    private String WebSite_exp = PropertyLoader.getProperty(profileFilePath, "WebSite_exp");
     private String InstitutionName = PropertyLoader.getProperty(profileFilePath, "InstitutionName");
     private String Speciality = PropertyLoader.getProperty(profileFilePath, "Speciality");
     private String About = PropertyLoader.getProperty(profileFilePath, "About");
-    private String Location = PropertyLoader.getProperty(profileFilePath, "Location");
+    private String location = PropertyLoader.getProperty(profileFilePath, "location");
+    private String location_now = PropertyLoader.getProperty(profileFilePath, "location_now");
+    private String location_exp = PropertyLoader.getProperty(profileFilePath, "location_exp");
+    private String location_now1 = PropertyLoader.getProperty(profileFilePath, "location_now1");
+    private String location_now2 = PropertyLoader.getProperty(profileFilePath, "location_now2");
+    private String location_now1_exp = PropertyLoader.getProperty(profileFilePath, "location_now1_exp");
+    private String location_now2_exp = PropertyLoader.getProperty(profileFilePath, "location_now2_exp");
     private String JobName = PropertyLoader.getProperty(profileFilePath, "JobName");
     private String JobSpeciality = PropertyLoader.getProperty(profileFilePath, "JobSpeciality");
     private String InstitutionName_new = PropertyLoader.getProperty(profileFilePath, "InstitutionName_new");
@@ -113,6 +132,8 @@ public class t2_AccountSettings_UserStory {
         Serenity.useFirefoxProfile(myProfile);
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
@@ -147,12 +168,19 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.clickUpdate1(driver);
         loginSteps.PageComplete(driver);
         //User info page
-
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
         loginSteps.PageComplete(driver);
-        accountSettingsSteps.checkMainDetails(FirstName_En, LastName_En, UserName_En, location, BriefInfo, Male, married);
+        accountSettingsSteps.checkInfoExists(FirstName_En_exp, FirstName_En_now);
+        accountSettingsSteps.checkInfoExists(UserName_En, UserName_En_now);
+        accountSettingsSteps.checkInfoExists(location_exp, location_now);
+        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
+        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
+        accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
+        accountSettingsSteps.checkInfoExists(Male, gender_now);
+        accountSettingsSteps.checkInfoExists(married, status_now);
+        accountSettingsSteps.checkInfoExists(birth_exp, birth_now);
     }
 
     @Test
@@ -173,12 +201,19 @@ public class t2_AccountSettings_UserStory {
         loginSteps.PageComplete(driver);
 
         //User info page
-
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
         loginSteps.PageComplete(driver);
-        accountSettingsSteps.checkMainDetails(FirstName_Ar, LastName_Ar, UserName_En, location, BriefInfo, Female, single);
+        accountSettingsSteps.checkInfoExists(FirstName_Ar_exp, FirstName_En_now);
+        accountSettingsSteps.checkInfoExists(UserName_En, UserName_En_now);
+        accountSettingsSteps.checkInfoExists(location_exp, location_now);
+        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
+        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
+        accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
+        accountSettingsSteps.checkInfoExists(Female, gender_now);
+        accountSettingsSteps.checkInfoExists(single, status_now);
+        accountSettingsSteps.checkInfoExists(birth_exp, birth_now);
     }
     @Test
     public void stage3_changeAccountSettings_User_MainDetails_Errors(){
@@ -231,26 +266,29 @@ public class t2_AccountSettings_UserStory {
     @Test
     public void stage4_changeAccountSettings_User_ContactInfo(){
         accountSettingsSteps.pressCollapseContactInfo();
-        accountSettingsSteps.enterMobilePhone(mobile);
-        accountSettingsSteps.enterLandline(landline);
+        accountSettingsSteps.enterMobilePhone(mobile_exp);
+        accountSettingsSteps.enterLandline(landline_exp);
         accountSettingsSteps.enterFacebook(Facebook);
         accountSettingsSteps.enterInstagram(Instagram);
         accountSettingsSteps.enterTwitter(Twitter);
         accountSettingsSteps.enterLinkedIn(LinkedIn);
         accountSettingsSteps.enterSnapchat(Snapchat);
-        accountSettingsSteps.enterWebSite(WebSite);
+        accountSettingsSteps.enterWebSite(WebSite_exp);
         //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate2(driver);
-        //loginSteps.PageComplete(driver);
-        //User info page
 
+        //User info page
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
         loginSteps.PageComplete(driver);
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
         jse.executeScript("window.scrollBy(0,500)", "");
-        accountSettingsSteps.checkContactInfo(mobile,landline,Facebook,Instagram,Twitter,LinkedIn,Snapchat,WebSite,email);
+        accountSettingsSteps.checkInfoExists(mobile_exp, mobile_now);
+        accountSettingsSteps.checkInfoExists(landline_exp, landline_now);
+        accountSettingsSteps.checkInfoExists(WebSite_exp, WebSite_now);
+        accountSettingsSteps.checkInfoExists(email, email_now);
+        accountSettingsSteps.checkNetworkAccounts();
     }
     @Test
     public void stage5_changeAccountSettings_User_EducationInfo(){
@@ -260,7 +298,7 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.enterEducFromDate();
         accountSettingsSteps.enterEducTillDate();
         accountSettingsSteps.enterSpeciality(Speciality);
-        accountSettingsSteps.enterLocation(Location);
+        accountSettingsSteps.enterLocation(location);
         accountSettingsSteps.enterAbout(About);
         accountSettingsSteps.pressSaveNewEduc(driver);
         loginSteps.PageComplete(driver);
@@ -268,14 +306,13 @@ public class t2_AccountSettings_UserStory {
         //accountSettingsSteps.clickUpdate3();
 
         //User info page
-
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
         loginSteps.PageComplete(driver);
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
         jse.executeScript("window.scrollBy(0,500)", "");
-        accountSettingsSteps.checkEducationInfo(InstitutionName,Speciality,Location,About);
+        accountSettingsSteps.checkEducationInfo(InstitutionName,Speciality,location,About);
     }
     @Test
     public void stage6_changeAccountSettings_User_Education_Edit(){
@@ -301,11 +338,10 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.enterJobFromDate();
         accountSettingsSteps.enterJobTillDate();
         accountSettingsSteps.enterJobSpeciality(JobSpeciality);
-        accountSettingsSteps.enterJobLocation(Location);
+        accountSettingsSteps.enterJobLocation(location);
         accountSettingsSteps.enterJobAbout(About);
         accountSettingsSteps.pressSaveNewJob(driver);
         loginSteps.PageComplete(driver);
-        //accountSettingsSteps.clickUpdate4();
 
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
@@ -337,7 +373,6 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.clickUpdate5(driver);
         //loginSteps.PageComplete(driver);
         //User info page
-
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);

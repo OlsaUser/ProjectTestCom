@@ -30,17 +30,8 @@ public class t3_MemberGroupPageStory {
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String urlGroupPage = PropertyLoader.getProperty(propertyFilePath, "urlGroupPage");
 
-    private String propertyPostPath = "src/test/resources/post.properties";
-    private String textPostMin = PropertyLoader.getProperty(propertyPostPath, "textPostMin");
-    private String textPostMaxEn = PropertyLoader.getProperty(propertyPostPath, "textPostMaxEn");
-    private String textPostAr = PropertyLoader.getProperty(propertyPostPath, "textPostAr");
-    private String addPost = PropertyLoader.getProperty(propertyPostPath, "addPost");
-    private String Comment = PropertyLoader.getProperty(propertyPostPath, "Comment");
-    private String placeholderGroup = PropertyLoader.getProperty(propertyPostPath, "placeholderGroup");
-    private String placeholderWall = PropertyLoader.getProperty(propertyPostPath, "placeholderWall");
-    private String HeaderRepost = PropertyLoader.getProperty(propertyPostPath, "HeaderRepost");
-    private String AudioLink = PropertyLoader.getProperty(propertyPostPath, "AudioLink");
-    private String VideoLink = PropertyLoader.getProperty(propertyPostPath, "VideoLink");
+    private String propertyGroupPath = "src/test/resources/group.properties";
+    private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
 
     @Managed
     WebDriver driver;
@@ -52,13 +43,7 @@ public class t3_MemberGroupPageStory {
     LoginSteps loginSteps;
 
     @Steps
-    FavoritesSteps favoritesSteps;
-
-    @Steps
     HeaderSteps headerSteps;
-
-    @Steps
-    AddPostSteps addPostSteps;
 
     @Steps
     AddGroupSteps addGroupSteps;
@@ -85,7 +70,7 @@ public class t3_MemberGroupPageStory {
     public void memberOwnGroupPage() throws IOException {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWallforInvate(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
 
         addGroupSteps.checkTextOnOwnGroupMemberPage( );

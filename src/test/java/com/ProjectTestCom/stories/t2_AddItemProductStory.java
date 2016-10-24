@@ -47,48 +47,20 @@ public class t2_AddItemProductStory {
 
     private String propertyItemPath = "src/test/resources/item.properties";
     private String Title = PropertyLoader.getProperty(propertyItemPath, "Title");
-    private String Description = PropertyLoader.getProperty(propertyItemPath, "Description");
     private String TitleMAX = PropertyLoader.getProperty(propertyItemPath, "TitleMAX");
     private String DescriptionMAX = PropertyLoader.getProperty(propertyItemPath, "DescriptionMAX");
-    private String TitleMIN = PropertyLoader.getProperty(propertyItemPath, "TitleMIN");
-    private String DescriptionMIN = PropertyLoader.getProperty(propertyItemPath, "DescriptionMIN");
     private String TitleAR = PropertyLoader.getProperty(propertyItemPath, "TitleAR");
     private String DescriptionAR = PropertyLoader.getProperty(propertyItemPath, "DescriptionAR");
     private String DescriptionNull = PropertyLoader.getProperty(propertyItemPath, "DescriptionNull");
-
     private String tag1 = PropertyLoader.getProperty(propertyItemPath, "tag1");
     private String Price = PropertyLoader.getProperty(propertyItemPath, "Price");
     private String Per = PropertyLoader.getProperty(propertyItemPath, "Per");
     private String PerNull = PropertyLoader.getProperty(propertyItemPath, "PerNull");
-    private String PriceMAX = PropertyLoader.getProperty(propertyItemPath, "PriceMAX");
-    private String PerMAX = PropertyLoader.getProperty(propertyItemPath, "PerMAX");
-    private String PriceMIN = PropertyLoader.getProperty(propertyItemPath, "PriceMIN");
-    private String PerMIN = PropertyLoader.getProperty(propertyItemPath, "PerMIN");
-
     private String Location = PropertyLoader.getProperty(propertyItemPath, "Location");
-    private String textContent = PropertyLoader.getProperty(propertyItemPath, "textContent");
-    private String textContentMAX = PropertyLoader.getProperty(propertyItemPath, "textContentMAX");
-    private String textContentMIN = PropertyLoader.getProperty(propertyItemPath, "textContentMIN");
-    private String textContentAR = PropertyLoader.getProperty(propertyItemPath, "textContentAR");
-
     private String VideoContent1 = PropertyLoader.getProperty(propertyItemPath, "VideoContent1");
     private String VideoContent2 = PropertyLoader.getProperty(propertyItemPath, "VideoContent2");
-    private String VideoContent3 = PropertyLoader.getProperty(propertyItemPath, "VideoContent3");
     private String VideoContent4 = PropertyLoader.getProperty(propertyItemPath, "VideoContent4");
-    private String VideoContent5 = PropertyLoader.getProperty(propertyItemPath, "VideoContent5");
-
-    private String AudioContent1 = PropertyLoader.getProperty(propertyItemPath, "AudioContent1");
-    private String AudioContent2 = PropertyLoader.getProperty(propertyItemPath, "AudioContent2");
     private String AudioContent3 = PropertyLoader.getProperty(propertyItemPath, "AudioContent3");
-    private String AudioContent4 = PropertyLoader.getProperty(propertyItemPath, "AudioContent4");
-    private String AudioContent5 = PropertyLoader.getProperty(propertyItemPath, "AudioContent5");
-
-    private String LinksContent1 = PropertyLoader.getProperty(propertyItemPath, "LinksContent1");
-    private String LinksContent2 = PropertyLoader.getProperty(propertyItemPath, "LinksContent2");
-    private String LinksContent3 = PropertyLoader.getProperty(propertyItemPath, "LinksContent3");
-    private String LinksContent4 = PropertyLoader.getProperty(propertyItemPath, "LinksContent4");
-    private String LinksContent5 = PropertyLoader.getProperty(propertyItemPath, "LinksContent5");
-    private String AddItem = PropertyLoader.getProperty(propertyItemPath, "AddItem");
     private String Comment = PropertyLoader.getProperty(propertyItemPath, "Comment");
     private String Product = PropertyLoader.getProperty(propertyItemPath, "Product");
 
@@ -127,9 +99,6 @@ public class t2_AddItemProductStory {
     AddItemSteps addItemSteps;
 
     @Steps
-    AddAlbumSteps addAlbumSteps;
-
-    @Steps
     HeaderSteps headerSteps;
 
     @Before
@@ -159,7 +128,7 @@ public class t2_AddItemProductStory {
         addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
         addItemSteps.selectCategory2();
 
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
         addItemSteps.selectAvailabilityOutOfStock();
         //addItemSteps.selectAvailabilityNow();
         //addItemSteps.selectAvailabilitySold();
@@ -193,11 +162,8 @@ public class t2_AddItemProductStory {
         addItemSteps.selectDeliveryMethodOther();
 
         //addItemSteps.collapseMainDetails();
-        // jse1.executeScript("window.scrollBy(0,80)", "");
-        //addItemSteps.TextContent(textContentAR);
         addItemSteps.VideoContent1(VideoContent4);
         addItemSteps.AudioContent1(AudioContent3);
-        //addItemSteps.LinksContent5(LinksContent1,LinksContent2, LinksContent3, LinksContent4, LinksContent5);
 
         //addItemSteps.collapseContent();
         //addItemSteps.ItemStatusActivate();
@@ -247,7 +213,7 @@ public class t2_AddItemProductStory {
         addItemSteps.enterBasicInfo(Title, DescriptionNull);
         addItemSteps.selectCategory1();
 
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
         addItemSteps.enterPrice(Price, PerNull);
 
         addItemSteps.collapseMainDetails();
@@ -265,9 +231,8 @@ public class t2_AddItemProductStory {
         addItemSteps.openItemSettingsMenu();
         addItemSteps.selectEditMenu();
         addItemSteps.selectCategory2();
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
 
-        //addItemSteps.selectSubCategory2();
         addItemSteps.collapseMainDetails();
         addItemSteps.collapseContent();
         addItemSteps.clickSave(driver);
@@ -280,10 +245,6 @@ public class t2_AddItemProductStory {
         addItemSteps.selectViewMenu(driver);
         addItemSteps.checkBreadCrumb(Product,Title, driver);
 
-       /* addItemSteps.openItemSettingsMenu();
-        addItemSteps.selectViewMenu(driver);
-        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,-100)", "");*/
         addItemSteps.addComment(driver, Comment);
         addItemSteps.checkCommentAdded(Comment);
     }
@@ -297,16 +258,13 @@ public class t2_AddItemProductStory {
         addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
         addItemSteps.selectCategory1();
 
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
         addItemSteps.enterLocation(Location);
 
         addItemSteps.collapseMainDetails();
-        //addItemSteps.TextContent(textContentAR);
         addItemSteps.VideoContent1(VideoContent2);
        // addItemSteps.AudioContent3(AudioContent1, AudioContent2, AudioContent3);
-       // addItemSteps.LinksContent2(LinksContent1,LinksContent2);
-      //  loginSteps.Sleep(100);
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusDeactivate();
         addItemSteps.ItemStatusPeriod();
@@ -324,27 +282,4 @@ public class t2_AddItemProductStory {
         addItemSteps.checkValueExists(Location, location_now);
         addItemSteps.checkValueExists(tag1, tag_now);
     }
-
-   /* @Test
-    public void addProductSupply_MandatoryFields_byButtonInListing()   {
-        addAlbumSteps.openMyMnassaPage();
-        addItemSteps.openProductListing();
-        addItemSteps.openAddItemPageByClickingOnButtonInListing();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, DescriptionNull);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-        addItemSteps.enterPrice(Price, PerNull);
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent1);
-
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusActivate();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }*/
 }

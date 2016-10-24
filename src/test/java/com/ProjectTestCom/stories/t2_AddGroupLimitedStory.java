@@ -54,6 +54,16 @@ public class t2_AddGroupLimitedStory {
     private String Skill_new = PropertyLoader.getProperty(propertyGroupPath, "Skill_new");
     private String Interest_new = PropertyLoader.getProperty(propertyGroupPath, "Interest_new");
 
+    private String href_NameGroupEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupEn");
+    private String href_maxNameGroup = PropertyLoader.getProperty(propertyGroupPath, "href_maxNameGroup");
+    private String href_NameGroupAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupAr");
+    private String href_NameGroupLimitedEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedEn");
+    private String href_NameGroupLimitedAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedAr");
+    private String href_NameGroupLimitedMax = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedMax");
+    private String href_NameGroupPrivateEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateEn");
+    private String href_NameGroupPrivateAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateAr");
+    private String href_NameGroupPrivateMax = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateMax");
+
     @Managed
     WebDriver driver;
 
@@ -109,7 +119,7 @@ public class t2_AddGroupLimitedStory {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
-        addGroupSteps.checkGroupInListing("limited");
+        addGroupSteps.checkGroupInListing(href_NameGroupLimitedAr);
     }
 
   /*  @Test
@@ -158,7 +168,7 @@ public class t2_AddGroupLimitedStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.checkGroupInListing(NameGroupLimitedEn);
+        addGroupSteps.checkGroupInListing(href_NameGroupLimitedEn);
     }
 
     @Test
@@ -180,7 +190,7 @@ public class t2_AddGroupLimitedStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.MyGroupWallLimited(driver, NameGroupLimitedAr);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedEn);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
         addGroupSteps.enterNameGroup(NameGroupLimitedEn,driver);
@@ -197,7 +207,7 @@ public class t2_AddGroupLimitedStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.MyGroupWallLimited(driver, NameGroupLimitedMax);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedEn);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
         addGroupSteps.selectTypePublic(driver, dscPublicGroup);
@@ -211,7 +221,7 @@ public class t2_AddGroupLimitedStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.MyGroupWallLimited(driver, NameGroupLimitedAr);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedEn);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
 

@@ -40,6 +40,9 @@ public class t3_AddAudioPostStory {
     private String Comment = PropertyLoader.getProperty(propertyPostPath, "Comment");
     private String AudioLink = PropertyLoader.getProperty(propertyPostPath, "AudioLink");
 
+    private String propertyGroupPath = "src/test/resources/group.properties";
+    private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
+
     @Managed
     WebDriver driver;
 
@@ -140,10 +143,10 @@ public class t3_AddAudioPostStory {
     public void AudioPostMyGroupWall() throws IOException{
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
        // driver.get("http://mnassa.com/en/administrator#!group/page=4/name=group-title-1");
         addPostSteps.AddTextPost_inGroup(textPost, driver);
-        addPostSteps.openAudioPopup(driver);
+        addPostSteps.openAudioPopup();
         addPostSteps.AddAudioLink(AudioLink);
         addPostSteps.clickAudioPostButton(driver);
         loginSteps.PageComplete(driver);
@@ -173,7 +176,7 @@ public class t3_AddAudioPostStory {
         headerSteps.openMyMnassaPage(driver);
        // headerSteps.openMyWall(driver);
         addPostSteps.AddTextPost(textPostAr, driver);
-        addPostSteps.openAudioPopup(driver);
+        addPostSteps.openAudioPopup();
         addPostSteps.AddAudioLink(AudioLink);
         addPostSteps.clickAudioPostButton(driver);
         addPostSteps.clickPostButton();

@@ -28,6 +28,7 @@ import static org.junit.Assert.assertFalse;
  */
 //@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
 //@DefaultUrl("http://mnassa.com/en/#!login")
+
 @RunWith(SerenityRunner.class)
 public class GroupPage extends PageObject {
 
@@ -81,8 +82,6 @@ public class GroupPage extends PageObject {
     private final By btnAccept = By.xpath("//div[@class='feed-invitation']/button[1]");
     private final By lblAccepted = By.xpath("//div[@class='feed-head-controls -activity']/button[contains(text(),'Accepted')]");
 
-    //private final By btnSettings = By.xpath("//div[@class='header-bg-group-settings']");
-
     private final By btnSettings = By.cssSelector("a[href*='group_edit']");
     //private final By btnSettingsView = By.xpath("//ul[@class='dropdown-menu gallery-box-params-list']/li[1]");
     private final By btnSettingsEdit = By.xpath("//div[@class='header-info-controls']/a[1]");
@@ -123,17 +122,14 @@ public class GroupPage extends PageObject {
     //private final By btnSettingsDeleteOk = By.xpath("//div[@class='modal-body']//button[2]");
     private final By btnSettingsDeleteCancel = By.xpath("//div[@class='modal-body']//button[1]");
     private final By EditGroupPopup = By.xpath("//div[@class='modal-content']");
+
     //Visible elements
     private final By GroupContent = By.xpath("//div[@class='group-item']");
-    //private final By headerWallGroupLink = By.xpath("//li[@class='active']");
-
     private final By headerWallGroupLink = By.xpath("//div[@class='feed container']");
-
     private final By fieldInterests = By.xpath("//div[@id='s2id_group-interests']//li[last()]/input");
     private final By Skill_1 = By.xpath("//ul[@class='select2-results']/li[1]/div/span");
     private final By fieldSkills = By.xpath("//div[@id='s2id_group-skills']//li[last()]/input");
     private final By Interest_1 = By.xpath("//ul[@class='select2-results']/li[1]/div/span");
-
     private final By btnDeleteSkill = By.xpath("//span[@can-click='rem_group_skill']");
     private final By btnDeleteInterest = By.xpath("//div[@can-click='rem_group_interest']");
     private final By tagList = By.xpath("//ul[@class='tag-list list-unstyled']");
@@ -189,15 +185,6 @@ public class GroupPage extends PageObject {
         wt.until(ExpectedConditions.invisibilityOfElementLocated(Interest_1));
     }
 
-    public void openMyGroupsPage() {
-        element(linkMyMnassa).click();
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
-        element(linkMyGroups).click();
-    }
-
-    public void openGroupsPage() {
-        element(linkGroups).click();
-    }
 
     public void clickAddGroupButton() {
         if (find(btnAddGroup).isPresent())
@@ -240,10 +227,6 @@ public class GroupPage extends PageObject {
         WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.elementToBeClickable(GroupContent));
     }*/
-
-    public void checkGroupDeleted() {
-         assertFalse(getDriver().findElements(GroupContent).contains("Group Title 1"));
-    }
 
     public void enterNameGroup(String NameGroup, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 99);
@@ -291,23 +274,21 @@ public class GroupPage extends PageObject {
                 "Create and share any information with Mnassa community"));
     }
 
-    public void clickCreateError() {
-        element(btnSave).click();
-    }
+    public void clickCreateError() {element(btnSave).click();}
 
-    public void MyGroupWallforInvate(WebDriver driver) {
+    public void openGroupWall(WebDriver driver, String name) {
         List<WebElement> Owner = driver.findElements(blockGroup);
         for (WebElement el : Owner) {
-            if (el.getAttribute("href").contains("name=public")) {
+            if (el.getAttribute("href").contains(name)) {
                 el.click();
-                WebDriverWait wt = new WebDriverWait(driver, 99);
+                WebDriverWait wt = new WebDriverWait(driver, 300);
                 wt.until(ExpectedConditions.presenceOfElementLocated(headerWallGroupLink));
                 break;
             }
         }
     }
 
-    public void MyGroupWall(WebDriver driver) {
+   /* public void MyGroupWall(WebDriver driver) {
         List<WebElement> Owner = driver.findElements(blockGroup);
         for (WebElement el : Owner) {
             if (el.getAttribute("href").contains("name=group-title-1")) {
@@ -381,11 +362,10 @@ public class GroupPage extends PageObject {
                 break;
             }
         }
-    }
+    }*/
     public void MyGroupWall_forDelete(WebDriver driver, String NameGroup) throws Error {
             List<WebElement> Owner = driver.findElements(blockGroup);
             for (WebElement el : Owner) {
-                //if (el.getAttribute("href").contains(NameGroup))
                     if (el.getAttribute("href").contains(NameGroup)) {
 
                     el.click();
@@ -423,7 +403,7 @@ public class GroupPage extends PageObject {
     public void pressSubscribe(WebDriver driver) {
         find(btnSubscribe).click();
         find(headerInfoMembers);
-        WebDriverWait wt = new WebDriverWait(driver, 150);
+        WebDriverWait wt = new WebDriverWait(driver, 200);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Group_PlaceholderHeader));
     }
     public void pressUnSubscribe(WebDriver driver) {
@@ -437,7 +417,7 @@ public class GroupPage extends PageObject {
     }
 
     public void pressOkSubs(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 200);
+        WebDriverWait wt = new WebDriverWait(driver, 250);
         wt.until(ExpectedConditions.visibilityOfElementLocated(btnOKUnSubsc));
 
         find(btnOKUnSubsc).click();
@@ -518,14 +498,7 @@ public class GroupPage extends PageObject {
         wt.until(ExpectedConditions.invisibilityOfElementLocated(EditGroupPopup));
     }
 
-   /* public void clickbtnSettingsView() {
-        element(btnSettingsView).click();
-    }*/
-
-    public void clickbtnSettingsInvite() {
-        //element(btnSettingsInvite).click();
-        element(buttonInvite).click();
-    }
+    public void clickbtnSettingsInvite() {element(buttonInvite).click();}
 
     public void clickInviteMyFollowers(WebDriver driver) {
         element(btnSettingsInviteMyFollowers).click();
@@ -559,7 +532,6 @@ public class GroupPage extends PageObject {
         find(InviteInPopup).click();
         //wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelInvited));
         wt.until(ExpectedConditions.presenceOfElementLocated(ListofUser));
-
     }
 
     public void clickInviteMyFollowings(WebDriver driver) {
@@ -660,23 +632,6 @@ public class GroupPage extends PageObject {
         find(btnDelOk).waitUntilNotVisible();
     }
 
-    public void enterPasswordForDelete(String password) {
-        clearPasswordForDelete();
-        element(fieldPasswordForDeleteGroup).sendKeys(password);
-    }
-    public void clearPasswordForDelete( ) {
-        element(fieldPasswordForDeleteGroup).clear();
-    }
-
-    public void pressConfirmForDelete() {
-        element(btnDeleteInDeletePopup).click();
-    }
-
-    public void checkPassword(WebDriver driver,String ErrorPassword) {
-        WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.textToBePresentInElementLocated(lblErrorPasswordForDeleteGroup,ErrorPassword));
-    }
-
     public void checkNameGroupErrorPresent(WebDriver driver, String lblError) {
         assertTrue("Oops! Wrong validation message",
                 lblError.equals(driver.findElement(lblNameGroupError).getText()));
@@ -689,8 +644,7 @@ public class GroupPage extends PageObject {
         WebElement newGroup = null;
 
         for (WebElement el : GroupNames) {
-           // if (el.getText().contains(groupName))
-                if (el.getAttribute("href").contains("limited")){
+                if (el.getAttribute("href").contains(groupName)){
                 newGroup = el;
                 System.out.println("Group exists " + newGroup.getText());
                 el.click();

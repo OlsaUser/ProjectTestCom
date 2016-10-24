@@ -46,43 +46,27 @@ public class t2_AddItemServiceStory {
     private String PhotoError = PropertyLoader.getProperty(propertyItemPath, "PhotoError");
 
     private String Title = PropertyLoader.getProperty(propertyItemPath, "Title");
-    private String Description = PropertyLoader.getProperty(propertyItemPath, "Description");
     private String TitleMAX = PropertyLoader.getProperty(propertyItemPath, "TitleMAX");
     private String DescriptionMAX = PropertyLoader.getProperty(propertyItemPath, "DescriptionMAX");
-    private String TitleMIN = PropertyLoader.getProperty(propertyItemPath, "TitleMIN");
-    private String DescriptionMIN = PropertyLoader.getProperty(propertyItemPath, "DescriptionMIN");
     private String TitleAR = PropertyLoader.getProperty(propertyItemPath, "TitleAR");
     private String DescriptionAR = PropertyLoader.getProperty(propertyItemPath, "DescriptionAR");
     private String DescriptionNull = PropertyLoader.getProperty(propertyItemPath, "DescriptionNull");
-
     private String tag1 = PropertyLoader.getProperty(propertyItemPath, "tag1");
     private String Price = PropertyLoader.getProperty(propertyItemPath, "Price");
-    private String Per = PropertyLoader.getProperty(propertyItemPath, "Per");
     private String PerNull = PropertyLoader.getProperty(propertyItemPath, "PerNull");
     private String PriceMAX = PropertyLoader.getProperty(propertyItemPath, "PriceMAX");
     private String PerMAX = PropertyLoader.getProperty(propertyItemPath, "PerMAX");
-    private String PriceMIN = PropertyLoader.getProperty(propertyItemPath, "PriceMIN");
-    private String PerMIN = PropertyLoader.getProperty(propertyItemPath, "PerMIN");
-
     private String Location = PropertyLoader.getProperty(propertyItemPath, "Location");
-    private String textContent = PropertyLoader.getProperty(propertyItemPath, "textContent");
-    private String textContentMAX = PropertyLoader.getProperty(propertyItemPath, "textContentMAX");
-    private String textContentMIN = PropertyLoader.getProperty(propertyItemPath, "textContentMIN");
-    private String textContentAR = PropertyLoader.getProperty(propertyItemPath, "textContentAR");
-
     private String VideoContent1 = PropertyLoader.getProperty(propertyItemPath, "VideoContent1");
     private String VideoContent2 = PropertyLoader.getProperty(propertyItemPath, "VideoContent2");
     private String VideoContent3 = PropertyLoader.getProperty(propertyItemPath, "VideoContent3");
     private String VideoContent4 = PropertyLoader.getProperty(propertyItemPath, "VideoContent4");
     private String VideoContent5 = PropertyLoader.getProperty(propertyItemPath, "VideoContent5");
-
     private String AudioContent1 = PropertyLoader.getProperty(propertyItemPath, "AudioContent1");
     private String AudioContent2 = PropertyLoader.getProperty(propertyItemPath, "AudioContent2");
     private String AudioContent3 = PropertyLoader.getProperty(propertyItemPath, "AudioContent3");
     private String AudioContent4 = PropertyLoader.getProperty(propertyItemPath, "AudioContent4");
     private String AudioContent5 = PropertyLoader.getProperty(propertyItemPath, "AudioContent5");
-
-    private String AddItem = PropertyLoader.getProperty(propertyItemPath, "AddItem");
     private String Comment = PropertyLoader.getProperty(propertyItemPath, "Comment");
     private String Service = PropertyLoader.getProperty(propertyItemPath, "Service");
 
@@ -116,9 +100,6 @@ public class t2_AddItemServiceStory {
     AddItemSteps addItemSteps;
 
     @Steps
-    AddAlbumSteps addAlbumSteps;
-
-    @Steps
     HeaderSteps headerSteps;
 
     @Before
@@ -149,9 +130,7 @@ public class t2_AddItemServiceStory {
         addItemSteps.enterBasicInfo(Title, DescriptionNull);
         addItemSteps.selectCategory1();
 
-        addItemSteps.collapseBasicInfo();
-
-        //addItemSteps.selectSubCategory1();
+        addItemSteps.collapseMainInfo();
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         jse1.executeScript("window.scrollBy(0,400)", "");
         addItemSteps.enterPrice(Price, PerNull);
@@ -168,34 +147,7 @@ public class t2_AddItemServiceStory {
         loginSteps.PageComplete(driver);
 
     }
-  /*
-    @Test
-    @Ignore
-    public void addServiceSupply_MandatoryFields_byButtonInListing() {
-        addAlbumSteps.openMyMnassaPage();
-        addItemSteps.openServiceListing();
-        addItemSteps.openAddItemPageByClickingOnButtonInListing();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, DescriptionNull);
 
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-        addItemSteps.enterPriceToBeDiscussed();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent1);
-
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusActivate();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-        addItemSteps.openItemSettingsMenu();
-        addItemSteps.selectViewMenu(driver);
-        addItemSteps.addComment(driver, Comment);
-        addItemSteps.checkCommentAdded(Comment);
-    }*/
     @Test
     public void stage1_addServiceSupply_MAX_byButtonInListing() {
         headerSteps.openMyMnassaPage(driver);
@@ -205,14 +157,12 @@ public class t2_AddItemServiceStory {
         addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
         addItemSteps.selectCategory2();
 
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
         addItemSteps.selectServiceWillBeAvailableSoon();
         //addItemSteps.selectServiceWillBeAvailable();
 
         addItemSteps.clickServiceOnline();
         addItemSteps.enterTag(tag1);
-        //addItemSteps.selectSubCategory2();
-
         addItemSteps.selectYearsOfExperienceMore();
         addItemSteps.enterPrice(PriceMAX, PerMAX);
 
@@ -230,23 +180,18 @@ public class t2_AddItemServiceStory {
         jse1.executeScript("window.scrollBy(0,200)", "");*/
 
         //addItemSteps.collapseMainDetails();
-        //addItemSteps.TextContent(textContentMAX);
         addItemSteps.VideoContent5(VideoContent5, VideoContent2, VideoContent3, VideoContent4, VideoContent1);
-        loginSteps.Sleep(1000);
+        loginSteps.Sleep(100);
         //Скролим страницу вверх
         //jse1.executeScript("window.scrollBy(0,-900)", "");
         addItemSteps.AudioContent5(AudioContent1,AudioContent2, AudioContent3, AudioContent4, AudioContent5);
         jse1.executeScript("window.scrollBy(0,-450)", "");
-        //addItemSteps.LinksContent5(LinksContent1,LinksContent2, LinksContent3, LinksContent4, LinksContent5);
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusDeactivate();
         addItemSteps.ItemStatusActivate();
         addItemSteps.clickSave(driver);
         addItemSteps.checkItemSaved(driver);
         loginSteps.PageComplete(driver);
-
-        /*headerSteps.openMyMnassaPage(driver);
-        addItemSteps.openURL(1);*/
 
         //проверяем соответствие введенных и отображаемых значений
        /* addItemSteps.checkCommonValuesPreview(TitleMAX, DescriptionMAX,tag1,PerMAX, Location);
@@ -275,37 +220,6 @@ public class t2_AddItemServiceStory {
         addItemSteps.checkElementPresents(debitcard);
         addItemSteps.checkElementPresents(cash);
     }
-   /*
-    @Test
-    @Ignore
-    public void addServiceSupply_MIN()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(TitleMIN, DescriptionMIN);
-        addItemSteps.enterTag(tag1);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory3();
-        addItemSteps.selectYearsOfExperienceLess();
-        addItemSteps.enterPrice(PriceMIN, PerMIN);
-        addItemSteps.enterLocation(Location);
-        addItemSteps.selectAdvancedPayment25();
-        addItemSteps.selectMethodDebitCard();
-        addItemSteps.clickServiceOnline();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent1);
-        addItemSteps.AudioContent1(AudioContent1);
-        addItemSteps.LinksContent1(LinksContent1);
-        addItemSteps.TextContent(textContentMIN);
-
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }*/
 
     @Test
     public void stage4_addServiceSupply_AR(){
@@ -317,17 +231,14 @@ public class t2_AddItemServiceStory {
 
         addItemSteps.selectCategory3();
 
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
         addItemSteps.selectYearsOfExperienceFew();
         addItemSteps.enterPriceFree();
         addItemSteps.enterLocation(Location);
 
-        //addItemSteps.collapseMainDetails();
-        //addItemSteps.TextContent(textContentAR);
         addItemSteps.VideoContent3(VideoContent5, VideoContent2, VideoContent3);
         addItemSteps.AudioContent3(AudioContent1, AudioContent2, AudioContent3);
-        //addItemSteps.LinksContent3(LinksContent1,LinksContent2, LinksContent3);
 
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusDeactivate();
@@ -344,198 +255,6 @@ public class t2_AddItemServiceStory {
         addItemSteps.addComment(driver, Comment);
         addItemSteps.checkCommentAdded(Comment);
     }
-   /*
-    @Test
-    @Ignore
-    public void addServiceSupply_2Contents()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, DescriptionMAX);
-        addItemSteps.enterTag(tag1);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory2();
-        addItemSteps.selectYearsOfExperienceFew();
-        addItemSteps.enterPrice(Price, PerMAX);
-        addItemSteps.enterLocation(Location);
-        addItemSteps.selectAdvancedPayment10();
-        addItemSteps.selectMethodVisa();
-        addItemSteps.clickServiceOnline();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.TextContent(textContent);
-        addItemSteps.VideoContent2(VideoContent1, VideoContent2);
-        addItemSteps.AudioContent2(AudioContent1,AudioContent2);
-        addItemSteps.LinksContent2(LinksContent1, LinksContent2);
-
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceSupply_3Contents()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(TitleAR, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory2();
-        addItemSteps.selectYearsOfExperienceFew();
-        addItemSteps.enterPrice(PriceMAX, PerNull);
-        addItemSteps.selectAdvancedPayment50();
-        addItemSteps.selectMethodVisa();
-        addItemSteps.selectMethodCash();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent3(VideoContent5, VideoContent2,VideoContent3);
-        addItemSteps.AudioContent3(AudioContent1,AudioContent2,AudioContent3);
-        addItemSteps.LinksContent3(LinksContent1, LinksContent2,LinksContent3);
-
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceSupply_4Contents()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(TitleMIN, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory3();
-        addItemSteps.enterPrice(Price, Per);
-        addItemSteps.selectAdvancedPayment50();
-        addItemSteps.selectMethodVisa();
-        addItemSteps.selectMethodPayPal();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.LinksContent4(LinksContent1, LinksContent2,LinksContent3,LinksContent4);
-        addItemSteps.VideoContent4(VideoContent1, VideoContent2,VideoContent3,VideoContent4);
-        addItemSteps.AudioContent4(AudioContent1,AudioContent2,AudioContent3,AudioContent4);
-       // loginSteps.Sleep(5000);
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,2510)", "");
-        addItemSteps.clickSave2(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-     @Ignore
-    public void addServiceSupply_OnlyVideo()   {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-        addItemSteps.selectYearsOfExperienceFew();
-        addItemSteps.enterPrice(Price, PerNull);
-        addItemSteps.selectAdvancedPayment100();
-        addItemSteps.selectMethodMasterCard();
-        addItemSteps.clickServiceOnline();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent3(VideoContent1, VideoContent2, VideoContent3);
-
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceSupply_Video_Links()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-        addItemSteps.selectYearsOfExperienceFew();
-        addItemSteps.enterPrice(Price, PerNull);
-        addItemSteps.selectAdvancedPayment100();
-        addItemSteps.selectMethodMasterCard();
-        addItemSteps.clickServiceOnline();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.LinksContent2(LinksContent1,LinksContent2);
-        addItemSteps.VideoContent4(VideoContent1, VideoContent2, VideoContent3, VideoContent4);
-        //loginSteps.Sleep(5000);
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,2510)", "");
-        addItemSteps.clickSave2(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceSupply_Video_Audio() {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory2();
-        addItemSteps.selectYearsOfExperienceFew();
-        addItemSteps.enterPriceToBeDiscussed();
-        addItemSteps.clickServiceOnline();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent1);
-        addItemSteps.AudioContent2(AudioContent1, AudioContent2);
-        addItemSteps.LinksContent2(LinksContent1,LinksContent2);
-
-        addItemSteps.collapseContent();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.ItemStatusPeriod();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceSupply_Video_Text()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory2();
-        addItemSteps.selectYearsOfExperienceFew();
-        addItemSteps.enterPriceToBeDiscussed();
-        addItemSteps.clickServiceOnline();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.TextContent(textContent);
-        addItemSteps.VideoContent1(VideoContent1);
-
-        addItemSteps.collapseContent();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.ItemStatusPeriod();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }*/
 
     @Test
     public void stage3_addServiceDemand_MandatoryFields_byButtonInHeader() {
@@ -546,39 +265,15 @@ public class t2_AddItemServiceStory {
         addItemSteps.enterBasicInfo(Title, DescriptionNull);
         addItemSteps.selectCategory1();
 
-        addItemSteps.collapseBasicInfo();
-
-        //addItemSteps.selectSubCategory1();
+        addItemSteps.collapseMainInfo();
         addItemSteps.collapseMainDetails();
         addItemSteps.VideoContent1(VideoContent1);
         addItemSteps.collapseContent();
         addItemSteps.ItemStatusDeactivate();
-       // loginSteps.Sleep(500);
         addItemSteps.clickSave(driver);
-        //loginSteps.Sleep(100);
         addItemSteps.checkItemSaved(driver);
         loginSteps.PageComplete(driver);
     }
-   /*
-    @Test
-    @Ignore
-    public void addServiceDemand_MandatoryFields_byButtonInListing()  {
-        addAlbumSteps.openMyMnassaPage();
-        addItemSteps.openServiceListing();
-        addItemSteps.openAddItemPageByClickingOnButtonInListing();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(Title, DescriptionNull);
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent1);
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }*/
 
     @Test
     public void stage2_addServiceDemand_MAX_byButtonInListing() {
@@ -589,21 +284,16 @@ public class t2_AddItemServiceStory {
         addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
         addItemSteps.selectCategory2();
 
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
-
-        //addItemSteps.selectSubCategory2();
         addItemSteps.enterLocation(Location);
 
         addItemSteps.collapseMainDetails();
-        //addItemSteps.TextContent(textContentAR);
         addItemSteps.VideoContent5(VideoContent5, VideoContent2, VideoContent3, VideoContent4, VideoContent1);
-        loginSteps.Sleep(5000);
+        loginSteps.Sleep(100);
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         jse1.executeScript("window.scrollBy(0,-1000)", "");
         addItemSteps.AudioContent5(AudioContent1,AudioContent2, AudioContent3, AudioContent4, AudioContent5);
-        //jse1.executeScript("window.scrollBy(0,-450)", "");
-        //addItemSteps.LinksContent5(LinksContent1,LinksContent2, LinksContent3, LinksContent4, LinksContent5);
         //addItemSteps.collapseContent();
         addItemSteps.ItemStatusDeactivate();
         addItemSteps.clickSave(driver);
@@ -620,232 +310,6 @@ public class t2_AddItemServiceStory {
         addItemSteps.checkValueExists(tag1, tag_now);
         addItemSteps.checkElementPresents(audio_now);
     }
-   /*
-    @Test
-    @Ignore
-    public void addServiceDemand_MIN(){
-        addItemSteps.openAddItemPage(driver);
-        //loginSteps.Sleep(5000);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(TitleMIN, DescriptionMIN);
-        addItemSteps.enterTag(tag1);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory3();
-        addItemSteps.enterLocation(Location);
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent1);
-        addItemSteps.AudioContent1(AudioContent1);
-        addItemSteps.LinksContent1(LinksContent1);
-        addItemSteps.TextContent(textContentMIN);
-
-        addItemSteps.collapseContent();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.ItemStatusActivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceDemand_3Contents() {
-        addItemSteps.openAddItemPage(driver);
-        //loginSteps.Sleep(5000);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(Title, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory3();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.TextContent(textContentMAX);
-        addItemSteps.VideoContent3(VideoContent5,VideoContent2,VideoContent3);
-        addItemSteps.LinksContent3(LinksContent1,LinksContent2,LinksContent3);
-        addItemSteps.AudioContent3(AudioContent1,AudioContent2,AudioContent3);
-        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,-800)", "");
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-        addItemSteps.clickSave(driver);
-       // loginSteps.pageLoad(AddItem);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceDemand_2Contents()  {
-        addItemSteps.openAddItemPage(driver);
-        //loginSteps.Sleep(5000);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(Title, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory2();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.TextContent(textContentAR);
-        addItemSteps.VideoContent2(VideoContent1,VideoContent2);
-        addItemSteps.AudioContent2(AudioContent1,AudioContent2);
-        addItemSteps.LinksContent2(LinksContent1,LinksContent2);
-
-        addItemSteps.collapseContent();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.ItemStatusPeriod();
-        addItemSteps.clickSave(driver);
-      //  loginSteps.pageLoad(AddItem);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceDemand_4Contents()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(Title, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory2();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.TextContent(textContentMIN);
-        addItemSteps.LinksContent4(LinksContent1,LinksContent2,LinksContent3,LinksContent4);
-        addItemSteps.VideoContent4(VideoContent1,VideoContent2,VideoContent3,VideoContent4);
-        addItemSteps.AudioContent4(AudioContent1,AudioContent2,AudioContent3,AudioContent4);
-        //loginSteps.Sleep(5000);
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,2510)", "");
-        addItemSteps.clickSave2(driver);
-       // loginSteps.pageLoad(AddItem);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceDemand_AR()  {
-        addItemSteps.openAddItemPage(driver);
-
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
-        addItemSteps.enterTag(tag1);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-        addItemSteps.enterLocation(Location);
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.TextContent(textContentAR);
-        addItemSteps.VideoContent3(VideoContent5, VideoContent2, VideoContent3);
-        addItemSteps.AudioContent3(AudioContent1, AudioContent2, AudioContent3);
-       // loginSteps.Sleep(1000);
-        addItemSteps.collapseContent();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.ItemStatusPeriod();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceDemand_OnlyVideo()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(TitleMAX, Description);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory2();
-        addItemSteps.enterLocation(Location);
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent3(VideoContent1, VideoContent2, VideoContent3);
-        //loginSteps.Sleep(1000);
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceDemand_Video_Audio()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(Title, DescriptionMAX);
-        addItemSteps.enterTag(tag1);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory2();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent3(VideoContent1, VideoContent2, VideoContent3);
-        addItemSteps.AudioContent3(AudioContent1,AudioContent2, AudioContent3);
-        //loginSteps.Sleep(10000);
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceDemand_Video_Links()  {
-        addItemSteps.openAddItemPage(driver);
-        //addItemSteps.selectItemTypeService();
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(Title, DescriptionAR);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-        addItemSteps.enterLocation(Location);
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent2(VideoContent1, VideoContent2);
-        addItemSteps.LinksContent2(LinksContent1,LinksContent2);
-        //loginSteps.Sleep(1000);
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }
-
-    @Test
-    @Ignore
-    public void addServiceDemand_Video_Text()  {
-        addItemSteps.openAddItemPage(driver);
-        //loginSteps.Sleep(5000);
-        //addItemSteps.selectItemTypeService(driver);
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(Title, DescriptionAR);
-
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.TextContent(textContent);
-        addItemSteps.VideoContent2(VideoContent1, VideoContent2);
-
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusDeactivate();
-
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }*/
 
     @Test
     public void stage6_checkItemErrorPresent() {

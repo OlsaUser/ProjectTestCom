@@ -18,12 +18,6 @@ public class AddGroupSteps extends ScenarioSteps {
     GroupPage groupPage;
 
     @Step
-    public void openMyGroupsPage() { groupPage.openMyGroupsPage();}
-
-    @Step
-    public void openGroupsPage() { groupPage.openGroupsPage();}
-
-    @Step
     public void clickAddGroupButton() { groupPage.clickAddGroupButton();}
 
     @Step
@@ -40,9 +34,6 @@ public class AddGroupSteps extends ScenarioSteps {
 
     @Step
     public void selectCancelButton(WebDriver driver) { groupPage.selectCancelButton(driver);}
-
-    @Step
-    public void checkGroupDeleted(){ groupPage.checkGroupDeleted();}
 
     @Step
     public void enterNameGroup(String NameGroup, WebDriver driver) { groupPage.enterNameGroup(NameGroup, driver);}
@@ -71,15 +62,11 @@ public class AddGroupSteps extends ScenarioSteps {
     @Step
     public void clickCreateError()  { groupPage.clickCreateError();}
 
-    @Step
-    public void MyGroupWall(WebDriver driver)  { groupPage.MyGroupWall(driver);}
-
-    @Step
+   /* @Step
     public void MyGroupWallPublic(WebDriver driver)  { groupPage.MyGroupWallPublic(driver);}
 
     @Step
     public void MyGroupWallLimited(WebDriver driver, String maxNameGroupLimited) { groupPage.MyGroupWallLimited(driver, maxNameGroupLimited);}
-
 
     @Step
     public void MyGroupWallPrivate(WebDriver driver, String maxNameGroupLimited) { groupPage.MyGroupWallPrivate(driver, maxNameGroupLimited);}
@@ -89,7 +76,7 @@ public class AddGroupSteps extends ScenarioSteps {
 
     @Step
     public void openGroupWallPrivate(WebDriver driver, String maxNameGroupLimited) { groupPage.openGroupWallPrivate(driver, maxNameGroupLimited);}
-
+*/
     @Step
     public void MyGroupWall_forDelete(WebDriver driver, String NameGroup) { groupPage.MyGroupWall_forDelete(driver, NameGroup);}
 
@@ -133,7 +120,7 @@ public class AddGroupSteps extends ScenarioSteps {
     public void checkMemberPri(WebDriver driver, String GroupName)  { groupPage.checkMemberPri(driver, GroupName);}
 
     @Step
-    public void MyGroupWallforInvate(WebDriver driver)  { groupPage.MyGroupWallforInvate(driver);}
+    public void openGroupWall(WebDriver driver, String name)  { groupPage.openGroupWall(driver, name);}
 
     @Step
     public void clickSettings()  { groupPage.clickSettings();}
@@ -143,15 +130,6 @@ public class AddGroupSteps extends ScenarioSteps {
 
     @Step
     public void clickBtnDeleteGroup( )  { groupPage.clickBtnDeleteGroup();}
-
-    @Step
-    public void enterPasswordForDelete(String password)  { groupPage.enterPasswordForDelete(password);}
-
-    @Step
-    public void pressConfirmForDelete( )  { groupPage.pressConfirmForDelete();}
-
-    @Step
-    public void checkPassword(WebDriver driver,String ErrorPassword)  { groupPage.checkPassword(driver, ErrorPassword);}
 
     @Step
     public void clickbtnSettingsInvite()  { groupPage.clickbtnSettingsInvite();}

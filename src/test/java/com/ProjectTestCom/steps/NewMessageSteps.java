@@ -17,9 +17,6 @@ public class NewMessageSteps extends ScenarioSteps {
     NewMessagePage newMessagePage;
 
     @Step
-    public void PressIconMessage() {newMessagePage.PressIconMessage();}
-
-    @Step
     public void SelectChatWith() {newMessagePage.SelectChatWith();}
 
     @Step

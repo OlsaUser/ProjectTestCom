@@ -48,6 +48,9 @@ public class t2_ShareItemStory {
     private String AudioLink = PropertyLoader.getProperty(propertyPostPath, "AudioLink");
     private String VideoLink = PropertyLoader.getProperty(propertyPostPath, "VideoLink");
 
+    private String propertyGroupPath = "src/test/resources/group.properties";
+    private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
+
     @Managed
     WebDriver driver;
 
@@ -114,11 +117,11 @@ public class t2_ShareItemStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         loginSteps.PageComplete(driver);
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderGroup);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderShareItem);
     }
@@ -140,7 +143,7 @@ public class t2_ShareItemStory {
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addItemSteps.checkShareItemExists(driver, HeaderShareItem);
 
@@ -149,7 +152,7 @@ public class t2_ShareItemStory {
 
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderWall);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         headerSteps.openHomePage(driver);
         headerSteps.openMyMnassaPage(driver);

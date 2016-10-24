@@ -15,25 +15,7 @@ public class AddPostSteps extends ScenarioSteps {
     AddPostPage addPostPage;
 
     @Step
-    public void openHomePage() { addPostPage.openHomePage();}
-
-    @Step
-    public void openMyMnassaPage() { addPostPage.openMyMnassaPage();}
-
-    @Step
-    public void openMyWallPage() { addPostPage.openMyWallPage();}
-
-    @Step
     public void openGroupWall() { addPostPage.openGroupWall();}
-
-    @Step
-    public void openMyGroupsPage() { addPostPage.openMyGroupsPage();}
-
-    @Step
-    public void openMyGroupWall() { addPostPage.openMyGroupWall();}
-
-    @Step
-    public void openGroupsPage() { addPostPage.openGroupsPage();}
 
     @Step
     public void AddTextPost(String Text, WebDriver driver) { addPostPage.AddTextPost(Text, driver);}
@@ -45,13 +27,10 @@ public class AddPostSteps extends ScenarioSteps {
     public void AddTextPost_inGroup(String Text, WebDriver driver) { addPostPage.AddTextPost_inGroup(Text, driver);}
 
     @Step
-    public void clickPostArea( ) { addPostPage.clickPostArea();}
-
-    @Step
     public void openVideoPopup( ) { addPostPage.openVideoPopup();}
 
     @Step
-    public void openAudioPopup(WebDriver driver ) { addPostPage.openAudioPopup(driver);}
+    public void openAudioPopup( ) { addPostPage.openAudioPopup();}
 
     @Step
     public void AddVideoLink(String Video) { addPostPage.AddVideoLink(Video);}
@@ -64,9 +43,6 @@ public class AddPostSteps extends ScenarioSteps {
 
     @Step
     public void clickAudioPostButton(WebDriver driver) { addPostPage.clickAudioPostButton(driver);}
-
-    @Step
-    public void clearFieldPost() { addPostPage.clearFieldPost();}
 
     @Step
     public void clickPostButton() {addPostPage.clickPostButton();}
@@ -93,17 +69,7 @@ public class AddPostSteps extends ScenarioSteps {
     public void checkAudioContentInPost(WebDriver driver ) { addPostPage.checkAudioContentInPost(driver);}
 
     @Step
-    public void checkTextInNewsFeed(String textPost, WebDriver driver) { addPostPage.checkTextInNewsFeed(textPost, driver);}
-
-  /*  @Step
-    public void checkTextInPostMax() { addPostPage.checkTextInPostMax();}
-
-    @Step
-    public void checkTextInPostAr() { addPostPage.checkTextInPostAr();}
-*/
-    @Step
     public void openPostMenu() { addPostPage.openPostMenu();}
-
 
     @Step
     public void openRepostMenu() { addPostPage.openRepostMenu();}
@@ -121,10 +87,7 @@ public class AddPostSteps extends ScenarioSteps {
     public void pressPostButton() { addPostPage.pressPostButton();}
 
     @Step
-    public void checkTextInGroupAfterRepost(WebDriver driver, String placeholderGroup) { addPostPage.checkTextInGroupAfterRepost(driver, placeholderGroup);}
-
-    @Step
-    public void checkTextInWallAfterRepost(WebDriver driver, String placeholderWall) { addPostPage.checkTextInWallAfterRepost(driver, placeholderWall);}
+    public void checkPlaceholderTextAfterRepost(WebDriver driver, String placeholder) { addPostPage.checkPlaceholderTextAfterRepost(driver, placeholder);}
 
     @Step
     public void checkRepostExists(WebDriver driver, String text, String HeaderRepost) { addPostPage.checkRepostExists(driver, text, HeaderRepost);}
@@ -139,10 +102,10 @@ public class AddPostSteps extends ScenarioSteps {
     public void selectPin() { addPostPage.selectPin( );}
 
     @Step
-    public void checkPinPlaceholder() { addPostPage.checkPinPlaceholder( );}
+    public void checkPinPlaceholder(String placeholder) { addPostPage.checkPinPlaceholder(placeholder );}
 
     @Step
-    public void checkUnPinPlaceholder() { addPostPage.checkUnPinPlaceholder( );}
+    public void checkUnPinPlaceholder(String placeholder) { addPostPage.checkUnPinPlaceholder(placeholder );}
 
     @Step
     public void pressViewNow() { addPostPage.pressViewNow( );}

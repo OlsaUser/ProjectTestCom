@@ -51,47 +51,33 @@ import static org.yecht.LevelStatus.pause;
  */
 //@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
 //@DefaultUrl("http://mnassa.com/en/#!login")
+
 @RunWith(SerenityRunner.class)
 public class ItemPage extends PageObject {
 
     HashMap<String, String> category = new HashMap();
     HashMap<String, Integer> ID = new HashMap();
-    HashMap<String, Integer> vID = new HashMap();
 
-    //private final By buttonAdd = By.xpath("//div[@class='header-add dropdown']/button");
-    private final By buttonAdd = By.xpath("//button[@class='header-btn btn btn-red-primary']");
-    //private final By buttonAddInlisting = By.xpath("//header[@class='add-item-thumbnail rel']");
-    private final By buttonAddInlisting = By.xpath("//a[@class='card-add']");
-    private final By ServiceListing = By.xpath("//ul[@class='nav navbar-nav navbar-nav-md']/li[3]");
-    private final By ProductListing = By.xpath("//ul[@class='nav navbar-nav navbar-nav-md']/li[2]");
-    private final By EventListing = By.xpath("//ul[@class='nav navbar-nav navbar-nav-md']/li[4]");
-    private final By PartnershipListing = By.xpath("//ul[@class='nav navbar-nav navbar-nav-md']/li[6]");
-    //private final By ItemSettingsMenu = By.xpath("//div[@class='row']/div[2]/div[1]/div[@class='caption']/div[1]/div[2]");
-    //private final By ItemSettingsMenu = By.xpath("//section[@id='market_sect']/market_app/div[1]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[1]/div/span");
+    private final By buttonAdd_Menu = By.xpath("//button[@class='header-btn btn btn-red-primary']");
+    private final By buttonAdd_listing = By.xpath("//a[@class='card-add']");
     private final By ItemSettingsMenu = By.xpath("//button[@class='card-edit-toggle']");
     private final By ViewMenu = By.xpath("//ul[@class='dropdown-menu dropdown-card']/li[1]");
-    private final By fieldComment = By.xpath("//section[@class='comments white-bg']//textarea");
-    private final By btnPost = By.xpath("//section[@class='comments white-bg']//a");
-    private final By txtComment = By.xpath("//div[@class='comment-body']");
     private final By EditMenu = By.xpath("//ul[@class='dropdown-menu dropdown-card']/li[2]");
     private final By StatusMenu = By.xpath("//ul[@class='dropdown-menu dropdown-card']/li[3]");
     private final By DeleteMenu = By.xpath("//ul[@class='dropdown-menu dropdown-card']/li[4]");
+    private final By fieldComment = By.xpath("//section[@class='comments white-bg']//textarea");
+    private final By btnPost = By.xpath("//section[@class='comments white-bg']//a");
+    private final By txtComment = By.xpath("//div[@class='comment-body']");
+
     private final By btnDelete = By.xpath("//div[@id='del_item_dlg']//div[@class='modal-body']//div[@class='text-center']/button[2]");
     private final By btnCancel = By.xpath("//div[@class='modal-content']//div[@class='text-center']/button[1]");
-    private final By PopupSuccess = By.xpath("//div[@class='modal-dialog confirm']");
-    private final By btnOK = By.xpath("//div[1]/button[@can-click='upd_item_cancel']");
 
-    private final By EditMenus = By.xpath("//div[@class='card-edit']/div");
+    private final By EditMenus_items = By.xpath("//div[@class='card-edit']/div");
     private final String editCurrentItem = "..//a[contains(@href, '#!edit/item')]";
     private final By itemsBlocks = By.xpath("//div[@class='card-photo']");
     private final String itemsCovers= "..//img";
 
     private final By types = By.xpath("//div[@class='header-add dropdown open']/div[@class='header-dropdown']/a");
-
-    private final By typeService = By.xpath("//div[@class='header-subnav']/a[1]");
-    private final By typeProduct = By.xpath("//div[@class='header-subnav']/a[2]");
-    private final By typeEvent = By.xpath("//div[@class='header-subnav']/a[3]");
-    private final By typePartnership = By.xpath("//div[@class='header-subnav']/a[4]");
     private final By Supply = By.xpath("//div[@class='text-center add-item-header-button-block']/button[1]");
     private final By Demand = By.xpath("//div[@class='text-center add-item-header-button-block']/button[2]");
 
@@ -101,7 +87,6 @@ public class ItemPage extends PageObject {
 
     private final By fieldTag = By.xpath("//li[@class='select2-search-field']//input");
     private final By Tag1 = By.xpath("//span[@class='select2-match']");
-    private final By Tag2 = By.xpath("//div[@id='select2-drop']//li[2]");
 
     private final By fieldLocation = By.xpath("//div[@id='s2id_cities-google']//input");
     private final By Location = By.xpath("//div[@class='select2-result-label']");
@@ -186,7 +171,7 @@ public class ItemPage extends PageObject {
 
     private final By organizerName = By.xpath("//input[@id='mi_ev_organizer']");
 
-    //For Partnership
+    //For Project
     private final By registeredYes = By.xpath("//div[@id='mainDetailes']/div/div/div/div[23]/div/label[1]");
     private final By registeredNo = By.xpath("//div[@id='mainDetailes']/div/div/div/div[23]/div/label[2]");
     private final By registeredInProcess = By.xpath("//div[@id='mainDetailes']/div/div/div/div[23]/div/label[3]/span");
@@ -207,7 +192,7 @@ public class ItemPage extends PageObject {
     private final By fldManagementSupport = By.xpath("//textarea[@can-value='mi_prj_partnership_descr']");
 
     //Common block
-    private final By collapseBasicInfo = By.xpath("//a[@aria-controls='basicInfo']");
+    private final By collapseMainInfo = By.xpath("//a[@aria-controls='basicInfo']");
     private final By collapseMainDetails = By.xpath("//a[@aria-controls='mainDetailes']");
     private final By collapseContent = By.xpath("//a[@aria-controls='content']");
     private final By collapseStatus = By.xpath("//a[@aria-controls='itemStatus']");
@@ -249,16 +234,6 @@ public class ItemPage extends PageObject {
     private final By iconDelete4 = By.xpath("//div[@id='audio']/div[8]/div");
     private final By iconDelete5 = By.xpath("//div[@id='audio']/div[10]/div");
 
-    private final By ContentFile = By.xpath(".//*[@id='content']/div/div[1]/div/ul/li[5]/a");
-
-    private final By ContentLink = By.xpath(".//*[@id='content']/div/div[1]/div/ul/li[6]/a");
-    private final By fieldLink1 = By.xpath(".//*[@id='link']/div[2]/input");
-    private final By fieldLink2 = By.xpath(".//*[@id='link']/div[3]/input");
-    private final By fieldLink3 = By.xpath(".//*[@id='link']/div[4]/input");
-    private final By fieldLink4 = By.xpath(".//*[@id='link']/div[5]/input");
-    private final By fieldLink5 = By.xpath(".//*[@id='link']/div[6]/input");
-    private final By linkAddLink = By.xpath("//div[@id='link']//a[@can-click='mi_links.add_link']");
-
     private final By statusActivate = By.xpath("//span[contains(text(),'Activate')]");
     private final By statusPeriod = By.xpath("//span[contains(text(),'Activate from/to')]");
     private final By statusDeactivate = By.xpath("//span[contains(text(),'Inactive')]");
@@ -267,10 +242,6 @@ public class ItemPage extends PageObject {
     private final By btnSave2 = By.xpath("//div[@class='item-live-preview-bottom container']//button[@can-click='upd_item']");
     private final By SuccessPopup = By.xpath("//div[@id='message_modal']/div");
     private final By SuccessPopupOk = By.xpath(".//*[@id='message_modal']/div/div/div[3]/button");
-    // private final By SuccessPopupOk = By.xpath("//div[@class='modal-content']/div[3]/button[@class='btn btn-red-primary btn-large center-block width-83px']");
-    private final By SuccessPopupClose = By.xpath("//button[@aria-label='Close']");
-    private final By txtSuccessPopup = By.xpath("//h4[@id='forgot-modal-label']");
-
 
     private final By lblTitleError = By.xpath("//div[@id='basicInfo']/div/div/div/div[1]/div[2]");
     private final By lblCategoryError = By.xpath("//div[@class='select2-wrapper']/div[2]");
@@ -286,33 +257,7 @@ public class ItemPage extends PageObject {
 
     private final By itemContaner = By.xpath("//div[@class='container']");
 
-    //Elements in Preview (Common)
-    private final By txtTitle = By.xpath("//h1[@class='item-content-title']");
-    private final By txtDescription = By.id("item-description");
-    private final By txtTag = By.xpath("//ul[@class='tag-list list-unstyled']/li[1]//span");
-    private final By txtLocation = By.xpath("//div[@class='item-location-subtitle']");
-    //private final By txtFullDescription = By.id("item-description");
-    private final By txtAudio1 = By.xpath("//div[@class='added-audio audio-preview-1']");
-    private final By txtAudio2 = By.xpath("//div[@class='added-audio audio-preview-2']");
-    private final By txtAudio3 = By.xpath("//div[@class='added-audio audio-preview-3']");
-    private final By txtAudio4 = By.xpath("//div[@class='added-audio audio-preview-4']");
-    private final By txtAudio5 = By.xpath("//div[@class='added-audio audio-preview-5']");
-    private final By txtVideo = By.xpath("//");
-    private final By txtLink1 = By.xpath("//ul[@class='preview-att-files-list list-unstyled']/li[1]/a");
-    private final By txtLink2 = By.xpath("//ul[@class='preview-att-files-list list-unstyled']/li[2]/a");
-    private final By txtLink3 = By.xpath("//ul[@class='preview-att-files-list list-unstyled']/li[3]/a");
-    private final By txtLink4 = By.xpath("//ul[@class='preview-att-files-list list-unstyled']/li[4]/a");
-    private final By txtLink5 = By.xpath("//ul[@class='preview-att-files-list list-unstyled']/li[5]/a");
-    private final By txtPrice = By.xpath("//");
-    private final By txtPricePer = By.xpath("//span[@class='price-tip']");
-
-    //Elements in Preview (Service)
-    private final By txtYearsOfExperience = By.xpath("//p[contains(text(),'10+ years')]");
-    private final By txtPaymentMethod = By.xpath("//");
-    private final By txtServiceOnline = By.xpath("//span[contains(text(),'Online')]");
-    private final By txtAdvancedPayment = By.xpath("//span[contains(text(),'100')]");
-    private final By txtServiceAvailability = By.xpath("//span[@class='text-danger']");
-
+    //Elements in Preview
     private final By breadcrumb_ItemType = By.xpath("//div[@class='item-breadcrumbs']/div[1]/a");
     private final By breadcrumb_ItemCategory = By.xpath("//div[@class='item-breadcrumbs']/div[2]/a");
     private final By breadcrumb_ItemSubCategory = By.xpath("//div[@class='item-breadcrumbs']/div[3]/a");
@@ -386,22 +331,6 @@ public class ItemPage extends PageObject {
 
     private final HashMap<Integer, String> itemUrl = new HashMap();
 
-    public void openServiceListing() {
-        element(ServiceListing).click();
-    }
-
-    public void openProductListing() {
-        element(ProductListing).click();
-    }
-
-    public void openEventListing() {
-        element(EventListing).click();
-    }
-
-    public void openPartnershipListing() {
-        element(PartnershipListing).click();
-    }
-
     public boolean checkValueExists(String value_exp, String value_now) {
         String text_now_value = getDriver().findElement(By.xpath(value_now)).getText();
         System.out.println(text_now_value);
@@ -424,136 +353,13 @@ public class ItemPage extends PageObject {
         return false;
     }
 
-    public boolean checkCommonValuesPreview(String Title, String Description, String tag, String Per, String Location) {
-
-        String LblTitle = getDriver().findElement(txtTitle).getText();
-        String LblDesc = getDriver().findElement(txtDescription).getText();
-        String LblTag = getDriver().findElement(txtTag).getText();
-        String LblPer = getDriver().findElement(txtPricePer).getText();
-        String LblLocation = getDriver().findElement(txtLocation).getText();
-       /* String LblLink1 = getDriver().findElement(txtLink1).getText();
-        String LblLink2 = getDriver().findElement(txtLink2).getText();
-        String LblLink3 = getDriver().findElement(txtLink3).getText();
-        String LblLink4 = getDriver().findElement(txtLink4).getText();
-        String LblLink5 = getDriver().findElement(txtLink5).getText();
-        String LblfullDesc = getDriver().findElement(txtFullDescription).getText();*/
-
-        System.out.println(LblTitle);
-        System.out.println(Title);
-
-        System.out.println(LblDesc);
-        System.out.println(Description);
-
-        System.out.println(LblTag);
-        System.out.println(tag);
-
-        System.out.println(LblPer);
-        System.out.println(Per);
-
-        System.out.println(LblLocation);
-        System.out.println(Location);
-
-       /* System.out.println(LblLink1);
-        System.out.println(LinksContent1);
-
-        System.out.println(LblLink2);
-        System.out.println(LblLink3);
-        System.out.println(LblLink4);
-        System.out.println(LblLink5);
-        System.out.println(LblfullDesc);
-        System.out.println(fullDescription);*/
-        /*String[] test =  LblPriceOut.split(" SAR / \\s+");
-        System.out.println(test);*/
-
-        if ((LblTitle.equals(Title)) && (LblDesc.equals(Description)) && (LblPer.equals(Per))
-                && (LblTag.equals(tag)))
-        /*&& (LblfullDesc.equals(fullDescription)))
-                /& (LblLink1.equals(LinksContent1)) && (LblLink2.equals(LinksContent2))
-                && (LblLink3.equals(LinksContent3)) && (LblLink4.equals(LinksContent4))
-                && (LblLink5.equals(LinksContent5)))*/
-
-        {
-            System.out.println("Success ");
-            return true;
-        } else {
-            System.out.println("Fail case ");
-            return false;
-        }
-    }
-
-    public boolean checkServiceValuesPreviewEN() {
-
-        String LblAdvancedPayment = getDriver().findElement(txtAdvancedPayment).getText();
-        String txtAdvancedPayment = "100%";
-        System.out.println(LblAdvancedPayment);
-
-        //String LblPaymentMethod = getDriver().findElement(txtPaymentMethod).getText();
-
-        String LblServiceOnline = getDriver().findElement(txtServiceOnline).getText();
-        String txtServiceOnline = "Online";
-        System.out.println(LblServiceOnline);
-
-        String LblAvailable = getDriver().findElement(txtServiceAvailability).getText();
-        String txtAvailable = "Will be available soon";
-        System.out.println(LblAvailable);
-
-        String LblYearsOfExperience = getDriver().findElement(txtYearsOfExperience).getText();
-        String txtYearsOfExperience = "10+ years";
-        System.out.println(LblYearsOfExperience);
-
-        if ((txtYearsOfExperience.equals(LblYearsOfExperience)) && (txtAvailable.equals(LblAvailable)) && (LblServiceOnline.equals(txtServiceOnline))
-                && (LblAdvancedPayment.equals(txtAdvancedPayment)))
-
-        {
-            System.out.println("Success ");
-            return true;
-        } else {
-            System.out.println("Fail case ");
-            return false;
-        }
-    }
-
-    public boolean checkServiceValuesPreviewAR() {
-
-        String LblAdvancedPayment = getDriver().findElement(txtAdvancedPayment).getText();
-        String txtAdvancedPayment = "١٠٠%";
-        System.out.println(LblAdvancedPayment);
-
-        //String LblPaymentMethod = getDriver().findElement(txtPaymentMethod).getText();
-
-        String LblServiceOnline = getDriver().findElement(txtServiceOnline).getText();
-        String txtServiceOnline = "متوفر/ موجود";
-        System.out.println(LblServiceOnline);
-
-        String LblAvailable = getDriver().findElement(txtServiceAvailability).getText();
-        String txtAvailable = "غير متوفرة حالياً";
-        System.out.println(LblAvailable);
-
-        String LblYearsOfExperience = getDriver().findElement(txtYearsOfExperience).getText();
-        String txtYearsOfExperience = "أكثر من ١٠ سنين";
-        System.out.println(LblYearsOfExperience);
-
-        if ((txtYearsOfExperience.equals(LblYearsOfExperience)) && (txtAvailable.equals(LblAvailable)) && (LblServiceOnline.equals(txtServiceOnline))
-                && (LblAdvancedPayment.equals(txtAdvancedPayment)))
-
-        {
-            System.out.println("Success ");
-            return true;
-        } else {
-            System.out.println("Fail case ");
-            return false;
-        }
-    }
-
     public void openItemSettingsMenu() {
-        /*JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,550)", "");*/
-        element(ItemSettingsMenu).click();
-    }
+        element(ItemSettingsMenu).waitUntilClickable();
+        element(ItemSettingsMenu).click();}
 
-    public void openSettingsMenuForSpecialItem(String itemID) {
+    public void EditSpecialItem(String itemID) {
         WebElement ed;
-        List<WebElement> menus = getDriver().findElements(EditMenus);
+        List<WebElement> menus = getDriver().findElements(EditMenus_items);
         for (WebElement el : menus) {
             el.click();
             String tt = el.findElement(By.xpath(editCurrentItem)).getAttribute("href");
@@ -569,7 +375,6 @@ public class ItemPage extends PageObject {
     }
 }
 
-
     public void selectDeleteMenu() {
         JavascriptExecutor jse1 = (JavascriptExecutor) getDriver();
         jse1.executeScript("window.scrollBy(0,-100)", "");
@@ -584,29 +389,6 @@ public class ItemPage extends PageObject {
         //String urlI = driver.getCurrentUrl();
 
         itemUrl.put(1, driver.getCurrentUrl());
-
-        for (String value : itemUrl.values()) {
-            //System.out.println("Value: " + value);
-        }
-       /* int s=1;
-        System.out.println(itemUrl.get(s));*/
-    }
-
-    public void openURL(int key) {
-
-        String url = itemUrl.get(key);
-
-        System.out.println(url);
-        getDriver().get(itemUrl.get(key));
-    }
-
-    public void getURL(int key, HashMap<Integer, String> itemUrl) {
-        System.out.println(itemUrl.get(1));
-
-        String url = itemUrl.get(key);
-
-        System.out.println(url);
-        getDriver().get(itemUrl.get(key));
     }
 
     public void checkCommentAdded(String comment) {
@@ -615,14 +397,6 @@ public class ItemPage extends PageObject {
         System.out.println("Exp: " + comment);
 
        assertEquals("Wrong Comment!", m, comment);
-
-        /*if (m.equals(comment)) {
-            System.out.println("Comment exists " + m);
-            return true;
-        } else {
-            System.out.println("Comment doesn't exists");
-            return false;
-        }*/
     }
 
     public void addComment(WebDriver driver, String comment) {
@@ -665,14 +439,14 @@ public class ItemPage extends PageObject {
 
     public void clickAddButton(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 400);
-        wt.until(ExpectedConditions.presenceOfElementLocated(buttonAdd));
-        wt.until(ExpectedConditions.elementToBeClickable(buttonAdd));
-        find(buttonAdd).click();
+        wt.until(ExpectedConditions.presenceOfElementLocated(buttonAdd_Menu));
+        wt.until(ExpectedConditions.elementToBeClickable(buttonAdd_Menu));
+        find(buttonAdd_Menu).click();
         wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(types));
     }
 
     public void openAddItemPageByClickingOnButtonInListing() {
-        element(buttonAddInlisting).click();
+        element(buttonAdd_listing).click();
     }
 
     public void selectItemType(String ItemType, WebDriver driver) {
@@ -695,36 +469,6 @@ public class ItemPage extends PageObject {
         }
     }
 
-    public void selectItemTypeProduct(WebDriver driver) {
-       /* element(typeProduct).click();
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.presenceOfElementLocated(Supply));*/
-
-        java.util.List<WebElement> videos = driver.findElements(typeService);
-        driver.findElement(typeProduct).click();
-        videos = driver.findElements(typeService);
-    }
-
-    public void selectItemTypeEvent(WebDriver driver) {
-      /*  WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.presenceOfElementLocated(typeEvent));
-        element(typeEvent).click();
-        wt.until(ExpectedConditions.presenceOfElementLocated(Supply));*/
-
-        java.util.List<WebElement> videos = driver.findElements(typeService);
-        driver.findElement(typeEvent).click();
-        videos = driver.findElements(typeService);
-    }
-
-    public void selectItemTypePartnership(WebDriver driver) {
-        /*element(typePartnership).click();
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.presenceOfElementLocated(Supply));*/
-        java.util.List<WebElement> videos = driver.findElements(typeService);
-        driver.findElement(typePartnership).click();
-        videos = driver.findElements(typeService);
-    }
-
     public void selectDemand() {
         element(Demand).click();
     }
@@ -740,7 +484,6 @@ public class ItemPage extends PageObject {
     }
 
     public void enterBasicInfo(String Title, String Description) {
-
         typeIntoField(fieldTitle, Title);
         typeIntoField(fieldDescription, Description);
     }
@@ -812,26 +555,6 @@ public class ItemPage extends PageObject {
         category.put(categoryName, subcategoryName);
     }
 
-    public void selectSubCategory1() {
-        find(menuSubCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
-        find(SubCategory1).click();
-    }
-
-    public void selectSubCategory2() {
-        find(menuSubCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
-        String subcategoryName = find(SubCategory2).getText();
-        find(SubCategory2).click();
-    }
-
-    public void selectSubCategory3() {
-        find(menuSubCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
-        String subcategoryName = find(SubCategory3).getText();
-        find(SubCategory3).click();
-    }
-
     public void enterPrice(String value, String Per) {
         find(Fixed).click();
         clearPrice();
@@ -877,106 +600,50 @@ public class ItemPage extends PageObject {
         //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
     }
 
-    public void selectMethodVisa() {
-        find(PaymentMethodVisa).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectMethodVisa() {find(PaymentMethodVisa).click();}
 
     public void selectMethodMasterCard() {
         find(PaymentMethodMasterCard).click();
     }
 
-    public void selectMethodPayPal() {
-        find(PaymentMethodPayPal).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectMethodPayPal() {find(PaymentMethodPayPal).click();}
 
-    public void selectMethodDebitCard() {
-        find(PaymentMethodDebitCard).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectMethodDebitCard() {find(PaymentMethodDebitCard).click();}
 
-    public void selectMethodCash() {
-        find(PaymentMethodCash).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectMethodCash() {find(PaymentMethodCash).click();}
 
-    public void selectDeliveryMethodDHL() {
-        find(DHL).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectDeliveryMethodDHL() {find(DHL).click();}
 
-    public void selectDeliveryMethodTNT() {
-        find(TNT).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectDeliveryMethodTNT() {find(TNT).click();}
 
-    public void selectDeliveryMethodAramex() {
-        find(Aramex).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectDeliveryMethodAramex() {find(Aramex).click();}
 
-    public void selectDeliveryMethodPickUp() {
-        find(PickUp).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectDeliveryMethodPickUp() {find(PickUp).click();}
 
-    public void selectDeliveryMethodHomeDelivery() {
-        find(HomeDelivery).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectDeliveryMethodHomeDelivery() {find(HomeDelivery).click();}
 
-    public void selectDeliveryMethodSaudiPost() {
-        find(SaudiPost).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectDeliveryMethodSaudiPost() {find(SaudiPost).click();}
 
-    public void selectDeliveryMethodOther() {
-        find(Other).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectDeliveryMethodOther() {find(Other).click();}
 
-    public void selectAvailabilityNow() {
-        find(AvailabilityNow).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectAvailabilityNow() {find(AvailabilityNow).click();}
 
     public void selectAvailabilityOutOfStock() {
         find(OutOfStock).waitUntilVisible();
         find(OutOfStock).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
     }
 
-    public void selectAvailabilitySold() {
-        find(Sold).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectAvailabilitySold() {find(Sold).click();}
 
-    public void selectConditionNew() {
-        find(ConditionNew).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectConditionNew() {find(ConditionNew).click();}
 
-    public void selectConditionUsed() {
-        find(ConditionUsed).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectConditionUsed() {find(ConditionUsed).click();}
 
-    public void collapseBasicInfo() {
-        //((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        find(collapseBasicInfo).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void collapseMainInfo() {find(collapseMainInfo).click();}
 
-    public void collapseMainDetails() {
-        find(collapseMainDetails).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void collapseMainDetails() {find(collapseMainDetails).click();}
 
-    public void collapseContent() {
-        find(collapseContent).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void collapseContent() {find(collapseContent).click();}
 
     public void selectServiceWillBeAvailable() {
         find(ServiceWillBeAvailable).click();
@@ -986,15 +653,9 @@ public class ItemPage extends PageObject {
         find(ServiceWillBeAvailableSoon).click();
     }
 
-    public void collapseStatus() {
-        find(collapseStatus).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void collapseStatus() {find(collapseStatus).click();}
 
-    public void clickServiceOnline() {
-        find(serviceOnline).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void clickServiceOnline() {find(serviceOnline).click();}
 
     public void selectAdvancedPayment10() {
         find(fieldAdvancedPayment).click();
@@ -1006,121 +667,65 @@ public class ItemPage extends PageObject {
         find(fieldAdvancedPayment).click();
         getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
         find(AdvancedPaymentValue25).click();
-
     }
 
     public void selectAdvancedPayment50() {
         find(fieldAdvancedPayment).click();
         getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
         find(AdvancedPaymentValue50).click();
-
     }
 
     public void selectAdvancedPayment100() {
         find(fieldAdvancedPayment).click();
         getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
         find(AdvancedPaymentValue100).click();
-
     }
 
     public void selectEventType() {
         find(EventType).click();
         getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
         find(EventTypeAttraction).click();
-
     }
 
-    public void selectAudienceMales() {
-        find(AudienceMales).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectAudienceMales() {find(AudienceMales).click();}
 
-    public void selectAudienceFemales() {
-        find(AudienceFemales).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectAudienceFemales() {find(AudienceFemales).click();}
 
-    public void selectAudienceFamilies() {
-        find(AudienceFamilies).click();
-        // getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectAudienceFamilies() {find(AudienceFamilies).click();}
 
-    public void selectAudienceChildren() {
-        find(AudienceChildren).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectAudienceChildren() {find(AudienceChildren).click();}
 
-    public void selectAudienceAnyone() {
-        find(AudienceAnyone).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectAudienceAnyone() {find(AudienceAnyone).click();}
 
-    public void selectRegistrationOpen() {
-        find(RegistrationOpen).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectRegistrationOpen() {find(RegistrationOpen).click();}
 
-    public void selectRegistrationClosed() {
-        find(RegistrationClosed).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectRegistrationClosed() {find(RegistrationClosed).click();}
 
-    public void selectEventCanceled() {
-        find(EventCanceled).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectEventCanceled() {find(EventCanceled).click();}
 
-    public void selectEventEnded() {
-        find(EventEnded).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectEventEnded() {find(EventEnded).click();}
 
-    public void selectTicketTypeFree() {
-        find(TicketTypeFree).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectTicketTypeFree() {find(TicketTypeFree).click();}
 
     public void selectTicketTypePaid(String ticketPrice) {
         find(TicketTypePaid).click();
         getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
         find(TicketPrice).sendKeys(ticketPrice);
-
     }
 
-    public void enterOrganizerName(String OrganizerName) {
-        find(organizerName).sendKeys(OrganizerName);
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void enterOrganizerName(String OrganizerName) {find(organizerName).sendKeys(OrganizerName);}
 
-    public void selectRegisteredYes() {
-        find(registeredYes).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectRegisteredYes() {find(registeredYes).click();}
 
-    public void selectRegisteredNo() {
-        find(registeredNo).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectRegisteredNo() {find(registeredNo).click();}
 
-    public void selectRegisteredInProcess() {
-        find(registeredInProcess).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectRegisteredInProcess() {find(registeredInProcess).click();}
 
-    public void selectPartnerYes() {
-        find(partnerYes).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectPartnerYes() {find(partnerYes).click();}
 
-    public void selectPartnerNo() {
-        find(partnerNo).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectPartnerNo() {find(partnerNo).click();}
 
-    public void selectProjectStudy() {
-        find(projectStudy).click();
-        //getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
-    }
+    public void selectProjectStudy() {find(projectStudy).click();}
 
     public void FinancialSupport(String financialSupportPrice) {
         find(FinancialSupport).click();
@@ -1145,7 +750,6 @@ public class ItemPage extends PageObject {
 
     public void ImageContent() {
         find(ContentPhoto).click();
-
 
         /*find(imageLink).click();
         JFrame parentFrame = new JFrame();
@@ -1398,55 +1002,6 @@ public class ItemPage extends PageObject {
         find(fieldAudioLink1).clear();
     }
 
-    public void LinksContent1(String Link1) {
-        find(ContentLink).click();
-        clearLinks();
-        find(fieldLink1).sendKeys(Link1);
-    }
-    public void LinksContent2(String Link1, String Link2) {
-        find(ContentLink).click();
-        clearLinks();
-        find(fieldLink1).sendKeys(Link1);
-        find(linkAddLink).click();
-        find(fieldLink2).sendKeys(Link2);
-    }
-    public void LinksContent3(String Link1, String Link2, String Link3) {
-        find(ContentLink).click();
-        clearLinks();
-        find(fieldLink1).sendKeys(Link1);
-        find(linkAddLink).click();
-        find(fieldLink2).sendKeys(Link2);
-        find(linkAddLink).click();
-        find(fieldLink3).sendKeys(Link3);
-    }
-    public void LinksContent4(String Link1, String Link2, String Link3, String Link4) {
-        find(ContentLink).click();
-        clearLinks();
-        find(fieldLink1).sendKeys(Link1);
-        find(linkAddLink).click();
-        find(fieldLink2).sendKeys(Link2);
-        find(linkAddLink).click();
-        find(fieldLink3).sendKeys(Link3);
-        find(linkAddLink).click();
-        find(fieldLink4).sendKeys(Link4);
-    }
-    public void LinksContent5(String Link1, String Link2, String Link3, String Link4, String Link5) {
-        find(ContentLink).click();
-        clearLinks();
-        find(fieldLink1).sendKeys(Link1);
-        find(linkAddLink).click();
-        find(fieldLink2).sendKeys(Link2);
-        find(linkAddLink).click();
-        find(fieldLink3).sendKeys(Link3);
-        find(linkAddLink).click();
-        find(fieldLink4).sendKeys(Link4);
-        find(linkAddLink).click();
-        find(fieldLink5).sendKeys(Link5);
-    }
-    public void clearLinks() {
-        find(fieldLink1).clear();
-    }
-
     public void ItemStatusActivate() {
         find(statusActivate).click();
     }
@@ -1485,7 +1040,7 @@ public class ItemPage extends PageObject {
     }
 
     public void checkItemSaved(WebDriver driver){
-        WebDriverWait wt = new WebDriverWait (driver, 980);
+        WebDriverWait wt = new WebDriverWait (driver, 900);
         wt.until(ExpectedConditions.presenceOfElementLocated(SuccessPopupOk));
         wt.until(ExpectedConditions.visibilityOfElementLocated(SuccessPopupOk));
         wt.until(ExpectedConditions.elementToBeClickable(SuccessPopupOk));
@@ -1588,7 +1143,7 @@ public class ItemPage extends PageObject {
         find(filterResultsCount);
         find(itemSort);
 
-        find(buttonAddInlisting);
+        find(buttonAdd_listing);
         find(itemBlock);
 
         find(itemUserImg);
@@ -1752,16 +1307,6 @@ public class ItemPage extends PageObject {
                 System.out.println("error with Calendar");
             }
     }
-
-  /*  public void SetDatepicker(WebDriver driver, String cssSelector, String date)
-    {
-         WebDriverWait wt = new WebDriverWait (driver, 100);
-
-        wt.until(ExpectedConditions.visibilityOfElementLocated(FromTodayDay));
-        JavascriptExecutor.class.cast(driver).executeScript(
-                String.format("$('%s').datetimepicker-days('setDate', '%s')", cssSelector, date));
-    }*/
-
 
     public void selectRegistrationDates(WebDriver driver) {
         find(RegistrationFrom).click();

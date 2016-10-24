@@ -226,10 +226,7 @@ public class AccountSettingsPage extends PageObject {
         find(Edit_Job_About).sendKeys(value);
     }
 
-    public void Edit_job( ) {
-        //find(btnEditJob).waitUntilClickable();
-        find(btnEditJob).click();
-    }
+    public void Edit_job( ) {find(btnEditJob).click();}
 
     public void Upd_job(WebDriver driver ) {
         find(btnSaveJob).click();
@@ -286,12 +283,6 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public boolean checkMessage_if_NameWrong(String Message, WebDriver driver) {
-       /* WebDriverWait wt = new WebDriverWait(driver, 99);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(lblErrorName));*/
-
-       /* JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,-500)", "");*/
-
         List<WebElement> messages = driver.findElements (lblErrorName);
         for (WebElement el : messages) {
             if (el.getText().contains(Message)) {
@@ -660,23 +651,30 @@ public class AccountSettingsPage extends PageObject {
         clickOk(driver);
     }
     public void clickOk(WebDriver driver) {
-        /*find(btnOk).waitUntilPresent();
-        find(btnOk).waitUntilClickable();
-        if (find(btnOk).isVisible())
-        { find(btnOk).click();
-            find(btnOk).waitUntilNotVisible();}*/
-
         find(btnOk).waitUntilClickable();
         find(btnOk).waitUntilPresent();
         if (find(btnOk).isVisible())
             find(btnOk).click();
-        //find(btnOk).waitUntilNotVisible();
 
-        WebDriverWait wt = new WebDriverWait (driver, 900);
+        WebDriverWait wt = new WebDriverWait (driver, 950);
         wt.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
     }
 
-    public boolean checkBirth() {
+    public boolean checkInfoExists(String info_exp, String info_now) {
+        String text_now_value = getDriver().findElement(By.xpath(info_now)).getText();
+        System.out.println(text_now_value);
+        System.out.println(info_exp);
+
+        if ((text_now_value.contains(info_exp))) {
+            System.out.println("Success ");
+            return true;
+        } else {
+            System.out.println("Fail case ");
+            return false;
+        }
+    }
+
+   /* public boolean checkBirth() {
         WebElement birth = find (txtBirth);
        // System.out.println(birth.getText());
             if (birth.getText().contains("07.03.2009")) {
@@ -701,9 +699,9 @@ public class AccountSettingsPage extends PageObject {
             return true;
         }
         return false;
-    }
+    }*/
 
-    public boolean checkMainDetails(String FirstName,String LastName, String UserName, String location, String info, String gender, String status ) {
+   /* public boolean checkMainDetails(String FirstName,String LastName, String UserName, String location, String info, String gender, String status ) {
         assertTrue(checkBirth());
         System.out.println(checkBirth());
         assertTrue(checkStatus(status));
@@ -743,10 +741,9 @@ public class AccountSettingsPage extends PageObject {
         { System.out.println("Fail case ");
             return false;
         }
-    }
+    }*/
 
-        public boolean checkContactInfo(String mobile,String landline,String Facebook,String Instagram,
-                                        String Twitter,String LinkedIn,String Snapchat,String WebSite, String email)
+        public void checkNetworkAccounts()
         {
             find(txtFacebook).click();
             find(txtInstagram).click();
@@ -754,10 +751,10 @@ public class AccountSettingsPage extends PageObject {
             find(txtLinkedIn).click();
             find(txtSnapchat).click();
 
-        String LblMobile = getDriver().findElement(txtMobile).getText();
+      /*  String LblMobile = getDriver().findElement(txtMobile).getText();
         String LblLandline = getDriver().findElement(txtLandLine).getText();
         String LblWebSite = getDriver().findElement(txtWebSite).getText();
-        String LblEmail = getDriver().findElement(txtEmail).getText();
+        String LblEmail = getDriver().findElement(txtEmail).getText();*/
 
        /* System.out.println(LblMobile);
         System.out.println(LblLandline);
@@ -769,7 +766,7 @@ public class AccountSettingsPage extends PageObject {
         System.out.println(WebSite);
         System.out.println(email);*/
 
-        if ((LblMobile.equals(mobile)) && (LblLandline.equals(landline))
+       /* if ((LblMobile.equals(mobile)) && (LblLandline.equals(landline))
                 && (LblWebSite.equals(WebSite))&& (LblEmail.equals(email)))
         {   System.out.println("Success ");
             return true;
@@ -777,7 +774,7 @@ public class AccountSettingsPage extends PageObject {
         else
         {   System.out.println("Fail case ");
             return false;
-        }
+        }*/
     }
 
     public boolean checkEducationInfo(String InstitutionName,String Speciality,String Location,String About)
@@ -862,7 +859,7 @@ public class AccountSettingsPage extends PageObject {
             return false;
         }
     }
-    public boolean checkMainDetails_Org(String OrganizationName,String OrganizationShortName, String location, String info, String count ) {
+  /*  public boolean checkMainDetails_Org(String OrganizationName,String OrganizationShortName, String location, String info, String count ) {
         assertTrue(checkYearFounded());
         System.out.println(checkYearFounded());
 
@@ -898,8 +895,8 @@ public class AccountSettingsPage extends PageObject {
             System.out.println("Fail case ");
             return false;
         }
-    }
-    public boolean checkYearFounded() {
+    }*/
+  /*  public boolean checkYearFounded() {
         WebElement YearFounded = find (txtYearFounded);
         System.out.println(YearFounded.getText());
         if (YearFounded.getText().contains("1871")) {
@@ -907,7 +904,7 @@ public class AccountSettingsPage extends PageObject {
         }
         System.out.print("Wrong Year of founded");
         return false;
-    }
+    }*/
    /* public boolean checkNetFacebook(String Facebook) {
         find(txtFacebook).click();
         getDriver().getWindowHandles();

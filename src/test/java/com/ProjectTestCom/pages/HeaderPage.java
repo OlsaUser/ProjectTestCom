@@ -126,7 +126,7 @@ public class HeaderPage extends PageObject {
     private final By MessageContent = By.xpath("//div[@class='im-content container']");
     private final By HomeContent = By.xpath("//div[@class='feed-list js-feed-list']");
     private final By NotificationContent = By.xpath("//section[@id='community_sect']");
-    private final By ProfileContent = By.xpath("//section[@id='cabinet_sect']");
+    private final By ProfileContent = By.xpath("//div[@id='cabinet_sect']");
     //private final By GroupContent = By.xpath("//div[@class='gallery-list']");
     private final By GroupContent = By.xpath("//div[@class='gallery-list']/div");
     private final By ItemContent = By.xpath("//div[@class='itemslist-wrapper']");
@@ -290,7 +290,7 @@ public class HeaderPage extends PageObject {
         find(linkDiscoverGroupPopular).click();
         wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentGroup));
         find(linkDiscoverGroupNew).click();
-        driver.manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
         wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(DiscoverContentGroup)));
     }
 
@@ -324,7 +324,7 @@ public class HeaderPage extends PageObject {
     }
 
     public void openAccountSettings(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
+        WebDriverWait wt = new WebDriverWait (driver, 150);
        // wt.until(ExpectedConditions.presenceOfElementLocated(menuAccountSettings));
        // wt.until(ExpectedConditions.visibilityOfElementLocated(menuAccountSettings));
         wt.until(ExpectedConditions.elementToBeClickable(menuAccountSettings));

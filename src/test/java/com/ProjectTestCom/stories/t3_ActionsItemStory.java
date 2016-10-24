@@ -82,8 +82,8 @@ public class t3_ActionsItemStory {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyProductListing(driver);
         loginSteps.PageComplete(driver);
-        addItemSteps.openSettingsMenuForSpecialItem(itemID);
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.EditSpecialItem(itemID);
+        //addItemSteps.collapseMainInfo();
         addItemSteps.collapseMainDetails();
         addItemSteps.ImageContent();
 //        addItemSteps.deleteImage();
@@ -99,8 +99,8 @@ public class t3_ActionsItemStory {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyProductListing(driver);
         loginSteps.PageComplete(driver);
-        addItemSteps.openSettingsMenuForSpecialItem(itemID);
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.EditSpecialItem(itemID);
+        //addItemSteps.collapseMainInfo();
         addItemSteps.collapseMainDetails();
         addItemSteps.VideoContent();
 //        addItemSteps.deleteVideo();

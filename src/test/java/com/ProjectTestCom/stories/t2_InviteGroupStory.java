@@ -35,20 +35,11 @@ public class t2_InviteGroupStory {
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
     private String propertyGroupPath = "src/test/resources/group.properties";
-    private String NameGroupEn = PropertyLoader.getProperty(propertyGroupPath, "NameGroupEn");
-    private String ShortDescriptionEn = PropertyLoader.getProperty(propertyGroupPath, "ShortDescriptionEn");
-    private String NameGroupAr = PropertyLoader.getProperty(propertyGroupPath, "NameGroupAr");
-    private String ShortDescriptionAr = PropertyLoader.getProperty(propertyGroupPath, "ShortDescriptionAr");
-    private String wrongNameGroup = PropertyLoader.getProperty(propertyGroupPath, "wrongNameGroup");
-    private String maxShortDescription = PropertyLoader.getProperty(propertyGroupPath, "maxShortDescription");
-    private String maxNameGroup = PropertyLoader.getProperty(propertyGroupPath, "maxNameGroup");
-    private String ShortDescriptionNull = PropertyLoader.getProperty(propertyGroupPath, "ShortDescriptionNull");
-    private String AddGroup = PropertyLoader.getProperty(propertyGroupPath, "AddGroup");
-    private String lblNameGroupError = PropertyLoader.getProperty(propertyGroupPath, "lblNameGroupError");
     private String UserName = PropertyLoader.getProperty(propertyGroupPath, "UserName");
     private String OrgName = PropertyLoader.getProperty(propertyGroupPath, "OrgName");
     private String skill = PropertyLoader.getProperty(propertyGroupPath, "skill");
     private String Interest = PropertyLoader.getProperty(propertyGroupPath, "Interest");
+    private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
 
     @Managed
     WebDriver driver;
@@ -86,7 +77,7 @@ public class t2_InviteGroupStory {
 
     @Test
     public void stage1_InviteMyFollowers() throws IOException{
-        addGroupSteps.MyGroupWallforInvate(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         addGroupSteps.clickbtnSettingsInvite();
         loginSteps.PageComplete(driver);
 
@@ -96,7 +87,7 @@ public class t2_InviteGroupStory {
     }
     @Test
     public void stage2_InviteMyFollowings() {
-        addGroupSteps.MyGroupWallforInvate(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addGroupSteps.clickbtnSettingsInvite();
         loginSteps.PageComplete(driver);
@@ -106,7 +97,7 @@ public class t2_InviteGroupStory {
     }
     @Test
     public void stage3_InviteAllUsers() {
-        addGroupSteps.MyGroupWallforInvate(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addGroupSteps.clickbtnSettingsInvite();
         loginSteps.PageComplete(driver);

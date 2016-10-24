@@ -15,6 +15,7 @@ import java.util.List;
 
 @DefaultUrl("http://synergybeta.devzone.dp.ua/en")
 //@DefaultUrl("http://mnassa.com/en")
+
 @RunWith(SerenityRunner.class)
 public class SearchPage extends PageObject {
     private final By fldSearch = By.xpath("//input[@id='header-search-field']");

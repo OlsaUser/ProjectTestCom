@@ -23,6 +23,7 @@ import static org.junit.Assert.assertTrue;
  */
 //@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
 //@DefaultUrl("http://mnassa.com/en/#!login")
+
 @RunWith(SerenityRunner.class)
 public class NewMessagePage extends PageObject {
     private final By iconMessage = By.xpath("//div[@id='header-top-line']/div/div[1]/div[1]/a[3]");
@@ -47,7 +48,6 @@ public class NewMessagePage extends PageObject {
     private final By messages_TreeDots=By.xpath("//button[@class='im-head-controls-toggle']");
     private final By checkbox_DuplicateMsg=By.xpath("//span[@class='checkbox-text']");
 
-
     //Visible elements
     //private final By txtMessage = By.xpath("//div[@class='messages-list']/div[last()]//div[@class='messages-item-content']/p");
     private final By txtMessage = By.xpath("//div[@id='messages-list']/div[last()]//div[@class='im-item-content']/p");
@@ -55,8 +55,7 @@ public class NewMessagePage extends PageObject {
         element(iconMessage).click();
     }
 
-    public void SelectChatWith() {
-        element(fieldChatWith).click();}
+    public void SelectChatWith() {element(fieldChatWith).click();}
 
     public void EnterMessage(String value) {
         element(TextArea).sendKeys(value);
@@ -68,29 +67,10 @@ public class NewMessagePage extends PageObject {
 
     public void checkMessageExists(String message, WebDriver driver) {
         //Проверяем, есть ли на текущей странице текст
-
         WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.textToBePresentInElementLocated(txtMessage,message));
-
-       /* Assert.assertTrue("Text not found!", containsText(message));
-        String mOutput = getDriver().findElement(txtMessage).getText();
-        String mInput = message + " ";
-
-        System.out.println(mOutput);
-        System.out.println(mInput);
-
-         if (mOutput.equals(mInput))
-        { System.out.println("Message exists " + mOutput);
-            return true;
-        }
-         else
-        { System.out.println("Message doesn't exists");
-            return false;
-        }
-    }*/
     }
     public void ViewerPageElements(WebDriver driver) {
-
         WebDriverWait wt = new WebDriverWait (driver, 50);
 
         find(messageHeader);

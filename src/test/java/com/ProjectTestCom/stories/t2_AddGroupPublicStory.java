@@ -58,6 +58,17 @@ public class t2_AddGroupPublicStory {
     private String Skill_new = PropertyLoader.getProperty(propertyGroupPath, "Skill_new");
     private String Interest_new = PropertyLoader.getProperty(propertyGroupPath, "Interest_new");
     private String dscLimitedGroup = PropertyLoader.getProperty(propertyGroupPath, "dscLimitedGroup");
+    private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
+
+    private String href_NameGroupEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupEn");
+    private String href_maxNameGroup = PropertyLoader.getProperty(propertyGroupPath, "href_maxNameGroup");
+    private String href_NameGroupAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupAr");
+    private String href_NameGroupLimitedEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedEn");
+    private String href_NameGroupLimitedAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedAr");
+    private String href_NameGroupLimitedMax = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedMax");
+    private String href_NameGroupPrivateEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateEn");
+    private String href_NameGroupPrivateAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateAr");
+    private String href_NameGroupPrivateMax = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateMax");
 
     @Managed
     WebDriver driver;
@@ -121,12 +132,11 @@ public class t2_AddGroupPublicStory {
         addGroupSteps.enterGroupSkill(Skill, driver);
         addGroupSteps.clickCreate(driver);
         loginSteps.PageComplete(driver);
-        //loginSteps.Sleep(30);
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
-        addGroupSteps.checkGroupInListing("public");
+        addGroupSteps.checkGroupInListing(href_NameGroupAr);
     }
 
     @Test
@@ -148,7 +158,7 @@ public class t2_AddGroupPublicStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.checkGroupInListing("Public.4 Tips for Successful Financial ...");
+        addGroupSteps.checkGroupInListing(href_maxNameGroup);
     }
     @Test
     public void stage3_addGroupPublicName() {
@@ -167,7 +177,7 @@ public class t2_AddGroupPublicStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.checkGroupInListing(NameGroupEn);
+        addGroupSteps.checkGroupInListing(href_NameGroupEn);
     }
 
     @Test
@@ -188,9 +198,7 @@ public class t2_AddGroupPublicStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.MyGroupWallPublic(driver);
-        //driver.get("http://synergy.devzone.dp.ua/en#!group/filter=my/id=567a9c73a62579ce428b4567");
-        //addGroupSteps.clickSettings();
+        addGroupSteps.openGroupWall(driver, Group1);
         addGroupSteps.clickbtnSettingsEdit(driver);
         addGroupSteps.enterNameGroup(NameGroupEn,driver);
         addGroupSteps.enterShortDescription(ShortDescriptionEn);
@@ -206,7 +214,7 @@ public class t2_AddGroupPublicStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.MyGroupWallPublic(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
         addGroupSteps.deleteGroupInterest(driver);
@@ -221,7 +229,7 @@ public class t2_AddGroupPublicStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.MyGroupWallPublic(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
         addGroupSteps.selectTypeLimited(driver, dscLimitedGroup);

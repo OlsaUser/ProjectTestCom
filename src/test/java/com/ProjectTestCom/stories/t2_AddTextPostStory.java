@@ -41,6 +41,8 @@ public class t2_AddTextPostStory {
     private String addPost = PropertyLoader.getProperty(propertyPostPath, "addPost");
     private String Comment = PropertyLoader.getProperty(propertyPostPath, "Comment");
 
+    private String propertyGroupPath = "src/test/resources/group.properties";
+    private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
 
     @Managed
     WebDriver driver;
@@ -86,7 +88,7 @@ public class t2_AddTextPostStory {
         addPostSteps.AddTextPost(textPostMin, driver);
         addPostSteps.clickPostButton();
         loginSteps.PageComplete(driver);
-        addPostSteps.checkTextInNewsFeed(textPostMin,driver);
+        addPostSteps.checkTextInPost(textPostMin,driver);
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyWall(driver);
@@ -101,7 +103,7 @@ public class t2_AddTextPostStory {
     public void textPostMinMyGroupWall_DeleteComment() throws IOException{
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         //driver.get("http://mnassa.com/en/administrator#!group/page=4/name=group-title-1");
         addPostSteps.AddTextPost(textPostMin, driver);
@@ -162,7 +164,7 @@ public class t2_AddTextPostStory {
     public void textPostArMyGroupWall_AddComment() throws IOException{
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
 
         //driver.get("http://mnassa.com/en/administrator#!group/page=4/name=group-title-1");
@@ -210,7 +212,7 @@ public class t2_AddTextPostStory {
          addPostSteps.AddTextPost(textPostMaxEn, driver);
          addPostSteps.clickPostButton();
          loginSteps.PageComplete(driver);
-         addPostSteps.checkTextInNewsFeed(textPostMaxEn, driver);
+         addPostSteps.checkTextInPost(textPostMaxEn, driver);
 
          headerSteps.openMyMnassaPage(driver);
          headerSteps.openMyWall(driver);

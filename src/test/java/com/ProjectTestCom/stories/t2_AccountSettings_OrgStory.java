@@ -31,59 +31,41 @@ public class t2_AccountSettings_OrgStory {
     private String propertyFilePath = "src/test/resources/login.properties";
     //private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email_organization = PropertyLoader.getProperty(propertyFilePath, "email_organization");
+    private String email_organization_now = PropertyLoader.getProperty(propertyFilePath, "email_organization_now");
     private String password_organization = PropertyLoader.getProperty(propertyFilePath, "password_organization");
 
     private String profileFilePath = "src/test/resources/profile.properties";
-    private String FirstName_En = PropertyLoader.getProperty(profileFilePath, "FirstName_En");
-    private String LastName_En = PropertyLoader.getProperty(profileFilePath, "LastName_En");
-    private String UserName_En = PropertyLoader.getProperty(profileFilePath, "UserName_En");
-    private String FirstName_Ar = PropertyLoader.getProperty(profileFilePath, "FirstName_Ar");
-    private String LastName_Ar = PropertyLoader.getProperty(profileFilePath, "LastName_Ar");
-    private String UserName_AR = PropertyLoader.getProperty(profileFilePath, "UserName_AR");
-    private String Symbols = PropertyLoader.getProperty(profileFilePath, "Symbols");
-    private String Numbers = PropertyLoader.getProperty(profileFilePath, "Numbers");
-    private String Name_51_symbols = PropertyLoader.getProperty(profileFilePath, "Name_51_symbols");
     private String location = PropertyLoader.getProperty(profileFilePath, "location");
-    private String Male = PropertyLoader.getProperty(profileFilePath, "Male");
-    private String Female = PropertyLoader.getProperty(profileFilePath, "Female");
-    private String single = PropertyLoader.getProperty(profileFilePath, "Single");
-    private String married = PropertyLoader.getProperty(profileFilePath, "Married");
+    private String location_now = PropertyLoader.getProperty(profileFilePath, "location_now");
+    private String location_now1 = PropertyLoader.getProperty(profileFilePath, "location_now1");
+    private String location_now2 = PropertyLoader.getProperty(profileFilePath, "location_now2");
+    private String location_now1_exp = PropertyLoader.getProperty(profileFilePath, "location_now1_exp");
+    private String location_now2_exp = PropertyLoader.getProperty(profileFilePath, "location_now2_exp");
+    private String location_exp = PropertyLoader.getProperty(profileFilePath, "location_exp");
     private String BriefInfo = PropertyLoader.getProperty(profileFilePath, "BriefInfo");
-    private String mobile = PropertyLoader.getProperty(profileFilePath, "mobile");
-    private String landline = PropertyLoader.getProperty(profileFilePath, "landline");
+    private String BriefInfo_now = PropertyLoader.getProperty(profileFilePath, "BriefInfo_now");
+    private String mobile_now = PropertyLoader.getProperty(profileFilePath, "mobile_now");
+    private String mobile_exp = PropertyLoader.getProperty(profileFilePath, "mobile_exp");
+    private String landline_exp = PropertyLoader.getProperty(profileFilePath, "landline_exp");
+    private String landline_now = PropertyLoader.getProperty(profileFilePath, "landline_now");
     private String Facebook = PropertyLoader.getProperty(profileFilePath, "Facebook");
     private String Instagram = PropertyLoader.getProperty(profileFilePath, "Instagram");
     private String Twitter = PropertyLoader.getProperty(profileFilePath, "Twitter");
     private String LinkedIn = PropertyLoader.getProperty(profileFilePath, "LinkedIn");
     private String Snapchat = PropertyLoader.getProperty(profileFilePath, "Snapchat");
-    private String WebSite = PropertyLoader.getProperty(profileFilePath, "WebSite");
-    private String InstitutionName = PropertyLoader.getProperty(profileFilePath, "InstitutionName");
-    private String Speciality = PropertyLoader.getProperty(profileFilePath, "Speciality");
-    private String About = PropertyLoader.getProperty(profileFilePath, "About");
-    private String Location = PropertyLoader.getProperty(profileFilePath, "Location");
-    private String JobName = PropertyLoader.getProperty(profileFilePath, "JobName");
-    private String JobSpeciality = PropertyLoader.getProperty(profileFilePath, "JobSpeciality");
-    private String InstitutionName_new = PropertyLoader.getProperty(profileFilePath, "InstitutionName_new");
-    private String Speciality_new = PropertyLoader.getProperty(profileFilePath, "Speciality_new");
-    private String About_new = PropertyLoader.getProperty(profileFilePath, "About_new");
-    private String Location_new = PropertyLoader.getProperty(profileFilePath, "Location_new");
-    private String JobName_new = PropertyLoader.getProperty(profileFilePath, "JobName_new");
-    private String JobSpeciality_new = PropertyLoader.getProperty(profileFilePath, "JobSpeciality_new");
-    private String Skill = PropertyLoader.getProperty(profileFilePath, "Skill");
-    private String Interest = PropertyLoader.getProperty(profileFilePath, "Interest");
+    private String WebSite_exp = PropertyLoader.getProperty(profileFilePath, "WebSite_exp");
+    private String WebSite_now = PropertyLoader.getProperty(profileFilePath, "WebSite_now");
     private String CurrentPassword = PropertyLoader.getProperty(profileFilePath, "CurrentPassword");
     private String NewPassword = PropertyLoader.getProperty(profileFilePath, "NewPassword");
     private String NewConfirmPassword = PropertyLoader.getProperty(profileFilePath, "NewConfirmPassword");
-
-    private String NoError = PropertyLoader.getProperty(profileFilePath, "NoError");
-    private String Error_FirstName = PropertyLoader.getProperty(profileFilePath, "Error_FirstName");
-    private String Error_LastName = PropertyLoader.getProperty(profileFilePath, "Error_LastName");
-    private String Error_UserName = PropertyLoader.getProperty(profileFilePath, "Error_UserName");
-    private String Error_LastName_moreMAX = PropertyLoader.getProperty(profileFilePath, "Error_LastName_moreMAX");
-
-    private String OrganizationName_En = PropertyLoader.getProperty(profileFilePath, "OrganizationName_En");
-    private String OrganizationShortName_En = PropertyLoader.getProperty(profileFilePath, "OrganizationShortName_En");
+    private String OrganizationName_En_exp = PropertyLoader.getProperty(profileFilePath, "OrganizationName_En_exp");
+    private String OrganizationName_En_now = PropertyLoader.getProperty(profileFilePath, "OrganizationName_En_now");
+    private String OrganizationShortName_En_exp = PropertyLoader.getProperty(profileFilePath, "OrganizationShortName_En_exp");
+    private String OrganizationShortName_En_now = PropertyLoader.getProperty(profileFilePath, "OrganizationShortName_En_now");
     private String count = PropertyLoader.getProperty(profileFilePath, "count");
+    private String count_now = PropertyLoader.getProperty(profileFilePath, "count_now");
+    private String YearFounder_now = PropertyLoader.getProperty(profileFilePath, "YearFounder_now");
+    private String YearFounder_exp = PropertyLoader.getProperty(profileFilePath, "YearFounder_exp");
 
     @Managed
     WebDriver driver;
@@ -109,8 +91,7 @@ public class t2_AccountSettings_OrgStory {
         Serenity.useFirefoxProfile(myProfile);
 
         loginSteps.openLoginPage();
-       /* loginSteps.enterLogin("mav@yopmail.com");
-        loginSteps.enterPassword("vfrfhfirf1989");*/
+        loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
@@ -127,8 +108,8 @@ public class t2_AccountSettings_OrgStory {
 
     @Test
     public void changeAccountSettings_Org_MainDetails_EN(){
-        accountSettingsSteps.enterOrganizationName(OrganizationName_En);
-        accountSettingsSteps.enterOrganizationShortName(OrganizationShortName_En);
+        accountSettingsSteps.enterOrganizationName(OrganizationName_En_exp);
+        accountSettingsSteps.enterOrganizationShortName(OrganizationShortName_En_exp);
         accountSettingsSteps.selectTypeGovernmental();
         accountSettingsSteps.selectLanguageArabian_Org();
         accountSettingsSteps.selectLanguageEnglish_Org();
@@ -138,36 +119,45 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.selectLocation(location);
         accountSettingsSteps.enterBriefInfo(BriefInfo);
         accountSettingsSteps.clickUpdate1(driver);
-
         //User info page
-
         loginSteps.Sleep(70);
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
-        accountSettingsSteps.checkMainDetails_Org(OrganizationName_En,OrganizationShortName_En,location,BriefInfo,count);
+        accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
+        accountSettingsSteps.checkInfoExists(OrganizationShortName_En_exp,OrganizationShortName_En_now);
+        accountSettingsSteps.checkInfoExists(location_exp, location_now);
+        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
+        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
+        accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
+        accountSettingsSteps.checkInfoExists(count, count_now);
+        accountSettingsSteps.checkInfoExists(YearFounder_exp, YearFounder_now);
+        //accountSettingsSteps.checkMainDetails_Org(OrganizationName_En,OrganizationShortName_En,location,BriefInfo,count);
     }
 
     @Test
     public void changeAccountSettings_Org_ContactInfo(){
         accountSettingsSteps.pressCollapseContactInfo();
-        accountSettingsSteps.enterMobilePhone(mobile);
-        accountSettingsSteps.enterLandline(landline);
+        accountSettingsSteps.enterMobilePhone(mobile_exp);
+        accountSettingsSteps.enterLandline(landline_exp);
         accountSettingsSteps.enterFacebook(Facebook);
         accountSettingsSteps.enterInstagram(Instagram);
         accountSettingsSteps.enterTwitter(Twitter);
         accountSettingsSteps.enterLinkedIn(LinkedIn);
         accountSettingsSteps.enterSnapchat(Snapchat);
-        accountSettingsSteps.enterWebSite(WebSite);
+        accountSettingsSteps.enterWebSite(WebSite_exp);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate2(driver);
         loginSteps.Sleep(70);
         //User info page
-
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
         jse.executeScript("window.scrollBy(0,500)", "");
-        accountSettingsSteps.checkContactInfo(mobile,landline,Facebook,Instagram,Twitter,LinkedIn,Snapchat,WebSite,email_organization);
+        accountSettingsSteps.checkInfoExists(mobile_exp,mobile_now);
+        accountSettingsSteps.checkInfoExists(landline_exp,landline_now);
+        accountSettingsSteps.checkInfoExists(WebSite_exp,WebSite_now);
+        accountSettingsSteps.checkInfoExists(email_organization, email_organization_now );
+        accountSettingsSteps.checkNetworkAccounts();
     }
     @Test
     public void changeAccountSettings_Org_ChangePassword(){

@@ -23,50 +23,18 @@ public class AddItemSteps extends ScenarioSteps {
     public void openAddItemPageByClickingOnButtonInListing() {itemPage.openAddItemPageByClickingOnButtonInListing();}
 
     @Step
-    public void openServiceListing() {itemPage.openServiceListing();}
-
-    @Step
-    public void openProductListing() {itemPage.openProductListing();}
-
-    @Step
-    public void openEventListing() {itemPage.openEventListing();}
-
-    @Step
-    public void openPartnershipListing() {itemPage.openPartnershipListing();}
-
-    @Step
     public void openItemSettingsMenu() {itemPage.openItemSettingsMenu();}
 
-
     @Step
-    public void openSettingsMenuForSpecialItem(String itemID) {itemPage.openSettingsMenuForSpecialItem(itemID);}
-
-    @Step
-    public void checkCommonValuesPreview(String Title,String Description,String tag,String Per,String Location)
-    {
-        assertTrue(itemPage.checkCommonValuesPreview(Title, Description,tag, Per, Location));
-    }
+    public void EditSpecialItem(String itemID) {itemPage.EditSpecialItem(itemID);}
 
     @Step
     public void checkValueExists(String value_exp, String value_now)
     { assertTrue(itemPage.checkValueExists(value_exp, value_now));}
 
-
     @Step
     public void checkElementPresents(String value_now)
     { assertTrue(itemPage.checkElementPresents(value_now));}
-
-    @Step
-    public void checkServiceValuesPreviewEN()
-    {
-        assertTrue(itemPage.checkServiceValuesPreviewEN());
-    }
-
-    @Step
-    public void checkServiceValuesPreviewAR()
-    {
-        assertTrue(itemPage.checkServiceValuesPreviewAR());
-    }
 
     @Step
     public void selectDeleteMenu() {itemPage.selectDeleteMenu();}
@@ -99,15 +67,6 @@ public class AddItemSteps extends ScenarioSteps {
     public void selectItemType(String ItemType, WebDriver driver) {itemPage.selectItemType(ItemType, driver);}
 
     @Step
-    public void selectItemTypeProduct(WebDriver driver) {itemPage.selectItemTypeProduct(driver);}
-
-    @Step
-    public void selectItemTypeEvent(WebDriver driver) {itemPage.selectItemTypeEvent(driver);}
-
-    @Step
-    public void selectItemTypePartnership(WebDriver driver) {itemPage.selectItemTypePartnership(driver);}
-
-    @Step
     public void selectDemand() {itemPage.selectDemand();}
 
     @Step
@@ -117,7 +76,7 @@ public class AddItemSteps extends ScenarioSteps {
     public void enterBasicInfo(String Title, String Description) {itemPage.enterBasicInfo(Title, Description);}
 
     @Step
-    public void collapseBasicInfo() {itemPage.collapseBasicInfo();}
+    public void collapseMainInfo() {itemPage.collapseMainInfo();}
 
     @Step
     public void collapseMainDetails() {itemPage.collapseMainDetails();}
@@ -142,15 +101,6 @@ public class AddItemSteps extends ScenarioSteps {
 
     @Step
     public void selectCategory3( ) {itemPage.selectCategory3();}
-
-    @Step
-    public void selectSubCategory1( ) {itemPage.selectSubCategory1();}
-
-    @Step
-    public void selectSubCategory2( ) {itemPage.selectSubCategory2();}
-
-    @Step
-    public void selectSubCategory3( ) {itemPage.selectSubCategory3();}
 
     @Step
     public void enterPrice(String value, String Per) {itemPage.enterPrice(value, Per);}
@@ -378,25 +328,6 @@ public class AddItemSteps extends ScenarioSteps {
     }
 
     @Step
-    public void LinksContent1(String Link1) {itemPage.LinksContent1(Link1);}
-
-    @Step
-    public void LinksContent2(String Link1, String Link2) {itemPage.LinksContent2(Link1, Link2);}
-
-    @Step
-    public void LinksContent3(String Link1, String Link2, String Link3) {itemPage.LinksContent3(Link1, Link2, Link3);}
-
-    @Step
-    public void LinksContent4(String Link1, String Link2, String Link3, String Link4) {
-        itemPage.LinksContent4(Link1, Link2, Link3, Link4);
-    }
-
-    @Step
-    public void LinksContent5(String Link1, String Link2, String Link3, String Link4, String Link5) {
-        itemPage.LinksContent5(Link1, Link2, Link3, Link4, Link5);
-    }
-
-    @Step
     public void clickSave(WebDriver driver) {itemPage.clickSave(driver);}
 
     @Step
@@ -410,7 +341,6 @@ public class AddItemSteps extends ScenarioSteps {
 
     @Step
     public void clickSave2(WebDriver driver) {itemPage.clickSave2(driver);}
-
 
     @Step
     public void checkItemErrorPresent(String TitleError, String CategoryError, String SubCategoryError, String PhotoError) {

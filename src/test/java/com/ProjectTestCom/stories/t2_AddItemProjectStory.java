@@ -31,7 +31,7 @@ import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver
  * Created by olsa on 5/24/2016.
  */
 @RunWith(SerenityRunner.class)
-public class t2_AddItemPartnershipStory {
+public class t2_AddItemProjectStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
@@ -41,52 +41,19 @@ public class t2_AddItemPartnershipStory {
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
     private String propertyItemPath = "src/test/resources/item.properties";
-    private String Title = PropertyLoader.getProperty(propertyItemPath, "Title");
     private String Description = PropertyLoader.getProperty(propertyItemPath, "Description");
     private String TitleMAX = PropertyLoader.getProperty(propertyItemPath, "TitleMAX");
     private String DescriptionMAX = PropertyLoader.getProperty(propertyItemPath, "DescriptionMAX");
-    private String TitleMIN = PropertyLoader.getProperty(propertyItemPath, "TitleMIN");
-    private String DescriptionMIN = PropertyLoader.getProperty(propertyItemPath, "DescriptionMIN");
     private String TitleAR = PropertyLoader.getProperty(propertyItemPath, "TitleAR");
     private String DescriptionAR = PropertyLoader.getProperty(propertyItemPath, "DescriptionAR");
-    private String DescriptionNull = PropertyLoader.getProperty(propertyItemPath, "DescriptionNull");
-
     private String tag1 = PropertyLoader.getProperty(propertyItemPath, "tag1");
     private String Price = PropertyLoader.getProperty(propertyItemPath, "Price");
-    private String Per = PropertyLoader.getProperty(propertyItemPath, "Per");
-    private String PerNull = PropertyLoader.getProperty(propertyItemPath, "PerNull");
-    private String PriceMAX = PropertyLoader.getProperty(propertyItemPath, "PriceMAX");
-    private String PerMAX = PropertyLoader.getProperty(propertyItemPath, "PerMAX");
-    private String PriceMIN = PropertyLoader.getProperty(propertyItemPath, "PriceMIN");
-    private String PerMIN = PropertyLoader.getProperty(propertyItemPath, "PerMIN");
-
     private String Location = PropertyLoader.getProperty(propertyItemPath, "Location");
-    private String textContent = PropertyLoader.getProperty(propertyItemPath, "textContent");
-    private String textContentMAX = PropertyLoader.getProperty(propertyItemPath, "textContentMAX");
-    private String textContentMIN = PropertyLoader.getProperty(propertyItemPath, "textContentMIN");
-    private String textContentAR = PropertyLoader.getProperty(propertyItemPath, "textContentAR");
-
-    private String VideoContent1 = PropertyLoader.getProperty(propertyItemPath, "VideoContent1");
     private String VideoContent2 = PropertyLoader.getProperty(propertyItemPath, "VideoContent2");
     private String VideoContent3 = PropertyLoader.getProperty(propertyItemPath, "VideoContent3");
-    private String VideoContent4 = PropertyLoader.getProperty(propertyItemPath, "VideoContent4");
-    private String VideoContent5 = PropertyLoader.getProperty(propertyItemPath, "VideoContent5");
-
     private String AudioContent1 = PropertyLoader.getProperty(propertyItemPath, "AudioContent1");
     private String AudioContent2 = PropertyLoader.getProperty(propertyItemPath, "AudioContent2");
     private String AudioContent3 = PropertyLoader.getProperty(propertyItemPath, "AudioContent3");
-    private String AudioContent4 = PropertyLoader.getProperty(propertyItemPath, "AudioContent4");
-    private String AudioContent5 = PropertyLoader.getProperty(propertyItemPath, "AudioContent5");
-
-    private String LinksContent1 = PropertyLoader.getProperty(propertyItemPath, "LinksContent1");
-    private String LinksContent2 = PropertyLoader.getProperty(propertyItemPath, "LinksContent2");
-    private String LinksContent3 = PropertyLoader.getProperty(propertyItemPath, "LinksContent3");
-    private String LinksContent4 = PropertyLoader.getProperty(propertyItemPath, "LinksContent4");
-    private String LinksContent5 = PropertyLoader.getProperty(propertyItemPath, "LinksContent5");
-
-    private String AddItem = PropertyLoader.getProperty(propertyItemPath, "AddItem");
-    private String Comment = PropertyLoader.getProperty(propertyItemPath, "Comment");
-    private String Partnership = PropertyLoader.getProperty(propertyItemPath, "Partnership");
     private String Project = PropertyLoader.getProperty(propertyItemPath, "Project");
 
     private String propertyProjectPath = "src/test/resources/project_xpath.properties";
@@ -113,9 +80,6 @@ public class t2_AddItemPartnershipStory {
 
     @Steps
     AddItemSteps addItemSteps;
-
-    @Steps
-    AddAlbumSteps addAlbumSteps;
 
     @Steps
     HeaderSteps headerSteps;
@@ -170,7 +134,7 @@ public class t2_AddItemPartnershipStory {
   /*  }*/
 
     @Test
-    public void addPartnershipDemand_AR_byButtonInListing(){
+    public void addProjectDemand_AR_byButtonInListing(){
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyPartnershipListing(driver);
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
@@ -178,25 +142,19 @@ public class t2_AddItemPartnershipStory {
         addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
         addItemSteps.selectCategory1();
 
-
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
-        //addItemSteps.selectSubCategory2();
         addItemSteps.enterLocation(Location);
 
         addItemSteps.collapseMainDetails();
-        //addItemSteps.TextContent(textContentAR);
         addItemSteps.VideoContent3(VideoContent3, VideoContent2, VideoContent3);
         addItemSteps.AudioContent3(AudioContent1, AudioContent2, AudioContent3);
-        //addItemSteps.LinksContent2(LinksContent1,LinksContent2);
         //loginSteps.Sleep(100);
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusDeactivate();
         addItemSteps.ItemStatusPeriod();
         addItemSteps.clickSave(driver);
         addItemSteps.checkItemSaved(driver);
-        loginSteps.PageComplete(driver);
-
         loginSteps.PageComplete(driver);
 
         addItemSteps.openItemSettingsMenu();
@@ -220,7 +178,7 @@ public class t2_AddItemPartnershipStory {
         addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
         addItemSteps.selectCategory1();
 
-        addItemSteps.collapseBasicInfo();
+        addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
         addItemSteps.enterLocation(Location);
 
@@ -257,23 +215,4 @@ public class t2_AddItemPartnershipStory {
         addItemSteps.checkValueExists("I have business partner now", business_partner_now);
         addItemSteps.checkValueExists("In the process", project_status_now);
     }
-   /* @Ignore
-    @Test
-    public void addPartnershipSupply_MandatoryFields_byButtonInListing()   {
-        addAlbumSteps.openMyMnassaPage();
-        addItemSteps.openPartnershipListing();
-        addItemSteps.openAddItemPageByClickingOnButtonInListing();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, DescriptionNull);
-        addItemSteps.collapseBasicInfo();
-        addItemSteps.selectCategory1();
-        addItemSteps.selectSubCategory1();
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent1);
-        addItemSteps.collapseContent();
-        addItemSteps.ItemStatusActivate();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-    }*/
 }

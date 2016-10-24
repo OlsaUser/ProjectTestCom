@@ -43,6 +43,16 @@ public class t1_PermissionGroupLimitedStory {
     private String RequestedPermissionLimited = PropertyLoader.getProperty(propertyGroupPath, "RequestedPermissionLimited");
     private String ConfirmedRequestLimited = PropertyLoader.getProperty(propertyGroupPath, "ConfirmedRequestLimited");
 
+    private String href_NameGroupEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupEn");
+    private String href_maxNameGroup = PropertyLoader.getProperty(propertyGroupPath, "href_maxNameGroup");
+    private String href_NameGroupAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupAr");
+    private String href_NameGroupLimitedEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedEn");
+    private String href_NameGroupLimitedAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedAr");
+    private String href_NameGroupLimitedMax = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupLimitedMax");
+    private String href_NameGroupPrivateEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateEn");
+    private String href_NameGroupPrivateAr = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateAr");
+    private String href_NameGroupPrivateMax = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupPrivateMax");
+
     private String propertyPostPath = "src/test/resources/post.properties";
     private String textPostMin = PropertyLoader.getProperty(propertyPostPath, "textPostMin");
 
@@ -63,7 +73,6 @@ public class t1_PermissionGroupLimitedStory {
 
     @Steps
     AddItemSteps addItemSteps;
-
 
     @Steps
     AddPostSteps addPostSteps;
@@ -110,11 +119,10 @@ public class t1_PermissionGroupLimitedStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.checkGroupInListing(NameGroupLimitedMax);
+        addGroupSteps.checkGroupInListing(href_NameGroupLimitedMax);
     }
     @Test
-    public void stage2_checkSubscribeGroupLimited() {
-
+    public void stage2_checkSubscribeGroupLimited() throws IOException{
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);
@@ -125,7 +133,7 @@ public class t1_PermissionGroupLimitedStory {
         loginSteps.PageComplete(driver);
         loginSteps.Sleep(600);
 
-        addGroupSteps.openGroupWallLimited(driver, NameGroupLimitedMax);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedMax);
         addGroupSteps.viewerGroupLimited(driver);
         addGroupSteps.pressSubscribe(driver);
         driver.navigate().refresh();
@@ -162,7 +170,7 @@ public class t1_PermissionGroupLimitedStory {
         loginSteps.PageComplete(driver);
         loginSteps.Sleep(600);
 
-        addGroupSteps.openGroupWallLimited(driver, NameGroupLimitedMax);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedMax);
         loginSteps.PageComplete(driver);
         addGroupSteps.checkMemberLim(driver, NameGroupLimitedMax);
 
@@ -183,7 +191,7 @@ public class t1_PermissionGroupLimitedStory {
         loginSteps.PageComplete(driver);
        // loginSteps.Sleep(600);
 
-        addGroupSteps.openGroupWallLimited(driver, NameGroupLimitedMax);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedMax);
         loginSteps.PageComplete(driver);
         addPostSteps.deletePost(driver);
         loginSteps.PageComplete(driver);
@@ -196,7 +204,7 @@ public class t1_PermissionGroupLimitedStory {
         loginSteps.PageComplete(driver);
         loginSteps.Sleep(600);
 
-        addGroupSteps.openGroupWallLimited(driver, NameGroupLimitedMax);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedMax);
         addGroupSteps.viewerGroupLimited(driver);
     }
 }

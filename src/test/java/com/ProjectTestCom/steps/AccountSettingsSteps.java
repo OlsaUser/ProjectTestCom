@@ -244,18 +244,15 @@ public class AccountSettingsSteps extends ScenarioSteps {
     public void clickUpdate6(WebDriver driver ) { accountSettingsPage.clickUpdate6(driver);}
 
     @Step
-    public void checkMainDetails(String FirstName,String LastName, String UserName,String location, String info, String gender, String status)
-    { assertTrue (accountSettingsPage.checkMainDetails(FirstName,LastName, UserName, location, info, gender, status));}
-
+    public void checkInfoExists(String info_exp, String info_now) {assertTrue (accountSettingsPage.checkInfoExists(info_exp, info_now));}
 
     @Step
-    public void checkContactInfo(String mobile,String landline,String Facebook,String Instagram,String Twitter,String LinkedIn,String Snapchat,String WebSite, String email)
-    { assertTrue (accountSettingsPage.checkContactInfo(mobile, landline, Facebook, Instagram,Twitter,LinkedIn,Snapchat,WebSite, email));}
+    public void checkNetworkAccounts() { accountSettingsPage.checkNetworkAccounts();}
 
-    @Step
+   /* @Step
     public void checkMainDetails_Org(String OrganizationName_En,String OrganizationShortName_En,String location,String BriefInfo, String count)
     { assertTrue(accountSettingsPage.checkMainDetails_Org(OrganizationName_En,OrganizationShortName_En,location,BriefInfo, count));}
-
+*/
     @Step
     public void checkEducationInfo(String InstitutionName,String Speciality,String Location,String About)
     { assertTrue (accountSettingsPage.checkEducationInfo(InstitutionName,Speciality,Location,About));}

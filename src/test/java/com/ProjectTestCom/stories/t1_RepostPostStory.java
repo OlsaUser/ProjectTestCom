@@ -49,6 +49,9 @@ public class t1_RepostPostStory {
     private String AudioLink = PropertyLoader.getProperty(propertyPostPath, "AudioLink");
     private String VideoLink = PropertyLoader.getProperty(propertyPostPath, "VideoLink");
 
+    private String propertyGroupPath = "src/test/resources/group.properties";
+    private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
+
 
     @Managed
     WebDriver driver;
@@ -58,9 +61,6 @@ public class t1_RepostPostStory {
 
     @Steps
     LoginSteps loginSteps;
-
-    @Steps
-    FavoritesSteps favoritesSteps;
 
     @Steps
     HeaderSteps headerSteps;
@@ -89,7 +89,9 @@ public class t1_RepostPostStory {
     }
 
     @After
-    public void tearDown() {driver.quit();}
+    public void tearDown() {
+        driver.quit();
+        driver.close();}
 
     @Test
     public void stage6_repostFromMyWallToGroup() throws IOException{
@@ -108,12 +110,12 @@ public class t1_RepostPostStory {
         addPostSteps.selectRepostToGroup(driver);
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderGroup);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
         //Checking repost on Group Wall
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addPostSteps.checkOwnRepostExists(driver,textPostAr, HeaderRepost);
         addPostSteps.checkCounterRepost(driver, "1");
@@ -130,7 +132,7 @@ public class t1_RepostPostStory {
         addPostSteps.checkTextInNewsFeed(textPostMin, driver);*/
 
         addPostSteps.AddTextPost(textPostMin, driver);
-        addPostSteps.openAudioPopup(driver);
+        addPostSteps.openAudioPopup();
         addPostSteps.AddAudioLink(AudioLink);
         addPostSteps.clickAudioPostButton(driver);
         addPostSteps.clickPostBtn(driver);
@@ -142,13 +144,13 @@ public class t1_RepostPostStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         //loginSteps.PageComplete(driver);
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderGroup);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
         //Checking repost on Group Wall/
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addPostSteps.checkOwnRepostExists(driver,textPostMin, HeaderRepost);
     }
@@ -157,12 +159,12 @@ public class t1_RepostPostStory {
         headerSteps.openHomePage(driver);
         loginSteps.PageComplete(driver);
 
-        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,300)", "");
+        //JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        //jse1.executeScript("window.scrollBy(0,300)", "");
 
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
-        addPostSteps.checkTextInWallAfterRepost(driver, placeholderWall);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
         loginSteps.PageComplete(driver);
 
         //Checking repost on Wall/
@@ -186,13 +188,13 @@ public class t1_RepostPostStory {
         addPostSteps.selectRepostToGroup(driver);
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderGroup);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
         //Checking repost on Group Wall/
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderRepost);
     }
@@ -207,7 +209,7 @@ public class t1_RepostPostStory {
 
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
-        addPostSteps.checkTextInWallAfterRepost(driver, placeholderWall);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         //Checking repost on Wall/
 
@@ -222,7 +224,7 @@ public class t1_RepostPostStory {
     public void stage5_repostFromGroupToGroup() throws IOException {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWallforInvate(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
 
         addPostSteps.AddTextPost(textPostAr, driver);
@@ -241,14 +243,14 @@ public class t1_RepostPostStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         loginSteps.PageComplete(driver);
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderGroup);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
         //Checking repost on Group Wall/
 
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addPostSteps.checkOwnRepostExists(driver,textPostAr, HeaderRepost);
     }
@@ -264,7 +266,7 @@ public class t1_RepostPostStory {
 
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
-        addPostSteps.checkTextInWallAfterRepost(driver, placeholderWall);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         //Checking repost on Wall/
 
@@ -280,7 +282,7 @@ public class t1_RepostPostStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         loginSteps.PageComplete(driver);
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderGroup);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
         loginSteps.PageComplete(driver);
 
         jse.executeScript("window.scrollBy(0,-500)", "");
@@ -288,7 +290,7 @@ public class t1_RepostPostStory {
         loginSteps.PageComplete(driver);
 
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderRepost);
     }
@@ -298,7 +300,7 @@ public class t1_RepostPostStory {
     public void stage9_repostFromGroupToWallToGroupWall() throws IOException {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWallforInvate(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
 
         //Add new post to Group
@@ -311,7 +313,7 @@ public class t1_RepostPostStory {
         //Making repost to Wall
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
-        addPostSteps.checkTextInWallAfterRepost(driver, placeholderWall);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         //Checking repost on Wall/
         headerSteps.openMyMnassaPage(driver);
@@ -325,12 +327,12 @@ public class t1_RepostPostStory {
         addPostSteps.selectRepostToGroup(driver);
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderGroup);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
         loginSteps.PageComplete(driver);
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPost, HeaderRepost);
         addPostSteps.checkCounterRepost(driver, "2");
@@ -350,21 +352,21 @@ public class t1_RepostPostStory {
         addPostSteps.selectRepostToGroup(driver);
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
-        addPostSteps.checkTextInGroupAfterRepost(driver, placeholderGroup);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
         //Checking repost on Group Wall/
 
         jse1.executeScript("window.scrollBy(0,-500)", "");
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWall(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderRepost);
 
         jse1.executeScript("window.scrollBy(0,300)", "");
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
-        addPostSteps.checkTextInWallAfterRepost(driver, placeholderWall);
+        addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         headerSteps.openMyMnassaPage(driver);
         driver.navigate().refresh();

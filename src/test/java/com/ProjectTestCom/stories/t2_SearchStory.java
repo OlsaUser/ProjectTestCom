@@ -115,27 +115,12 @@ public class t2_SearchStory {
         searchSteps.closeResult(driver);
         loginSteps.PageComplete(driver);
 
-        /*searchSteps.clickField_searchBy(FullNameAr, driver);
-        searchSteps.selectSearchResult_byUser(FullNameAr, driver);
-        loginSteps.PageComplete(driver);
-        //loginSteps.Sleep(80);
-        searchSteps.checkSearchResult_FullName(FullNameAr,driver);
-        searchSteps.closeResult(driver);
-        loginSteps.PageComplete(driver);*/
-
         searchSteps.clickField_searchBy(FullOrganizationNameEn, driver);
         searchSteps.selectSearchResult_byOrganization(FullOrganizationNameEn, driver);
         loginSteps.PageComplete(driver);
         searchSteps.checkSearchResult_FullName(FullOrganizationNameEn,driver);
         searchSteps.closeResult(driver);
         loginSteps.PageComplete(driver);
-
-       /* searchSteps.clickField_searchBy(FullOrganizationNameAr, driver);
-        searchSteps.selectSearchResult_byOrganization(FullOrganizationNameAr, driver);
-        loginSteps.PageComplete(driver);
-        searchSteps.checkSearchResult_FullName(FullOrganizationNameAr,driver);
-        searchSteps.closeResult(driver);
-        loginSteps.PageComplete(driver);*/
 
         searchSteps.clickField_searchBy(NotExistValue, driver);
         searchSteps.checkEmptySearchResult_User(NotExistValue, driver);

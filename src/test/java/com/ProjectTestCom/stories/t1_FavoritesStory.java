@@ -61,12 +61,6 @@ public class t1_FavoritesStory {
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
-
-       /* favoritesSteps.openMenu();
-        favoritesSteps.openFavoritesPage(driver);
-        favoritesSteps.pressIcon_removeFromFavorite(driver);
-        headerSteps.openHomePage(driver);
-        loginSteps.PageComplete(driver);*/
     }
 
     @After

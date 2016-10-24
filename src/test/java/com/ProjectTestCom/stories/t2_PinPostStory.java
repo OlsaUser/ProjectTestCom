@@ -45,6 +45,11 @@ public class t2_PinPostStory {
     private String HeaderRepost = PropertyLoader.getProperty(propertyPostPath, "HeaderRepost");
     private String AudioLink = PropertyLoader.getProperty(propertyPostPath, "AudioLink");
     private String VideoLink = PropertyLoader.getProperty(propertyPostPath, "VideoLink");
+    private String PinPlaceholder = PropertyLoader.getProperty(propertyPostPath, "PinPlaceholder");
+    private String UnPinPlaceholder = PropertyLoader.getProperty(propertyPostPath, "UnPinPlaceholder");
+
+    private String propertyGroupPath = "src/test/resources/group.properties";
+    private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
 
     @Managed
     WebDriver driver;
@@ -100,7 +105,7 @@ public class t2_PinPostStory {
         //Make pin
         addPostSteps.openPostMenu();
         addPostSteps.selectPin();
-        addPostSteps.checkPinPlaceholder();
+        addPostSteps.checkPinPlaceholder(PinPlaceholder);
         addPostSteps.pressViewNow();
         loginSteps.PageComplete(driver);
         addPostSteps.checkPinIconPresent();
@@ -119,7 +124,7 @@ public class t2_PinPostStory {
         //Make Unpin
         addPostSteps.openPostMenu();
         addPostSteps.selectPin();
-        addPostSteps.checkUnPinPlaceholder();
+        addPostSteps.checkUnPinPlaceholder(UnPinPlaceholder);
         addPostSteps.pressViewNow();
         loginSteps.PageComplete(driver);
         addPostSteps.checkPinIconAbsent();
@@ -129,7 +134,7 @@ public class t2_PinPostStory {
     public void stage3_Pin_MyGroup() throws IOException {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWallforInvate(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
 
         addPostSteps.AddTextPost(textPostMin, driver);
@@ -145,14 +150,14 @@ public class t2_PinPostStory {
 
         addPostSteps.openPostMenu();
         addPostSteps.selectPin();
-        addPostSteps.checkPinPlaceholder();
+        addPostSteps.checkPinPlaceholder(PinPlaceholder);
         addPostSteps.pressViewNow();
         loginSteps.PageComplete(driver);
         addPostSteps.checkPinIconPresent();
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.MyGroupWallforInvate(driver);
+        addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
 
         addPostSteps.AddTextPost(textPostMin, driver);
