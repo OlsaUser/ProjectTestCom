@@ -130,8 +130,7 @@ public class t0_RegistrationStory {
     }
 
     @After
-    public void tearDown() throws Exception {driver.quit();
-    }
+    public void tearDown() throws Exception {driver.quit();}
 
     @Test
     public void stage1_Register_User()  throws Exception {
@@ -144,9 +143,10 @@ public class t0_RegistrationStory {
         registerSteps.Step2_Gender(driver, gender_female);
         registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.Step3_Ok(driver, "lensyt.osakish.1");
-        Thread.sleep(5000);
-        registerSteps.provideCode("lensytosakish.1@gmail.com");
+        registerSteps.Step3_Ok(driver, NewEmailUser);
+
+        //registerSteps.provideCode("lensytosakish.1@gmail.com");
+
 
     }
 

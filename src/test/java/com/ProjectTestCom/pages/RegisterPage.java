@@ -53,10 +53,8 @@ public class RegisterPage  extends PageObject {
     private final By lblErrorAR = By.xpath("//div[@class='error_message_static -full-width']");
     private final By lblErrorPassword = By.xpath("//div[@class='error_message -full-width hidden-xs']");
 
-    //Yopmail
-    private final By fldEmail_Yopmail = By.xpath("//input[@id='login']");
-    private final By btnCheckInbox_Yopmail = By.xpath("//input[@type='submit']");
-    private final By ConfirmLetter_Yopmail = By.xpath("//div[contains(text(),'http://synergybeta.devzone.dp.ua/en')]");
+    //Check Registration
+    private final By pageAfterRegistration = By.xpath("//div[@class='wall-post is-open']");
 
     public void Step1_selectRadioButton_Organization( ) {
         element(radioBtnOrganization).click();
@@ -147,9 +145,10 @@ public class RegisterPage  extends PageObject {
         wt.until(ExpectedConditions.textToBePresentInElementLocated(SuccessPopup, "After that you will be redirected to this page - page, where you started registration!"));
         find(btnOK);
         element(btnOK).click();
-        /*String providedCode = provideCode(email);
-        System.out.println("providedCode: " + providedCode);*/
 
+        String providedCode = provideCode(email);
+        //driver.get(providedCode);
+        //wt.until(ExpectedConditions.visibilityOfElementLocated(pageAfterRegistration));
     }
 
     public boolean checkValidationMessage(String Message, WebDriver driver) {
@@ -183,12 +182,16 @@ public class RegisterPage  extends PageObject {
 
     public static String provideCode(String email) {
         String code = null;
-        String host = "pop.gmail.com";// change accordingly
-        String mailStoreType = "pop3";
+        String url = null;
+        //String host = "pop.gmail.com";// change accordingly
+        //String mailStoreType = "pop3";
+
+        String host = "imap.gmail.com";
+        String mailStoreType = "imap";
         String password = "Jk14501450";// change accordingly
 
         String check = check(host, mailStoreType, email, password);
-        System.out.println("Text:" + check);
+
         if (check != null) {
             String prefix = "Or copy the link below: ";
             String suffix = "Kind regards, Mnassa Team";
@@ -197,44 +200,47 @@ public class RegisterPage  extends PageObject {
             String codePrefix = "url=";
             String encodedUrl = tempCode.substring(tempCode.indexOf(codePrefix) + codePrefix.length());
             try {
-                String url = URLDecoder.decode(encodedUrl, "UTF-8");
+                url = URLDecoder.decode(encodedUrl, "UTF-8");
+                System.out.println("url: " + url);
                 String confirmPrefix = "confirm?code=";
                 code = url.substring(url.indexOf(confirmPrefix) + confirmPrefix.length());
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
-        return code;
+        //return code;
+        return url;
     }
 
     public static String check(String host, String storeType, String user,
                                String password) {
         String result = null;
         try {
-
             //create properties field
             Properties properties = new Properties();
-            //properties.setProperty("proxySet", "true");
-            properties.put("mail.pop3.debug", "true");
 
+            /*properties.put("mail.pop3.debug", "true");
             properties.put("mail.pop3.host", host);
             properties.put("mail.pop3.port", "995");
-            properties.put("mail.pop3.starttls.enable", "true");
+            properties.put("mail.pop3.starttls.enable", "true");*/
+
+            properties.setProperty("mail.imap.host", "imap.gmail.com");
+            properties.setProperty("mail.imap.port", "993");
+            properties.setProperty("mail.imap.connectiontimeout", "5000");
+            properties.setProperty("mail.imap.timeout", "5000");
 
             System.setProperty("proxySet", "true");
-
             System.setProperty("https.proxyHost", "proxy.isd.dp.ua");
-            System.setProperty("http.proxyHost", "proxy.isd.dp.ua");
-
-            System.setProperty("http.proxyPort", "8080");
             System.setProperty("https.proxyPort", "8080");
 
-           /* System.setProperty("https.proxyUser", "olsa@design.isd.dp.ua");
-            System.setProperty("https.proxyPassword", "cOnvErsAtIOn5");
+            System.setProperty("http.proxyHost", "proxy.isd.dp.ua");
+            System.setProperty("http.proxyPort", "8080");
 
-            System.setProperty("http.proxyUser", "olsa@design.isd.dp.ua");
-            System.setProperty("http.proxyPassword", "cOnvErsAtIOn5");*/
+            //System.setProperty("https.proxyUser", "olsa@design.isd.dp.ua");
+           // System.setProperty("https.proxyPassword", "cOnvErsAtIOn5");
 
+            System.setProperty("http.proxyUser", "design\\olsa");
+            System.setProperty("http.proxyPassword", "cOnvErsAtIOn5");
 
             //Session emailSession = Session.getDefaultInstance(properties);
              Session emailSession = Session.getDefaultInstance(properties,
@@ -244,7 +250,8 @@ public class RegisterPage  extends PageObject {
                         }});
 
             //create the POP3 store object and connect with the pop server
-            Store store = emailSession.getStore("pop3s");
+            //Store store = emailSession.getStore("pop3s");
+            Store store = emailSession.getStore("imaps");
             store.connect(host, user, password);
 
             //create the folder object and open it
@@ -307,63 +314,5 @@ public class RegisterPage  extends PageObject {
             }
         }
         return result;
-    }
-
-    public void goConfirmLink2(String email, WebDriver driver) throws MessagingException, IOException, ValidationException {
-        /* MockMailbox mb = MockMailbox.get("lensytosakish.1@gmail.com");
-         MailboxFolder mf = mb.getInbox();
-         MimeMessage msg = new MimeMessage((Session) null);
-        System.out.println("start1 ");
-        msg.setSubject("Test");
-        String from="lensytosakish.1@gmail.com";
-        msg.setFrom(from);
-        msg.setText("Some text here ...");
-        msg.setRecipient(Message.RecipientType.TO, new InternetAddress("lensytosakish.1@yopmail.com"));
-        mf.add(msg); // 11
-        mf.add(msg); // 12
-        mf.add(msg); // 13
-        Transport.send(msg);*/
-
-       /* System.out.println("start2 ");
-        Properties props = System.getProperties();
-        props.setProperty("mail.store.protocol", "imaps");
-        props.put("mail.imaps.host", "imap.gmail.com");
-        props.put("mail.imaps.port", "993");
-        props.put("mail.imaps.connectiontimeout", "150000");
-        props.put("mail.imaps.timeout", "150000");
-        props.put("mail.imap.statuscachetimeout", "100000");
-
-        Session session = Session.getDefaultInstance(props);
-        //Session session = Session.getInstance(new Properties());
-        Store store = session.getStore("imaps");
-
-        MockMailbox mb = MockMailbox.get("lensytosakish.1@gmail.com");
-        MailboxFolder mf = mb.getInbox();
-        MimeMessage msg = new MimeMessage((Session) null);
-        System.out.println(mf.getMessageCount());
-        System.out.println(mf.getMailbox());*/
-
-        /*System.out.println("start3 ");
-        //store.connect("smtp.gmail.com","lensytosakish.1@gmail.com", "Jk14501450");
-        //store.connect("imap.gmail.com","lensytosakish.1@gmail.com", "Jk14501450");
-        store.connect("mail.imaps.host","lensytosakish.1@gmail.com", "Jk14501450");
-        System.out.println(store);
-
-        Folder inbox = store.getFolder("INBOX");
-        inbox.open(Folder.READ_WRITE);
-
-        //MimeMessage msg = (MimeMessage) inbox.getMessage(inbox.getMessageCount());
-        Address[] in = msg.getFrom();
-        for (Address address : in) {
-            System.out.println("FROM:" + address.toString());
-        }
-        Multipart mp = (Multipart) msg.getContent();
-        BodyPart bp = mp.getBodyPart(0);
-        System.out.println("SENT DATE:" + msg.getSentDate());
-        System.out.println("SUBJECT:" + msg.getSubject());
-        System.out.println("CONTENT:" + bp.getContent());
-
-        inbox.close(true);*/
-        System.out.println("Done....");
     }
 }

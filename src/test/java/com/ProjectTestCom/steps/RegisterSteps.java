@@ -84,7 +84,6 @@ public class RegisterSteps extends ScenarioSteps {
     @Step
     public void checkValidationMessage_Password(String Message, WebDriver driver) { registerPage.checkValidationMessage_Password(Message, driver);}
 
-
     @Step
     public String provideCode(String email) { return registerPage.provideCode(email);}
 
