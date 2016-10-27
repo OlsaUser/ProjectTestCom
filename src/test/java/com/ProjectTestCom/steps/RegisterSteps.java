@@ -1,5 +1,6 @@
 package com.ProjectTestCom.steps;
 
+import com.ProjectTestCom.pages.FacebookPage;
 import com.ProjectTestCom.pages.RegisterPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -15,8 +16,13 @@ public class RegisterSteps extends ScenarioSteps {
 
     RegisterPage registerPage;
 
+    FacebookPage facebookPage;
+
     @Step
     public void openRegisterPage() { registerPage.open();}
+
+    @Step
+    public void viaFacebook(WebDriver driver) { registerPage.viaFacebook(driver);}
 
     @Step
     public void Step1_selectRadioButton_Organization() { registerPage.Step1_selectRadioButton_Organization();}
@@ -92,4 +98,7 @@ public class RegisterSteps extends ScenarioSteps {
 
     @Step
     public void checkWelcomeLetter(String email) { registerPage.checkWelcomeLetter(email);}
+
+    @Step
+    public void facebookLogin(WebDriver driver) { facebookPage.facebookLogin(driver);}
 }

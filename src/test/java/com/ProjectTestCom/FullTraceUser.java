@@ -168,6 +168,9 @@ public class FullTraceUser {
     private String service_online = PropertyLoader.getProperty(propertyProductPath, "service_online");
     private String yearsExperience = PropertyLoader.getProperty(propertyProductPath, "yearsExperience");
 
+    private String HomePage = PropertyLoader.getProperty(propertyFilePath, "HomePage");
+    private String Login = PropertyLoader.getProperty(propertyFilePath, "Login");
+
     @Managed
     WebDriver driver;
 
@@ -200,6 +203,15 @@ public class FullTraceUser {
 
     @After
     public void tearDown() throws Exception {driver.quit();}
+
+    @Test
+    public void stage0_Register_Facebook()  throws Exception {
+        registerSteps.facebookLogin(driver);
+        registerSteps.openRegisterPage();
+        loginSteps.PageComplete(driver);
+        registerSteps.viaFacebook(driver);
+        loginSteps.pageLoad(Login);
+    }
 
     @Test
     public void stage1_Register_User()  throws IOException {

@@ -46,6 +46,9 @@ public class RegisterPage  extends PageObject {
     private final By btnOK = By.xpath("//button[@can-click='reg_finish']");
     private final By SuccessPopup = By.xpath("//div[@id='step3']//div[@class='step-header text-center']");
 
+    private final By viaFacebook = By.id("fb_btn_login");
+    private final By Counter = By.xpath("//span[@class='wall-post-length']");
+
     // for Organization
     private final By radioBtnOrganization = By.xpath("//div[@class='modal-body']/div[2]/div[2]//label");
     private final By fldOrganizationFullName = By.xpath("//input[@name='organization_name']");
@@ -58,6 +61,11 @@ public class RegisterPage  extends PageObject {
     //Check Registration
     private final By welcomeToMnassa = By.xpath("//section[@class='create-list-section']");
     private final By text_emptyNewsFeed = By.xpath("//h1[@class='create-list-info']");
+
+    public void viaFacebook(WebDriver driver ) {
+        element(viaFacebook).click();
+        WebDriverWait wt = new WebDriverWait (driver, 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));}
 
     public void Step1_selectRadioButton_Organization( ) {
         element(radioBtnOrganization).click();
@@ -260,7 +268,7 @@ public class RegisterPage  extends PageObject {
            // System.setProperty("https.proxyPassword", "cOnvErsAtIOn5");
 
             System.setProperty("http.proxyUser", "design\\olsa");
-            System.setProperty("http.proxyPassword", "cOnvErsAtIOn5");
+            System.setProperty("http.proxyPassword", "********");
 
             //Session emailSession = Session.getDefaultInstance(properties);
              Session emailSession = Session.getDefaultInstance(properties,
