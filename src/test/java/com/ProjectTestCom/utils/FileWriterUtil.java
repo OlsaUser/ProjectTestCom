@@ -4,9 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- * Created by olsa on 5/16/2016.
- */
 public class FileWriterUtil {
     public BufferedWriter openWriter() throws IOException {
         FileWriter fw = new FileWriter("output.txt");

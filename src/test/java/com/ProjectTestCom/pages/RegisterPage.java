@@ -3,6 +3,7 @@ package com.ProjectTestCom.pages;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.mail.*;
 import javax.mail.internet.MimeMultipart;
+import javax.validation.constraints.AssertTrue;
 import javax.xml.bind.ValidationException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,7 +56,8 @@ public class RegisterPage  extends PageObject {
     private final By lblErrorPassword = By.xpath("//div[@class='error_message -full-width hidden-xs']");
 
     //Check Registration
-    private final By pageAfterRegistration = By.xpath("//div[@class='wall-post is-open']");
+    private final By welcomeToMnassa = By.xpath("//section[@class='create-list-section']");
+    private final By text_emptyNewsFeed = By.xpath("//h1[@class='create-list-info']");
 
     public void Step1_selectRadioButton_Organization( ) {
         element(radioBtnOrganization).click();
@@ -145,10 +148,6 @@ public class RegisterPage  extends PageObject {
         wt.until(ExpectedConditions.textToBePresentInElementLocated(SuccessPopup, "After that you will be redirected to this page - page, where you started registration!"));
         find(btnOK);
         element(btnOK).click();
-
-        String providedCode = provideCode(email);
-        //driver.get(providedCode);
-        //wt.until(ExpectedConditions.visibilityOfElementLocated(pageAfterRegistration));
     }
 
     public boolean checkValidationMessage(String Message, WebDriver driver) {
@@ -180,41 +179,62 @@ public class RegisterPage  extends PageObject {
         System.out.println("Validation message OK! " + find(lblErrorPassword).getText());
     }
 
+    public void goConfirmLink(WebDriver driver, String email) {
+        String confirmLink = provideCode(email);
+        driver.get(confirmLink);
+        WebDriverWait wt = new WebDriverWait (driver, 150);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(welcomeToMnassa));
+        Assert.assertEquals( "Mnassa is a social interactive platform for business communication.",find(text_emptyNewsFeed).getText());
+    }
+
     public static String provideCode(String email) {
-        String code = null;
-        String url = null;
+        String tempCode = null;
         //String host = "pop.gmail.com";// change accordingly
         //String mailStoreType = "pop3";
 
         String host = "imap.gmail.com";
         String mailStoreType = "imap";
-        String password = "Jk14501450";// change accordingly
+        String password = "Jk14501450";
 
-        String check = check(host, mailStoreType, email, password);
+        String check = check(host, mailStoreType, email, password); //messages body
 
         if (check != null) {
             String prefix = "Or copy the link below: ";
             String suffix = "Kind regards, Mnassa Team";
             String substring = check.substring(check.indexOf(prefix) + prefix.length() + 3, check.indexOf(suffix));
-            String tempCode = substring.trim();
+            tempCode = substring.trim();
+            System.out.println("tempCode: " + tempCode);
             String codePrefix = "url=";
             String encodedUrl = tempCode.substring(tempCode.indexOf(codePrefix) + codePrefix.length());
             try {
-                url = URLDecoder.decode(encodedUrl, "UTF-8");
-                System.out.println("url: " + url);
+                String url = URLDecoder.decode(encodedUrl, "UTF-8");
                 String confirmPrefix = "confirm?code=";
-                code = url.substring(url.indexOf(confirmPrefix) + confirmPrefix.length());
+                String code = url.substring(url.indexOf(confirmPrefix) + confirmPrefix.length());
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
         //return code;
-        return url;
+        return tempCode;
+    }
+
+    public static void checkWelcomeLetter(String email) {
+        String host = "imap.gmail.com";
+        String mailStoreType = "imap";
+        String password = "Jk14501450";
+
+        String check = check(host, mailStoreType, email, password); //messages body
+
+        if (check != null) {
+            String header = "Welcome to MNASSA family!";
+            Assert.assertTrue(check.contains(header));
+        }
     }
 
     public static String check(String host, String storeType, String user,
                                String password) {
         String result = null;
+        String result2 = null;
         try {
             //create properties field
             Properties properties = new Properties();
@@ -269,8 +289,7 @@ public class RegisterPage  extends PageObject {
                 System.out.println("Subject: " + message.getSubject());
                 System.out.println("From: " + message.getFrom()[0]);
                 result = getTextFromMessage(message);
-                System.out.println("Text: " + result);
-
+                //System.out.println("Text: " + result);
             }
 
             //close the store and folder objects

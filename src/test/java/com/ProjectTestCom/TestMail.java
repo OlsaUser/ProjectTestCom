@@ -6,6 +6,6 @@ public class TestMail {
 
     public static void main(String ... arhgs){
         RegisterPage.provideCode("lensytosakish.1@gmail.com");
+        RegisterPage.checkWelcomeLetter("lensytosakish.1@gmail.com");
     }
-
 }

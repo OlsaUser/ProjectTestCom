@@ -135,7 +135,7 @@ public class t0_RegistrationStory {
     @Test
     public void stage1_Register_User()  throws Exception {
         registerSteps.Step1_UserName(UserNameEn);
-        registerSteps.Step1_Email("lensytosakish.1@gmail.com");
+        registerSteps.Step1_Email(NewEmailUser);
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
         registerSteps.Step2_FirstName(FirstNameEn);
@@ -145,9 +145,8 @@ public class t0_RegistrationStory {
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailUser);
 
-        //registerSteps.provideCode("lensytosakish.1@gmail.com");
-
-
+        registerSteps.goConfirmLink(driver,NewEmailUser);
+        registerSteps.checkWelcomeLetter(NewEmailUser);
     }
 
     @Test
@@ -162,6 +161,9 @@ public class t0_RegistrationStory {
         registerSteps.Step2_Location(driver, LocationAR);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailOrg);
+
+        registerSteps.goConfirmLink(driver,NewEmailOrg);
+        registerSteps.checkWelcomeLetter(NewEmailOrg);
         }
 
     @Test

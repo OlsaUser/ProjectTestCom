@@ -87,4 +87,9 @@ public class RegisterSteps extends ScenarioSteps {
     @Step
     public String provideCode(String email) { return registerPage.provideCode(email);}
 
+    @Step
+    public void goConfirmLink(WebDriver driver, String email) { registerPage.goConfirmLink(driver, email);}
+
+    @Step
+    public void checkWelcomeLetter(String email) { registerPage.checkWelcomeLetter(email);}
 }
