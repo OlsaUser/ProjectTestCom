@@ -214,12 +214,14 @@ public class RegisterPage  extends PageObject {
 
             //create properties field
             Properties properties = new Properties();
-            properties.setProperty("proxySet", "true");
+            //properties.setProperty("proxySet", "true");
             properties.put("mail.pop3.debug", "true");
 
             properties.put("mail.pop3.host", host);
             properties.put("mail.pop3.port", "995");
             properties.put("mail.pop3.starttls.enable", "true");
+
+            System.setProperty("proxySet", "true");
 
             System.setProperty("https.proxyHost", "proxy.isd.dp.ua");
             System.setProperty("http.proxyHost", "proxy.isd.dp.ua");
@@ -227,20 +229,19 @@ public class RegisterPage  extends PageObject {
             System.setProperty("http.proxyPort", "8080");
             System.setProperty("https.proxyPort", "8080");
 
-            System.setProperty("https.proxyUser", "olsa@design.isd.dp.ua");
+           /* System.setProperty("https.proxyUser", "olsa@design.isd.dp.ua");
             System.setProperty("https.proxyPassword", "cOnvErsAtIOn5");
 
             System.setProperty("http.proxyUser", "olsa@design.isd.dp.ua");
-            System.setProperty("http.proxyPassword", "cOnvErsAtIOn5");
+            System.setProperty("http.proxyPassword", "cOnvErsAtIOn5");*/
 
 
-            Session emailSession = Session.getDefaultInstance(properties);
-
-            /* Session emailSession = Session.getDefaultInstance(properties,
+            //Session emailSession = Session.getDefaultInstance(properties);
+             Session emailSession = Session.getDefaultInstance(properties,
                     new Authenticator(){
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("design\\olsa", "cOnvErsAtIOn5");
-                        }});*/
+                            return new PasswordAuthentication("lensytosakish.1@gmail.com", "Jk14501450");
+                        }});
 
             //create the POP3 store object and connect with the pop server
             Store store = emailSession.getStore("pop3s");

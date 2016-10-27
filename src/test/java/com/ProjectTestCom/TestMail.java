@@ -5,7 +5,7 @@ import com.ProjectTestCom.pages.RegisterPage;
 public class TestMail {
 
     public static void main(String ... arhgs){
-        RegisterPage.provideCode("lensytosakish@gmail.com");
+        RegisterPage.provideCode("lensytosakish.1@gmail.com");
     }
 
 }
