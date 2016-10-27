@@ -7,6 +7,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static junit.framework.TestCase.assertTrue;
@@ -56,8 +57,8 @@ public class LoginSteps extends ScenarioSteps {
     public void pageLoad(String args) throws IOException {loginPage.pageLoad(args);}
 
     @Step
-    public void checkLoginErrorPresent(String text) {loginPage.checkLoginErrorPresent(text);}
+    public void checkLoginErrorPresent(String text)throws MessagingException, IOException {loginPage.checkLoginErrorPresent(text);}
 
     @Step
-    public void checkPasswordErrorPresent(String text) {loginPage.checkPasswordErrorPresent(text);}
+    public void checkPasswordErrorPresent(String text) throws MessagingException {loginPage.checkPasswordErrorPresent(text);}
 }

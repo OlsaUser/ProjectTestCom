@@ -288,85 +288,10 @@ public class GroupPage extends PageObject {
         }
     }
 
-   /* public void MyGroupWall(WebDriver driver) {
-        List<WebElement> Owner = driver.findElements(blockGroup);
-        for (WebElement el : Owner) {
-            if (el.getAttribute("href").contains("name=group-title-1")) {
-                el.click();
-                WebDriverWait wt = new WebDriverWait(driver, 99);
-                wt.until(ExpectedConditions.visibilityOfElementLocated(btnSettingsEdit));
-                break;
-            }
-        }
-    }
-
-    public void MyGroupWallPublic(WebDriver driver) {
-        List<WebElement> Owner = driver.findElements(blockGroup);
-        for (WebElement el : Owner) {
-            if (el.getAttribute("href").contains("public")) {
-                el.click();
-                WebDriverWait wt = new WebDriverWait(driver, 99);
-                wt.until(ExpectedConditions.visibilityOfElementLocated(btnSettingsEdit));
-                break;
-            }
-        }
-    }
-    public void MyGroupWallLimited(WebDriver driver, String maxNameGroupLimited) {
-        List<WebElement> Owner = driver.findElements(blockGroup);
-        for (WebElement el : Owner) {
-            System.out.print(el.getText());
-            if (el.getAttribute("href").contains("limited")) {
-                el.click();
-                WebDriverWait wt = new WebDriverWait(driver, 99);
-                wt.until(ExpectedConditions.visibilityOfElementLocated(btnSettingsEdit));
-                break;
-            }
-        }
-    }
-    public void openGroupWallLimited(WebDriver driver, String maxNameGroupLimited) {
-        WebDriverWait wt = new WebDriverWait(driver, 200);
-        wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(blockGroup));
-
-        List<WebElement> Owner = driver.findElements(blockGroup);
-        for (WebElement el : Owner) {
-            System.out.print(el.getText());
-            if (el.getAttribute("href").contains("limited")) {
-                el.click();
-                wt.until(ExpectedConditions.visibilityOfElementLocated(headerInfoMembers));
-                break;
-            }
-        }
-    }
-    public void openGroupWallPrivate(WebDriver driver, String maxNameGroupLimited) {
-        WebDriverWait wt = new WebDriverWait(driver, 200);
-        wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(blockGroup));
-
-        List<WebElement> Owner = driver.findElements(blockGroup);
-        for (WebElement el : Owner) {
-            System.out.print(el.getText());
-            if (el.getAttribute("href").contains("private")){
-                el.click();
-                wt.until(ExpectedConditions.visibilityOfElementLocated(headerInfoMembers));
-                break;
-            }
-        }
-    }
-    public void MyGroupWallPrivate(WebDriver driver, String maxNameGroupLimited) {
-        List<WebElement> Owner = driver.findElements(blockGroup);
-        for (WebElement el : Owner) {
-            System.out.print(el.getText());
-            if (el.getAttribute("href").contains("private")) {
-                el.click();
-                WebDriverWait wt = new WebDriverWait(driver, 99);
-                wt.until(ExpectedConditions.visibilityOfElementLocated(btnSettingsEdit));
-                break;
-            }
-        }
-    }*/
     public void MyGroupWall_forDelete(WebDriver driver, String NameGroup) throws Error {
             List<WebElement> Owner = driver.findElements(blockGroup);
             for (WebElement el : Owner) {
-                    if (el.getAttribute("href").contains(NameGroup)) {
+                if (el.getAttribute("href").contains(NameGroup)) {
 
                     el.click();
                     WebDriverWait wt = new WebDriverWait(driver, 99);
@@ -375,7 +300,7 @@ public class GroupPage extends PageObject {
                 }
                 else NameError :  System.out.println("Oops!  There are no group with EN Name");
             }
-    }
+         }
     public void viewerGroupLimited(WebDriver driver) {
         find(headerGroupIcon);
         find(thirdLimeMenu).waitUntilPresent();

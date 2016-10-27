@@ -2,7 +2,6 @@ package com.ProjectTestCom.pages;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
-import com.sun.xml.internal.ws.util.Constants;
 import javafx.scene.control.ScrollToEvent;
 import jnr.constants.Constant;
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -55,8 +54,8 @@ import static org.yecht.LevelStatus.pause;
 @RunWith(SerenityRunner.class)
 public class ItemPage extends PageObject {
 
-    HashMap<String, String> category = new HashMap();
-    HashMap<String, Integer> ID = new HashMap();
+    private  HashMap<String, String> category = new HashMap();
+    private HashMap<String, Integer> ID = new HashMap();
 
     private final By buttonAdd_Menu = By.xpath("//button[@class='header-btn btn btn-red-primary']");
     private final By buttonAdd_listing = By.xpath("//a[@class='card-add']");

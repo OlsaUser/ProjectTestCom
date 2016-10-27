@@ -36,6 +36,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.mail.MessagingException;
+import javax.xml.bind.ValidationException;
 import java.io.File;
 import java.io.IOException;
 
@@ -132,9 +134,9 @@ public class t0_RegistrationStory {
     }
 
     @Test
-    public void stage1_Register_User() throws Exception {
+    public void stage1_Register_User()  throws Exception {
         registerSteps.Step1_UserName(UserNameEn);
-        registerSteps.Step1_Email(NewEmailUser);
+        registerSteps.Step1_Email("lensytosakish.1@gmail.com");
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
         registerSteps.Step2_FirstName(FirstNameEn);
@@ -142,7 +144,10 @@ public class t0_RegistrationStory {
         registerSteps.Step2_Gender(driver, gender_female);
         registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.Step3_Ok(driver);
+        registerSteps.Step3_Ok(driver, "lensyt.osakish.1");
+        Thread.sleep(5000);
+        registerSteps.provideCode("lensytosakish.1@gmail.com");
+
     }
 
     @Test
@@ -156,7 +161,7 @@ public class t0_RegistrationStory {
         registerSteps.Step2_Founded(Year_2014, driver);
         registerSteps.Step2_Location(driver, LocationAR);
         registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.Step3_Ok(driver);
+        registerSteps.Step3_Ok(driver, NewEmailOrg);
         }
 
     @Test
@@ -164,51 +169,61 @@ public class t0_RegistrationStory {
         registerSteps.Step1_UserName(UserNameEn);
         registerSteps.clearUserName();
         registerSteps.Step1_pressButton_Next();
+        System.out.println("1.ErrorUserName_Empty");
         registerSteps.checkValidationMessage(ErrorUserName_Empty, driver);
         registerSteps.clearUserName();
 
         registerSteps.Step1_UserName(UserName_AR);
         registerSteps.Step1_pressButton_Next();
+        System.out.println("2.ErrorUserName_Ar");
         registerSteps.checkValidationMessage_if_UserNameAR(ErrorUserName_Ar, driver);
         registerSteps.clearUserName();
 
         registerSteps.Step1_UserName(Symbols);
         registerSteps.Step1_pressButton_Next();
+        System.out.println("3.ErrorUserName_Symbols");
         registerSteps.checkValidationMessage_if_UserNameAR(ErrorUserName_Ar, driver);
         registerSteps.clearUserName();
 
         registerSteps.Step1_UserName(Name_51_symbols);
         registerSteps.Step1_pressButton_Next();
+        System.out.println("4.ErrorUserName_Long");
         registerSteps.checkValidationMessage(ErrorUserName_Long, driver);
         registerSteps.clearUserName();
 
         registerSteps.Step1_UserName(Numbers);
         registerSteps.Step1_pressButton_Next();
-        registerSteps.checkValidationMessage(NoError, driver);
+        System.out.println("5.UserName_Numbers");
+        //registerSteps.checkValidationMessage(NoError, driver);
         registerSteps.clearUserName();
 
         registerSteps.Step1_Email(NewEmailUser);
         registerSteps.clearUserName();
         registerSteps.clearEmail();
         registerSteps.Step1_pressButton_Next();
+        System.out.println("6.ErrorEmail_Empty");
         registerSteps.checkValidationMessage(ErrorEmail_Empty, driver);
 
         registerSteps.Step1_Email(WrongEmail);
         registerSteps.Step1_pressButton_Next();
+        System.out.println("7.ErrorEmail_Wrong");
         registerSteps.checkValidationMessage(ErrorEmail_Wrong, driver);
         registerSteps.clearEmail();
 
         registerSteps.Step1_Password(NewPassword);
         registerSteps.clearPassword();
         registerSteps.Step1_pressButton_Next();
+        System.out.println("8.ErrorPassword_Empty");
         registerSteps.checkValidationMessage(ErrorPassword_Empty, driver);
 
         registerSteps.Step1_Password(ShortPassword);
         registerSteps.Step1_pressButton_Next();
+        System.out.println("9.ErrorPassword_Short");
         registerSteps.checkValidationMessage_Password(ErrorPassword_Short, driver);
 
         registerSteps.Step1_Password(LongPassword);
         registerSteps.Step1_pressButton_Next();
+        System.out.println("10.ErrorPassword_Long");
         registerSteps.checkValidationMessage_Password(ErrorPassword_Long, driver);
 
         registerSteps.clearUserName();
@@ -219,6 +234,7 @@ public class t0_RegistrationStory {
         registerSteps.Step1_Email(ExistEmail);
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
+        System.out.println("11.ErrorEmail_Exist");
         registerSteps.checkValidationMessage(ErrorEmail_Exist, driver);
         registerSteps.clearEmail();
 
@@ -228,6 +244,7 @@ public class t0_RegistrationStory {
         registerSteps.Step2_FirstName(FirstNameEn);
         registerSteps.clearFirstName();
         registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("12.ErrorFirstName_Empty");
         registerSteps.checkValidationMessage(ErrorFirstName_Empty, driver);
         registerSteps.clearFirstName();
 
@@ -236,30 +253,45 @@ public class t0_RegistrationStory {
         registerSteps.checkValidationMessage(NoError, driver);
         registerSteps.clearFirstName();
 
-        registerSteps.Step2_FirstName(Numbers);
         registerSteps.Step2_FirstName(Symbols);
         registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("13.FirstName_Symbols");
+        registerSteps.checkValidationMessage(NoError, driver);
+        registerSteps.clearFirstName();
+
+        registerSteps.Step2_FirstName(Numbers);
+        registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("14.FirstName_Numbers");
         registerSteps.checkValidationMessage(NoError, driver);
         registerSteps.clearFirstName();
 
         registerSteps.Step2_LastName(LastNameEn);
         registerSteps.clearLastName();
         registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("15.ErrorLastName_Empty");
         registerSteps.checkValidationMessage(ErrorLastName_Empty, driver);
         registerSteps.clearLastName();
 
         registerSteps.Step2_LastName(LastName_Ar);
         registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("16.LastName_Ar");
+        registerSteps.checkValidationMessage(NoError, driver);
+        registerSteps.clearLastName();
+
+        registerSteps.Step2_LastName(Symbols);
+        registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("17.LastName_Symbols");
         registerSteps.checkValidationMessage(NoError, driver);
         registerSteps.clearLastName();
 
         registerSteps.Step2_LastName(Numbers);
-        registerSteps.Step2_LastName(Symbols);
         registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("18.LastName_Numbers");
         registerSteps.checkValidationMessage(NoError, driver);
         registerSteps.clearLastName();
 
         registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("19.Error Gender & Location_Empty");
         registerSteps.checkValidationMessage(ErrorGender_Empty, driver);
         registerSteps.checkValidationMessage(ErrorLocation_Empty, driver);
     }
@@ -269,6 +301,7 @@ public class t0_RegistrationStory {
         registerSteps.Step1_UserName(OrganizationShortNameEn);
         registerSteps.clearUserName();
         registerSteps.Step1_pressButton_Next();
+        System.out.println("1.ErrorOrganizationShortName_Empty");
         registerSteps.checkValidationMessage(ErrorOrganizationShortName_Empty, driver);
         registerSteps.clearUserName();
 
@@ -280,18 +313,28 @@ public class t0_RegistrationStory {
         registerSteps.Step2_OrganizationFullName(OrganizationFullNameEn);
         registerSteps.clearOrganizationFullName();
         registerSteps.Step2_pressButton_Confirm(driver);
+        System.out.println("2.ErrorOrganizationFullName_Empty");
         registerSteps.checkValidationMessage(ErrorOrganizationFullName_Empty, driver);
+        System.out.println("3.ErrorFounded_Empty");
         registerSteps.checkValidationMessage(ErrorFounded_Empty, driver);
+        System.out.println("4.ErrorLocation_Empty");
         registerSteps.checkValidationMessage(ErrorLocation_Empty, driver);
 
         registerSteps.Step2_OrganizationFullName(OrganizationFullName_Ar);
+        System.out.println("5.OrganizationFullName_Ar");
         registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.checkValidationMessage(NoError, driver);
+        //registerSteps.checkValidationMessage(NoError, driver);
 
         registerSteps.clearOrganizationFullName();
         registerSteps.Step2_OrganizationFullName(Symbols);
+        System.out.println("6.OrganizationFullName_Symbols");
+        registerSteps.Step2_pressButton_Confirm(driver);
+        //registerSteps.checkValidationMessage(NoError, driver);
+
+        registerSteps.clearOrganizationFullName();
         registerSteps.Step2_OrganizationFullName(Numbers);
         registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.checkValidationMessage(NoError, driver);
+        System.out.println("7.OrganizationFullName_Numbers");
+        //registerSteps.checkValidationMessage(NoError, driver);
     }
 }

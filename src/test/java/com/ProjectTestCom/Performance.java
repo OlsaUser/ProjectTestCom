@@ -45,6 +45,9 @@ public class Performance {
     private String MyGroupWall = PropertyLoader.getProperty(propertyFilePath, "MyGroupWall");
     private String DiscoverPage = PropertyLoader.getProperty(propertyFilePath, "DiscoverPage");
     private String urlUserProfile_Perform = PropertyLoader.getProperty(propertyFilePath, "urlUserProfile_Perform");
+    private String urlItem = PropertyLoader.getProperty(propertyFilePath, "urlItem");
+    private String urlGroupPage = PropertyLoader.getProperty(propertyFilePath, "urlGroupPage");
+    private String viewItem = PropertyLoader.getProperty(propertyFilePath, "viewItem");
 
     private String DiscoverUserActive = PropertyLoader.getProperty(propertyFilePath, "DiscoverUserActive");
     private String DiscoverUserNew = PropertyLoader.getProperty(propertyFilePath, "DiscoverUserNew");
@@ -152,7 +155,6 @@ public class Performance {
         loginSteps.PageComplete(driver);
 
 
-
         headerSteps.openDiscoverPostNew(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(DiscoverPostNew);
@@ -165,19 +167,17 @@ public class Performance {
         // loginSteps.pageLoad(DiscoverPostPopular);
 
 
-
         headerSteps.openDiscoverUserPopular(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(DiscoverUserPopular);
 
         headerSteps.openDiscoverUserActive(driver);
         loginSteps.PageComplete(driver);
-       // loginSteps.pageLoad(DiscoverUserActive);
+        // loginSteps.pageLoad(DiscoverUserActive);
 
         headerSteps.openDiscoverUserNew(driver);
         loginSteps.PageComplete(driver);
         //loginSteps.pageLoad(DiscoverUserNew)
-
 
 
         headerSteps.openDiscoverGroupsPopular(driver);
@@ -187,7 +187,6 @@ public class Performance {
         headerSteps.openDiscoverGroupsNew(driver);
         loginSteps.PageComplete(driver);
         //loginSteps.pageLoad(DiscoverGroupsNew);
-
 
 
         headerSteps.openMenuProfile(driver);
@@ -211,11 +210,12 @@ public class Performance {
         loginSteps.pageLoad(MyGroups);
 
         headerSteps.MyGroupWall(driver);
-        loginSteps.pageLoad(MyGroupWall);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyGroups);
 
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         headerSteps.openMyServiceListing(driver);
         loginSteps.pageLoad(MyServiceListing);
@@ -238,8 +238,6 @@ public class Performance {
         loginSteps.pageLoad(viewAccountSettings);
 
         driver.get(urlUserProfile_Perform);
-        //driver.get("http://synergy.devzone.dp.ua/en/annto");
-
         headerSteps.openUserWallPage(driver);
         headerSteps.openUserProductListing(driver);
         headerSteps.openUserServiceListing(driver);
@@ -260,9 +258,21 @@ public class Performance {
         headerSteps.openGroupsListing(driver);
         loginSteps.pageLoad(Groups);
 
+        driver.get(urlItem);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(viewItem);
+
+        //loginSteps.Sleep(100);
+        driver.get(urlGroupPage);
+        driver.navigate().refresh();
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyGroupWall);
+    }
+}
+
         /*****************************************/
 
-        headerSteps.openHomePage(driver);
+      /*  headerSteps.openHomePage(driver);
         loginSteps.PageComplete(driver);
 
         headerSteps.openProductListing(driver);
@@ -382,28 +392,7 @@ public class Performance {
         loginSteps.pageLoad(viewAccountSettings);
 
         driver.get(urlUserProfile_Perform);
-       // driver.get("http://synergy.devzone.dp.ua/en/annto");
 
-       /* headerSteps.openUserWallPage(driver);
-        loginSteps.pageLoad(openUserWallPage);
-
-        headerSteps.openUserProductListing(driver);
-        loginSteps.pageLoad(openUserProductListing);
-
-        headerSteps.openUserServiceListing(driver);
-        loginSteps.pageLoad(openUserServiceListing);
-
-        headerSteps.openUserEventListing(driver);
-        loginSteps.pageLoad(openUserEventListing);
-
-        headerSteps.openUserGroupListing(driver);
-        loginSteps.pageLoad(openUserGroupListing);
-
-        headerSteps.openUserPartnershipListing(driver);
-        loginSteps.pageLoad(openUserPartnershipListing);
-
-        headerSteps.openUserMediaPage(driver);
-        loginSteps.pageLoad(openUserMediaPage);*/
 
         headerSteps.openMyFollowers(driver);
         loginSteps.pageLoad(MyFollowers);
@@ -417,7 +406,7 @@ public class Performance {
         headerSteps.openGroupsListing(driver);
         loginSteps.pageLoad(Groups);
     }
-}
+}*/
 /*
    @Test
     public void MyMnassa() throws IOException {

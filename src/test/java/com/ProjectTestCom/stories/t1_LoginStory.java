@@ -36,6 +36,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.mail.MessagingException;
+
 import static java.awt.SystemColor.window;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
@@ -101,7 +103,7 @@ public class t1_LoginStory {
     }
     /*************************************************************/
 @Test
-    public void checkingLoginErrors() throws IOException{
+    public void checkingLoginErrors() throws MessagingException, IOException{
         loginSteps.enterLogin(wrongEmail);
         loginSteps.enterPassword(password);
         loginSteps.clickEnterError();
@@ -129,7 +131,7 @@ public class t1_LoginStory {
     }
 
     @Test
-    public void blockUser() throws IOException{
+    public void blockUser() throws IOException, MessagingException{
         loginSteps.enterLogin("testUserBlock@yopmail.com");
         loginSteps.enterPassword(wrongPassword);
         loginSteps.clickEnterError();

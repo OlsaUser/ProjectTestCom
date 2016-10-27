@@ -5,6 +5,10 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.WebDriver;
 
+import javax.mail.MessagingException;
+import javax.xml.bind.ValidationException;
+import java.io.IOException;
+
 import static org.junit.Assert.assertTrue;
 
 public class RegisterSteps extends ScenarioSteps {
@@ -69,7 +73,7 @@ public class RegisterSteps extends ScenarioSteps {
     public void Step2_pressButton_Confirm(WebDriver driver ) { registerPage.Step2_pressButton_Confirm(driver);}
 
     @Step
-    public void Step3_Ok( WebDriver driver) { registerPage.Step3_Ok(driver);}
+    public void Step3_Ok ( WebDriver driver, String email) { registerPage.Step3_Ok(driver, email) ;}
 
     @Step
     public void checkValidationMessage(String Message, WebDriver driver) { assertTrue(registerPage.checkValidationMessage(Message, driver));}
@@ -77,8 +81,11 @@ public class RegisterSteps extends ScenarioSteps {
     @Step
     public void checkValidationMessage_if_UserNameAR(String Message, WebDriver driver) { registerPage.checkValidationMessage_if_UserNameAR(Message, driver);}
 
-
     @Step
     public void checkValidationMessage_Password(String Message, WebDriver driver) { registerPage.checkValidationMessage_Password(Message, driver);}
+
+
+    @Step
+    public String provideCode(String email) { return registerPage.provideCode(email);}
 
 }

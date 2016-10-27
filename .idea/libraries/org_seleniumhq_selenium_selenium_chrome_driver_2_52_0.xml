@@ -33,6 +33,7 @@
       <root url="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-firefox-driver/2.53.0/selenium-firefox-driver-2.53.0.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-chrome-driver/2.52.0/selenium-chrome-driver-2.52.0.jar!/" />
       <root url="file://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/2.52.0" />
+      <root url="jar://$USER_HOME$/.ideaLibSources/selenium-api-2.52.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

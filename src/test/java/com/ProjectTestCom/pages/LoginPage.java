@@ -30,6 +30,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.imageio.ImageIO;
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -102,10 +103,10 @@ public class LoginPage extends PageObject {
         find(fieldPassword).clear();
     }
 
-    public void checkPasswordErrorPresent(String text) {
+    public void checkPasswordErrorPresent(String text) throws MessagingException{
         try {
-            System.out.println("Validation message now: " + find(lblPasswordError).getText());
-            assertTrue("Wrong validation message for Password!",find(lblPasswordError).getText().contains(text));
+            //System.out.println("Validation message now: " + find(lblPasswordError).getText());
+            Assert.assertEquals(text, find(lblPasswordError).getText());
         } catch (Error  NameError) {
             NameError :
             System.out.println("Account is going to be Blocked...");
@@ -113,12 +114,10 @@ public class LoginPage extends PageObject {
         }
     }
 
-    public void checkLoginErrorPresent(String text) {
-        System.out.println("Validation message now: " + find(lblLoginError).getText());
-        assertTrue("Wrong validation message for Login!",find(lblLoginError).containsText(text));
+    public void checkLoginErrorPresent(String text) throws MessagingException, IOException{
+        //System.out.println("Validation message now: " + find(lblLoginError).getText());
+        Assert.assertEquals(text,find(lblLoginError).getText());
     }
-
-
 
     /* Common utils*/
 
@@ -201,9 +200,14 @@ public class LoginPage extends PageObject {
         System.out.println("TimeFirstByte " + responseTime + " serverTime " + serverTime);
         System.out.println("Requests " + indexOfLastResources);*/
 
-        String TextRequest =  "Request  : " + Request + "| ";
+        /*String TextRequest =  "Request  : " + Request + "| ";
         String TextResponse = "Response : " + Response + "| ";
-        String TextfulLoad =  "Full Load: " + fulLoad + "| ";
+        String TextfulLoad =  "Full Load: " + fulLoad + "| ";*/
+
+        String TextRequest =  Request + "| ";
+        String TextResponse = Response + "| ";
+        String TextfulLoad =  fulLoad + "| ";
+
         String TotalRequests = "Total Requests:" + indexOfLastResources + " ";
         String page = "Page: " + args + "| ";
 

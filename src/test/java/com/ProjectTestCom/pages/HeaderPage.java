@@ -78,7 +78,7 @@ public class HeaderPage extends PageObject {
     private final By linkEvent = By.xpath("//div[@class='nav-list-items']/a[4]/span");
     private final By linkGroups = By.xpath("//div[@class='nav-list-items']/a[5]/span");
     private final By linkPartnership = By.xpath("//div[@class='nav-list-items']/a[6]/span");
-    private final By GroupWall = By.cssSelector("a[href*='!wall']");
+    private final By GroupWall = By.cssSelector("a[href*='#!group/name']");
     private final By linkOwner = By.xpath("//span[@class='group-item-owner']");
 
     //Third line Menu (My profile)
@@ -186,7 +186,7 @@ public class HeaderPage extends PageObject {
             find(linkMyMnassa).click();
             find(MyMnassaContent).waitUntilVisible();*/
 
-        WebDriverWait wt = new WebDriverWait (driver, 200);
+        WebDriverWait wt = new WebDriverWait (driver, 300);
         wt.until(ExpectedConditions.elementToBeClickable(linkMyMnassa));
         /*wt.until(ExpectedConditions.presenceOfElementLocated(MyMnassaContent));
         WebDriverWait wt = new WebDriverWait (driver, 100);
@@ -345,7 +345,7 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.presenceOfElementLocated(GroupWall));
        // wt.until(ExpectedConditions.textToBePresentInElementLocated(linkOwner,"Owner"));
         find(GroupWall).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(GroupWallContent));
+        //wt.until(ExpectedConditions.visibilityOfElementLocated(GroupWallContent));
         wt.until(ExpectedConditions.visibilityOfElementLocated(PlaceHolderWall));
     }
 
