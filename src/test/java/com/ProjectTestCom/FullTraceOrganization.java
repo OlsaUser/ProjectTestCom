@@ -27,7 +27,7 @@ import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver
 
 @RunWith(SerenityRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class FullTraceUser {
+public class FullTraceOrganization {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
@@ -40,6 +40,10 @@ public class FullTraceUser {
     private String fb_Password1 = PropertyLoader.getProperty(propertyFilePath, "fb_Password1");
     private String fb_Email2 = PropertyLoader.getProperty(propertyFilePath, "fb_Email2");
     private String fb_Password2 = PropertyLoader.getProperty(propertyFilePath, "fb_Password2");
+    private String NewEmailOrg = PropertyLoader.getProperty(propertyFilePath, "NewEmailOrg");
+    private String email_organization_now = PropertyLoader.getProperty(propertyFilePath, "email_organization_now");
+    private String password_organization = PropertyLoader.getProperty(propertyFilePath, "password_organization");
+
 
     private String registrationFilePath = "src/test/resources/registration.properties";
     private String NewEmailUser = PropertyLoader.getProperty(registrationFilePath, "NewEmailUser");
@@ -60,6 +64,9 @@ public class FullTraceUser {
 
     private String UserName = PropertyLoader.getProperty(registrationFilePath, "UserName");
     private String EmailUser = PropertyLoader.getProperty(registrationFilePath, "EmailUser");
+
+    private String OrganizationFullNameEn = PropertyLoader.getProperty(registrationFilePath, "OrganizationFullName_En");
+    private String OrganizationShortNameEn = PropertyLoader.getProperty(registrationFilePath, "OrganizationShortName_En");
 
     private String profileFilePath = "src/test/resources/profile.properties";
     private String FirstName_En = PropertyLoader.getProperty(profileFilePath, "FirstName_En");
@@ -127,11 +134,23 @@ public class FullTraceUser {
     private String Error_UserName = PropertyLoader.getProperty(profileFilePath, "Error_UserName");
     private String Error_LastName_moreMAX = PropertyLoader.getProperty(profileFilePath, "Error_LastName_moreMAX");
 
+    private String OrganizationName_En_exp = PropertyLoader.getProperty(profileFilePath, "OrganizationName_En_exp");
+    private String OrganizationName_En_now = PropertyLoader.getProperty(profileFilePath, "OrganizationName_En_now");
+    private String OrganizationShortName_En_exp = PropertyLoader.getProperty(profileFilePath, "OrganizationShortName_En_exp");
+    private String OrganizationShortName_En_now = PropertyLoader.getProperty(profileFilePath, "OrganizationShortName_En_now");
+    private String count = PropertyLoader.getProperty(profileFilePath, "count");
+    private String count_now = PropertyLoader.getProperty(profileFilePath, "count_now");
+    private String YearFounder_now = PropertyLoader.getProperty(profileFilePath, "YearFounder_now");
+    private String YearFounder_exp = PropertyLoader.getProperty(profileFilePath, "YearFounder_exp");
+
     private String propertyItemPath = "src/test/resources/item.properties";
     private String TitleError = PropertyLoader.getProperty(propertyItemPath, "TitleError");
     private String CategoryError = PropertyLoader.getProperty(propertyItemPath, "CategoryError");
     private String SubCategoryError = PropertyLoader.getProperty(propertyItemPath, "SubCategoryError");
     private String PhotoError = PropertyLoader.getProperty(propertyItemPath, "PhotoError");
+    private String OrganizerName = PropertyLoader.getProperty(propertyItemPath, "OrganizerName");
+    private String Address = PropertyLoader.getProperty(propertyItemPath, "Address");
+    private String ticketPrice = PropertyLoader.getProperty(propertyItemPath, "ticketPrice");
 
     private String Title = PropertyLoader.getProperty(propertyItemPath, "Title");
     private String TitleMAX = PropertyLoader.getProperty(propertyItemPath, "TitleMAX");
@@ -158,26 +177,24 @@ public class FullTraceUser {
     private String Comment = PropertyLoader.getProperty(propertyItemPath, "Comment");
     private String Service = PropertyLoader.getProperty(propertyItemPath, "Service");
     private String Product = PropertyLoader.getProperty(propertyItemPath, "Product");
+    private String Event = PropertyLoader.getProperty(propertyItemPath, "Event");
 
-    private String propertyProductPath = "src/test/resources/product_xpath.properties";
-    private String price_now = PropertyLoader.getProperty(propertyProductPath, "price_now");
-    private String title_now = PropertyLoader.getProperty(propertyProductPath, "title_now");
-    private String description_now = PropertyLoader.getProperty(propertyProductPath, "description_now");
-    private String location_now = PropertyLoader.getProperty(propertyProductPath, "location_now");
-    private String tag_now = PropertyLoader.getProperty(propertyProductPath, "tag_now");
-    private String audio_now = PropertyLoader.getProperty(propertyProductPath, "audio_now");
-    private String visa = PropertyLoader.getProperty(propertyProductPath, "visa");
-    private String mastercard = PropertyLoader.getProperty(propertyProductPath, "mastercard");
-    private String paypal = PropertyLoader.getProperty(propertyProductPath, "paypal");
-    private String debitcard = PropertyLoader.getProperty(propertyProductPath, "debitcard");
-    private String cash = PropertyLoader.getProperty(propertyProductPath, "cash");
-    private String adv_payment_now = PropertyLoader.getProperty(propertyProductPath, "adv_payment_now");
-    private String available = PropertyLoader.getProperty(propertyProductPath, "available");
-    private String service_online = PropertyLoader.getProperty(propertyProductPath, "service_online");
-    private String yearsExperience = PropertyLoader.getProperty(propertyProductPath, "yearsExperience");
-
-    private String HomePage = PropertyLoader.getProperty(propertyFilePath, "HomePage");
-    private String Login = PropertyLoader.getProperty(propertyFilePath, "Login");
+    private String propertyEventPath = "src/test/resources/event_xpath.properties";
+    private String price_now = PropertyLoader.getProperty(propertyEventPath, "price_now");
+    private String title_now = PropertyLoader.getProperty(propertyEventPath, "title_now");
+    private String description_now = PropertyLoader.getProperty(propertyEventPath, "description_now");
+    private String location_now = PropertyLoader.getProperty(propertyEventPath, "location_now");
+    private String tag_now = PropertyLoader.getProperty(propertyEventPath, "tag_now");
+    private String organizerName_now = PropertyLoader.getProperty(propertyEventPath, "organizerName_now");
+    private String eventType_now = PropertyLoader.getProperty(propertyEventPath, "eventType_now");
+    private String audience_now = PropertyLoader.getProperty(propertyEventPath, "audience_now");
+    private String address_now = PropertyLoader.getProperty(propertyEventPath, "address_now");
+    private String audio_now = PropertyLoader.getProperty(propertyEventPath, "audio_now");
+    private String visa = PropertyLoader.getProperty(propertyEventPath, "visa");
+    private String mastercard = PropertyLoader.getProperty(propertyEventPath, "mastercard");
+    private String paypal = PropertyLoader.getProperty(propertyEventPath, "paypal");
+    private String debitcard = PropertyLoader.getProperty(propertyEventPath, "debitcard");
+    private String cash = PropertyLoader.getProperty(propertyEventPath, "cash");
 
     @Managed
     WebDriver driver;
@@ -213,86 +230,66 @@ public class FullTraceUser {
     public void tearDown() throws Exception {driver.quit();}
 
     @Test
-    public void stage1_Register_Facebook()  throws Exception, IOException, ValidationException, FactoryConfigurationError {
-        registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
-        registerSteps.openRegisterPage();
-        loginSteps.PageComplete(driver);
-        registerSteps.viaFacebook_SignUp(driver);
-        registerSteps.confirmFbReg(driver, fb_Email2, fb_Password2);
-        loginSteps.Sleep(500);
-        registerSteps.successRegistration(driver);
-    }
-    @Test
-    public void stage2_Register_User()  throws IOException {
-        registerSteps.openRegisterPage();
-        loginSteps.PageComplete(driver);
-
-        registerSteps.Step1_UserName(UserNameEn);
-        registerSteps.Step1_Email(NewEmailUser);
+    public void stage1_Register_Organization() throws Exception {
+        registerSteps.Step1_selectRadioButton_Organization();
+        registerSteps.Step1_UserName(OrganizationShortNameEn);
+        registerSteps.Step1_Email(NewEmailOrg);
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
-        registerSteps.Step2_FirstName(FirstNameEn);
-        registerSteps.Step2_LastName(LastNameEn);
-        registerSteps.Step2_Gender(driver, gender_female);
-        registerSteps.Step2_Location(driver, LocationEN);
+        registerSteps.Step2_OrganizationFullName(OrganizationFullNameEn);
+        registerSteps.Step2_Founded(Year_2014, driver);
+        registerSteps.Step2_Location(driver, LocationAR);
         registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.Step3_Ok(driver, NewEmailUser);
+        registerSteps.Step3_Ok(driver, NewEmailOrg);
 
-        registerSteps.goConfirmLink(driver,NewEmailUser);
-        registerSteps.successRegistration(driver);
-        registerSteps.checkWelcomeLetter(NewEmailUser);
+        registerSteps.goConfirmLink(driver,NewEmailOrg);
+        registerSteps.checkWelcomeLetter(NewEmailOrg);
     }
-    //Facebook User
     @Test
-    public void stage3_EditMainDetails()  throws IOException {
-        registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+    public void stage2_EditMainDetails(){
         loginSteps.openLoginPage();
-        registerSteps.viaFacebook_Login(driver);
         loginSteps.PageComplete(driver);
-        registerSteps.successLogIn(driver);
+
+        loginSteps.enterLogin(NewEmailOrg);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
 
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
 
-        accountSettingsSteps.enterFirstName(FirstName_En);
-        accountSettingsSteps.enterLastName(LastName_En);
-        accountSettingsSteps.enterUserName(UserName_En);
-        // accountSettingsSteps.selectGenderFeMale();
-        accountSettingsSteps.selectGenderMale(Male);
-        accountSettingsSteps.selectLanguageArabian();
-        accountSettingsSteps.selectLanguageEnglish();
-        accountSettingsSteps.selectBirth();
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,100)", "");
-        accountSettingsSteps.selectStatusMarried(married);
+        accountSettingsSteps.enterOrganizationName(OrganizationName_En_exp);
+        accountSettingsSteps.enterOrganizationShortName(OrganizationShortName_En_exp);
+        accountSettingsSteps.selectTypeGovernmental();
+        accountSettingsSteps.selectLanguageArabian_Org();
+        accountSettingsSteps.selectLanguageEnglish_Org();
+        accountSettingsSteps.selectFounded();
+        accountSettingsSteps.selectNumbEmployees(count);
         // accountSettingsSteps.selectStatusSingle();
         accountSettingsSteps.selectLocation(location);
         accountSettingsSteps.enterBriefInfo(BriefInfo);
-        loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate1(driver);
-        loginSteps.PageComplete(driver);
         //User info page
+        loginSteps.Sleep(70);
         headerSteps.openDiscoverPage(driver);
-        loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
-        loginSteps.PageComplete(driver);
-        accountSettingsSteps.checkInfoExists(FirstName_En_exp, FirstName_En_now);
-        accountSettingsSteps.checkInfoExists(UserName_En, UserName_En_now);
-        accountSettingsSteps.checkInfoExists(location_exp, location_now_profile);
+        accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
+        accountSettingsSteps.checkInfoExists(OrganizationShortName_En_exp,OrganizationShortName_En_now);
+        accountSettingsSteps.checkInfoExists(location_exp, location_now);
         accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
         accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
-        accountSettingsSteps.checkInfoExists(Male, gender_now);
-        accountSettingsSteps.checkInfoExists(married, status_now);
-        accountSettingsSteps.checkInfoExists(birth_exp, birth_now);
+        accountSettingsSteps.checkInfoExists(count, count_now);
+        accountSettingsSteps.checkInfoExists(YearFounder_exp, YearFounder_now);
+        //accountSettingsSteps.checkMainDetails_Org(OrganizationName_En,OrganizationShortName_En,location,BriefInfo,count);
     }
     @Test
-    public void stage4_EditContactInfo(){
+    public void stage3_EditContactInfo(){
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
-        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterLogin(NewEmailOrg);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
@@ -310,28 +307,26 @@ public class FullTraceUser {
         accountSettingsSteps.enterLinkedIn(LinkedIn);
         accountSettingsSteps.enterSnapchat(Snapchat);
         accountSettingsSteps.enterWebSite(WebSite_exp);
-        //loginSteps.PageComplete(driver);
+        loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate2(driver);
-
+        loginSteps.Sleep(70);
         //User info page
         headerSteps.openDiscoverPage(driver);
-        loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
-        loginSteps.PageComplete(driver);
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
         jse.executeScript("window.scrollBy(0,500)", "");
-        accountSettingsSteps.checkInfoExists(mobile_exp, mobile_now);
-        accountSettingsSteps.checkInfoExists(landline_exp, landline_now);
-        accountSettingsSteps.checkInfoExists(WebSite_exp, WebSite_now);
-        accountSettingsSteps.checkInfoExists(NewEmailUser, email_now);
+        accountSettingsSteps.checkInfoExists(mobile_exp,mobile_now);
+        accountSettingsSteps.checkInfoExists(landline_exp,landline_now);
+        accountSettingsSteps.checkInfoExists(WebSite_exp,WebSite_now);
+        accountSettingsSteps.checkInfoExists(NewEmailOrg, email_organization_now );
         accountSettingsSteps.checkNetworkAccounts();
     }
     @Test
-    public void stage5_AddEducationInfo(){
+    public void stage4_ChangePassword() {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
-        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterLogin(NewEmailOrg);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
@@ -340,168 +335,92 @@ public class FullTraceUser {
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
 
-        accountSettingsSteps.pressCollapseEducationInfo();
-        accountSettingsSteps.pressAddEducationButton();
-        accountSettingsSteps.enterInstitutionName(InstitutionName);
-        accountSettingsSteps.enterEducFromDate();
-        accountSettingsSteps.enterEducTillDate();
-        accountSettingsSteps.enterSpeciality(Speciality);
-        accountSettingsSteps.enterLocation(location);
-        accountSettingsSteps.enterAbout(About);
-        accountSettingsSteps.pressSaveNewEduc(driver);
-        loginSteps.PageComplete(driver);
-        loginSteps.PageComplete(driver);
-        //accountSettingsSteps.clickUpdate3();
-
-        //User info page
-        headerSteps.openDiscoverPage(driver);
-        loginSteps.PageComplete(driver);
-        headerSteps.viewAccountSettings(driver);
-        loginSteps.PageComplete(driver);
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,500)", "");
-        accountSettingsSteps.checkEducationInfo(InstitutionName,Speciality,location,About);
+        accountSettingsSteps.pressCollapseChangePassword();
+        accountSettingsSteps.enterCurrentPassword(CurrentPassword);
+        accountSettingsSteps.enterNewPassword(NewPassword);
+        accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
+        //loginSteps.PageComplete(driver);
+        accountSettingsSteps.clickUpdate6(driver);
     }
-    @Test
-    public void stage6_AddJobInfo(){
-        loginSteps.openLoginPage();
-        loginSteps.PageComplete(driver);
+        @Test
+        public void stage5_addEventSupply_AllFields_byButtonInListing() throws Error{
+            loginSteps.openLoginPage();
+            loginSteps.PageComplete(driver);
 
-        loginSteps.enterLogin(NewEmailUser);
-        loginSteps.enterPassword(NewPassword);
-        loginSteps.clickEnter(driver);
-        loginSteps.PageComplete(driver);
+            loginSteps.enterLogin(NewEmailOrg);
+            loginSteps.enterPassword(NewPassword);
+            loginSteps.clickEnter(driver);
+            loginSteps.PageComplete(driver);
 
-        headerSteps.openMenuProfile(driver);
-        headerSteps.openAccountSettings(driver);
-        loginSteps.PageComplete(driver);
+            headerSteps.openMyMnassaPage(driver);
+            headerSteps.openMyEventListing(driver);
+            addItemSteps.openAddItemPageByClickingOnButtonInListing();
+            loginSteps.PageComplete(driver);
+            addItemSteps.selectSupply();
+            //addItemSteps.collapseBasicInfo();
+            //addItemSteps.selectEventDates(driver);
+            //addItemSteps.datePicker( "26-09-2016 16:41",  driver);
 
-        accountSettingsSteps.pressCollapseJobInfo();
-        accountSettingsSteps.pressAddJobButton();
-        accountSettingsSteps.enterJobName(JobName);
-        accountSettingsSteps.enterJobFromDate();
-        accountSettingsSteps.enterJobTillDate();
-        accountSettingsSteps.enterJobSpeciality(JobSpeciality);
-        accountSettingsSteps.enterJobLocation(location);
-        accountSettingsSteps.enterJobAbout(About);
-        accountSettingsSteps.pressSaveNewJob(driver);
-        loginSteps.PageComplete(driver);
+            addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
+            addItemSteps.selectCategory2();
+            addItemSteps.selectEventType();
 
-        headerSteps.openDiscoverPage(driver);
-        headerSteps.viewAccountSettings(driver);
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,500)", "");
-        accountSettingsSteps.checkJobInfo(JobName,JobSpeciality,About);
-    }
-    @Test
-    public void stage7_addServiceSupply_MAX_byButtonInListing() {
-        loginSteps.openLoginPage();
-        loginSteps.PageComplete(driver);
+            //addItemSteps.selectRegistrationDates(driver);
+            //addItemSteps.collapseBasicInfo();
+            //addItemSteps.selectAudienceMales();
+            //addItemSteps.selectAudienceFemales();
+            //addItemSteps.selectAudienceFamilies();
+            addItemSteps.selectAudienceChildren();
+            // addItemSteps.selectAudienceAnyone();
 
-        loginSteps.enterLogin(NewEmailUser);
-        loginSteps.enterPassword(NewPassword);
-        loginSteps.clickEnter(driver);
-        loginSteps.PageComplete(driver);
+            addItemSteps.enterTag(tag1);
+            addItemSteps.enterOrganizerName(OrganizerName);
+            addItemSteps.enterLocation(Location);
+            JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+            jse1.executeScript("window.scrollBy(0,500)", "");
+            // addItemSteps.selectRegistrationOpen();
+            //addItemSteps.selectEventCanceled();
+            //addItemSteps.selectEventEnded();
+            addItemSteps.enterAddress(Address);
+            //addItemSteps.selectRegistrationClosed();
+            //addItemSteps.selectTicketTypeFree();
+            addItemSteps.selectTicketTypePaid(ticketPrice);
+            //jse1.executeScript("window.scrollBy(0,-200)", "");
+            addItemSteps.selectMethodMasterCard();
+            addItemSteps.selectMethodPayPal();
+            addItemSteps.selectMethodCash();
+            addItemSteps.selectMethodDebitCard();
+            addItemSteps.selectMethodVisa();
 
-        headerSteps.openMyMnassaPage(driver);
-        headerSteps.openMyServiceListing(driver);
-        addItemSteps.openAddItemPageByClickingOnButtonInListing();
-        addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
-        addItemSteps.selectCategory2();
+            jse1.executeScript("window.scrollBy(0,300)", "");
+            //addItemSteps.collapseMainDetails();
+            addItemSteps.VideoContent1(VideoContent5);
+            addItemSteps.AudioContent1(AudioContent1);
+            //addItemSteps.collapseContent();
+            addItemSteps.ItemStatusActivate();
+            //addItemSteps.ItemStatusDeactivate();
+            addItemSteps.clickSave(driver);
+            addItemSteps.checkItemSaved(driver);
+            loginSteps.PageComplete(driver);
+            addItemSteps.openItemSettingsMenu();
+            addItemSteps.selectViewMenu(driver);
 
-        addItemSteps.collapseMainInfo();
-        addItemSteps.selectServiceWillBeAvailableSoon();
-        //addItemSteps.selectServiceWillBeAvailable();
-
-        addItemSteps.clickServiceOnline();
-        addItemSteps.enterTag(tag1);
-        addItemSteps.selectYearsOfExperienceMore();
-        addItemSteps.enterPrice(PriceMAX, PerMAX);
-
-        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,100)", "");
-        addItemSteps.selectAdvancedPayment100();
-        addItemSteps.enterLocation(Location);
-        addItemSteps.selectMethodVisa();
-        addItemSteps.selectMethodMasterCard();
-        addItemSteps.selectMethodPayPal();
-        addItemSteps.selectMethodDebitCard();
-        addItemSteps.selectMethodCash();
-
-        //addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent5(VideoContent5, VideoContent2, VideoContent3, VideoContent4, VideoContent1);
-        loginSteps.Sleep(100);
-        //Скролим страницу вверх
-        addItemSteps.AudioContent5(AudioContent1,AudioContent2, AudioContent3, AudioContent4, AudioContent5);
-        jse1.executeScript("window.scrollBy(0,-450)", "");
-        addItemSteps.collapseContent();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.ItemStatusActivate();
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-        loginSteps.PageComplete(driver);
-
-        addItemSteps.openItemSettingsMenu();
-        addItemSteps.selectViewMenu(driver);
-        //проверяем соответствие введенных и отображаемых значений
-        addItemSteps.checkBreadCrumb(Service,TitleMAX,  driver);
-        addItemSteps.checkValueExists(TitleMAX, title_now);
-        addItemSteps.checkValueExists(DescriptionMAX, description_now);
-        addItemSteps.checkValueExists("999,999,999,999.99", price_now);
-        addItemSteps.checkValueExists(PerMAX, price_now);
-        addItemSteps.checkValueExists(Location, location_now);
-        addItemSteps.checkValueExists(tag1, tag_now);
-        addItemSteps.checkValueExists("100%", adv_payment_now);
-        addItemSteps.checkValueExists("No longer available", available);
-        addItemSteps.checkValueExists("Online", service_online);
-        addItemSteps.checkValueExists("10+ years", yearsExperience);
-
-        addItemSteps.checkElementPresents(audio_now);
-        addItemSteps.checkElementPresents(visa);
-        addItemSteps.checkElementPresents(mastercard);
-        addItemSteps.checkElementPresents(paypal);
-        addItemSteps.checkElementPresents(debitcard);
-        addItemSteps.checkElementPresents(cash);
-    }
-//Facebook User
-    @Test
-    public void stage8_addProductDemand_AR_byButtonFromHeader() {
-        registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
-        loginSteps.openLoginPage();
-        registerSteps.viaFacebook_Login(driver);
-        loginSteps.PageComplete(driver);
-        registerSteps.successLogIn(driver);
-
-        addItemSteps.clickAddButton(driver);
-        addItemSteps.selectItemType(Product, driver);
-        loginSteps.PageComplete(driver);
-
-        addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
-        addItemSteps.selectCategory1();
-
-        addItemSteps.collapseMainInfo();
-        //addItemSteps.enterTag(tag1);
-        addItemSteps.enterLocation(Location);
-
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent2);
-        addItemSteps.collapseContent();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.ItemStatusPeriod();
-        loginSteps.PageComplete(driver);
-        addItemSteps.clickSave(driver);
-        addItemSteps.checkItemSaved(driver);
-        loginSteps.PageComplete(driver);
-
-        addItemSteps.openItemSettingsMenu();
-        addItemSteps.selectViewMenu(driver);
-        //проверяем соответствие введенных и отображаемых значений
-        addItemSteps.checkBreadCrumb(Product,TitleAR,  driver);
-        addItemSteps.checkValueExists(TitleAR, title_now);
-        addItemSteps.checkValueExists(DescriptionAR, description_now);
-        addItemSteps.checkValueExists(Location, location_now);
-        addItemSteps.checkValueExists(tag1, tag_now);
-    }
+            //проверяем соответствие введенных и отображаемых значений
+            addItemSteps.checkBreadCrumb(Event,TitleMAX,  driver);
+            addItemSteps.checkValueExists(TitleMAX, title_now);
+            addItemSteps.checkValueExists(DescriptionMAX, description_now);
+            addItemSteps.checkValueExists(ticketPrice, price_now);
+            addItemSteps.checkValueExists(Location, location_now);
+            addItemSteps.checkValueExists(tag1, tag_now);
+            addItemSteps.checkValueExists(OrganizerName, organizerName_now);
+            addItemSteps.checkValueExists("Attraction", eventType_now);
+            addItemSteps.checkValueExists("Children", audience_now);
+            addItemSteps.checkValueExists(Address, address_now);
+            addItemSteps.checkElementPresents(audio_now);
+            addItemSteps.checkElementPresents(visa);
+            addItemSteps.checkElementPresents(mastercard);
+            addItemSteps.checkElementPresents(paypal);
+            addItemSteps.checkElementPresents(debitcard);
+            addItemSteps.checkElementPresents(cash);
+        }
 }

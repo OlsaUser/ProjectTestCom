@@ -46,8 +46,8 @@ public class RegisterPage  extends PageObject {
     private final By btnOK = By.xpath("//button[@can-click='reg_finish']");
     private final By SuccessPopup = By.xpath("//div[@id='step3']//div[@class='step-header text-center']");
 
-    private final By viaFacebook = By.id("fb_btn_login");
-    private final By Counter = By.xpath("//span[@class='wall-post-length']");
+    private final By viaFacebook_SignUp = By.id("fb_btn_login");
+    private final By viaFacebook_Login = By.xpath("//button[@class='btn btn-facebook']");
 
     // for Organization
     private final By radioBtnOrganization = By.xpath("//div[@class='modal-body']/div[2]/div[2]//label");
@@ -61,11 +61,17 @@ public class RegisterPage  extends PageObject {
     //Check Registration
     private final By welcomeToMnassa = By.xpath("//section[@class='create-list-section']");
     private final By text_emptyNewsFeed = By.xpath("//h1[@class='create-list-info']");
+    private final By Counter = By.xpath("//span[@class='wall-post-length']");
 
-    public void viaFacebook(WebDriver driver ) {
-        element(viaFacebook).click();
-        WebDriverWait wt = new WebDriverWait (driver, 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));}
+    public void viaFacebook_SignUp(WebDriver driver ) {
+        String winHandleBefore = getDriver().getWindowHandle();
+        element(viaFacebook_SignUp).click();
+        }
+
+    public void viaFacebook_Login(WebDriver driver ) {
+        String winHandleBefore = getDriver().getWindowHandle();
+        element(viaFacebook_Login).click();
+    }
 
     public void Step1_selectRadioButton_Organization( ) {
         element(radioBtnOrganization).click();
@@ -187,12 +193,31 @@ public class RegisterPage  extends PageObject {
         System.out.println("Validation message OK! " + find(lblErrorPassword).getText());
     }
 
+    public void successLogIn(WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait (driver, 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
+    }
+
+    public void successRegistration(WebDriver driver) {
+        for(String winHandle : driver.getWindowHandles())
+        {
+            System.out.println(winHandle);
+            driver.switchTo().window(winHandle);
+        }
+
+        WebDriverWait wt = new WebDriverWait (driver, 300);
+        //wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(welcomeToMnassa));
+        Assert.assertEquals( "Mnassa is a social interactive platform for business communication.",find(text_emptyNewsFeed).getText());
+    }
+
     public void goConfirmLink(WebDriver driver, String email) {
         String confirmLink = provideCode(email);
         driver.get(confirmLink);
-        WebDriverWait wt = new WebDriverWait (driver, 150);
+        /*WebDriverWait wt = new WebDriverWait (driver, 150);
         wt.until(ExpectedConditions.visibilityOfElementLocated(welcomeToMnassa));
         Assert.assertEquals( "Mnassa is a social interactive platform for business communication.",find(text_emptyNewsFeed).getText());
+        */
     }
 
     public static String provideCode(String email) {

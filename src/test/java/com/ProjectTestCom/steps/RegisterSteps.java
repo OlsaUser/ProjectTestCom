@@ -22,7 +22,10 @@ public class RegisterSteps extends ScenarioSteps {
     public void openRegisterPage() { registerPage.open();}
 
     @Step
-    public void viaFacebook(WebDriver driver) { registerPage.viaFacebook(driver);}
+    public void viaFacebook_Login(WebDriver driver) { registerPage.viaFacebook_Login(driver);}
+
+    @Step
+    public void viaFacebook_SignUp(WebDriver driver) { registerPage.viaFacebook_SignUp(driver);}
 
     @Step
     public void Step1_selectRadioButton_Organization() { registerPage.Step1_selectRadioButton_Organization();}
@@ -91,6 +94,12 @@ public class RegisterSteps extends ScenarioSteps {
     public void checkValidationMessage_Password(String Message, WebDriver driver) { registerPage.checkValidationMessage_Password(Message, driver);}
 
     @Step
+    public void successLogIn(WebDriver driver) { registerPage.successLogIn(driver);}
+
+    @Step
+    public void successRegistration(WebDriver driver) { registerPage.successRegistration(driver);}
+
+    @Step
     public String provideCode(String email) { return registerPage.provideCode(email);}
 
     @Step
@@ -100,5 +109,8 @@ public class RegisterSteps extends ScenarioSteps {
     public void checkWelcomeLetter(String email) { registerPage.checkWelcomeLetter(email);}
 
     @Step
-    public void facebookLogin(WebDriver driver) { facebookPage.facebookLogin(driver);}
+    public void facebookLogin(WebDriver driver, String Email, String Password){ facebookPage.facebookLogin(driver, Email, Password);}
+
+    @Step
+    public void confirmFbReg(WebDriver driver, String Email, String Password){ facebookPage.confirmFbReg(driver, Email, Password);}
 }

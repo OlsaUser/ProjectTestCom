@@ -106,8 +106,10 @@ public class AccountSettingsPage extends PageObject {
     private final By EducLocationJeddah = By.xpath("//div[@class='pac-container pac-logo']/div[1]");
     private final By dateFrom = By.id("new-ed-from-val");
     private final By YearFrom_2010 = By.xpath("//div[@class='datetimepicker-years']//table[@class='table-condensed']/tbody/tr/td/span[2]");
-    private final By YearTill_2011 = By.xpath("//body[@class='small-footer-block']/div[5]//div[@class='datetimepicker-years']/table[@class='table-condensed']/tbody/tr/td/span[3]");
-    private final By dateTill = By.id("new-ed-till");
+    //private final By YearTill_2011 = By.xpath("//body[@class='small-footer-block']/div[5]//div[@class='datetimepicker-years']/table[@class='table-condensed']/tbody/tr/td/span[3]");
+    private final By YearTill_2011 = By.xpath("html/body/div[5]/div[5]/table/tbody/tr/td/span[3]");
+
+    private final By dateTill = By.id("new-ed-till-val");
     private final By btnSaveNewEduc = By.xpath("//a[@can-click='add_new_ed']");
     private final By btnOkEd = By.xpath(".//*[@id='account-update-confirm']/div/div/div[2]/div/button");
 
@@ -132,8 +134,10 @@ public class AccountSettingsPage extends PageObject {
     private final By JobLocationJeddah = By.xpath("//div[@class='pac-container pac-logo']/div[1]");
     private final By dateFromJob = By.id("new-job-from-val");
     private final By YearFromJob_2010 = By.xpath("//div[@class='datetimepicker-months']//table[@class='table-condensed']/tbody/tr/td/span[2]");
-    private final By YearTillJob_2011 = By.xpath("//body[@class='small-footer-block']/div[5]//div[@class='datetimepicker-months']/table[@class='table-condensed']/tbody/tr/td/span[3]");
-    private final By dateTillJob = By.id("new-job-till-val");
+    //private final By YearTillJob_2011 = By.xpath("//body[@class='small-footer-block']/div[5]//div[@class='datetimepicker-months']/table[@class='table-condensed']/tbody/tr/td/span[3]");
+    private final By YearTillJob_2011 = By.xpath("html/body/div[8]/div[4]/table/tbody/tr/td/span[9]");
+
+    private final By dateTillJob = By.id("new-job-till");
     private final By btnSaveNewJob = By.xpath("//a[@can-click='add_new_job']");
 
     private final By txtJobName = By.xpath("//div[@id='jobformation']/div/div[last()]//header");
