@@ -922,7 +922,9 @@ public class ItemPage extends PageObject {
         find(fieldAudioLink1).sendKeys(AudioLink1);
         waitForRenderedElementsToBePresent(iconDelete1);
         find(iconDelete1).isDisplayed();
-        find(fieldAudioLink2).isDisplayed();
+        getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
+        find(fieldAudioLink2);
+        //find(fieldAudioLink2).isDisplayed();
     }
     public void AudioContent2(String AudioLink1, String AudioLink2) {
         find(ContentAudio).click();

@@ -41,7 +41,7 @@ public class AccountSettingsPage extends PageObject {
     private final By StatusMarried = By.xpath("//ul[@id='select2-results-8']/li[2]");
     private final By Location = By.xpath("//div[@id='s2id_cities-google']//input");
     private final By LocationJeddah = By.xpath("//div[@class='select2-result-label']");
-    private final By fieldJeddah = By.xpath("//ul[@class='tag-list list-unstyled']/li[2]");
+    private final By fieldJeddah = By.xpath("//ul[@class='tag-list list-unstyled']/li[1]");
     private final By BriefInfo = By.id("ud_brief_intro");
     private final By btnUpdate1 = By.xpath("//button[@can-click='update_user']");
     private final By btnUpdate2 = By.xpath("//div[@id='contactInformation']/div/div[2]/div/div/button[2]");
@@ -135,7 +135,7 @@ public class AccountSettingsPage extends PageObject {
     private final By dateFromJob = By.id("new-job-from-val");
     private final By YearFromJob_2010 = By.xpath("//div[@class='datetimepicker-months']//table[@class='table-condensed']/tbody/tr/td/span[2]");
     //private final By YearTillJob_2011 = By.xpath("//body[@class='small-footer-block']/div[5]//div[@class='datetimepicker-months']/table[@class='table-condensed']/tbody/tr/td/span[3]");
-    private final By YearTillJob_2011 = By.xpath("html/body/div[8]/div[4]/table/tbody/tr/td/span[9]");
+    private final By YearTillJob_2011 = By.xpath("//body[@class='small-footer-block']/div[4]//div[@class='datetimepicker-months']/table[@class='table-condensed']/tbody/tr/td/span[11]");
 
     private final By dateTillJob = By.id("new-job-till");
     private final By btnSaveNewJob = By.xpath("//a[@can-click='add_new_job']");
@@ -297,10 +297,12 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public void enterCurrentPassword(String password) {
+        find(currentPassword).clear();
         find(currentPassword).sendKeys(password);
     }
 
     public void enterNewPassword(String password) {
+        find(newPassword).clear();
         find(newPassword).sendKeys(password);
     }
 

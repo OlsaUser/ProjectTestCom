@@ -280,8 +280,8 @@ public class FullTraceUser {
         accountSettingsSteps.checkInfoExists(FirstName_En_exp, FirstName_En_now);
         accountSettingsSteps.checkInfoExists(UserName_En, UserName_En_now);
         accountSettingsSteps.checkInfoExists(location_exp, location_now_profile);
-        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
-        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
+        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now1);
+        //accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
         accountSettingsSteps.checkInfoExists(Male, gender_now);
         accountSettingsSteps.checkInfoExists(married, status_now);
@@ -393,8 +393,36 @@ public class FullTraceUser {
         jse.executeScript("window.scrollBy(0,500)", "");
         accountSettingsSteps.checkJobInfo(JobName,JobSpeciality,About);
     }
+    //Facebook
     @Test
-    public void stage7_addServiceSupply_MAX_byButtonInListing() {
+    public void stage7_Add_Skills_Interests(){
+        registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+        loginSteps.openLoginPage();
+        registerSteps.viaFacebook_Login(driver);
+        loginSteps.PageComplete(driver);
+        registerSteps.successLogIn(driver);
+
+        headerSteps.openMenuProfile(driver);
+        headerSteps.openAccountSettings(driver);
+        loginSteps.PageComplete(driver);
+
+        accountSettingsSteps.pressCollapseSkillsInfo();
+        accountSettingsSteps.enterSkill(Skill, driver);
+        accountSettingsSteps.enterInterest(Interest,driver);
+        accountSettingsSteps.clickUpdate5(driver);
+        //loginSteps.PageComplete(driver);
+        //User info page
+        headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
+        headerSteps.viewAccountSettings(driver);
+        loginSteps.PageComplete(driver);
+        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        jse.executeScript("window.scrollBy(0,500)", "");
+        accountSettingsSteps.checkSkillsInfo(Skill,Interest);
+    }
+
+    @Test
+    public void stage8_addServiceSupply_MAX_byButtonInListing() {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -466,7 +494,7 @@ public class FullTraceUser {
     }
 //Facebook User
     @Test
-    public void stage8_addProductDemand_AR_byButtonFromHeader() {
+    public void stage9_addProductDemand_AR_byButtonFromHeader() {
         registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
@@ -504,4 +532,26 @@ public class FullTraceUser {
         addItemSteps.checkValueExists(Location, location_now);
         addItemSteps.checkValueExists(tag1, tag_now);
     }
+    @Test
+    public void stage10_ChangePassword(){
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
+        headerSteps.openMenuProfile(driver);
+        headerSteps.openAccountSettings(driver);
+        loginSteps.PageComplete(driver);
+
+        accountSettingsSteps.pressCollapseChangePassword();
+        accountSettingsSteps.enterCurrentPassword(NewPassword);
+        accountSettingsSteps.enterNewPassword(NewPassword_change);
+        accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
+        loginSteps.PageComplete(driver);
+        accountSettingsSteps.clickUpdate6(driver);
+    }
+
 }

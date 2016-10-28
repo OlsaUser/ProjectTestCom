@@ -40,13 +40,13 @@ public class FullTraceOrganization {
     private String fb_Password1 = PropertyLoader.getProperty(propertyFilePath, "fb_Password1");
     private String fb_Email2 = PropertyLoader.getProperty(propertyFilePath, "fb_Email2");
     private String fb_Password2 = PropertyLoader.getProperty(propertyFilePath, "fb_Password2");
-    private String NewEmailOrg = PropertyLoader.getProperty(propertyFilePath, "NewEmailOrg");
+    //private String NewEmailOrg = PropertyLoader.getProperty(propertyFilePath, "NewEmailOrg");
     private String email_organization_now = PropertyLoader.getProperty(propertyFilePath, "email_organization_now");
     private String password_organization = PropertyLoader.getProperty(propertyFilePath, "password_organization");
 
 
     private String registrationFilePath = "src/test/resources/registration.properties";
-    private String NewEmailUser = PropertyLoader.getProperty(registrationFilePath, "NewEmailUser");
+    private String NewEmailOrg = PropertyLoader.getProperty(registrationFilePath, "NewEmailOrg");
     private String NewPassword = PropertyLoader.getProperty(registrationFilePath, "NewPassword");
     private String UserNameEn = PropertyLoader.getProperty(registrationFilePath, "UserName_En");
     private String FirstNameEn = PropertyLoader.getProperty(registrationFilePath, "FirstName_En");
@@ -108,12 +108,12 @@ public class FullTraceOrganization {
     private String Speciality = PropertyLoader.getProperty(profileFilePath, "Speciality");
     private String About = PropertyLoader.getProperty(profileFilePath, "About");
     private String location = PropertyLoader.getProperty(profileFilePath, "location");
-    private String location_now_profile = PropertyLoader.getProperty(profileFilePath, "location_now_profile");
     private String location_exp = PropertyLoader.getProperty(profileFilePath, "location_exp");
     private String location_now1 = PropertyLoader.getProperty(profileFilePath, "location_now1");
     private String location_now2 = PropertyLoader.getProperty(profileFilePath, "location_now2");
     private String location_now1_exp = PropertyLoader.getProperty(profileFilePath, "location_now1_exp");
     private String location_now2_exp = PropertyLoader.getProperty(profileFilePath, "location_now2_exp");
+    private String location_now_profile = PropertyLoader.getProperty(profileFilePath, "location_now_profile");
     private String JobName = PropertyLoader.getProperty(profileFilePath, "JobName");
     private String JobSpeciality = PropertyLoader.getProperty(profileFilePath, "JobSpeciality");
     private String InstitutionName_new = PropertyLoader.getProperty(profileFilePath, "InstitutionName_new");
@@ -231,6 +231,9 @@ public class FullTraceOrganization {
 
     @Test
     public void stage1_Register_Organization() throws Exception {
+        registerSteps.openRegisterPage();
+        loginSteps.PageComplete(driver);
+
         registerSteps.Step1_selectRadioButton_Organization();
         registerSteps.Step1_UserName(OrganizationShortNameEn);
         registerSteps.Step1_Email(NewEmailOrg);
@@ -238,7 +241,7 @@ public class FullTraceOrganization {
         registerSteps.Step1_pressButton_Next();
         registerSteps.Step2_OrganizationFullName(OrganizationFullNameEn);
         registerSteps.Step2_Founded(Year_2014, driver);
-        registerSteps.Step2_Location(driver, LocationAR);
+        registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailOrg);
 
@@ -276,9 +279,9 @@ public class FullTraceOrganization {
         headerSteps.viewAccountSettings(driver);
         accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
         accountSettingsSteps.checkInfoExists(OrganizationShortName_En_exp,OrganizationShortName_En_now);
-        accountSettingsSteps.checkInfoExists(location_exp, location_now);
-        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
-        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
+        accountSettingsSteps.checkInfoExists(location_exp, location_now_profile);
+        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now1);
+        //accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
         accountSettingsSteps.checkInfoExists(count, count_now);
         accountSettingsSteps.checkInfoExists(YearFounder_exp, YearFounder_now);
@@ -342,7 +345,7 @@ public class FullTraceOrganization {
         //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);
     }
-        @Test
+       @Test
         public void stage5_addEventSupply_AllFields_byButtonInListing() throws Error{
             loginSteps.openLoginPage();
             loginSteps.PageComplete(driver);

@@ -95,6 +95,7 @@ public class RegisterPage  extends PageObject {
     }
 
     public void Step1_Email(String Email) {
+        find(fldEmail).clear();
         element(fldEmail).sendKeys(Email);
     }
 
