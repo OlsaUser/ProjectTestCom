@@ -135,9 +135,9 @@ public class AccountSettingsPage extends PageObject {
     private final By dateFromJob = By.id("new-job-from-val");
     private final By YearFromJob_2010 = By.xpath("//div[@class='datetimepicker-months']//table[@class='table-condensed']/tbody/tr/td/span[2]");
     //private final By YearTillJob_2011 = By.xpath("//body[@class='small-footer-block']/div[5]//div[@class='datetimepicker-months']/table[@class='table-condensed']/tbody/tr/td/span[3]");
-    private final By YearTillJob_2011 = By.xpath("//body[@class='small-footer-block']/div[4]//div[@class='datetimepicker-months']/table[@class='table-condensed']/tbody/tr/td/span[11]");
+    private final By YearTillJob_2011 = By.xpath("html/body/div[5]/div[4]/table/tbody/tr/td/span[3]");
 
-    private final By dateTillJob = By.id("new-job-till");
+    private final By dateTillJob = By.id("new-job-till-val");
     private final By btnSaveNewJob = By.xpath("//a[@can-click='add_new_job']");
 
     private final By txtJobName = By.xpath("//div[@id='jobformation']/div/div[last()]//header");

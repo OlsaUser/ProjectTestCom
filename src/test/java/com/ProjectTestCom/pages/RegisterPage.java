@@ -291,7 +291,7 @@ public class RegisterPage  extends PageObject {
             System.setProperty("http.proxyPort", "8080");
 
             //System.setProperty("https.proxyUser", "olsa@design.isd.dp.ua");
-           // System.setProperty("https.proxyPassword", "cOnvErsAtIOn5");
+           // System.setProperty("https.proxyPassword", "88888888");
 
             System.setProperty("http.proxyUser", "design\\olsa");
             System.setProperty("http.proxyPassword", "********");

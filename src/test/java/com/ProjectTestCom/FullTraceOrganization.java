@@ -44,7 +44,6 @@ public class FullTraceOrganization {
     private String email_organization_now = PropertyLoader.getProperty(propertyFilePath, "email_organization_now");
     private String password_organization = PropertyLoader.getProperty(propertyFilePath, "password_organization");
 
-
     private String registrationFilePath = "src/test/resources/registration.properties";
     private String NewEmailOrg = PropertyLoader.getProperty(registrationFilePath, "NewEmailOrg");
     private String NewPassword = PropertyLoader.getProperty(registrationFilePath, "NewPassword");

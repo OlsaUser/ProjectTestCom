@@ -336,8 +336,9 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.pressAddJobButton();
         accountSettingsSteps.enterJobName(JobName);
         accountSettingsSteps.enterJobFromDate();
-        accountSettingsSteps.enterJobTillDate();
         accountSettingsSteps.enterJobSpeciality(JobSpeciality);
+        accountSettingsSteps.enterJobTillDate();
+
         accountSettingsSteps.enterJobLocation(location);
         accountSettingsSteps.enterJobAbout(About);
         accountSettingsSteps.pressSaveNewJob(driver);
