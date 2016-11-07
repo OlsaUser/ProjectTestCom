@@ -47,14 +47,13 @@ public class HeaderPage extends PageObject {
     private final By linkDiscoverGroupNew = By.xpath("//ul[@class='tabs-labels']/li[2]");
     private final By DiscoverContentGroup = By.xpath("//div[@class='tabs-pane fade active in']");
 
-
     private final By buttonAdd = By.xpath(".//*[@id='header-top-line']/nav/div[1]/button");
     private final By iconHome = By.xpath("//a[@class='header-iconmenu-item']");
     private final By iconNotification = By.cssSelector("a[href*='#!activity']");
     private final By iconMessage = By.cssSelector("a[href*='cabinet#!threads']");
     private final By menuProfile = By.xpath("//div[@class='header-user']");
     private final By menuAccountSettings = By.xpath("//div[@class='header-user']/div[2]/a[2]");
-       private final By menuFavorites = By.xpath("//div[@class='header-user']/div[2]/a[@href='http://mnassa.com/en/usernameondevzonebetalensy_tomson_1#!favorites']");
+    private final By menuFavorites = By.xpath("//div[@class='header-user']/div[2]/a[@href='http://mnassa.com/en/usernameondevzonebetalensy_tomson_1#!favorites']");
 
     //Second line Menu
     //private final By linkUserName = By.xpath("//div[@class='user-name']/a");
@@ -126,7 +125,7 @@ public class HeaderPage extends PageObject {
     private final By MessageContent = By.xpath("//div[@class='im-content container']");
     private final By HomeContent = By.xpath("//div[@class='feed-list js-feed-list']");
     private final By NotificationContent = By.xpath("//section[@id='community_sect']");
-    private final By ProfileContent = By.xpath("//div[@id='cabinet_sect']");
+    private final By ProfileContent = By.xpath("//section[@id='cabinet_sect']");
     //private final By GroupContent = By.xpath("//div[@class='gallery-list']");
     private final By GroupContent = By.xpath("//div[@class='gallery-list']/div");
     private final By ItemContent = By.xpath("//div[@class='itemslist-wrapper']");

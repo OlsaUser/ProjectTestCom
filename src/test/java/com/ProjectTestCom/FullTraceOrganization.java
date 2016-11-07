@@ -108,10 +108,12 @@ public class FullTraceOrganization {
     private String About = PropertyLoader.getProperty(profileFilePath, "About");
     private String location = PropertyLoader.getProperty(profileFilePath, "location");
     private String location_exp = PropertyLoader.getProperty(profileFilePath, "location_exp");
+    private String location_exp_ar = PropertyLoader.getProperty(profileFilePath, "location_exp_ar");
     private String location_now1 = PropertyLoader.getProperty(profileFilePath, "location_now1");
     private String location_now2 = PropertyLoader.getProperty(profileFilePath, "location_now2");
     private String location_now1_exp = PropertyLoader.getProperty(profileFilePath, "location_now1_exp");
     private String location_now2_exp = PropertyLoader.getProperty(profileFilePath, "location_now2_exp");
+    private String location_now2_exp_ar = PropertyLoader.getProperty(profileFilePath, "location_now2_exp_ar");
     private String location_now_profile = PropertyLoader.getProperty(profileFilePath, "location_now_profile");
     private String JobName = PropertyLoader.getProperty(profileFilePath, "JobName");
     private String JobSpeciality = PropertyLoader.getProperty(profileFilePath, "JobSpeciality");
@@ -267,8 +269,8 @@ public class FullTraceOrganization {
         accountSettingsSteps.enterOrganizationName(OrganizationName_En_exp);
         accountSettingsSteps.enterOrganizationShortName(OrganizationShortName_En_exp);
         accountSettingsSteps.selectTypeGovernmental();
-        accountSettingsSteps.selectLanguageArabian_Org();
         accountSettingsSteps.selectLanguageEnglish_Org();
+        accountSettingsSteps.selectLanguageArabian_Org();
         accountSettingsSteps.selectFounded();
         accountSettingsSteps.selectNumbEmployees(count);
         // accountSettingsSteps.selectStatusSingle();
@@ -281,9 +283,9 @@ public class FullTraceOrganization {
         headerSteps.viewAccountSettings(driver);
         accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
         accountSettingsSteps.checkInfoExists(OrganizationShortName_En_exp,OrganizationShortName_En_now);
-        accountSettingsSteps.checkInfoExists(location_exp, location_now_profile);
-        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now1);
-        //accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
+        accountSettingsSteps.checkInfoExists(location_exp_ar, location_now_profile);
+        accountSettingsSteps.checkInfoExists(location_exp_ar, location_now1);
+        accountSettingsSteps.checkInfoExists(location_now2_exp_ar, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
         accountSettingsSteps.checkInfoExists(count, count_now);
         accountSettingsSteps.checkInfoExists(YearFounder_exp, YearFounder_now);
