@@ -165,6 +165,7 @@ public class FullTraceOrganization {
     private String PriceMAX = PropertyLoader.getProperty(propertyItemPath, "PriceMAX");
     private String PerMAX = PropertyLoader.getProperty(propertyItemPath, "PerMAX");
     private String Location = PropertyLoader.getProperty(propertyItemPath, "Location");
+    private String Location_ar = PropertyLoader.getProperty(propertyItemPath, "Location_ar");
     private String VideoContent1 = PropertyLoader.getProperty(propertyItemPath, "VideoContent1");
     private String VideoContent2 = PropertyLoader.getProperty(propertyItemPath, "VideoContent2");
     private String VideoContent3 = PropertyLoader.getProperty(propertyItemPath, "VideoContent3");
@@ -191,6 +192,7 @@ public class FullTraceOrganization {
     private String audience_now = PropertyLoader.getProperty(propertyEventPath, "audience_now");
     private String address_now = PropertyLoader.getProperty(propertyEventPath, "address_now");
     private String audio_now = PropertyLoader.getProperty(propertyEventPath, "audio_now");
+    private String audio_now_ar = PropertyLoader.getProperty(propertyEventPath, "audio_now_ar");
     private String visa = PropertyLoader.getProperty(propertyEventPath, "visa");
     private String mastercard = PropertyLoader.getProperty(propertyEventPath, "mastercard");
     private String paypal = PropertyLoader.getProperty(propertyEventPath, "paypal");
@@ -331,7 +333,8 @@ public class FullTraceOrganization {
     }
     @Test
     public void stage4_ChangePassword() {
-        loginSteps.openLoginPage();
+        //loginSteps.openLoginPage();
+        driver.get("http://synergy.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -344,8 +347,8 @@ public class FullTraceOrganization {
         loginSteps.PageComplete(driver);
 
         accountSettingsSteps.pressCollapseChangePassword();
-        accountSettingsSteps.enterCurrentPassword(CurrentPassword);
-        accountSettingsSteps.enterNewPassword(NewPassword);
+        accountSettingsSteps.enterCurrentPassword(NewPassword);
+        accountSettingsSteps.enterNewPassword(NewPassword_change);
         accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
         //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);
@@ -393,7 +396,7 @@ public class FullTraceOrganization {
             addItemSteps.enterAddress(Address);
             //addItemSteps.selectRegistrationClosed();
             //addItemSteps.selectTicketTypeFree();
-            addItemSteps.selectTicketTypePaid(ticketPrice);
+            addItemSteps.selectTicketTypePaid_ar(ticketPrice);
             //jse1.executeScript("window.scrollBy(0,-200)", "");
             addItemSteps.selectMethodMasterCard();
             addItemSteps.selectMethodPayPal();
@@ -419,13 +422,13 @@ public class FullTraceOrganization {
             addItemSteps.checkValueExists(TitleMAX, title_now);
             addItemSteps.checkValueExists(DescriptionMAX, description_now);
             addItemSteps.checkValueExists(ticketPrice, price_now);
-            addItemSteps.checkValueExists(Location, location_now);
+            addItemSteps.checkValueExists(Location_ar, location_now);
             addItemSteps.checkValueExists(tag1, tag_now);
             addItemSteps.checkValueExists(OrganizerName, organizerName_now);
-            addItemSteps.checkValueExists("Attraction", eventType_now);
-            addItemSteps.checkValueExists("Children", audience_now);
+            addItemSteps.checkValueExists("عامل الجذب", eventType_now);
+            addItemSteps.checkValueExists("أطفال", audience_now);
             addItemSteps.checkValueExists(Address, address_now);
-            addItemSteps.checkElementPresents(audio_now);
+           addItemSteps.checkElementPresents(audio_now_ar);
             addItemSteps.checkElementPresents(visa);
             addItemSteps.checkElementPresents(mastercard);
             addItemSteps.checkElementPresents(paypal);

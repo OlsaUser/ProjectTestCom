@@ -256,6 +256,9 @@ public class AddItemSteps extends ScenarioSteps {
     public void selectTicketTypePaid(String ticketPrice) {itemPage.selectTicketTypePaid(ticketPrice);}
 
     @Step
+    public void selectTicketTypePaid_ar(String ticketPrice) {itemPage.selectTicketTypePaid_ar(ticketPrice);}
+
+    @Step
     public void enterOrganizerName(String OrganizerName) {itemPage.enterOrganizerName(OrganizerName);}
 
     @Step

@@ -166,6 +166,8 @@ public class ItemPage extends PageObject {
 
     private final By TicketTypeFree = By.xpath("//span[contains(text(),'Free')]");
     private final By TicketTypePaid = By.xpath("//span[contains(text(),'Paid')]");
+    private final By TicketTypeFree_ar = By.xpath("//span[contains(text(),'مجانية')]");
+    private final By TicketTypePaid_ar = By.xpath("//span[contains(text(),'مدفوع')]");
     private final By TicketPrice = By.xpath("//input[@can-value='mi_ev_tickets_sr']");
 
     private final By organizerName = By.xpath("//input[@id='mi_ev_organizer']");
@@ -711,6 +713,11 @@ public class ItemPage extends PageObject {
         getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
         find(TicketPrice).sendKeys(ticketPrice);
     }
+    public void selectTicketTypePaid_ar(String ticketPrice) {
+        find(TicketTypePaid_ar).click();
+        getDriver().manage().timeouts().implicitlyWait(99, SECONDS);
+        find(TicketPrice).sendKeys(ticketPrice);
+    }
 
     public void enterOrganizerName(String OrganizerName) {find(organizerName).sendKeys(OrganizerName);}
 
@@ -1041,7 +1048,7 @@ public class ItemPage extends PageObject {
     }
 
     public void checkItemSaved(WebDriver driver){
-        WebDriverWait wt = new WebDriverWait (driver, 950);
+        WebDriverWait wt = new WebDriverWait (driver, 900);
         wt.until(ExpectedConditions.presenceOfElementLocated(SuccessPopupOk));
         wt.until(ExpectedConditions.visibilityOfElementLocated(SuccessPopupOk));
         wt.until(ExpectedConditions.elementToBeClickable(SuccessPopupOk));
