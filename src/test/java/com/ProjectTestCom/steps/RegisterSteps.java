@@ -99,6 +99,9 @@ public class RegisterSteps extends ScenarioSteps {
     @Step
     public void successRegistration(WebDriver driver) { registerPage.successRegistration(driver);}
 
+    /*@Step
+    public void successRegistrationFb(WebDriver driver) { registerPage.successRegistrationFb(driver);}*/
+
     @Step
     public String provideCode(String email) { return registerPage.provideCode(email);}
 
@@ -106,11 +109,20 @@ public class RegisterSteps extends ScenarioSteps {
     public void goConfirmLink(WebDriver driver, String email) { registerPage.goConfirmLink(driver, email);}
 
     @Step
+    public void goConfirmLink_AR(WebDriver driver, String email) { registerPage.goConfirmLink_AR(driver, email);}
+
+    @Step
     public void checkWelcomeLetter(String email) { registerPage.checkWelcomeLetter(email);}
+
+    @Step
+    public void checkWelcomeLetter_AR(String email) { registerPage.checkWelcomeLetter_AR(email);}
 
     @Step
     public void facebookLogin(WebDriver driver, String Email, String Password){ facebookPage.facebookLogin(driver, Email, Password);}
 
     @Step
     public void confirmFbReg(WebDriver driver, String Email, String Password){ facebookPage.confirmFbReg(driver, Email, Password);}
+
+    @Step
+    public void successRegistrationFb(WebDriver driver){ facebookPage.successRegistrationFb(driver);}
 }

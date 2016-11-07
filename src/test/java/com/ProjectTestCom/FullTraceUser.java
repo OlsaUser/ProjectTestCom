@@ -202,25 +202,25 @@ public class FullTraceUser {
 
     @Before
     public void setup() throws IOException {
-        FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
+        /*FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
         myProfile.setPreference("network.proxy.socks_port",9999);
         myProfile.setAlwaysLoadNoFocusLib(true);
         myProfile.setEnableNativeEvents(true);
-        Serenity.useFirefoxProfile(myProfile);
+        Serenity.useFirefoxProfile(myProfile);*/
+        driver.manage().window().maximize();
     }
 
     @After
     public void tearDown() throws Exception {driver.quit();}
 
     @Test
-    public void stage1_Register_Facebook()  throws Exception, IOException, ValidationException, FactoryConfigurationError {
+    public void stage1_Register_Facebook()  throws Exception {
         registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         registerSteps.openRegisterPage();
-        loginSteps.PageComplete(driver);
         registerSteps.viaFacebook_SignUp(driver);
         registerSteps.confirmFbReg(driver, fb_Email2, fb_Password2);
-        loginSteps.Sleep(500);
-        registerSteps.successRegistration(driver);
+        loginSteps.Sleep(100);
+        registerSteps.successRegistrationFb(driver);
     }
     @Test
     public void stage2_Register_User()  throws IOException {
@@ -533,7 +533,7 @@ public class FullTraceUser {
         addItemSteps.checkValueExists(tag1, tag_now);
     }
     @Test
-    public void stage10_ChangePassword(){
+    public void stage9a_ChangePassword(){
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 

@@ -64,7 +64,7 @@ public class RegisterPage  extends PageObject {
     private final By Counter = By.xpath("//span[@class='wall-post-length']");
 
     public void viaFacebook_SignUp(WebDriver driver ) {
-        String winHandleBefore = getDriver().getWindowHandle();
+        //String winHandleBefore = getDriver().getWindowHandle();
         element(viaFacebook_SignUp).click();
         }
 
@@ -200,25 +200,30 @@ public class RegisterPage  extends PageObject {
     }
 
     public void successRegistration(WebDriver driver) {
-        for(String winHandle : driver.getWindowHandles())
+       WebDriverWait wt = new WebDriverWait (driver, 300);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
+        Assert.assertEquals( "Mnassa is a social interactive platform for business communication.",find(text_emptyNewsFeed).getText());
+    }
+    public void successRegistrationFb(WebDriver driver) {
+        /*for( String winHandle2 : driver.getWindowHandles())
         {
-            System.out.println(winHandle);
-            driver.switchTo().window(winHandle);
-        }
-
+            System.out.println(winHandle2);
+            driver.switchTo().window(winHandle2);
+        }*/
+        driver.switchTo().window("4f7b1e7f-a978-42bb-99b6-1c15474acfed");
         WebDriverWait wt = new WebDriverWait (driver, 300);
-        //wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
-        wt.until(ExpectedConditions.visibilityOfElementLocated(welcomeToMnassa));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
         Assert.assertEquals( "Mnassa is a social interactive platform for business communication.",find(text_emptyNewsFeed).getText());
     }
 
     public void goConfirmLink(WebDriver driver, String email) {
         String confirmLink = provideCode(email);
         driver.get(confirmLink);
-        /*WebDriverWait wt = new WebDriverWait (driver, 150);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(welcomeToMnassa));
-        Assert.assertEquals( "Mnassa is a social interactive platform for business communication.",find(text_emptyNewsFeed).getText());
-        */
+    }
+
+    public void goConfirmLink_AR(WebDriver driver, String email) {
+        String confirmLink = provideCode_AR(email);
+        driver.get(confirmLink);
     }
 
     public static String provideCode(String email) {
@@ -251,7 +256,36 @@ public class RegisterPage  extends PageObject {
         //return code;
         return tempCode;
     }
+    public static String provideCode_AR(String email) {
+        String tempCode = null;
+        //String host = "pop.gmail.com";// change accordingly
+        //String mailStoreType = "pop3";
 
+        String host = "imap.gmail.com";
+        String mailStoreType = "imap";
+        String password = "Jk14501450";
+
+        String check = check(host, mailStoreType, email, password); //messages body
+
+        if (check != null) {
+            String prefix = "أو قم بنسخ الرابط أدناه:";
+            String suffix = "أطيب التحيات، فريق منصة";
+            String substring = check.substring(check.indexOf(prefix) + prefix.length() + 3, check.indexOf(suffix));
+            tempCode = substring.trim();
+            System.out.println("tempCode: " + tempCode);
+            String codePrefix = "url=";
+            String encodedUrl = tempCode.substring(tempCode.indexOf(codePrefix) + codePrefix.length());
+            try {
+                String url = URLDecoder.decode(encodedUrl, "UTF-8");
+                String confirmPrefix = "confirm?code=";
+                String code = url.substring(url.indexOf(confirmPrefix) + confirmPrefix.length());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        //return code;
+        return tempCode;
+    }
     public static void checkWelcomeLetter(String email) {
         String host = "imap.gmail.com";
         String mailStoreType = "imap";
@@ -264,7 +298,18 @@ public class RegisterPage  extends PageObject {
             Assert.assertTrue(check.contains(header));
         }
     }
+    public static void checkWelcomeLetter_AR(String email) {
+        String host = "imap.gmail.com";
+        String mailStoreType = "imap";
+        String password = "Jk14501450";
 
+        String check = check(host, mailStoreType, email, password); //messages body
+
+        if (check != null) {
+            String header = "مرحبا بك في عائلة منصّة!";
+            Assert.assertTrue(check.contains(header));
+        }
+    }
     public static String check(String host, String storeType, String user,
                                String password) {
         String result = null;

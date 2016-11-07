@@ -54,7 +54,7 @@ public class FullTraceOrganization {
     private String LastName_Ar = PropertyLoader.getProperty(registrationFilePath, "LastName_Ar");
 
     private String Year_2014 = PropertyLoader.getProperty(registrationFilePath, "Year_2014");
-    private String Year_2016 = PropertyLoader.getProperty(registrationFilePath, "Year_2016");
+    private String Year_2014_ar = PropertyLoader.getProperty(registrationFilePath, "Year_2014_ar");
     private String Year_1990 = PropertyLoader.getProperty(registrationFilePath, "Year_1990");
     private String gender_male = PropertyLoader.getProperty(registrationFilePath, "gender_man");
     private String gender_female = PropertyLoader.getProperty(registrationFilePath, "gender_female");
@@ -218,11 +218,12 @@ public class FullTraceOrganization {
 
     @Before
     public void setup() throws IOException {
-        FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
+        driver.manage().window().maximize();
+       /*FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
         myProfile.setPreference("network.proxy.socks_port",9999);
         myProfile.setAlwaysLoadNoFocusLib(true);
         myProfile.setEnableNativeEvents(true);
-        Serenity.useFirefoxProfile(myProfile);
+        Serenity.useFirefoxProfile(myProfile);*/
     }
 
     @After
@@ -230,7 +231,8 @@ public class FullTraceOrganization {
 
     @Test
     public void stage1_Register_Organization() throws Exception {
-        registerSteps.openRegisterPage();
+        //registerSteps.openRegisterPage();
+        driver.get("http://synergy.devzone.dp.ua/ar/#!registration");
         loginSteps.PageComplete(driver);
 
         registerSteps.Step1_selectRadioButton_Organization();
@@ -239,17 +241,18 @@ public class FullTraceOrganization {
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
         registerSteps.Step2_OrganizationFullName(OrganizationFullNameEn);
-        registerSteps.Step2_Founded(Year_2014, driver);
+        registerSteps.Step2_Founded(Year_2014_ar, driver);
         registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailOrg);
 
-        registerSteps.goConfirmLink(driver,NewEmailOrg);
-        registerSteps.checkWelcomeLetter(NewEmailOrg);
+        registerSteps.goConfirmLink_AR(driver,NewEmailOrg);
+        registerSteps.checkWelcomeLetter_AR(NewEmailOrg);
     }
     @Test
     public void stage2_EditMainDetails(){
-        loginSteps.openLoginPage();
+        //loginSteps.openLoginPage();
+        driver.get("http://synergy.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
