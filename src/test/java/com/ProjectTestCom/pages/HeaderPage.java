@@ -26,24 +26,24 @@ public class HeaderPage extends PageObject {
     //First line Menu
     private final By linkMyMnassa = By.xpath("//div[@id='header-top-line']/div[1]/a[2]");
     private final By linkDiscover = By.xpath("//div[@id='header-top-line']/div[1]/a[3]");
-    private final By linkDiscoverItems = By.xpath("//div[@class='nav-list-items']/a[1]");
-    private final By linkDiscoverItemsNew = By.xpath("//ul[@class='tabs-labels']/li[1]");
+    private final By linkDiscoverItems = By.xpath("//nav[@id='page-nav']//div[@class='nav-list-items']/a[1]");
     private final By linkDiscoverItemsPopular = By.xpath("//ul[@class='tabs-labels']/li[2]");
+    private final By linkDiscoverItemsNew = By.xpath("//ul[@class='tabs-labels']/li[1]");
     //private final By linkDiscoverUsersNew = By.xpath("//ul[@class='tabs-labels']/li[3]");
 
-    private final By linkDiscoverUsers = By.xpath("//div[@class='nav-list-items']/a[3]");
+    private final By linkDiscoverUsers = By.xpath("//nav[@id='page-nav']//div[@class='nav-list-items']/a[3]");
     private final By linkDiscoverUsersPopular = By.xpath("//ul[@class='tabs-labels']/li[1]");
     private final By linkDiscoverUsersActive = By.xpath("//ul[@class='tabs-labels']/li[2]");
     private final By linkDiscoverUsersNew = By.xpath("//ul[@class='tabs-labels']/li[3]");
 
-    private final By linkDiscoverPosts = By.xpath("//div[@class='nav-list-items']/a[2]");
+    private final By linkDiscoverPosts = By.xpath("//nav[@id='page-nav']//div[@class='nav-list-items']/a[2]");
     private final By linkDiscoverPostsNew = By.xpath("//ul[@class='tabs-labels']/li[1]");
     private final By linkDiscoverPostsPopular = By.xpath("//ul[@class='tabs-labels']/li[3]");
     private final By linkDiscoverPostsTrending = By.xpath("//ul[@class='tabs-labels']/li[2]");
 
     //private final By linkDiscoverGroupPopular = By.xpath("//div[@class='nav-list -center']/a[4]");
 
-    private final By linkDiscoverGroupPopular = By.xpath("//div[@class='nav-list-items']/a[4]");
+    private final By linkDiscoverGroupPopular = By.xpath("//nav[@id='page-nav']//div[@class='nav-list-items']/a[4]");
     private final By linkDiscoverGroupNew = By.xpath("//ul[@class='tabs-labels']/li[2]");
     private final By DiscoverContentGroup = By.xpath("//div[@class='tabs-pane fade active in']");
 
@@ -233,6 +233,7 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscover));
         find(linkDiscoverItems).click();
         wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentItem));
+        find(linkDiscoverItemsPopular).isPresent();
         find(linkDiscoverItemsPopular).click();
         wt.until(ExpectedConditions.presenceOfElementLocated(DiscoverContentItem));
         wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(DiscoverContentItem)));
@@ -256,13 +257,12 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(DiscoverContentPost)));
     }
     public void openDiscoverPostNew (WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscover));
-
+        //wt.until(ExpectedConditions.visibilityOfElementLocated(linkDiscoverPosts));
         find(linkDiscoverPosts).click();
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentPost));
-        find(linkDiscoverPostsNew).click();
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentPost));
+        //wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentPost));
+        //find(linkDiscoverPostsNew).click();
+        WebDriverWait wt = new WebDriverWait (driver, 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentPost));
     }
     public void openDiscoverPostTrending (WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 100);
@@ -521,7 +521,7 @@ public class HeaderPage extends PageObject {
         find(postContent);
         find(postContentMedia);
         find(handleComments);
-        find(iconShare);
+        //find(iconShare);
         find(handleCommentsReply_all);
     }
 

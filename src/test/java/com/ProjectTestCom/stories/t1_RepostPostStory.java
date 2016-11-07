@@ -51,6 +51,7 @@ public class t1_RepostPostStory {
 
     private String propertyGroupPath = "src/test/resources/group.properties";
     private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
+    private String Group2 = PropertyLoader.getProperty(propertyGroupPath, "Group2");
 
 
     @Managed
@@ -244,13 +245,13 @@ public class t1_RepostPostStory {
         addPostSteps.pressPostButton();
         loginSteps.PageComplete(driver);
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
-
+        loginSteps.Sleep(100);
         //Checking repost on Group Wall/
 
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addPostSteps.checkOwnRepostExists(driver,textPostAr, HeaderRepost);
     }
@@ -328,11 +329,11 @@ public class t1_RepostPostStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
-        loginSteps.PageComplete(driver);
+        loginSteps.Sleep(50);
 
-        headerSteps.openMyMnassaPage(driver);
+       // headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPost, HeaderRepost);
         addPostSteps.checkCounterRepost(driver, "2");

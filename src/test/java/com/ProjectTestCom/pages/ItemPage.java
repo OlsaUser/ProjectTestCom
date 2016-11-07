@@ -270,7 +270,7 @@ public class ItemPage extends PageObject {
     private final By FollowButton_Owner = By.xpath("//button[@can-click='handle_follower']");
     private final By MessageButton_Owner = By.xpath("//a[@class='btn btn-blue-primary btn-sm item-user-message']");
     private final By About_Owner = By.xpath("//div[@class='item-user-about']");
-    private final By MemberSince_Owner = By.xpath("//span[@class='item-user-member']");
+    private final By MemberSince_Owner = By.xpath("//div[@class='item-user-member']");
 
     private final By itemDiscoverPage = By.xpath("//a[@class='card-link']");
     private final By itemBlock = By.xpath("//div[@class='itemslist-wrapper']/div[@class='row']/div[2]");
@@ -280,7 +280,7 @@ public class ItemPage extends PageObject {
     private final By filterGroupPrice = By.id("filter-group-price");
     private final By filterGroupLocation = By.id("filter-group-location");
     private final By filterGroupGender = By.id("filter-group-gender");
-    private final By filterResultsCount = By.xpath("//div[@class='filter-results-count']");
+    private final By filterResultsCount = By.xpath("//div[@class='filter-results-count -has-results-list']");
     private final By itemSort = By.id("s2id_items_sort");
     private final By itemUserImg = By.xpath("//img[@class='card-user-photo']");
     private final By imgResponsive = By.xpath("//img[@class='img-responsive']");
@@ -322,7 +322,7 @@ public class ItemPage extends PageObject {
     private final By RequestTitle = By.id("login-modal-label");
     private final By RequestItemTitle = By.xpath("//div[@class='request-item-name']");
     private final By RequestMessageLabel = By.xpath("//label[@class='request-message-label']");
-    private final By RequestMessageAttachList = By.xpath("//span[@class='message-attach-info']");
+    private final By RequestMessageAttachList = By.xpath("//div[@class='im-attach-box -request']");
     private final By RequestImgAvatar = By.xpath("//img[@class='request-item-img img-rounded pull-left']");
 
     //Checking values on Item Priview

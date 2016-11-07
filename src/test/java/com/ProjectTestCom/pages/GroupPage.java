@@ -43,7 +43,7 @@ public class GroupPage extends PageObject {
     private final By btnCancel = By.xpath("//div[@id='group-delete']//div[@class='text-center']/button[1]");
     //private final By btnAddGroup = By.xpath("//a[@can-click='ins_group_modal']");
     private final By btnAddGroup = By.xpath("//div[@class='header-dropdown']/a[5]");
-    private final By thirdLimeMenu = By.xpath("//span[@class='nav-title-text']");
+    private final By thirdLimeMenu = By.xpath("//div[@id='nav-list-in']");
     private final By headerInfoMembers = By.xpath("//div[@class='header-info-followers']/div[1]");
     private final By headerInfoPosts = By.xpath("//div[@class='header-info-followers']/div[2]");
     private final By headerGroupIcon = By.xpath("//span[@class='header-info-group-icon']");

@@ -61,6 +61,7 @@ public class FavoritesPage extends PageObject {
     public void pressFavoriteIconOnItem(WebElement star, WebDriver driver) {
         star.click();
         find(emptyPlace).click();
+        find(emptyPlace).click();
         checkFavoriteIconWasPressed(star);
         openMenu();
         openFavoritesPageAndCheck(driver);

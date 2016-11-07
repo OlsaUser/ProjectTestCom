@@ -143,7 +143,7 @@ public class Performance {
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(HomePage);
 
-
+//Discover pages
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(DiscoverItemNew);

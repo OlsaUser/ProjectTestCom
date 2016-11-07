@@ -81,7 +81,7 @@ public class t1_ReplyStory {
         loginSteps.PageComplete(driver);
     }
     @Test
-    public void Check_MentionPost()  {
+    public void Check_MentionPost()  throws IOException{
         loginSteps.openLoginPage();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
@@ -89,6 +89,7 @@ public class t1_ReplyStory {
         loginSteps.PageComplete(driver);
 
         headerSteps.openDiscoverPage(driver);
+        headerSteps.openDiscoverItemPopular(driver);
         headerSteps.openDiscoverPostNew(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewPost_Discover(driver);

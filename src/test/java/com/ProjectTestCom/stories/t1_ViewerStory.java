@@ -127,7 +127,7 @@ public class t1_ViewerStory {
         driver.get(urlItem);
         loginSteps.PageComplete(driver);
 
-        addItemSteps.openViewItemPage(driver);
+        //addItemSteps.openViewItemPage(driver);
         addItemSteps.ViewerItemPage(driver);
 
         addItemSteps.pressRequestForm(driver, requestTitle, messageLabel, attachLabel);
