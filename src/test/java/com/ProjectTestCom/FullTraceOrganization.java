@@ -293,7 +293,8 @@ public class FullTraceOrganization {
     }
     @Test
     public void stage3_EditContactInfo(){
-        loginSteps.openLoginPage();
+        //loginSteps.openLoginPage();
+        driver.get("http://synergy.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -351,7 +352,8 @@ public class FullTraceOrganization {
     }
        @Test
         public void stage5_addEventSupply_AllFields_byButtonInListing() throws Error{
-            loginSteps.openLoginPage();
+            //loginSteps.openLoginPage();
+            driver.get("http://synergy.devzone.dp.ua/ar/#!login");
             loginSteps.PageComplete(driver);
 
             loginSteps.enterLogin(NewEmailOrg);
