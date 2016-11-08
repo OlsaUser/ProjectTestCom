@@ -123,7 +123,7 @@ public class t1_RepostPostStory {
     }
 
     @Test
-    public void stage2_RepostFromNewsFeedToGroup() throws IOException {
+    public void stage2_repostFromNewsFeedToGroup() throws IOException {
         headerSteps.openHomePage(driver);
         loginSteps.PageComplete(driver);
 

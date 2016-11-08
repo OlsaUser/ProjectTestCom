@@ -68,6 +68,8 @@ public class t1_ViewerStory {
         Serenity.useFirefoxProfile(myProfile);
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);

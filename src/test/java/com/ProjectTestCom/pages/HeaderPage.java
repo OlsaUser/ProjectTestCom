@@ -503,48 +503,48 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.visibilityOfElementLocated(MediaContent));
     }
     public void viewUserListing_Discover(WebDriver driver) {
-        find(UserBlocks);
-        find(UserAvatars);
-        find(UserUserName);
-        find(UserAddress);
-        find(UserBriefInfo);
-        find(UserFollowButton);
-        find(UserItems);
-        find(UserFollowings);
-        find(UserFollowers);
+        find(UserBlocks).isPresent();
+        find(UserAvatars).isPresent();
+        find(UserUserName).isPresent();
+        find(UserAddress).isPresent();
+        find(UserBriefInfo).isPresent();
+        find(UserFollowButton).isPresent();
+        find(UserItems).isPresent();
+        find(UserFollowings).isPresent();
+        find(UserFollowers).isPresent();
     }
 
     public void viewPost_Discover(WebDriver driver) {
-        find(FeedTime);
-        find(postHeader);
-        find(userAvatar);
-        find(postContent);
-        find(postContentMedia);
-        find(handleComments);
+        find(FeedTime).isPresent();
+        find(postHeader).isPresent();
+        find(userAvatar).isPresent();
+        find(postContent).isPresent();
+        find(postContentMedia).isPresent();
+        find(handleComments).isPresent();
         //find(iconShare);
-        find(handleCommentsReply_all);
+        find(handleCommentsReply_all).isPresent();
     }
 
     public void viewGroup_Discover(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 50);
 
-        find(GroupItem);
-        find(handleFollow);
+        find(GroupItem).isPresent();
+        find(handleFollow).isPresent();
 
-        find(groupInfoValuePosts);
+        find(groupInfoValuePosts).isPresent();
         find(groupInfoLabelPosts);
         wt.until(ExpectedConditions.textToBePresentInElementLocated(groupInfoLabelPosts,"Posts"));
 
-        find(groupInfoValueMembers);
+        find(groupInfoValueMembers).isPresent();
         find(groupInfoLabelMembers);
         wt.until(ExpectedConditions.textToBePresentInElementLocated(groupInfoLabelMembers,"Member"));
     }
 
     public void checkInappropriateForm(WebDriver driver) {
-        find(Spam);
-        find(Outdated);
-        find(Inaccurate);
-        find(FormTitle);
+        find(Spam).isPresent();
+        find(Outdated).isPresent();
+        find(Inaccurate).isPresent();
+        find(FormTitle).isPresent();
     }
 
     public void pressMenuProfile() {

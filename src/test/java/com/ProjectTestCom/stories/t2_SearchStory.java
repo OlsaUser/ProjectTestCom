@@ -107,7 +107,7 @@ public class t2_SearchStory {
     /*************************************************************/
 
     @Test
-    public void stage1_searchBy_FullName() throws IOException {
+    public void stage1_searchBy_FullNameEn() throws IOException {
         searchSteps.clickField_searchBy(FullNameEn, driver);
         searchSteps.selectSearchResult_byUser(FullNameEn, driver);
         loginSteps.PageComplete(driver);
@@ -131,7 +131,7 @@ public class t2_SearchStory {
         loginSteps.PageComplete(driver);
     }
     @Test
-    public void stage2_searchBy_FullName() throws IOException {
+    public void stage2_searchBy_FullNameAr() throws IOException {
 
         searchSteps.clickField_searchBy(FullNameAr, driver);
         searchSteps.selectSearchResult_byUser(FullNameAr, driver);

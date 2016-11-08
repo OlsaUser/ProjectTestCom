@@ -94,8 +94,6 @@ public class t1_PermissionGroupLimitedStory {
 
     @Test
     public void stage1_addGroupLimitedMax() {
-
-
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
