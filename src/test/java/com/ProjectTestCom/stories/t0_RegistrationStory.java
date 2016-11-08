@@ -132,8 +132,6 @@ public class t0_RegistrationStory {
     @After
     public void tearDown() throws Exception {driver.quit();}
 
-
-
     @Test
     public void stage1_Register_User()  throws Exception {
         registerSteps.Step1_UserName(UserNameEn);

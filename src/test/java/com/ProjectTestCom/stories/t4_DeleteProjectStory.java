@@ -23,7 +23,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import java.io.File;
 import java.io.IOException;
 @RunWith(SerenityRunner.class)
-public class t4_DeletePartnershipStory {
+public class t4_DeleteProjectStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
@@ -71,7 +71,7 @@ public class t4_DeletePartnershipStory {
     }
 
     @Test
-    public void DeleteItemPartnership()  throws NoSuchFieldException{
+    public void DeleteItemProject()  throws NoSuchFieldException{
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyPartnershipListing(driver);
         //loginSteps.PageComplete(driver);
