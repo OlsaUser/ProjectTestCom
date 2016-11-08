@@ -50,6 +50,7 @@ public class t2_ShareItemStory {
 
     private String propertyGroupPath = "src/test/resources/group.properties";
     private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
+    private String Group2 = PropertyLoader.getProperty(propertyGroupPath, "Group2");
 
     @Managed
     WebDriver driver;
@@ -121,7 +122,7 @@ public class t2_ShareItemStory {
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderShareItem);
     }
@@ -143,7 +144,7 @@ public class t2_ShareItemStory {
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addItemSteps.checkShareItemExists(driver, HeaderShareItem);
 

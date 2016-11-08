@@ -64,6 +64,7 @@ public class t4_DeleteServiceStory {
         Serenity.useFirefoxProfile(myProfile);
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);

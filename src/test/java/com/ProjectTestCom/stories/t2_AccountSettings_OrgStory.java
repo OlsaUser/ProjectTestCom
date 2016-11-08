@@ -125,7 +125,7 @@ public class t2_AccountSettings_OrgStory {
         headerSteps.viewAccountSettings(driver);
         accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
         accountSettingsSteps.checkInfoExists(OrganizationShortName_En_exp,OrganizationShortName_En_now);
-        accountSettingsSteps.checkInfoExists(location_exp, location_now);
+        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now);
         accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
         accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);

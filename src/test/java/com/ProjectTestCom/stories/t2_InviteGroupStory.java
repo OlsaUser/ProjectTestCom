@@ -35,6 +35,7 @@ public class t2_InviteGroupStory {
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
     private String propertyGroupPath = "src/test/resources/group.properties";
+    private String text = PropertyLoader.getProperty(propertyGroupPath, "text");
     private String UserName = PropertyLoader.getProperty(propertyGroupPath, "UserName");
     private String OrgName = PropertyLoader.getProperty(propertyGroupPath, "OrgName");
     private String skill = PropertyLoader.getProperty(propertyGroupPath, "skill");
@@ -105,8 +106,8 @@ public class t2_InviteGroupStory {
         addGroupSteps.clickInviteAllUsers(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.Invite_NameOrganization(OrgName, driver);
-        addGroupSteps.SelectAndInvite(OrgName, driver);
+        addGroupSteps.Invite_NameOrganization(text, driver);
+        addGroupSteps.SelectAndInvite(text, driver);
         loginSteps.PageComplete(driver);
         addGroupSteps.checkInvited(driver);
         loginSteps.PageComplete(driver);

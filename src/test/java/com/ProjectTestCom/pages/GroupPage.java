@@ -451,7 +451,7 @@ public class GroupPage extends PageObject {
         }*/
     }
     public void pressInviteInPopup(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 200);
+        WebDriverWait wt = new WebDriverWait(driver, 99);
         wt.until(ExpectedConditions.visibilityOfElementLocated(InviteInPopup));
 
         find(InviteInPopup).click();

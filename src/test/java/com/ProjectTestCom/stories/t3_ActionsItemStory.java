@@ -81,7 +81,9 @@ public class t3_ActionsItemStory {
     public void stage1_ProductSupply_EditCoverImage() {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyProductListing(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
+        JavascriptExecutor jse1 = (JavascriptExecutor) getDriver();
+        jse1.executeScript("window.scrollBy(0,550)", "");
         addItemSteps.EditSpecialItem(itemID);
         //addItemSteps.collapseMainInfo();
         addItemSteps.collapseMainDetails();
@@ -98,7 +100,8 @@ public class t3_ActionsItemStory {
     public void stage2_ProductSupply_EditCoverVideo() {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyProductListing(driver);
-        loginSteps.PageComplete(driver);
+        JavascriptExecutor jse1 = (JavascriptExecutor) getDriver();
+        jse1.executeScript("window.scrollBy(0,550)", "");
         addItemSteps.EditSpecialItem(itemID);
         //addItemSteps.collapseMainInfo();
         addItemSteps.collapseMainDetails();

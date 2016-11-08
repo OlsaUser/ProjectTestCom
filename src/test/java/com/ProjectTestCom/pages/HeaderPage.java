@@ -125,7 +125,7 @@ public class HeaderPage extends PageObject {
     private final By MessageContent = By.xpath("//div[@class='im-content container']");
     private final By HomeContent = By.xpath("//div[@class='feed-list js-feed-list']");
     private final By NotificationContent = By.xpath("//section[@id='community_sect']");
-    private final By ProfileContent = By.xpath("//section[@id='cabinet_sect']");
+    private final By ProfileContent = By.xpath("//div[@id='cabinet_sect']");
     //private final By GroupContent = By.xpath("//div[@class='gallery-list']");
     private final By GroupContent = By.xpath("//div[@class='gallery-list']/div");
     private final By ItemContent = By.xpath("//div[@class='itemslist-wrapper']");

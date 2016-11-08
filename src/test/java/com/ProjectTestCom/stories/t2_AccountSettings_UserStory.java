@@ -325,7 +325,7 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.Ed_EditAbout(About_new);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.Upd_ed(driver);
-        loginSteps.Sleep(200);
+        loginSteps.Sleep(100);
         accountSettingsSteps.Edit_ed();
         accountSettingsSteps.Del_ed_modal(driver);
         loginSteps.PageComplete(driver);
