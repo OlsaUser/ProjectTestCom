@@ -22,7 +22,7 @@ import java.io.File;
 import java.io.IOException;
 
 @RunWith(SerenityRunner.class)
-public class t1_ReplyStory {
+public class t0_ReplyStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 

@@ -112,11 +112,11 @@ public class t1_RepostPostStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
-
+        loginSteps.Sleep(100);
         //Checking repost on Group Wall
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addPostSteps.checkOwnRepostExists(driver,textPostAr, HeaderRepost);
         addPostSteps.checkCounterRepost(driver, "1");
@@ -151,7 +151,7 @@ public class t1_RepostPostStory {
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addPostSteps.checkOwnRepostExists(driver,textPostMin, HeaderRepost);
     }
@@ -195,7 +195,7 @@ public class t1_RepostPostStory {
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderRepost);
     }
@@ -291,7 +291,7 @@ public class t1_RepostPostStory {
         loginSteps.PageComplete(driver);
 
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderRepost);
     }
@@ -360,7 +360,7 @@ public class t1_RepostPostStory {
         jse1.executeScript("window.scrollBy(0,-500)", "");
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
-        addGroupSteps.openGroupWall(driver, Group1);
+        addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderRepost);
 

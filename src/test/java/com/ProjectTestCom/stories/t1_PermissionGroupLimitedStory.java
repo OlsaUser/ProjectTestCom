@@ -195,7 +195,7 @@ public class t1_PermissionGroupLimitedStory {
         loginSteps.PageComplete(driver);
 
         addGroupSteps.pressUnSubscribe(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         headerSteps.openDiscoverPage(driver);
         headerSteps.openDiscoverGroupsNew(driver);

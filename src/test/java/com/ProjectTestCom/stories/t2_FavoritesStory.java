@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.IOException;
 
 @RunWith(SerenityRunner.class)
-public class t1_FavoritesStory {
+public class t2_FavoritesStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 

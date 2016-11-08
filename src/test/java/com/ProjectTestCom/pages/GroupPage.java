@@ -344,9 +344,11 @@ public class GroupPage extends PageObject {
     public void pressOkSubs(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 250);
         wt.until(ExpectedConditions.visibilityOfElementLocated(btnOKUnSubsc));
-
+        System.out.println("1");
         find(btnOKUnSubsc).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Group_PlaceholderHeader));
+        System.out.println("2");
+        wt.until(ExpectedConditions.presenceOfElementLocated(Group_PlaceholderHeader));
+        //wt.until(ExpectedConditions.visibilityOfElementLocated(Group_PlaceholderHeader));
         //find(btnOKUnSubsc).waitUntilNotVisible();
     }
     public void pressOKUnJoin(WebDriver driver) {
