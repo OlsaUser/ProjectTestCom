@@ -36,7 +36,7 @@ public class t2_AccountSettings_OrgStory {
 
     private String profileFilePath = "src/test/resources/profile.properties";
     private String location = PropertyLoader.getProperty(profileFilePath, "location");
-    private String location_now = PropertyLoader.getProperty(profileFilePath, "location_now");
+    private String location_now_profile = PropertyLoader.getProperty(profileFilePath, "location_now_profile");
     private String location_now1 = PropertyLoader.getProperty(profileFilePath, "location_now1");
     private String location_now2 = PropertyLoader.getProperty(profileFilePath, "location_now2");
     private String location_now1_exp = PropertyLoader.getProperty(profileFilePath, "location_now1_exp");
@@ -56,7 +56,7 @@ public class t2_AccountSettings_OrgStory {
     private String WebSite_exp = PropertyLoader.getProperty(profileFilePath, "WebSite_exp");
     private String WebSite_now = PropertyLoader.getProperty(profileFilePath, "WebSite_now");
     private String CurrentPassword = PropertyLoader.getProperty(profileFilePath, "CurrentPassword");
-    private String NewPassword = PropertyLoader.getProperty(profileFilePath, "NewPassword");
+    private String NewPassword_change = PropertyLoader.getProperty(profileFilePath, "NewPassword_change");
     private String NewConfirmPassword = PropertyLoader.getProperty(profileFilePath, "NewConfirmPassword");
     private String OrganizationName_En_exp = PropertyLoader.getProperty(profileFilePath, "OrganizationName_En_exp");
     private String OrganizationName_En_now = PropertyLoader.getProperty(profileFilePath, "OrganizationName_En_now");
@@ -125,7 +125,7 @@ public class t2_AccountSettings_OrgStory {
         headerSteps.viewAccountSettings(driver);
         accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
         accountSettingsSteps.checkInfoExists(OrganizationShortName_En_exp,OrganizationShortName_En_now);
-        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now);
+        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now_profile);
         accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
         accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
@@ -147,7 +147,7 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.enterWebSite(WebSite_exp);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate2(driver);
-        loginSteps.Sleep(70);
+        //loginSteps.Sleep(70);
         //User info page
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
@@ -162,8 +162,8 @@ public class t2_AccountSettings_OrgStory {
     @Test
     public void changeAccountSettings_Org_ChangePassword(){
         accountSettingsSteps.pressCollapseChangePassword();
-        accountSettingsSteps.enterCurrentPassword(CurrentPassword);
-        accountSettingsSteps.enterNewPassword(NewPassword);
+        accountSettingsSteps.enterCurrentPassword(password_organization);
+        accountSettingsSteps.enterNewPassword(NewPassword_change);
         accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
         //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);

@@ -82,7 +82,7 @@ public class t2_AccountSettings_UserStory {
     private String Speciality = PropertyLoader.getProperty(profileFilePath, "Speciality");
     private String About = PropertyLoader.getProperty(profileFilePath, "About");
     private String location = PropertyLoader.getProperty(profileFilePath, "location");
-    private String location_now = PropertyLoader.getProperty(profileFilePath, "location_now");
+    private String location_now_profile = PropertyLoader.getProperty(profileFilePath, "location_now_profile");
     private String location_exp = PropertyLoader.getProperty(profileFilePath, "location_exp");
     private String location_now1 = PropertyLoader.getProperty(profileFilePath, "location_now1");
     private String location_now2 = PropertyLoader.getProperty(profileFilePath, "location_now2");
@@ -99,7 +99,7 @@ public class t2_AccountSettings_UserStory {
     private String Skill = PropertyLoader.getProperty(profileFilePath, "Skill");
     private String Interest = PropertyLoader.getProperty(profileFilePath, "Interest");
     private String CurrentPassword = PropertyLoader.getProperty(profileFilePath, "CurrentPassword");
-    private String NewPassword = PropertyLoader.getProperty(profileFilePath, "NewPassword");
+    private String NewPassword_change = PropertyLoader.getProperty(profileFilePath, "NewPassword_change");
     private String NewConfirmPassword = PropertyLoader.getProperty(profileFilePath, "NewConfirmPassword");
 
     private String NoError = PropertyLoader.getProperty(profileFilePath, "NoError");
@@ -166,7 +166,7 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.enterBriefInfo(BriefInfo);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate1(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         //User info page
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
@@ -174,7 +174,7 @@ public class t2_AccountSettings_UserStory {
         loginSteps.PageComplete(driver);
         accountSettingsSteps.checkInfoExists(FirstName_En_exp, FirstName_En_now);
         accountSettingsSteps.checkInfoExists(UserName_En, UserName_En_now);
-        accountSettingsSteps.checkInfoExists(location_exp, location_now);
+        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now_profile);
         accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
         accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
@@ -198,7 +198,7 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.enterBriefInfo(BriefInfo);
         //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate1(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         //User info page
         headerSteps.openDiscoverPage(driver);
@@ -207,7 +207,7 @@ public class t2_AccountSettings_UserStory {
         loginSteps.PageComplete(driver);
         accountSettingsSteps.checkInfoExists(FirstName_Ar_exp, FirstName_En_now);
         accountSettingsSteps.checkInfoExists(UserName_En, UserName_En_now);
-        accountSettingsSteps.checkInfoExists(location_exp, location_now);
+        accountSettingsSteps.checkInfoExists(location_now1_exp, location_now_profile);
         accountSettingsSteps.checkInfoExists(location_now1_exp, location_now1);
         accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
@@ -393,7 +393,7 @@ public class t2_AccountSettings_UserStory {
     public void stageB_changeAccountSettings_User_ChangePassword(){
         accountSettingsSteps.pressCollapseChangePassword();
         accountSettingsSteps.enterCurrentPassword(CurrentPassword);
-        accountSettingsSteps.enterNewPassword(NewPassword);
+        accountSettingsSteps.enterNewPassword(NewPassword_change);
         accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);

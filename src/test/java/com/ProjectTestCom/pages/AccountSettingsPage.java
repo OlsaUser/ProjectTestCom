@@ -625,12 +625,12 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public void clickUpdate1(WebDriver driver) {
-        find(btnUpdate1).waitUntilClickable();
+        //find(btnUpdate1).waitUntilClickable();
         find(btnUpdate1).click();
         clickOk(driver);
     }
     public void clickUpdate2(WebDriver driver) {
-        find(btnUpdate2).waitUntilClickable();
+        //find(btnUpdate2).waitUntilClickable();
         find(btnUpdate2).click();
         clickOk(driver);
     }
@@ -647,7 +647,7 @@ public class AccountSettingsPage extends PageObject {
         //find(btnUpdate4).waitUntilClickable();
     }
     public void clickUpdate5(WebDriver driver) {
-        find(btnUpdate5).waitUntilClickable();
+        //find(btnUpdate5).waitUntilClickable();
         find(btnUpdate5).click();
         clickOk(driver);
     }
@@ -657,12 +657,12 @@ public class AccountSettingsPage extends PageObject {
         clickOk(driver);
     }
     public void clickOk(WebDriver driver) {
-        find(btnOk).waitUntilClickable();
-        find(btnOk).waitUntilPresent();
-        if (find(btnOk).isVisible())
-            find(btnOk).click();
-
-        WebDriverWait wt = new WebDriverWait (driver, 950);
+        //find(btnOk).waitUntilClickable();
+        //find(btnOk).waitUntilPresent();
+       // if (find(btnOk).isVisible())
+        WebDriverWait wt = new WebDriverWait (driver, 100);
+        wt.until(ExpectedConditions.elementToBeClickable(btnOk));
+        find(btnOk).click();
         wt.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
     }
 
