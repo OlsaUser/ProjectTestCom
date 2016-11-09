@@ -123,7 +123,7 @@ public class t2_AddItemServiceStory {
     /*************************************************************/
 
     @Test
-    public void stage5_addServiceSupply_MandatoryFields_byButtonFromHeader() throws AWTException {
+    public void stage5_addServiceSupply_MandatoryFields_ImageCover_byButtonFromHeader() throws AWTException {
         addItemSteps.clickAddButton(driver);
         addItemSteps.selectItemType(Service, driver);
         addItemSteps.selectSupply();
@@ -138,11 +138,15 @@ public class t2_AddItemServiceStory {
 
         //addItemSteps.collapseMainDetails();
         addItemSteps.ImageContent();
-        addItemSteps.pressUploadLink();
+        addItemSteps.pressUploadImageLink();
         addItemSteps.uploadImage();
+        addItemSteps.CropPopup_ChooseImage();
 
-        //loginSteps.Sleep(50);
         addItemSteps.VideoContent1(VideoContent1);
+
+        addItemSteps.FileContent();
+        addItemSteps.pressUploadFileLink();
+        addItemSteps.uploadImage();
 
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusActivate();

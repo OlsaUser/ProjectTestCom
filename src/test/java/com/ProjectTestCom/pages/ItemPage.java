@@ -246,6 +246,9 @@ public class ItemPage extends PageObject {
     private final By iconDelete4 = By.xpath("//div[@id='audio']/div[8]/div");
     private final By iconDelete5 = By.xpath("//div[@id='audio']/div[10]/div");
 
+    private final By ContentFiles = By.xpath(".//*[@id='content']/div/div[1]/div/ul/li[4]/a");
+    private final By fileLink = By.id("item_files");
+
     private final By statusActivate = By.xpath("//span[contains(text(),'Activate')]");
     private final By statusPeriod = By.xpath("//span[contains(text(),'Activate from/to')]");
     private final By statusDeactivate = By.xpath("//span[contains(text(),'Inactive')]");
@@ -795,50 +798,23 @@ public class ItemPage extends PageObject {
                 JOptionPane.showMessageDialog(null, "An error occurred.");
             }*/
         }
-    public void pressUploadLink() throws AWTException{
+    public void pressUploadImageLink() throws AWTException{
         find(imageLink).click();
-
-       /* JFrame parentFrame = new JFrame();
-        JFileChooser chooser = new JFileChooser("D:\ProjectTestCom\src\test\resources\images");
-        chooser.setSelectedFile(new File("music.png"));*/
-
-        //FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
-        //chooser.setFileFilter(filter);
-
-      /*  int returnVal = chooser.showOpenDialog(parentFrame);
-
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-
-            File file = chooser.getSelectedFile();
-
-            chooser.approveSelection();
-            JOptionPane.showMessageDialog(null, "You selected " + file);
-        }
-            else if (returnVal == JFileChooser.CANCEL_OPTION)
-            {
-                JOptionPane.showMessageDialog(null, "You selected nothing.");
-            }
-            else if (returnVal == JFileChooser.ERROR_OPTION)
-            {
-                JOptionPane.showMessageDialog(null, "An error occurred.");
-            }*/
+    }
+    public void FileContent() throws AWTException{
+        find(ContentFiles).click();
+    }
+    public void pressUploadFileLink() throws AWTException{
+        find(fileLink).click();
     }
     public void uploadImage() throws AWTException{
-        String k = "D:\\ProjectTestCom\\src\\test\\resources\\images\\music.png";
-        /*ByteBuffer buf = Charset.forName("UTF-8").encode(k);
-        buf.put(k.getBytes());
-        String v = new String(buf.array());
-        System.out.println(v);*/
+        //String k = "D:\\ProjectTestCom\\src\\test\\resources\\images\\music.png";
+        String k = System.getProperty("user.dir") + "\\src\\test\\resources\\images\\music.png";
+        System.out.println("Way to image: " + k );
 
         StringBuffer buf = new StringBuffer();
         buf.insert(0, k);
         System.out.println(buf);
-
-        /*int stringLength = buf.getInt();
-        byte[] bytes = new byte[stringLength];
-        buf.get(bytes);
-        String desc = new String(bytes);
-        System.out.println(desc);*/
 
         StringSelection ss = new StringSelection(k);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
@@ -849,20 +825,16 @@ public class ItemPage extends PageObject {
         robot.delay(50);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
-        //robot.delay(100);
+
         robot.keyPress(KeyEvent.VK_ENTER);    // press Enter
         robot.keyRelease(KeyEvent.VK_ENTER);
-        //robot.delay(100);
-
-        CropPopup_ChooseImage();
-        //k=null;
     }
 
     public void CropPopup_ChooseImage() throws AWTException{
         WebDriverWait wt = new WebDriverWait(getDriver(), 60);
         wt.until(ExpectedConditions.visibilityOfElementLocated(img_crop_wrap));
         wt.until(ExpectedConditions.presenceOfElementLocated(img_crop_wrap));
-            find(btnChoose).click();
+        find(btnChoose).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(img_small_preview));
         wt.until(ExpectedConditions.presenceOfElementLocated(img_small_preview));
     }

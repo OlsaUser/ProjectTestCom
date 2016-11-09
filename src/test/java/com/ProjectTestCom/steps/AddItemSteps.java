@@ -134,10 +134,19 @@ public class AddItemSteps extends ScenarioSteps {
     public void ImageContent() throws AWTException {itemPage.ImageContent();}
 
     @Step
-    public void pressUploadLink() throws AWTException {itemPage.pressUploadLink();}
+    public void FileContent() throws AWTException {itemPage.FileContent();}
+
+    @Step
+    public void pressUploadImageLink() throws AWTException {itemPage.pressUploadImageLink();}
+
+    @Step
+    public void pressUploadFileLink() throws AWTException {itemPage.pressUploadFileLink();}
 
     @Step
     public void uploadImage() throws AWTException {itemPage.uploadImage();}
+
+    @Step
+    public void CropPopup_ChooseImage() throws AWTException {itemPage.CropPopup_ChooseImage();}
 
     @Step
     public void deleteImage() {itemPage.deleteImage();}
