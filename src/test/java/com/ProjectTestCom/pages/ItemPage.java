@@ -772,7 +772,8 @@ public class ItemPage extends PageObject {
 
     public void ImageContent() throws AWTException{
         find(ContentPhoto).click();
-
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
+        wt1.until(ExpectedConditions.visibilityOfElementLocated(imageLink));
        /* JFrame parentFrame = new JFrame();
         JFileChooser chooser = new JFileChooser("D:\ProjectTestCom\src\test\resources\images");
         chooser.setSelectedFile(new File("music.png"));*/
@@ -803,6 +804,8 @@ public class ItemPage extends PageObject {
     }
     public void FileContent() throws AWTException{
         find(ContentFiles).click();
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
+        wt1.until(ExpectedConditions.visibilityOfElementLocated(fileLink));
     }
     public void pressUploadFileLink() throws AWTException{
         find(fileLink).click();
@@ -825,10 +828,10 @@ public class ItemPage extends PageObject {
         Robot robot = new Robot();
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
-        robot.delay(50);
+        robot.delay(100);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
-
+        robot.delay(100);
         robot.keyPress(KeyEvent.VK_ENTER);    // press Enter
         robot.keyRelease(KeyEvent.VK_ENTER);
     }

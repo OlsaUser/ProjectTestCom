@@ -20,6 +20,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import javax.xml.bind.ValidationException;
 import javax.xml.parsers.FactoryConfigurationError;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -494,7 +495,7 @@ public class FullTraceUser {
     }
 //Facebook User
     @Test
-    public void stage9_addProductDemand_AR_byButtonFromHeader() {
+    public void stage9_addProductDemand_AR_byButtonFromHeader() throws AWTException {
         registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
@@ -510,18 +511,33 @@ public class FullTraceUser {
         addItemSteps.selectCategory1();
 
         addItemSteps.collapseMainInfo();
-        //addItemSteps.enterTag(tag1);
+        addItemSteps.enterTag(tag1);
         addItemSteps.enterLocation(Location);
 
-        addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent2);
+        addItemSteps.ImageContent();
+        addItemSteps.pressUploadImageLink();
+        addItemSteps.uploadImage();
+        addItemSteps.CropPopup_ChooseImage();
+
+        addItemSteps.VideoContent1(VideoContent1);
+
         addItemSteps.collapseContent();
-        //addItemSteps.ItemStatusDeactivate();
-        addItemSteps.ItemStatusPeriod();
+
+        addItemSteps.collapseContent();
+        addItemSteps.FileContent();
+        addItemSteps.pressUploadFileLink();
+        addItemSteps.uploadImage();
+
+        addItemSteps.collapseContent();
+        //addItemSteps.ItemStatusActivate();
+        addItemSteps.ItemStatusDeactivate();
         loginSteps.PageComplete(driver);
         addItemSteps.clickSave(driver);
         addItemSteps.checkItemSaved(driver);
         loginSteps.PageComplete(driver);
+
+        headerSteps.openMyMnassaPage(driver);
+        headerSteps.openMyProductListing(driver);
 
         addItemSteps.openItemSettingsMenu();
         addItemSteps.selectViewMenu(driver);
