@@ -160,7 +160,7 @@ public class t2_AddItemEventsStory {
         //addItemSteps.ItemStatusDeactivate();
         addItemSteps.clickSave(driver);
         addItemSteps.checkItemSaved(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         addItemSteps.openItemSettingsMenu();
         addItemSteps.selectViewMenu(driver);
 

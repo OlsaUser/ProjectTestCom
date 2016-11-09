@@ -143,6 +143,7 @@ public class t3_AddAudioPostStory {
     public void AudioPostMyGroupWall() throws IOException{
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
+        loginSteps.PageComplete(driver);
         addGroupSteps.openGroupWall(driver, Group1);
        // driver.get("http://mnassa.com/en/administrator#!group/page=4/name=group-title-1");
         addPostSteps.AddTextPost_inGroup(textPost, driver);

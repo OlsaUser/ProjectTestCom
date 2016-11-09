@@ -22,7 +22,7 @@ import java.io.IOException;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 @RunWith(SerenityRunner.class)
-public class t2_ShareItemStory {
+public class t1_ShareItemStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
@@ -85,6 +85,8 @@ public class t2_ShareItemStory {
         Serenity.useFirefoxProfile(myProfile);
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);

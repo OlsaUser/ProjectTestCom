@@ -199,7 +199,7 @@ public class t2_PermissionGroupPrivateStory {
         addPostSteps.deletePost(driver);
 
         addGroupSteps.pressUnJoin(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         headerSteps.openDiscoverPage(driver);
         headerSteps.openDiscoverGroupsNew(driver);

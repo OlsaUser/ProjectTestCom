@@ -66,9 +66,13 @@ public class t2_InviteGroupStory {
         Serenity.useFirefoxProfile(myProfile);
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
     }
