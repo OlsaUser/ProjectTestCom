@@ -211,6 +211,9 @@ public class ItemPage extends PageObject {
     private final By ContentPhoto = By.xpath(".//*[@id='content']/div/div[1]/div/ul/li[1]/a");
     private final By imageLink = By.xpath("//a[@id='pick_item_files']");
     private final By btnChoose = By.xpath("//button[@can-click='item_img_refresh']");
+    private final By img_crop_wrap = By.id("preview");
+    private final By img_small_preview = By.xpath("//li[@class='have-top-shadow']");
+
 
     private final By imageDelete = By.xpath("//div[@can-click='remove_item_img']");
     private final By imageCover = By.xpath("//a[@can-click='set_img_main']");
@@ -822,27 +825,46 @@ public class ItemPage extends PageObject {
     }
     public void uploadImage() throws AWTException{
         String k = "D:\\ProjectTestCom\\src\\test\\resources\\images\\music.png";
-        ByteBuffer b = Charset.forName("UTF-8").encode(k);
-        String v = new String(b.array());
-        System.out.println(v);
+        /*ByteBuffer buf = Charset.forName("UTF-8").encode(k);
+        buf.put(k.getBytes());
+        String v = new String(buf.array());
+        System.out.println(v);*/
 
-        StringSelection ss = new StringSelection(v);
+        StringBuffer buf = new StringBuffer();
+        buf.insert(0, k);
+        System.out.println(buf);
+
+        /*int stringLength = buf.getInt();
+        byte[] bytes = new byte[stringLength];
+        buf.get(bytes);
+        String desc = new String(bytes);
+        System.out.println(desc);*/
+
+        StringSelection ss = new StringSelection(k);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 
         Robot robot = new Robot();
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
+        robot.delay(50);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
-        robot.delay(100);
+        //robot.delay(100);
         robot.keyPress(KeyEvent.VK_ENTER);    // press Enter
         robot.keyRelease(KeyEvent.VK_ENTER);
+        //robot.delay(100);
 
         CropPopup_ChooseImage();
+        //k=null;
     }
 
     public void CropPopup_ChooseImage() throws AWTException{
-        find(btnChoose).click();
+        WebDriverWait wt = new WebDriverWait(getDriver(), 60);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(img_crop_wrap));
+        wt.until(ExpectedConditions.presenceOfElementLocated(img_crop_wrap));
+            find(btnChoose).click();
+        wt.until(ExpectedConditions.visibilityOfElementLocated(img_small_preview));
+        wt.until(ExpectedConditions.presenceOfElementLocated(img_small_preview));
     }
 
     public void deleteImage() {
@@ -902,6 +924,8 @@ public class ItemPage extends PageObject {
     }
 
     public void VideoContent1(String VideoLink1) {
+        WebDriverWait wt = new WebDriverWait(getDriver(), 60);
+        wt.until(ExpectedConditions.elementToBeClickable(ContentVideo));
         find(ContentVideo).click();
         clearVideo();
         find(fieldVideoLink1).sendKeys(VideoLink1);

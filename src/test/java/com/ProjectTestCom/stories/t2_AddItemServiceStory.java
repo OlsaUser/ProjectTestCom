@@ -141,7 +141,7 @@ public class t2_AddItemServiceStory {
         addItemSteps.pressUploadLink();
         addItemSteps.uploadImage();
 
-        loginSteps.Sleep(20);
+        //loginSteps.Sleep(50);
         addItemSteps.VideoContent1(VideoContent1);
 
         addItemSteps.collapseContent();
