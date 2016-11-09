@@ -809,10 +809,13 @@ public class ItemPage extends PageObject {
     }
     public void uploadImage() throws AWTException{
         //String k = "D:\\ProjectTestCom\\src\\test\\resources\\images\\music.png";
-        String k = System.getProperty("user.dir") + "\\src\\test\\resources\\images\\music.png";
+
+        String k = System.getProperty("user.dir") + "\\src\\test\\resources\\images\\tech7.jpg";
         System.out.println("Way to image: " + k );
 
+
         StringBuffer buf = new StringBuffer();
+        buf.delete(0, buf.length());
         buf.insert(0, k);
         System.out.println(buf);
 
@@ -831,12 +834,13 @@ public class ItemPage extends PageObject {
     }
 
     public void CropPopup_ChooseImage() throws AWTException{
-        WebDriverWait wt = new WebDriverWait(getDriver(), 60);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(img_crop_wrap));
-        wt.until(ExpectedConditions.presenceOfElementLocated(img_crop_wrap));
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
+        wt1.until(ExpectedConditions.visibilityOfElementLocated(img_crop_wrap));
+        wt1.until(ExpectedConditions.presenceOfElementLocated(img_crop_wrap));
         find(btnChoose).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(img_small_preview));
-        wt.until(ExpectedConditions.presenceOfElementLocated(img_small_preview));
+        WebDriverWait wt2 = new WebDriverWait(getDriver(), 60);
+        wt2.until(ExpectedConditions.visibilityOfElementLocated(img_small_preview));
+        wt2.until(ExpectedConditions.presenceOfElementLocated(img_small_preview));
     }
 
     public void deleteImage() {
