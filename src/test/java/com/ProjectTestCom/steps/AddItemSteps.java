@@ -5,6 +5,7 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.WebDriver;
 
+import java.awt.*;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertTrue;
@@ -130,7 +131,13 @@ public class AddItemSteps extends ScenarioSteps {
     public void enterAddress(String address) {itemPage.enterAddress(address);}
 
     @Step
-    public void ImageContent() {itemPage.ImageContent();}
+    public void ImageContent() throws AWTException {itemPage.ImageContent();}
+
+    @Step
+    public void pressUploadLink() throws AWTException {itemPage.pressUploadLink();}
+
+    @Step
+    public void uploadImage() throws AWTException {itemPage.uploadImage();}
 
     @Step
     public void deleteImage() {itemPage.deleteImage();}

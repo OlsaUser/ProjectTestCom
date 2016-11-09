@@ -317,14 +317,14 @@ public class AccountSettingsPage extends PageObject {
     public void enterSkill(String skill, WebDriver driver) {
             find(fieldSkills).sendKeys(skill);
             find(Skill_1).click();
-            WebDriverWait wt = new WebDriverWait(driver, 69);
+            WebDriverWait wt = new WebDriverWait(driver, 10);
             wt.until(ExpectedConditions.invisibilityOfElementLocated(Skill_1));
     }
 
     public void enterInterest(String interest, WebDriver driver) {
             find(fieldInterests).sendKeys(interest);
             find(Interest_1).click();
-            WebDriverWait wt = new WebDriverWait(driver, 69);
+            WebDriverWait wt = new WebDriverWait(driver, 10);
             wt.until(ExpectedConditions.invisibilityOfElementLocated(Interest_1));
     }
     public void deleteSkill() {

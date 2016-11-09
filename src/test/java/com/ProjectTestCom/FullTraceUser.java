@@ -350,7 +350,7 @@ public class FullTraceUser {
         accountSettingsSteps.enterAbout(About);
         accountSettingsSteps.pressSaveNewEduc(driver);
         loginSteps.PageComplete(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         //accountSettingsSteps.clickUpdate3();
 
         //User info page

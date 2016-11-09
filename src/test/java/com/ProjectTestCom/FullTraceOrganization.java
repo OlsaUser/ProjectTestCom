@@ -332,7 +332,7 @@ public class FullTraceOrganization {
         accountSettingsSteps.checkNetworkAccounts();
     }
     @Test
-    public void stage4_ChangePassword() {
+    public void stage5_ChangePassword() {
         //loginSteps.openLoginPage();
         driver.get("http://synergy.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
@@ -354,7 +354,7 @@ public class FullTraceOrganization {
         accountSettingsSteps.clickUpdate6(driver);
     }
        @Test
-        public void stage5_addEventSupply_AllFields_byButtonInListing() throws Error{
+        public void stage4_addEventSupply_AllFields_byButtonInListing() throws Error{
             //loginSteps.openLoginPage();
             driver.get("http://synergy.devzone.dp.ua/ar/#!login");
             loginSteps.PageComplete(driver);
@@ -414,6 +414,7 @@ public class FullTraceOrganization {
             addItemSteps.clickSave(driver);
             addItemSteps.checkItemSaved(driver);
             loginSteps.PageComplete(driver);
+            jse1.executeScript("window.scrollBy(0,-200)", "");
             addItemSteps.openItemSettingsMenu();
             addItemSteps.selectViewMenu(driver);
 

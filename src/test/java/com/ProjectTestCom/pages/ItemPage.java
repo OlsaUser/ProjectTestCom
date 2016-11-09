@@ -23,13 +23,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.sql.Driver;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -204,6 +210,8 @@ public class ItemPage extends PageObject {
 
     private final By ContentPhoto = By.xpath(".//*[@id='content']/div/div[1]/div/ul/li[1]/a");
     private final By imageLink = By.xpath("//a[@id='pick_item_files']");
+    private final By btnChoose = By.xpath("//button[@can-click='item_img_refresh']");
+
     private final By imageDelete = By.xpath("//div[@can-click='remove_item_img']");
     private final By imageCover = By.xpath("//a[@can-click='set_img_main']");
     private final By Cover = By.xpath("//img[@class='card-photo-image']");
@@ -756,13 +764,11 @@ public class ItemPage extends PageObject {
         find(fieldText).clear();
     }
 
-    public void ImageContent() {
+    public void ImageContent() throws AWTException{
         find(ContentPhoto).click();
 
-        /*find(imageLink).click();
-        JFrame parentFrame = new JFrame();
-
-        JFileChooser chooser = new JFileChooser("C:/Users/olsa/IdeaProjects/ProjectTestCom/src/test/resources/images");
+       /* JFrame parentFrame = new JFrame();
+        JFileChooser chooser = new JFileChooser("D:\ProjectTestCom\src\test\resources\images");
         chooser.setSelectedFile(new File("music.png"));*/
 
         //FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
@@ -786,6 +792,58 @@ public class ItemPage extends PageObject {
                 JOptionPane.showMessageDialog(null, "An error occurred.");
             }*/
         }
+    public void pressUploadLink() throws AWTException{
+        find(imageLink).click();
+
+       /* JFrame parentFrame = new JFrame();
+        JFileChooser chooser = new JFileChooser("D:\ProjectTestCom\src\test\resources\images");
+        chooser.setSelectedFile(new File("music.png"));*/
+
+        //FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
+        //chooser.setFileFilter(filter);
+
+      /*  int returnVal = chooser.showOpenDialog(parentFrame);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+            File file = chooser.getSelectedFile();
+
+            chooser.approveSelection();
+            JOptionPane.showMessageDialog(null, "You selected " + file);
+        }
+            else if (returnVal == JFileChooser.CANCEL_OPTION)
+            {
+                JOptionPane.showMessageDialog(null, "You selected nothing.");
+            }
+            else if (returnVal == JFileChooser.ERROR_OPTION)
+            {
+                JOptionPane.showMessageDialog(null, "An error occurred.");
+            }*/
+    }
+    public void uploadImage() throws AWTException{
+        String k = "D:\\ProjectTestCom\\src\\test\\resources\\images\\music.png";
+        ByteBuffer b = Charset.forName("UTF-8").encode(k);
+        String v = new String(b.array());
+        System.out.println(v);
+
+        StringSelection ss = new StringSelection(v);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+
+        Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.delay(100);
+        robot.keyPress(KeyEvent.VK_ENTER);    // press Enter
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        CropPopup_ChooseImage();
+    }
+
+    public void CropPopup_ChooseImage() throws AWTException{
+        find(btnChoose).click();
+    }
 
     public void deleteImage() {
         find(imageDelete).click();

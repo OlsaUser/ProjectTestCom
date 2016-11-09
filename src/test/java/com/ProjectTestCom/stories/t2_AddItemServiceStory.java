@@ -17,6 +17,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import org.junit.After;
@@ -122,7 +123,7 @@ public class t2_AddItemServiceStory {
     /*************************************************************/
 
     @Test
-    public void stage5_addServiceSupply_MandatoryFields_byButtonFromHeader() {
+    public void stage5_addServiceSupply_MandatoryFields_byButtonFromHeader() throws AWTException {
         addItemSteps.clickAddButton(driver);
         addItemSteps.selectItemType(Service, driver);
         addItemSteps.selectSupply();
@@ -136,7 +137,11 @@ public class t2_AddItemServiceStory {
         addItemSteps.enterPrice(Price, PerNull);
 
         //addItemSteps.collapseMainDetails();
-        //addItemSteps.ImageContent();
+        addItemSteps.ImageContent();
+        addItemSteps.pressUploadLink();
+        addItemSteps.uploadImage();
+
+        loginSteps.Sleep(20);
         addItemSteps.VideoContent1(VideoContent1);
 
         addItemSteps.collapseContent();
