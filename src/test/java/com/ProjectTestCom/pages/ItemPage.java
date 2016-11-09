@@ -816,7 +816,6 @@ public class ItemPage extends PageObject {
         String k = System.getProperty("user.dir") + "\\src\\test\\resources\\images\\tech7.jpg";
         System.out.println("Way to image: " + k );
 
-
         StringBuffer buf = new StringBuffer();
         buf.delete(0, buf.length());
         buf.insert(0, k);
@@ -828,10 +827,10 @@ public class ItemPage extends PageObject {
         Robot robot = new Robot();
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
-        robot.delay(100);
+        robot.delay(200);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
-        robot.delay(100);
+        robot.delay(200);
         robot.keyPress(KeyEvent.VK_ENTER);    // press Enter
         robot.keyRelease(KeyEvent.VK_ENTER);
     }

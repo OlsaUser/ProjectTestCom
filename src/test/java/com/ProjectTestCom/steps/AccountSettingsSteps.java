@@ -6,11 +6,21 @@ import net.thucydides.core.steps.ScenarioSteps;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import java.awt.*;
+
 import static junit.framework.TestCase.assertTrue;
 
 public class AccountSettingsSteps extends ScenarioSteps {
 
     AccountSettingsPage accountSettingsPage;
+
+
+
+    @Step
+    public void  pressUploadCoverLink ( ) { accountSettingsPage.pressUploadCoverLink();}
+
+    @Step
+    public void  CropPopup_ChooseImage ( ) throws AWTException { accountSettingsPage.CropPopup_ChooseImage();}
 
     @Step
     public void  selectFounded ( ) { accountSettingsPage.selectFounded();}

@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
 import java.util.List;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
@@ -186,6 +187,25 @@ public class AccountSettingsPage extends PageObject {
     private final By userFollowings = By.xpath(".//*[@id='user_sect']/user_app/div[1]/div/div/div[2]/div[1]/div/div[1]/div[1]");
     private final By userFollowers = By.xpath(".//*[@id='user_sect']/user_app/div[1]/div/div/div[2]/div[1]/div/div[2]/div[1]");
     private final By userGroups = By.xpath(".//*[@id='user_sect']/user_app/div[1]/div/div/div[2]/div[2]/div[1]");
+
+    private final By pressUploadCover = By.id("user-avatar-change");
+    private final By btnUpdateCover = By.xpath("//button[@can-click='img_refresh']");
+    private final By img_crop_wrap = By.id("preview");
+
+    public void pressUploadCoverLink () {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
+        wt1.until(ExpectedConditions.elementToBeClickable(pressUploadCover));
+        find(pressUploadCover).click();
+    }
+    public void CropPopup_ChooseImage() throws AWTException {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
+        wt1.until(ExpectedConditions.visibilityOfElementLocated(img_crop_wrap));
+        wt1.until(ExpectedConditions.presenceOfElementLocated(img_crop_wrap));
+        find(btnUpdateCover).click();
+        WebDriverWait wt2 = new WebDriverWait (getDriver(), 100);
+        wt2.until(ExpectedConditions.elementToBeClickable(btnOk));
+        clickOk(getDriver());
+    }
 
     public void selectFounded () {
         find(menuFounded).click();
@@ -660,10 +680,11 @@ public class AccountSettingsPage extends PageObject {
         //find(btnOk).waitUntilClickable();
         //find(btnOk).waitUntilPresent();
        // if (find(btnOk).isVisible())
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.elementToBeClickable(btnOk));
+        WebDriverWait wt1 = new WebDriverWait (driver, 100);
+        wt1.until(ExpectedConditions.elementToBeClickable(btnOk));
         find(btnOk).click();
-        wt.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
+        WebDriverWait wt2 = new WebDriverWait (driver, 150);
+        wt2.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
     }
 
     public boolean checkInfoExists(String info_exp, String info_now) {

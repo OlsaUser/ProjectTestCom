@@ -1,6 +1,7 @@
 package com.ProjectTestCom.stories;
 
 import com.ProjectTestCom.steps.AccountSettingsSteps;
+import com.ProjectTestCom.steps.AddItemSteps;
 import com.ProjectTestCom.steps.HeaderSteps;
 import com.ProjectTestCom.steps.LoginSteps;
 import com.ProjectTestCom.utils.PropertyLoader;
@@ -22,6 +23,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import org.junit.After;
@@ -123,6 +125,9 @@ public class t2_AccountSettings_UserStory {
     @Steps
     AccountSettingsSteps accountSettingsSteps;
 
+    @Steps
+    AddItemSteps addItemSteps;
+
     @Before
     public void setup() throws IOException {
         FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
@@ -147,6 +152,14 @@ public class t2_AccountSettings_UserStory {
     @After
     public void tearDown() {driver.quit();}
     /*-----------------------------------------------*/
+
+    @Test
+    public void stage0_changeAvatar() throws AWTException {
+        accountSettingsSteps.pressUploadCoverLink();
+        loginSteps.Sleep(200);
+        addItemSteps.uploadImage();
+        accountSettingsSteps.CropPopup_ChooseImage();
+    }
 
     @Test
     public void stage1_changeAccountSettings_User_MainDetails_EN(){

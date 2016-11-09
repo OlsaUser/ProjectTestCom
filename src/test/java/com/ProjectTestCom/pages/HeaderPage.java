@@ -330,6 +330,7 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.elementToBeClickable(menuAccountSettings));
         find(menuAccountSettings).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(ProfileContent));
+        wt.until(ExpectedConditions.presenceOfElementLocated(ProfileContent));
     }
 
     public void openGroupsListing(WebDriver driver) {
