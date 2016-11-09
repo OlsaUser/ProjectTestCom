@@ -196,6 +196,7 @@ public class AccountSettingsPage extends PageObject {
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
         wt1.until(ExpectedConditions.elementToBeClickable(pressUploadCover));
         find(pressUploadCover).click();
+        wt1.until(ExpectedConditions.invisibilityOfElementLocated(pressUploadCover));
     }
     public void CropPopup_ChooseImage() throws AWTException {
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);

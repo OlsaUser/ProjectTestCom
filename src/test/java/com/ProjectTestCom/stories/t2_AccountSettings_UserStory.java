@@ -156,7 +156,7 @@ public class t2_AccountSettings_UserStory {
     @Test
     public void stage0_changeAvatar() throws AWTException {
         accountSettingsSteps.pressUploadCoverLink();
-        loginSteps.Sleep(200);
+        //loginSteps.Sleep(200);
         addItemSteps.uploadImage();
         accountSettingsSteps.CropPopup_ChooseImage();
     }
