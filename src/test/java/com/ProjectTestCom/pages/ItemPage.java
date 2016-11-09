@@ -827,7 +827,7 @@ public class ItemPage extends PageObject {
         Robot robot = new Robot();
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
-        robot.delay(80);
+        //robot.delay(80);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
         robot.delay(200);
