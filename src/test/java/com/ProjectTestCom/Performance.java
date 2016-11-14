@@ -24,8 +24,8 @@ import java.io.IOException;
  */
 @RunWith(SerenityRunner.class)
 public class Performance {
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String ServiceListing = PropertyLoader.getProperty(propertyFilePath, "ServiceListing");
@@ -263,8 +263,10 @@ public class Performance {
         loginSteps.pageLoad(viewItem);
 
         //loginSteps.Sleep(100);
+        headerSteps.openHomePage(driver);
+        loginSteps.PageComplete(driver);
         driver.get(urlGroupPage);
-        driver.navigate().refresh();
+        //driver.navigate().refresh();
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(MyGroupWall);
     }

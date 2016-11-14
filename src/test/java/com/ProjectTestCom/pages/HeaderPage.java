@@ -77,7 +77,8 @@ public class HeaderPage extends PageObject {
     private final By linkEvent = By.xpath("//div[@class='nav-list-items']/a[4]/span");
     private final By linkGroups = By.xpath("//div[@class='nav-list-items']/a[5]/span");
     private final By linkPartnership = By.xpath("//div[@class='nav-list-items']/a[6]/span");
-    private final By GroupWall = By.cssSelector("a[href*='#!group/name']");
+    private final By GroupWall = By.cssSelector("a[href*='#!group/id']");
+    //private final By GroupWall = By.cssSelector("a[href*='#!group/name']");
     private final By linkOwner = By.xpath("//span[@class='group-item-owner']");
 
     //Third line Menu (My profile)

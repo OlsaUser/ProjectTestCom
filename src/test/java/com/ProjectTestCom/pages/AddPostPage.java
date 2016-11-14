@@ -71,7 +71,8 @@ public class AddPostPage extends PageObject {
     //private final By txtPost_NewsFeed = By.xpath("//div[@class='feed-content']/div");
     private final By VideoContent = By.xpath("//div[@class='feed-media-box -video']");
     private final By AudioContent = By.xpath("//div[@class='feed-media js-feed-media']");
-    private final By widget = By.xpath("//div[@class='wall-post-media-box']");
+    private final By widgetAudio = By.xpath("//div[@class='wall-post-media-box']");
+    private final By widgetVideo = By.xpath("//div[@class='wall-post-media-item is-main']");
 
     private final By mentionDropdown = By.id("mention-dropdown");
     private final By mentionUser = By.xpath("//div[@id='mention-dropdown']/div");
@@ -177,11 +178,23 @@ public class AddPostPage extends PageObject {
     public void clickPostButton() {element(btnPost).click();}
 
     public void clickPostBtn(WebDriver driver) {
+       /* WebDriverWait wt = new WebDriverWait(driver, 99);
+        wt.until(ExpectedConditions.presenceOfElementLocated(widgetAudio));
+        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        jse1.executeScript("window.scrollBy(0,300)", "");*/
+        find(btnPost).click();
+    }
+    public void waitWidgetAudio(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 99);
-        wt.until(ExpectedConditions.presenceOfElementLocated(widget));
+        wt.until(ExpectedConditions.presenceOfElementLocated(widgetAudio));
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         jse1.executeScript("window.scrollBy(0,300)", "");
-        find(btnPost).click();
+    }
+    public void waitWidgetVideo(WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait(driver, 99);
+        wt.until(ExpectedConditions.presenceOfElementLocated(widgetVideo));
+        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        jse1.executeScript("window.scrollBy(0,300)", "");
     }
 
     public void addComment(String comment, WebDriver driver) {
@@ -239,7 +252,7 @@ public class AddPostPage extends PageObject {
 
     public void checkContentInPost(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(VideoContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(AudioContent));
     }
 
     public void checkAudioContentInPost(WebDriver driver) {

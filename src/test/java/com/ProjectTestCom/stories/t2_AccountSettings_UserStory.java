@@ -269,7 +269,7 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
         accountSettingsSteps.checkMessage_if_NameWrong(NoError, driver);*/
         accountSettingsSteps.clickUpdate1(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         /*accountSettingsSteps.enterFirstName(FirstName_Ar);
         accountSettingsSteps.enterLastName(LastName_Ar);
         accountSettingsSteps.enterUserName(Numbers);

@@ -11,7 +11,9 @@ import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.pages.Pages;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -26,7 +28,7 @@ import java.io.IOException;
  */
 @RunWith(SerenityRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class t2_AddGroupPrivateStory {
+public class t3_AddGroupLimitedStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
@@ -36,16 +38,16 @@ public class t2_AddGroupPrivateStory {
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
     private String propertyGroupPath = "src/test/resources/group.properties";
-    private String NameGroupPrivateEn = PropertyLoader.getProperty(propertyGroupPath, "NameGroupPrivateEn");
+    private String NameGroupLimitedEn = PropertyLoader.getProperty(propertyGroupPath, "NameGroupLimitedEn");
     private String ShortDescriptionEn = PropertyLoader.getProperty(propertyGroupPath, "ShortDescriptionEn");
-    private String NameGroupPrivateAr = PropertyLoader.getProperty(propertyGroupPath, "NameGroupPrivateAr");
+    private String NameGroupLimitedAr = PropertyLoader.getProperty(propertyGroupPath, "NameGroupLimitedAr");
     private String ShortDescriptionAr = PropertyLoader.getProperty(propertyGroupPath, "ShortDescriptionAr");
     private String wrongNameGroup = PropertyLoader.getProperty(propertyGroupPath, "wrongNameGroup");
     private String maxShortDescription = PropertyLoader.getProperty(propertyGroupPath, "maxShortDescription");
-    private String NameGroupPrivateMax = PropertyLoader.getProperty(propertyGroupPath, "NameGroupPrivateMax");
+    private String NameGroupLimitedMax = PropertyLoader.getProperty(propertyGroupPath, "NameGroupLimitedMax");
     private String ShortDescriptionNull = PropertyLoader.getProperty(propertyGroupPath, "ShortDescriptionNull");
     private String lblNameGroupError = PropertyLoader.getProperty(propertyGroupPath, "lblNameGroupError");
-    private String dscPrivateGroup = PropertyLoader.getProperty(propertyGroupPath, "dscPrivateGroup");
+    private String dscLimitedGroup = PropertyLoader.getProperty(propertyGroupPath, "dscLimitedGroup");
     private String dscPublicGroup = PropertyLoader.getProperty(propertyGroupPath, "dscPublicGroup");
     private String Skill = PropertyLoader.getProperty(propertyGroupPath, "Skill");
     private String Interest = PropertyLoader.getProperty(propertyGroupPath, "Interest");
@@ -101,13 +103,14 @@ public class t2_AddGroupPrivateStory {
     public void tearDown() {driver.quit();}
     /*************************************************************/
     @Test
-    public void stage1_addGroupPrivateAr(){
+    public void stage1_addGroupLimitedAr(){
         addItemSteps.clickAddButton(driver);
         addGroupSteps.clickAddGroupButton();
         loginSteps.PageComplete(driver);
-        addGroupSteps.enterNameGroup(NameGroupPrivateAr, driver);
+
+        addGroupSteps.enterNameGroup(NameGroupLimitedAr, driver);
         addGroupSteps.enterShortDescription(ShortDescriptionAr);
-        addGroupSteps.selectTypePrivate(driver, dscPrivateGroup);
+        addGroupSteps.selectTypeLimited(driver, dscLimitedGroup);
         addGroupSteps.enterGroupInterest(Interest, driver);
         addGroupSteps.enterGroupSkill(Skill, driver);
         addGroupSteps.clickCreate(driver);
@@ -116,10 +119,10 @@ public class t2_AddGroupPrivateStory {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
-        addGroupSteps.checkGroupInListing(href_NameGroupPrivateAr);
+        addGroupSteps.checkGroupInListing(href_NameGroupLimitedAr);
     }
 
-    /*@Test
+  /*  @Test
     public void addGroupLimitedMax(){
         addItemSteps.clickAddButton(driver);
         addGroupSteps.clickAddGroupButton();
@@ -151,13 +154,13 @@ public class t2_AddGroupPrivateStory {
         loginSteps.PageComplete(driver);
     }*/
     @Test
-    public void stage2_addGroupPrivateName() {
+    public void stage2_addGroupLimitedName() {
         addItemSteps.clickAddButton(driver);
         addGroupSteps.clickAddGroupButton();
         loginSteps.PageComplete(driver);
-        addGroupSteps.enterNameGroup(NameGroupPrivateEn, driver);
+        addGroupSteps.enterNameGroup(NameGroupLimitedEn, driver);
         addGroupSteps.enterShortDescription(ShortDescriptionNull);
-        addGroupSteps.selectTypePrivate(driver, dscPrivateGroup);
+        addGroupSteps.selectTypeLimited(driver, dscLimitedGroup);
         addGroupSteps.clickCreate(driver);
 
         loginSteps.PageComplete(driver);
@@ -165,46 +168,46 @@ public class t2_AddGroupPrivateStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.checkGroupInListing(href_NameGroupPrivateEn);
+        addGroupSteps.checkGroupInListing(href_NameGroupLimitedEn);
     }
 
     @Test
-    public void stage3_wrongNameGroupPrivate() {
+    public void stage3_wrongNameGroupLimited() {
         addItemSteps.clickAddButton(driver);
         addGroupSteps.clickAddGroupButton();
         loginSteps.PageComplete(driver);
 
         addGroupSteps.enterNameGroup(wrongNameGroup,driver);
-        addGroupSteps.selectTypePrivate(driver, dscPrivateGroup);
+        addGroupSteps.selectTypeLimited(driver, dscLimitedGroup);
         addGroupSteps.clickCreateError();
         addGroupSteps.checkNameGroupErrorPresent(driver, lblNameGroupError);
     }
     @Test
-    public void stage4_editGroupPrivate() {
+    public void stage4_editGroupLimited() {
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
 
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.openGroupWall(driver, href_NameGroupPrivateEn);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedEn);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
-        addGroupSteps.enterNameGroup(NameGroupPrivateEn,driver);
+        addGroupSteps.enterNameGroup(NameGroupLimitedEn,driver);
         addGroupSteps.enterShortDescription(ShortDescriptionEn);
         addGroupSteps.enterGroupInterest(Interest_new, driver);
         addGroupSteps.enterGroupSkill(Skill_new, driver);
         addGroupSteps.clickCreate(driver);
     }
     @Test
-    public void stage5_editPrivateToPublic() {
+    public void stage5_editLimitedToPublic() {
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
 
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.openGroupWall(driver, href_NameGroupPrivateEn);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedEn);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
         addGroupSteps.selectTypePublic(driver, dscPublicGroup);
@@ -218,10 +221,9 @@ public class t2_AddGroupPrivateStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.openGroupWall(driver, href_NameGroupPrivateEn);
+        addGroupSteps.openGroupWall(driver, href_NameGroupLimitedEn);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
-        loginSteps.PageComplete(driver);
 
         addGroupSteps.deleteGroupInterest(driver);
         addGroupSteps.deleteGroupSkill(driver);

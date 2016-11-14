@@ -285,6 +285,7 @@ public class ItemPage extends PageObject {
     private final By MessageButton_Owner = By.xpath("//a[@class='btn btn-blue-primary btn-sm item-user-message']");
     private final By About_Owner = By.xpath("//div[@class='item-user-about']");
     private final By MemberSince_Owner = By.xpath("//div[@class='item-user-member']");
+    //private final By MemberSince_Owner = By.xpath("//span[@class='item-user-member']");
 
     private final By itemDiscoverPage = By.xpath("//a[@class='card-link']");
     private final By itemBlock = By.xpath("//div[@class='itemslist-wrapper']/div[@class='row']/div[2]");
@@ -295,6 +296,8 @@ public class ItemPage extends PageObject {
     private final By filterGroupLocation = By.id("filter-group-location");
     private final By filterGroupGender = By.id("filter-group-gender");
     private final By filterResultsCount = By.xpath("//div[@class='filter-results-count -has-results-list']");
+    //private final By filterResultsCount = By.xpath("//div[@class='filter-results-count']");
+
     private final By itemSort = By.id("s2id_items_sort");
     private final By itemUserImg = By.xpath("//img[@class='card-user-photo']");
     private final By imgResponsive = By.xpath("//img[@class='img-responsive']");
@@ -812,7 +815,6 @@ public class ItemPage extends PageObject {
     }
     public void uploadImage() throws AWTException{
         //String k = "D:\\ProjectTestCom\\src\\test\\resources\\images\\music.png";
-
         String k = System.getProperty("user.dir") + "\\src\\test\\resources\\images\\tech7.jpg";
         System.out.println("Way to image: " + k );
 

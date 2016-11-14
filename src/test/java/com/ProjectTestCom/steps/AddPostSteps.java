@@ -51,6 +51,12 @@ public class AddPostSteps extends ScenarioSteps {
     public void clickPostBtn(WebDriver driver) {addPostPage.clickPostBtn(driver);}
 
     @Step
+    public void waitWidgetAudio(WebDriver driver) {addPostPage.waitWidgetAudio(driver);}
+
+    @Step
+    public void waitWidgetVideo(WebDriver driver) {addPostPage.waitWidgetVideo(driver);}
+
+    @Step
     public void addComment(String comment, WebDriver driver) { addPostPage.addComment(comment, driver);}
 
     @Step

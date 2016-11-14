@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
@@ -81,7 +82,7 @@ public class t2_InviteGroupStory {
     public void tearDown() {driver.quit();}
 
     @Test
-    public void stage1_InviteMyFollowers() throws IOException{
+    public void stage1_InviteMyFollowers() throws WebDriverException {
         addGroupSteps.openGroupWall(driver, Group1);
         addGroupSteps.clickbtnSettingsInvite();
         loginSteps.PageComplete(driver);
@@ -91,7 +92,7 @@ public class t2_InviteGroupStory {
         addGroupSteps.clickInviteButton(driver);
     }
     @Test
-    public void stage2_InviteMyFollowings() {
+    public void stage2_InviteMyFollowings()  throws WebDriverException{
         addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addGroupSteps.clickbtnSettingsInvite();
@@ -101,7 +102,7 @@ public class t2_InviteGroupStory {
         addGroupSteps.clickInviteButton(driver);
     }
     @Test
-    public void stage3_InviteAllUsers() {
+    public void stage3_InviteAllUsers() throws  WebDriverException {
         addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
         addGroupSteps.clickbtnSettingsInvite();
@@ -115,8 +116,6 @@ public class t2_InviteGroupStory {
         loginSteps.PageComplete(driver);
         addGroupSteps.checkInvited(driver);
         loginSteps.PageComplete(driver);
-
-
 
        // loginSteps.PageComplete(driver);
        // loginSteps.Sleep(50);

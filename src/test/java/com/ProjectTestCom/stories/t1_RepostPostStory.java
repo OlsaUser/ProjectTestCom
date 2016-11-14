@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
@@ -74,11 +75,13 @@ public class t1_RepostPostStory {
 
     @Before
     public void setup() throws IOException {
-        FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
+       /* FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
         myProfile.setPreference("network.proxy.socks_port",9999);
         myProfile.setAlwaysLoadNoFocusLib(true);
         myProfile.setEnableNativeEvents(true);
-        Serenity.useFirefoxProfile(myProfile);
+        Serenity.useFirefoxProfile(myProfile);*/
+
+        driver.manage().window().maximize();
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -137,6 +140,7 @@ public class t1_RepostPostStory {
         addPostSteps.AddAudioLink(AudioLink);
         addPostSteps.clickAudioPostButton(driver);
         addPostSteps.clickPostBtn(driver);
+        addPostSteps.waitWidgetAudio(driver);
         loginSteps.PageComplete(driver);
         addPostSteps.checkAudioContentInPost(driver);
 
@@ -163,6 +167,7 @@ public class t1_RepostPostStory {
         //JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         //jse1.executeScript("window.scrollBy(0,300)", "");
 
+        //addPostSteps.openRepostMenu();
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
@@ -232,6 +237,7 @@ public class t1_RepostPostStory {
         addPostSteps.openVideoPopup();
         addPostSteps.AddVideoLink(VideoLink);
         addPostSteps.clickVideoPostButton(driver);
+        addPostSteps.waitWidgetVideo(driver);
         addPostSteps.clickPostBtn(driver);
         loginSteps.PageComplete(driver);
         addPostSteps.checkContentInPost(driver);

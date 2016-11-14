@@ -144,7 +144,7 @@ public class t0_RegistrationStory {
         registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailUser);
-
+        loginSteps.Sleep(500);
         registerSteps.goConfirmLink(driver,NewEmailUser);
         registerSteps.checkWelcomeLetter(NewEmailUser);
     }
@@ -161,7 +161,7 @@ public class t0_RegistrationStory {
         registerSteps.Step2_Location(driver, LocationAR);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailOrg);
-
+        loginSteps.Sleep(500);
         registerSteps.goConfirmLink(driver,NewEmailOrg);
         registerSteps.checkWelcomeLetter(NewEmailOrg);
         }

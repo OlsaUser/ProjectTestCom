@@ -453,12 +453,13 @@ public class GroupPage extends PageObject {
         }*/
     }
     public void pressInviteInPopup(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 99);
+        WebDriverWait wt = new WebDriverWait(driver, 20);
         wt.until(ExpectedConditions.visibilityOfElementLocated(InviteInPopup));
 
         find(InviteInPopup).click();
-        //wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelInvited));
         wt.until(ExpectedConditions.presenceOfElementLocated(ListofUser));
+        find(labelInvited);
+        //wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelInvited));
     }
 
     public void clickInviteMyFollowings(WebDriver driver) {
@@ -517,19 +518,6 @@ public class GroupPage extends PageObject {
     }
 
     public void SelectAndInvite(String UserName, WebDriver driver) {
-       /* String lbl= null;
-        List<WebElement> btnInv = driver.findElements(btnInvite);
-        for (WebElement el : btnInv) {
-            String value = el.getAttribute("class");
-            if (value.equals("btn btn-blue-primary btn-sm width-112px")) {
-                //System.out.println(value);
-                el.click();
-                break;
-            }
-            lbl=el.getAttribute("class");
-            System.out.println(lbl);
-           // assertTrue (checkUserInvited(lbl, driver));
-        }*/
         find(btnInvite).isDisplayed();
         find(buttonSelectAll).click();
         find(buttonInviteSelected).click();
