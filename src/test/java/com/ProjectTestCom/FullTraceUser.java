@@ -516,7 +516,7 @@ public class FullTraceUser {
 
         addItemSteps.ImageContent();
         addItemSteps.pressUploadImageLink();
-        addItemSteps.uploadImage();
+        loginSteps.uploadImage("tech7.jpg");
         addItemSteps.CropPopup_ChooseImage();
 
         addItemSteps.VideoContent1(VideoContent1);
@@ -526,7 +526,7 @@ public class FullTraceUser {
         addItemSteps.collapseContent();
         addItemSteps.FileContent();
         addItemSteps.pressUploadFileLink();
-        addItemSteps.uploadImage();
+        loginSteps.uploadImage("SYNERGY_Test Plan.xlsx");
 
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusActivate();

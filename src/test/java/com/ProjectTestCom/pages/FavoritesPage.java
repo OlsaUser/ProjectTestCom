@@ -30,7 +30,7 @@ public class FavoritesPage extends PageObject {
     private final By menu = By.xpath("//div[@class='header-user']");
     private final By menuFavorites = By.xpath("//div[@class='header-user']/div[2]/a[1]");
     private final By iconFavorite = By.xpath("//button[@can-click='handle_favorite']");
-    private final By emptyPlace = By.xpath("//div[@class='filter-results-count -has-results-list']");
+    private final By emptyPlace = By.xpath("//div[@class='filter-results-count']");
     private final By FirstItemInFavorite = By.xpath("//div[@class='row']/div[1]/div[1]/a");
     private int count=0;
 

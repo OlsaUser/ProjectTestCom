@@ -28,13 +28,13 @@ public class t2_SearchStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
-    //private String searchFilePath = "src/test/resources/search.properties";
-    private String searchFilePath = "src/test/resources/search_beta.properties";
+    private String searchFilePath = "src/test/resources/search.properties";
+    //private String searchFilePath = "src/test/resources/search_beta.properties";
     private String FullNameEn = PropertyLoader.getProperty(searchFilePath, "FullNameEn");
     private String FullOrganizationNameEn = PropertyLoader.getProperty(searchFilePath, "FullOrganizationNameEn");
     private String FullNameAr = PropertyLoader.getProperty(searchFilePath, "FullNameAr");

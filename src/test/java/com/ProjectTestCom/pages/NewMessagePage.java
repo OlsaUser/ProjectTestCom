@@ -29,7 +29,7 @@ public class NewMessagePage extends PageObject {
     private final By iconMessage = By.xpath("//div[@id='header-top-line']/div/div[1]/div[1]/a[3]");
     //private final By TextArea = By.xpath("//div[@class='messages-reply']//textarea");
     private final By TextArea = By.id("messages-reply-field");
-    private final By fieldChatWith = By.cssSelector("a[href*='/cabinet#!thread_view/visavis=1']");
+    private final By fieldChatWith = By.cssSelector("a[href*='/cabinet#!thread_view/visavis=3406']");
     //private final By fieldChatWith = By.xpath("//section[@id='cabinet_sect']/cabinet/section/div[2]/div/div[1]/div[1]/a");
     //private final By btnSend = By.xpath("//div[@class='messages-reply-in']//button");
     private final By btnSend = By.id("message-send-btn");

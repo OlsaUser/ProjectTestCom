@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-@DefaultUrl("http://synergybeta.devzone.dp.ua/en/#!registration")
-//@DefaultUrl("http://mnassa.com/en/#!registration")
+//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!registration")
+@DefaultUrl("http://mnassa.com/en/#!registration")
 @RunWith(SerenityRunner.class)
 public class RegisterPage  extends PageObject {
 

@@ -13,8 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-@DefaultUrl("http://synergybeta.devzone.dp.ua/en")
-//@DefaultUrl("http://mnassa.com/en")
+//@DefaultUrl("http://synergy.devzone.dp.ua/en")
+@DefaultUrl("http://mnassa.com/en")
 
 @RunWith(SerenityRunner.class)
 public class SearchPage extends PageObject {
@@ -86,7 +86,7 @@ public class SearchPage extends PageObject {
     public void clickField_searchBy(String text, WebDriver driver) {
         find(fldSearch).clear();
         element(fldSearch).sendKeys(text);
-        WebDriverWait wt = new WebDriverWait (driver, 500);
+        WebDriverWait wt = new WebDriverWait (driver, 600);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Search_Popup));
         wt.until(ExpectedConditions.presenceOfElementLocated(result_User));
         WebElement el = find(Search_Popup);

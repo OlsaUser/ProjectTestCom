@@ -202,7 +202,7 @@ public class AccountSettingsPage extends PageObject {
         wt1.until(ExpectedConditions.visibilityOfElementLocated(img_crop_wrap));
         wt1.until(ExpectedConditions.presenceOfElementLocated(img_crop_wrap));
         find(btnUpdateCover).click();
-        WebDriverWait wt2 = new WebDriverWait (getDriver(), 100);
+        WebDriverWait wt2 = new WebDriverWait (getDriver(), 500);
         wt2.until(ExpectedConditions.elementToBeClickable(btnOk));
         clickOk(getDriver());
     }
@@ -680,10 +680,10 @@ public class AccountSettingsPage extends PageObject {
         //find(btnOk).waitUntilClickable();
         //find(btnOk).waitUntilPresent();
        // if (find(btnOk).isVisible())
-        WebDriverWait wt1 = new WebDriverWait (driver, 200);
+        WebDriverWait wt1 = new WebDriverWait (driver, 120);
         wt1.until(ExpectedConditions.elementToBeClickable(btnOk));
         find(btnOk).click();
-        WebDriverWait wt2 = new WebDriverWait (driver, 200);
+        WebDriverWait wt2 = new WebDriverWait (driver, 100);
         wt2.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
     }
 

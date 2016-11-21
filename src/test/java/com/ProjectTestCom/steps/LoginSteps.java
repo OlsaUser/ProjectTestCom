@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import javax.mail.MessagingException;
+import java.awt.*;
 import java.io.IOException;
 
 import static junit.framework.TestCase.assertTrue;
@@ -49,6 +50,9 @@ public class LoginSteps extends ScenarioSteps {
 
     @Step
     public void PageComplete(final WebDriver driver) {loginPage.PageComplete(driver);}
+
+    @Step
+    public void uploadImage(String image) throws AWTException {loginPage.uploadImage(image);}
 
     @Step
     public void PageInteractive(final WebDriver driver) {loginPage.PageInteractive(driver);}

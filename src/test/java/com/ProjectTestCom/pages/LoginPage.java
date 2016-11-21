@@ -33,6 +33,8 @@ import javax.imageio.ImageIO;
 import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,8 +50,8 @@ import static junit.framework.TestCase.assertTrue;
 import static org.jruby.util.URLUtil.getPath;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 
-@DefaultUrl("http://synergybeta.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
+//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
+@DefaultUrl("http://mnassa.com/en/#!login")
 @RunWith(SerenityRunner.class)
 public class LoginPage extends PageObject {
     private final By btnForgotPassword = By.xpath("//a[@class='link-forgot-password']");
@@ -121,9 +123,34 @@ public class LoginPage extends PageObject {
 
     /* Common utils*/
 
+    public void uploadImage(String image) throws AWTException{
+        //String k = "D:\\ProjectTestCom\\src\\test\\resources\\images\\music.png";
+        String k = System.getProperty("user.dir") + "\\src\\test\\resources\\images\\" + image;
+        System.out.println("Way to image: " + k );
+
+        StringBuffer buf = new StringBuffer();
+        buf.delete(0, buf.length());
+        buf.insert(0, k);
+        System.out.println(buf);
+
+        StringSelection ss = new StringSelection(k);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+
+        Robot robot = new Robot();
+        robot.delay(20);
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.delay(10);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.delay(94);
+        robot.keyPress(KeyEvent.VK_ENTER);    // press Enter
+        robot.keyRelease(KeyEvent.VK_ENTER);
+    }
+
     public void PageComplete(final WebDriver driver) {
 
-        WebDriverWait wait = new WebDriverWait(driver, 800);
+        WebDriverWait wait = new WebDriverWait(driver, 750);
 
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver wdriver) {

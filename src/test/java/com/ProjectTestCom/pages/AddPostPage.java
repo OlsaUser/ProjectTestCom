@@ -39,7 +39,8 @@ public class AddPostPage extends PageObject {
     private final By GroupWall = By.xpath("//div[@class='gallery-list']/div[1]/div[1]");
     private final By blockGroup = By.xpath("//div[@class='group-item']");
     private final By MyGroupWall = By.xpath("//div[@class='gallery-page-list']/div[@class='gallery-list']/div[1]");
-    private final By fieldPost = By.xpath("//textarea[@can-input='count_post']");
+    //private final By fieldPost = By.xpath("//textarea[@can-input='count_post']");
+    private final By fieldPost = By.xpath("//textarea[@name='mcot_text']");
     private final By txtCounter = By.xpath("//span[@class='wall-post-length']");
     //private final By txtPost = By.xpath("//div[@class='wall-post-area-back js-text-back custom-dir-invert-child']");
 
@@ -109,12 +110,14 @@ public class AddPostPage extends PageObject {
     }
 
     public void AddTextPost(String Text, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 150);
-        wt.until(ExpectedConditions.presenceOfElementLocated(txtCounter));
+        WebDriverWait wt = new WebDriverWait (driver, 200);
+        wt.until(ExpectedConditions.presenceOfElementLocated(fieldPost));
+        find(fieldPost).click();
         //wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
-
+        //find(fieldPost).waitUntilClickable();
         String el = find(txtCounter). getText();
         waitForTextToAppear(el);
+        wt.until(ExpectedConditions.elementToBeClickable(fieldPost));
         find(fieldPost).sendKeys(Text);
     }
     public void AddMentionPost(String Text, WebDriver driver) {
@@ -252,7 +255,7 @@ public class AddPostPage extends PageObject {
 
     public void checkContentInPost(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(AudioContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(widgetVideo));
     }
 
     public void checkAudioContentInPost(WebDriver driver) {
@@ -349,6 +352,7 @@ public class AddPostPage extends PageObject {
         Assert.assertTrue("Wrong repost header", i.contains(HeaderRepost));
     }
     public void checkRepostExists(WebDriver driver, String text, String HeaderRepost) {
+        WebDriverWait wt = new WebDriverWait (driver, 200);
         String i = find(RepostHeaderGroup).getText();
         System.out.println("Repost header: " + i);
         Assert.assertTrue("Wrong repost header", i.contains(HeaderRepost));

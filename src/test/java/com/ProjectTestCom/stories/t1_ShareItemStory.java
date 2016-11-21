@@ -26,8 +26,8 @@ public class t1_ShareItemStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
-    private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
@@ -107,6 +107,7 @@ public class t1_ShareItemStory {
         addItemSteps.checkInformTextShareItem(driver, placeholderShareItemToWall);
         loginSteps.PageComplete(driver);
 
+
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.openMyWall(driver);
@@ -122,6 +123,7 @@ public class t1_ShareItemStory {
         loginSteps.PageComplete(driver);
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
+        headerSteps.openHomePage(driver);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
@@ -140,7 +142,7 @@ public class t1_ShareItemStory {
         addItemSteps.pressShareToGroup(driver);
         addItemSteps.selectGroupInDropdown(driver);
         addItemSteps.pressPostToGroup(driver);
-        loginSteps.PageComplete(driver);
+        loginSteps.Sleep(60);
         addItemSteps.checkInformTextShareItem(driver, placeholderShareItemToGroup);
         loginSteps.PageComplete(driver);
 

@@ -38,8 +38,8 @@ public class t2_AccountSettings_UserStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String email_now = PropertyLoader.getProperty(propertyFilePath, "email_now");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
@@ -156,8 +156,7 @@ public class t2_AccountSettings_UserStory {
     @Test
     public void stage0_changeAvatar() throws AWTException {
         accountSettingsSteps.pressUploadCoverLink();
-        //loginSteps.Sleep(200);
-        addItemSteps.uploadImage();
+        loginSteps.uploadImage("tech2.jpg");
         accountSettingsSteps.CropPopup_ChooseImage();
     }
 

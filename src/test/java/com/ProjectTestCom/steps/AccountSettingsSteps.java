@@ -14,8 +14,6 @@ public class AccountSettingsSteps extends ScenarioSteps {
 
     AccountSettingsPage accountSettingsPage;
 
-
-
     @Step
     public void  pressUploadCoverLink ( ) { accountSettingsPage.pressUploadCoverLink();}
 

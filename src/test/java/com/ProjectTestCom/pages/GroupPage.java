@@ -100,7 +100,7 @@ public class GroupPage extends PageObject {
     private final By buttonSelectAll = By.xpath("//a[@can-click='group_invite.check_all_invite_list']");
     private final By buttonUnSelectAll = By.xpath("//a[@can-click='group_invite.uncheck_all_invite_list']");
     private final By buttonInviteSelected = By.xpath("//a[@can-click='group_invite.show_modal_invite_users']");
-    private final By InviteInPopup = By.xpath("//button[@can-click='group_invite.invite_all']");
+    private final By InviteInPopup = By.xpath("//button[@can-click='group_invite.send_invite_all']");
     private final By labelInvited = By.xpath("//span[contains(text(),'Invited')]");
     private final By ListofUser = By.xpath("//section[@class='users-list']");
 
@@ -302,6 +302,8 @@ public class GroupPage extends PageObject {
             }
          }
     public void viewerGroupLimited(WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait(driver, 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(headerGroupIcon));
         find(headerGroupIcon);
         find(thirdLimeMenu).waitUntilPresent();
         find(headerInfoMembers);
@@ -313,6 +315,8 @@ public class GroupPage extends PageObject {
         assertTrue("Wrong placeholder3",find(Group_PlaceholderText2).containsText("You'll have to wait for a group admin to approve the request."));
     }
     public void viewerGroupPrivate(WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait(driver, 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(headerGroupIcon));
         find(headerGroupIcon);
         find(thirdLimeMenu).waitUntilPresent();
         find(headerInfoMembers);

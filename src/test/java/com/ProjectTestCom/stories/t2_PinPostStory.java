@@ -29,8 +29,8 @@ public class t2_PinPostStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
-    private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
@@ -143,11 +143,11 @@ public class t2_PinPostStory {
         addPostSteps.AddVideoLink(VideoLink);
         addPostSteps.clickVideoPostButton(driver);
         addPostSteps.clickPostBtn(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         addPostSteps.checkContentInPost(driver);
 
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,500)", "");
+        jse.executeScript("window.scrollBy(0,200)", "");
 
         addPostSteps.openPostMenu();
         addPostSteps.selectPin();

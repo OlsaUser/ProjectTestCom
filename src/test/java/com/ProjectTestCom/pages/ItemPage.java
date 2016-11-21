@@ -248,6 +248,8 @@ public class ItemPage extends PageObject {
 
     private final By ContentFiles = By.xpath(".//*[@id='content']/div/div[1]/div/ul/li[4]/a");
     private final By fileLink = By.id("item_files");
+    private final By attach = By.xpath("//ul[@class='added-files-list list-unstyled']/li");
+
 
     private final By statusActivate = By.xpath("//span[contains(text(),'Activate')]");
     private final By statusPeriod = By.xpath("//span[contains(text(),'Activate from/to')]");
@@ -295,8 +297,8 @@ public class ItemPage extends PageObject {
     private final By filterGroupPrice = By.id("filter-group-price");
     private final By filterGroupLocation = By.id("filter-group-location");
     private final By filterGroupGender = By.id("filter-group-gender");
-    private final By filterResultsCount = By.xpath("//div[@class='filter-results-count -has-results-list']");
-    //private final By filterResultsCount = By.xpath("//div[@class='filter-results-count']");
+    //private final By filterResultsCount = By.xpath("//div[@class='filter-results-count -has-results-list']");
+    private final By filterResultsCount = By.xpath("//div[@class='filter-results-count']");
 
     private final By itemSort = By.id("s2id_items_sort");
     private final By itemUserImg = By.xpath("//img[@class='card-user-photo']");
@@ -803,46 +805,33 @@ public class ItemPage extends PageObject {
             }*/
         }
     public void pressUploadImageLink() throws AWTException{
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 80);
+        wt1.until(ExpectedConditions.elementToBeClickable(imageLink));
         find(imageLink).click();
     }
+
     public void FileContent() throws AWTException{
         find(ContentFiles).click();
-        WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 80);
         wt1.until(ExpectedConditions.visibilityOfElementLocated(fileLink));
     }
+
     public void pressUploadFileLink() throws AWTException{
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 80);
+        wt1.until(ExpectedConditions.elementToBeClickable(fileLink));
         find(fileLink).click();
     }
-    public void uploadImage() throws AWTException{
-        //String k = "D:\\ProjectTestCom\\src\\test\\resources\\images\\music.png";
-        String k = System.getProperty("user.dir") + "\\src\\test\\resources\\images\\tech7.jpg";
-        System.out.println("Way to image: " + k );
-
-        StringBuffer buf = new StringBuffer();
-        buf.delete(0, buf.length());
-        buf.insert(0, k);
-        System.out.println(buf);
-
-        StringSelection ss = new StringSelection(k);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        //robot.delay(80);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_V);
-        robot.delay(200);
-        robot.keyPress(KeyEvent.VK_ENTER);    // press Enter
-        robot.keyRelease(KeyEvent.VK_ENTER);
+    public void checkUploadedFile() {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 40);
+        wt1.until(ExpectedConditions.presenceOfElementLocated(attach));
     }
 
     public void CropPopup_ChooseImage() throws AWTException{
-        WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 80);
         wt1.until(ExpectedConditions.visibilityOfElementLocated(img_crop_wrap));
         wt1.until(ExpectedConditions.presenceOfElementLocated(img_crop_wrap));
         find(btnChoose).click();
-        WebDriverWait wt2 = new WebDriverWait(getDriver(), 60);
+        WebDriverWait wt2 = new WebDriverWait(getDriver(), 80);
         wt2.until(ExpectedConditions.visibilityOfElementLocated(img_small_preview));
         wt2.until(ExpectedConditions.presenceOfElementLocated(img_small_preview));
     }
@@ -1238,10 +1227,10 @@ public class ItemPage extends PageObject {
         find(inappropriateFormItem);
 
         find(UserName_Owner).isPresent();
-        find(Location_Owner).isPresent();
+        //find(Location_Owner).isPresent();
         find(FollowButton_Owner).isPresent();
         find(MessageButton_Owner).isPresent();
-        find(About_Owner).isPresent();
+        //find(About_Owner).isPresent();
         find(MemberSince_Owner).isPresent();
     }
 
@@ -1298,17 +1287,20 @@ public class ItemPage extends PageObject {
         System.out.println("Share item header: " + i);
         assertTrue("No share header", i.contains(HeaderShare));
     }
-    public void checkInformTextShareItem(WebDriver driver, String placeholderShareItem) {
-        WebDriverWait wt = new WebDriverWait(driver, 150);
+    public void checkInformTextShareItem(WebDriver driver, String placeholderShareItem) throws AssertionError{
+        WebDriverWait wt = new WebDriverWait(driver, 180);
         wt.until(ExpectedConditions.presenceOfElementLocated(ShareItemInformText));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(ShareItemInformText));
+        System.out.println("visible");
 
         List<WebElement> Owner = driver.findElements(ShareItemInformText);
         for (WebElement el : Owner) {
-
+            System.out.println("1: " + el.getText());
             if (el.getText().contains(placeholderShareItem)) {
                 System.out.println(el.getText());
                 break;
             }
+            else Assert.fail();
         }
     }
     public void selectEventDates(WebDriver driver) {

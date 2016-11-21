@@ -23,8 +23,8 @@ public class t2_FollowStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String urlUserProfile1 = PropertyLoader.getProperty(propertyFilePath, "urlUserProfile1");
@@ -32,8 +32,8 @@ public class t2_FollowStory {
     private String Item_Owner = PropertyLoader.getProperty(propertyFilePath, "Item_Owner");
     private String Profile_FullName = PropertyLoader.getProperty(propertyFilePath, "Profile_FullName");
 
-    //private String searchFilePath = "src/test/resources/search.properties";
-    private String searchFilePath = "src/test/resources/search_beta.properties";
+    private String searchFilePath = "src/test/resources/search.properties";
+    //private String searchFilePath = "src/test/resources/search_beta.properties";
     private String UserForFollow = PropertyLoader.getProperty(searchFilePath, "UserForFollow");
     private String FullOrganizationForFollow = PropertyLoader.getProperty(searchFilePath, "FullOrganizationForFollow");
 

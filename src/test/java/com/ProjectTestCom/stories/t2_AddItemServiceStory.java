@@ -35,8 +35,8 @@ public class t2_AddItemServiceStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
@@ -45,6 +45,11 @@ public class t2_AddItemServiceStory {
     private String CategoryError = PropertyLoader.getProperty(propertyItemPath, "CategoryError");
     private String SubCategoryError = PropertyLoader.getProperty(propertyItemPath, "SubCategoryError");
     private String PhotoError = PropertyLoader.getProperty(propertyItemPath, "PhotoError");
+    private String attach1 = PropertyLoader.getProperty(propertyItemPath, "attach1");
+    private String attach2 = PropertyLoader.getProperty(propertyItemPath, "attach2");
+    private String attach3 = PropertyLoader.getProperty(propertyItemPath, "attach3");
+    private String attach4 = PropertyLoader.getProperty(propertyItemPath, "attach4");
+    private String attach5 = PropertyLoader.getProperty(propertyItemPath, "attach5");
 
     private String Title = PropertyLoader.getProperty(propertyItemPath, "Title");
     private String TitleMAX = PropertyLoader.getProperty(propertyItemPath, "TitleMAX");
@@ -123,9 +128,10 @@ public class t2_AddItemServiceStory {
     /*************************************************************/
 
     @Test
-    public void stage5_addServiceSupply_MandatoryFields_ImageCover_byButtonFromHeader() throws AWTException {
+    public void stage1_addServiceSupply_MandatoryFields_ImageCover_Attaches_byButtonFromHeader() throws AWTException {
         addItemSteps.clickAddButton(driver);
         addItemSteps.selectItemType(Service, driver);
+        loginSteps.PageComplete(driver);
         addItemSteps.selectSupply();
         loginSteps.PageComplete(driver);
         addItemSteps.enterBasicInfo(Title, DescriptionNull);
@@ -139,14 +145,28 @@ public class t2_AddItemServiceStory {
         //addItemSteps.collapseMainDetails();
         addItemSteps.ImageContent();
         addItemSteps.pressUploadImageLink();
-        addItemSteps.uploadImage();
+        loginSteps.uploadImage("tech7.jpg");
+        addItemSteps.CropPopup_ChooseImage();
+
+        addItemSteps.pressUploadImageLink();
+        loginSteps.uploadImage("tech2.jpg");
         addItemSteps.CropPopup_ChooseImage();
 
         addItemSteps.VideoContent1(VideoContent1);
 
         addItemSteps.FileContent();
         addItemSteps.pressUploadFileLink();
-        addItemSteps.uploadImage();
+        loginSteps.uploadImage("SYNERGY_TestPlan.xlsx");
+       /* addItemSteps.pressUploadFileLink();
+        loginSteps.uploadImage("SYNERGY-TestPlan.pdf");
+        addItemSteps.checkUploadedFile();
+        addItemSteps.pressUploadFileLink();
+        loginSteps.uploadImage("Document_node.txt");
+        addItemSteps.checkUploadedFile();*/
+        loginSteps.uploadImage("test.doc");
+        addItemSteps.checkUploadedFile();
+        loginSteps.uploadImage("tech2.jpg");
+        addItemSteps.checkUploadedFile();
 
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusActivate();
@@ -155,10 +175,19 @@ public class t2_AddItemServiceStory {
         addItemSteps.checkItemSaved(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openMyMnassaPage(driver);
+        headerSteps.openMyServiceListing(driver);
+        addItemSteps.openItemSettingsMenu();
+        addItemSteps.selectViewMenu(driver);
+        addItemSteps.checkElementPresents(attach1);
+        addItemSteps.checkElementPresents(attach2);
+        addItemSteps.checkElementPresents(attach3);
+        //addItemSteps.checkElementPresents(attach4);
+        //addItemSteps.checkElementPresents(attach5);
     }
 
     @Test
-    public void stage1_addServiceSupply_MAX_byButtonInListing() {
+    public void stage5_addServiceSupply_MAX_byButtonInListing() {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyServiceListing(driver);
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
