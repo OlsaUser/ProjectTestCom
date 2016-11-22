@@ -55,9 +55,6 @@ public class LoginSteps extends ScenarioSteps {
     public void uploadImage(String image) throws AWTException {loginPage.uploadImage(image);}
 
     @Step
-    public void PageInteractive(final WebDriver driver) {loginPage.PageInteractive(driver);}
-
-    @Step
     public void pageLoad(String args) throws IOException {loginPage.pageLoad(args);}
 
     @Step

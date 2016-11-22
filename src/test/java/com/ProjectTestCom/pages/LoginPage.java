@@ -24,10 +24,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Duration;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 
 import javax.imageio.ImageIO;
 import javax.mail.MessagingException;
@@ -48,6 +45,7 @@ import static java.lang.System.loadLibrary;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static junit.framework.TestCase.assertTrue;
 import static org.jruby.util.URLUtil.getPath;
+import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 
 //@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
@@ -86,11 +84,8 @@ public class LoginPage extends PageObject {
 
     public void clickEnter(WebDriver driver){
         element(btnEnter).click();
-
-        WebDriverWait wt = new WebDriverWait (driver, 200);
+        WebDriverWait wt = new WebDriverWait (driver, 50);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
-      //  wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
-        //find(Counter).waitUntilVisible();
     }
 
     public void clickLogOut() {element(LogOut).click();}
@@ -148,31 +143,41 @@ public class LoginPage extends PageObject {
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
 
-    public void PageComplete(final WebDriver driver) {
-
-        WebDriverWait wait = new WebDriverWait(driver, 750);
-
+    /*public void PageComplete(final WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 400);
         wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver wdriver) {
-                return ((JavascriptExecutor) driver).executeScript(
-                        "return document.readyState"
-                ).equals("complete");
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
             }
         });
+    }*/
+
+    public void PageComplete(WebDriver driver) {
+        ExpectedCondition<Boolean> pageLoadCondition = new
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+                    }
+                };
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(pageLoadCondition);
     }
 
-    public void PageInteractive(final WebDriver driver) {
-
-        WebDriverWait wait = new WebDriverWait(driver, 200);
-
-        wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver wdriver) {
-                return ((JavascriptExecutor) driver).executeScript(
-                        "return document.readyState"
-                ).equals("interactive");
-            }
-        });
-    }
+   /* public void waitForPageLoaded() {
+        ExpectedCondition<Boolean> expectation = new
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+                    }
+                };
+        try {
+            Thread.sleep(1000);
+            WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+            wait.until(expectation);
+        } catch (Throwable error) {
+            Assert.fail("Timeout waiting for Page Load Request to complete.");
+        }
+    }*/
 
     public void Sleep(int time) {
         try {
@@ -257,7 +262,7 @@ public class LoginPage extends PageObject {
             fw.write(TextResponse);
             fw.write(TextfulLoad);
             //fw.write(TotalRequests);
-            fw.write("\r\n");
+            //fw.write("\r\n");
             fw.write("\r\n");
 
         } catch (IOException e) {
@@ -265,6 +270,23 @@ public class LoginPage extends PageObject {
         } finally {
             try {
                 fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File f = new File("D:/diagram.txt");
+        f.createNewFile();
+        FileWriter ff = new FileWriter(f, true);
+        try {
+            //ff.write(page);
+            ff.write(TextfulLoad);
+            ff.write("\r\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                ff.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
