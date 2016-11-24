@@ -109,8 +109,8 @@
                     <argLine>-Xmx512m</argLine>
                     <systemPropertyVariables>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
-                        <webdriver.chrome.driver>${project.basedir}/drivers/chromedriver.exe</webdriver.chrome.driver>
-                        <webdriver.ie.driver>${project.basedir}/drivers/IEDriverServer.exe</webdriver.ie.driver>
+                        <webdriver.chrome.driver>${project.basedir}/src/drivers/chromedriver.exe</webdriver.chrome.driver>
+                        <webdriver.ie.driver>${project.basedir}/src/drivers/IEDriverServer.exe</webdriver.ie.driver>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
