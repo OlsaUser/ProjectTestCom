@@ -223,11 +223,6 @@ public class FullTraceOrganization {
     @Before
     public void setup() throws IOException {
         driver.manage().window().maximize();
-       /*FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
-        myProfile.setPreference("network.proxy.socks_port",9999);
-        myProfile.setAlwaysLoadNoFocusLib(true);
-        myProfile.setEnableNativeEvents(true);
-        Serenity.useFirefoxProfile(myProfile);*/
     }
 
     @After

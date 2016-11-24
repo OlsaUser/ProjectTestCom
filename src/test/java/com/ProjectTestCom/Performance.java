@@ -92,14 +92,13 @@ public class Performance {
 
     @Before
     public void setup() throws IOException {
-        FirefoxProfile myProfile = new FirefoxProfile(new File("D:/SeleniumProfile"));
+        /*FirefoxProfile myProfile = new FirefoxProfile(new File("D:/SeleniumProfile"));
         myProfile.setPreference("network.proxy.socks_port", 9999);
         myProfile.setAlwaysLoadNoFocusLib(true);
         myProfile.setEnableNativeEvents(true);
-        Serenity.useFirefoxProfile(myProfile);
+        Serenity.useFirefoxProfile(myProfile);*/
 
-        //driver.manage().window().maximize();
-
+        driver.manage().window().maximize();
         loginSteps.openLoginPage();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);

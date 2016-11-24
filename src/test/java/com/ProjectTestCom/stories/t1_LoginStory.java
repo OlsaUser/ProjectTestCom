@@ -82,15 +82,7 @@ public class t1_LoginStory {
 
     @Before
     public void setup() throws IOException{
-        FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
-        myProfile.setPreference("network.proxy.socks_port",9999);
-        myProfile.setAlwaysLoadNoFocusLib(true);
-        myProfile.setEnableNativeEvents(true);
-        Serenity.useFirefoxProfile(myProfile);
-
-        /*System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-        WebDriver driver=new ChromeDriver();
-        driver.get("http://www.yahoo.com");*/
+        driver.manage().window().maximize();
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);

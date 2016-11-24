@@ -51,11 +51,7 @@ public class t4_FooterStory {
 
     @Before
     public void setup() throws IOException {
-        FirefoxProfile myProfile = new FirefoxProfile(new File(BrowserProfile));
-        myProfile.setPreference("network.proxy.socks_port",9999);
-        myProfile.setAlwaysLoadNoFocusLib(true);
-        myProfile.setEnableNativeEvents(true);
-        Serenity.useFirefoxProfile(myProfile);
+        driver.manage().window().maximize();
 
         footerSteps.openHomePage();
         loginSteps.PageComplete(driver);
