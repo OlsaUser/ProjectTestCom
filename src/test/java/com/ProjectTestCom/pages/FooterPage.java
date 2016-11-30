@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-@DefaultUrl("http://synergy.devzone.dp.ua/en")
+@DefaultUrl("http://synergybeta.devzone.dp.ua/en")
 //@DefaultUrl("http://mnassa.com/en")
 @RunWith(SerenityRunner.class)
 public class FooterPage extends PageObject {

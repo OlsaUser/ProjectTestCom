@@ -16,8 +16,6 @@ import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.assertTrue;
 
-//@DefaultUrl("http://synergybeta.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
 @RunWith(SerenityRunner.class)
 public class ForgotPasswordPage extends PageObject {
     private final By fieldEmail = By.xpath("//div[@id='forgot-modal']//input[contains(@type, 'email')]");

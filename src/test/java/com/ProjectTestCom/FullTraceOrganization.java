@@ -14,9 +14,12 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.xml.bind.ValidationException;
 import javax.xml.parsers.FactoryConfigurationError;
@@ -231,7 +234,7 @@ public class FullTraceOrganization {
     @Test
     public void stage1_Register_Organization() throws Exception {
         //registerSteps.openRegisterPage();
-        driver.get("http://synergy.devzone.dp.ua/ar/#!registration");
+        driver.get("http://synergybeta.devzone.dp.ua/ar/#!registration");
         loginSteps.PageComplete(driver);
 
         registerSteps.Step1_selectRadioButton_Organization();
@@ -245,13 +248,18 @@ public class FullTraceOrganization {
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailOrg);
 
-        registerSteps.goConfirmLink_AR(driver,NewEmailOrg);
+        /*registerSteps.goConfirmLink_AR(driver,NewEmailOrg);
         registerSteps.checkWelcomeLetter_AR(NewEmailOrg);
+        registerSteps.goLoginButton(driver,NewEmailOrg);*/
+
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
+        registerSteps.checkWelcomeLetter(NewEmailOrg);
     }
     @Test
     public void stage2_EditMainDetails(){
         //loginSteps.openLoginPage();
-        driver.get("http://synergy.devzone.dp.ua/ar/#!login");
+        driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -291,7 +299,7 @@ public class FullTraceOrganization {
     @Test
     public void stage3_EditContactInfo(){
         //loginSteps.openLoginPage();
-        driver.get("http://synergy.devzone.dp.ua/ar/#!login");
+        driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -329,7 +337,7 @@ public class FullTraceOrganization {
     @Test
     public void stage5_ChangePassword() {
         //loginSteps.openLoginPage();
-        driver.get("http://synergy.devzone.dp.ua/ar/#!login");
+        driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -351,7 +359,7 @@ public class FullTraceOrganization {
        @Test
         public void stage4_addEventSupply_AllFields_byButtonInListing() throws Error{
             //loginSteps.openLoginPage();
-            driver.get("http://synergy.devzone.dp.ua/ar/#!login");
+            driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
             loginSteps.PageComplete(driver);
 
             loginSteps.enterLogin(NewEmailOrg);

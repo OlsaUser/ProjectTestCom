@@ -19,8 +19,6 @@ import static jdk.nashorn.internal.parser.TokenType.OR;
 /**
  * Created by olsa on 5/18/2016.
  */
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
 @RunWith(SerenityRunner.class)
 public class HeaderPage extends PageObject {
     //First line Menu

@@ -8,15 +8,15 @@ import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.pages.Pages;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.xml.bind.ValidationException;
 import javax.xml.parsers.FactoryConfigurationError;
@@ -214,9 +214,10 @@ public class FullTraceUser {
         registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         registerSteps.openRegisterPage();
         registerSteps.viaFacebook_SignUp(driver);
-        registerSteps.confirmFbReg(driver, fb_Email2, fb_Password2);
-        loginSteps.Sleep(100);
         registerSteps.successRegistrationFb(driver);
+       /* registerSteps.confirmFbReg(driver, fb_Email2, fb_Password2);
+        loginSteps.Sleep(100);
+        registerSteps.successRegistrationFb(driver);*/
     }
     @Test
     public void stage2_Register_User()  throws IOException {
@@ -228,24 +229,36 @@ public class FullTraceUser {
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
         registerSteps.Step2_FirstName(FirstNameEn);
-        registerSteps.Step2_LastName(LastNameEn);
+       // registerSteps.Step2_LastName(LastNameEn);
         registerSteps.Step2_Gender(driver, gender_female);
         registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailUser);
 
-        registerSteps.goConfirmLink(driver,NewEmailUser);
+        /*registerSteps.goConfirmLink(driver,NewEmailUser);
         registerSteps.successRegistration(driver);
+        registerSteps.checkWelcomeLetter(NewEmailUser);*/
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
         registerSteps.checkWelcomeLetter(NewEmailUser);
     }
     //Facebook User
+    @Ignore
     @Test
     public void stage3_EditMainDetails()  throws IOException {
-        registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+       /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
         loginSteps.PageComplete(driver);
-        registerSteps.successLogIn(driver);
+        registerSteps.successLogIn(driver);*/
+
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
 
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
@@ -392,11 +405,19 @@ public class FullTraceUser {
     //Facebook
     @Test
     public void stage7_Add_Skills_Interests(){
-        registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+        /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
         loginSteps.PageComplete(driver);
-        registerSteps.successLogIn(driver);
+        registerSteps.successLogIn(driver);*/
+
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
 
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
@@ -491,11 +512,19 @@ public class FullTraceUser {
 //Facebook User
     @Test
     public void stage9_addProductDemand_AR_byButtonFromHeader() throws AWTException {
-        registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+        /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
         loginSteps.PageComplete(driver);
-        registerSteps.successLogIn(driver);
+        registerSteps.successLogIn(driver);*/
+
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
 
         addItemSteps.clickAddButton(driver);
         addItemSteps.selectItemType(Product, driver);
@@ -564,5 +593,4 @@ public class FullTraceUser {
         loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);
     }
-
 }

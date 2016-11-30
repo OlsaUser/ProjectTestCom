@@ -26,9 +26,6 @@ import static org.junit.Assert.assertFalse;
 /**
  * Created by olsa on 4/28/2016.
  */
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
-
 @RunWith(SerenityRunner.class)
 public class GroupPage extends PageObject {
 

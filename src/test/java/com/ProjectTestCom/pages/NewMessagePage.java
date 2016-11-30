@@ -21,9 +21,6 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by olsa on 5/10/2016.
  */
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
-
 @RunWith(SerenityRunner.class)
 public class NewMessagePage extends PageObject {
     private final By iconMessage = By.xpath("//div[@id='header-top-line']/div/div[1]/div[1]/a[3]");

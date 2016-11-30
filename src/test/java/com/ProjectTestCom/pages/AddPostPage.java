@@ -25,9 +25,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 /**
  * Created by olsa on 4/28/2016.
  */
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
-
 @RunWith(SerenityRunner.class)
 public class AddPostPage extends PageObject {
     private final By iconHome = By.xpath("//div[@class='header-icons']//a[1]");

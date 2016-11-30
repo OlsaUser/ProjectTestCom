@@ -111,6 +111,10 @@ public class RegisterSteps extends ScenarioSteps {
     @Step
     public void goConfirmLink_AR(WebDriver driver, String email) { registerPage.goConfirmLink_AR(driver, email);}
 
+
+    @Step
+    public void goLoginButton(WebDriver driver, String email) { registerPage.goLoginButton(driver, email);}
+
     @Step
     public void checkWelcomeLetter(String email) { registerPage.checkWelcomeLetter(email);}
 

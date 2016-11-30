@@ -48,7 +48,7 @@ import static org.jruby.util.URLUtil.getPath;
 import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 
-@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
+@DefaultUrl("http://synergybeta.devzone.dp.ua/en/#!login")
 //@DefaultUrl("http://mnassa.com/en/#!login")
 @RunWith(SerenityRunner.class)
 public class LoginPage extends PageObject {

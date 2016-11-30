@@ -20,8 +20,6 @@ import java.util.concurrent.TimeUnit;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
 @RunWith(SerenityRunner.class)
 public class MyMediaPage extends PageObject {
     private final By linkMyMnassa = By.xpath(".//*[@id='header-top-line']/nav/div[2]/a");

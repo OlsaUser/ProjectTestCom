@@ -22,9 +22,6 @@ import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.assertTrue;
 
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
-
 @RunWith(SerenityRunner.class)
 public class FavoritesPage extends PageObject {
     private final By menu = By.xpath("//div[@class='header-user']");

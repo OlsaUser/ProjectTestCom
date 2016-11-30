@@ -25,6 +25,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.junit.runners.model.FrameworkMethod;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -35,6 +36,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.mail.MessagingException;
 import javax.xml.bind.ValidationException;
@@ -65,6 +68,7 @@ public class t0_RegistrationStory {
     private String OrganizationShortNameEn = PropertyLoader.getProperty(registrationFilePath, "OrganizationShortName_En");
     private String UserName_AR = PropertyLoader.getProperty(registrationFilePath, "UserName_AR");
     private String Name_51_symbols = PropertyLoader.getProperty(registrationFilePath, "Name_51_symbols");
+    private String Name_101_symbols = PropertyLoader.getProperty(registrationFilePath, "Name_101_symbols");
     private String Numbers = PropertyLoader.getProperty(registrationFilePath, "Numbers");
     private String Symbols = PropertyLoader.getProperty(registrationFilePath, "Symbols");
     private String FirstNameEn = PropertyLoader.getProperty(registrationFilePath, "FirstName_En");
@@ -133,13 +137,16 @@ public class t0_RegistrationStory {
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
         registerSteps.Step2_FirstName(FirstNameEn);
-        registerSteps.Step2_LastName(LastNameEn);
+//        registerSteps.Step2_LastName(LastNameEn);
         registerSteps.Step2_Gender(driver, gender_female);
         registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailUser);
-        loginSteps.Sleep(500);
+        /*loginSteps.Sleep(500);
         registerSteps.goConfirmLink(driver,NewEmailUser);
+        registerSteps.checkWelcomeLetter(NewEmailUser);*/
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
         registerSteps.checkWelcomeLetter(NewEmailUser);
     }
 
@@ -155,9 +162,12 @@ public class t0_RegistrationStory {
         registerSteps.Step2_Location(driver, LocationAR);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailOrg);
-        loginSteps.Sleep(500);
+       /* loginSteps.Sleep(500);
         registerSteps.goConfirmLink(driver,NewEmailOrg);
-        registerSteps.checkWelcomeLetter(NewEmailOrg);
+        registerSteps.checkWelcomeLetter(NewEmailOrg);*/
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
+        registerSteps.checkWelcomeLetter(NewEmailUser);
         }
 
     @Test
@@ -181,7 +191,8 @@ public class t0_RegistrationStory {
         registerSteps.checkValidationMessage_if_UserNameAR(ErrorUserName_Ar, driver);
         registerSteps.clearUserName();
 
-        registerSteps.Step1_UserName(Name_51_symbols);
+        //registerSteps.Step1_UserName(Name_51_symbols);
+        registerSteps.Step1_UserName(Name_101_symbols);
         registerSteps.Step1_pressButton_Next();
         System.out.println("4.ErrorUserName_Long");
         registerSteps.checkValidationMessage(ErrorUserName_Long, driver);

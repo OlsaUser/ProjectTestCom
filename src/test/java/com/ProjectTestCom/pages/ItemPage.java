@@ -54,9 +54,6 @@ import static org.yecht.LevelStatus.pause;
 /**
  * Created by olsa on 4/29/2016.
  */
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
-
 @RunWith(SerenityRunner.class)
 public class ItemPage extends PageObject {
 

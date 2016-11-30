@@ -16,8 +16,6 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
 @RunWith(SerenityRunner.class)
 public class FollowUserPage extends PageObject {
     private final By btnFollow_ViewProfile = By.xpath("//button[@can-click='data.user.handle_follower']");

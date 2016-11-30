@@ -1,5 +1,6 @@
 package com.ProjectTestCom.pages;
 
+import com.sun.mail.imap.IMAPFolder;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-@DefaultUrl("http://synergy.devzone.dp.ua/en/#!registration")
+@DefaultUrl("http://synergybeta.devzone.dp.ua/en/#!registration")
 //@DefaultUrl("http://mnassa.com/en/#!registration")
 @RunWith(SerenityRunner.class)
 public class RegisterPage  extends PageObject {
@@ -159,10 +160,10 @@ public class RegisterPage  extends PageObject {
 
     public void Step3_Ok(WebDriver driver, String email) {
         WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.elementToBeClickable(btnOK));
+       /* wt.until(ExpectedConditions.elementToBeClickable(btnOK));
         wt.until(ExpectedConditions.textToBePresentInElementLocated(SuccessPopup, "After that you will be redirected to this page - page, where you started registration!"));
         find(btnOK);
-        element(btnOK).click();
+        element(btnOK).click();*/
     }
 
     public boolean checkValidationMessage(String Message, WebDriver driver) {
@@ -225,7 +226,10 @@ public class RegisterPage  extends PageObject {
         String confirmLink = provideCode_AR(email);
         driver.get(confirmLink);
     }
-
+    public void goLoginButton(WebDriver driver, String email) {
+        String LoginButton = provideLoginButton(email);
+        driver.get(LoginButton);
+    }
     public static String provideCode(String email) {
         String tempCode = null;
         //String host = "pop.gmail.com";// change accordingly
@@ -310,6 +314,36 @@ public class RegisterPage  extends PageObject {
             Assert.assertTrue(check.contains(header));
         }
     }
+    public static String provideLoginButton(String email) {
+        String tempCode = null;
+        //String host = "pop.gmail.com";// change accordingly
+        //String mailStoreType = "pop3";
+
+        String host = "imap.gmail.com";
+        String mailStoreType = "imap";
+        String password = "Jk14501450";
+
+        String check = check(host, mailStoreType, email, password); //messages body
+
+        if (check != null) {
+            String prefix = "efficient and easy to reach.";
+            String suffix = "Kind regards, Mnassa Team";
+            String substring = check.substring(check.indexOf(prefix) + prefix.length() + 3, check.indexOf(suffix));
+            tempCode = substring.trim();
+            System.out.println("tempCode: " + tempCode);
+            String codePrefix = "url=";
+            String encodedUrl = tempCode.substring(tempCode.indexOf(codePrefix) + codePrefix.length());
+            try {
+                String url = URLDecoder.decode(encodedUrl, "UTF-8");
+                String confirmPrefix = "confirm?code=";
+                String code = url.substring(url.indexOf(confirmPrefix) + confirmPrefix.length());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        //return code;
+        return tempCode;
+    }
     public static String check(String host, String storeType, String user,
                                String password) {
         String result = null;
@@ -356,6 +390,10 @@ public class RegisterPage  extends PageObject {
             //create the folder object and open it
             Folder emailFolder = store.getFolder("INBOX");
             emailFolder.open(Folder.READ_ONLY);
+
+            /*Folder[] f = store.getDefaultFolder().list();
+            for(Folder emailFolder:f)
+                System.out.println(">> "+emailFolder.getName());*/
 
             // retrieve the messages from the folder in an array and print it
             Message[] messages = emailFolder.getMessages();
