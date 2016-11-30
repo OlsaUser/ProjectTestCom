@@ -5,6 +5,6 @@ import net.thucydides.core.annotations.At;
 import net.thucydides.core.annotations.DefaultUrl;
 
 //@DefaultUrl("http://synergy.devzone.dp.ua/en")
-@DefaultUrl("http://mnassa.com/en")
+//@DefaultUrl("http://mnassa.com/en")
 public class SucceedPopupPage extends PageObject {
 }

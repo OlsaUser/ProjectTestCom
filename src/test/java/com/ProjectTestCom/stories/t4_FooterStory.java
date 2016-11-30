@@ -39,8 +39,8 @@ public class t4_FooterStory {
     @Steps
     LoginSteps loginSteps;
 
-    //private String propertyFilePath = "src/test/resources/login.properties";
-    private String propertyFilePath = "src/test/resources/login_live.properties";
+    private String propertyFilePath = "src/test/resources/login.properties";
+    //private String propertyFilePath = "src/test/resources/login_live.properties";
     private String About = PropertyLoader.getProperty(propertyFilePath, "About");
     private String ContactUs = PropertyLoader.getProperty(propertyFilePath, "ContactUs");
     private String Terms = PropertyLoader.getProperty(propertyFilePath, "Terms");

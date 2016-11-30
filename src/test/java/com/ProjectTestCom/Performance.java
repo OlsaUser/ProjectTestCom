@@ -15,18 +15,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by olsa on 5/17/2016.
  */
 @RunWith(SerenityRunner.class)
 public class Performance {
-    //private String propertyFilePath = "src/test/resources/login.properties";
-    private String propertyFilePath = "src/test/resources/login_live.properties";
+    private String propertyFilePath = "src/test/resources/login.properties";
+    //private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String ServiceListing = PropertyLoader.getProperty(propertyFilePath, "ServiceListing");
@@ -98,7 +100,18 @@ public class Performance {
         myProfile.setEnableNativeEvents(true);
         Serenity.useFirefoxProfile(myProfile);*/
 
+       /* FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("network.proxy.type", 1);
+        profile.setPreference("network.proxy.http", "proxy.corp.isddesign.com");
+        profile.setPreference("network.proxy.http_port", 8080);
+        profile.setPreference("network.proxy.share_proxy_settings", true);
+        profile.setPreference("network.proxy.no_proxies_on", "");
+        Serenity.useFirefoxProfile(profile);
+        driver = new FirefoxDriver(profile);*/
+
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+
         loginSteps.openLoginPage();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);

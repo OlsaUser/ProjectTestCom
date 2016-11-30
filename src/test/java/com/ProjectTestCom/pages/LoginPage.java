@@ -48,8 +48,8 @@ import static org.jruby.util.URLUtil.getPath;
 import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
-@DefaultUrl("http://mnassa.com/en/#!login")
+@DefaultUrl("http://synergy.devzone.dp.ua/en/#!login")
+//@DefaultUrl("http://mnassa.com/en/#!login")
 @RunWith(SerenityRunner.class)
 public class LoginPage extends PageObject {
     private final By btnForgotPassword = By.xpath("//a[@class='link-forgot-password']");
@@ -138,7 +138,7 @@ public class LoginPage extends PageObject {
         robot.delay(10);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
-        robot.delay(94);
+        robot.delay(98);
         robot.keyPress(KeyEvent.VK_ENTER);    // press Enter
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
@@ -159,7 +159,7 @@ public class LoginPage extends PageObject {
                         return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
                     }
                 };
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 50);
         wait.until(pageLoadCondition);
     }
 

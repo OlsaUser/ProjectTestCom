@@ -13,8 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-//@DefaultUrl("http://synergy.devzone.dp.ua/en")
-@DefaultUrl("http://mnassa.com/en")
+@DefaultUrl("http://synergy.devzone.dp.ua/en")
+//@DefaultUrl("http://mnassa.com/en")
 
 @RunWith(SerenityRunner.class)
 public class SearchPage extends PageObject {

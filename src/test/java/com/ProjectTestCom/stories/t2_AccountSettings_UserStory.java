@@ -38,8 +38,8 @@ public class t2_AccountSettings_UserStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    //private String propertyFilePath = "src/test/resources/login.properties";
-    private String propertyFilePath = "src/test/resources/login_live.properties";
+    private String propertyFilePath = "src/test/resources/login.properties";
+    //private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String email_now = PropertyLoader.getProperty(propertyFilePath, "email_now");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
@@ -260,10 +260,10 @@ public class t2_AccountSettings_UserStory {
         //accountSettingsSteps.clickUpdateError();
         //accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
         //accountSettingsSteps.enterUserName(UserName_En);
-        /*accountSettingsSteps.clickUpdateError();
+        accountSettingsSteps.clickUpdateError();
         accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
-        accountSettingsSteps.checkMessage_if_NameWrong(NoError, driver);*/
-        accountSettingsSteps.clickUpdate1(driver);
+       // accountSettingsSteps.checkMessage_if_NameWrong(NoError, driver);
+       // accountSettingsSteps.clickUpdate1(driver);
         //loginSteps.PageComplete(driver);
         /*accountSettingsSteps.enterFirstName(FirstName_Ar);
         accountSettingsSteps.enterLastName(LastName_Ar);

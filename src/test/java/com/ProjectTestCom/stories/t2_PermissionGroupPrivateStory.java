@@ -26,8 +26,8 @@ public class t2_PermissionGroupPrivateStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    //private String propertyFilePath = "src/test/resources/login.properties";
-    private String propertyFilePath = "src/test/resources/login_live.properties";
+    private String propertyFilePath = "src/test/resources/login.properties";
+    //private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String email_organization = PropertyLoader.getProperty(propertyFilePath, "email_organization");

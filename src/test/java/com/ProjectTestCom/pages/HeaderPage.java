@@ -280,7 +280,7 @@ public class HeaderPage extends PageObject {
         find(linkDiscoverGroupPopular).click();
         wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentGroup));
         find(linkDiscoverGroupNew).click();
-        driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
         wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(DiscoverContentGroup)));
     }
 
@@ -335,8 +335,8 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.presenceOfElementLocated(GroupWall));
        // wt.until(ExpectedConditions.textToBePresentInElementLocated(linkOwner,"Owner"));
         find(GroupWall).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(GroupWallContent));
-        //wt.until(ExpectedConditions.visibilityOfElementLocated(PlaceHolderWall));
+        //wt.until(ExpectedConditions.visibilityOfElementLocated(GroupWallContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(PlaceHolderWall));
     }
 
     public void openProductListing(WebDriver driver) {

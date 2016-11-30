@@ -7,6 +7,6 @@ import net.thucydides.core.annotations.DefaultUrl;
 
 //@DefaultUrl("http://synergy.devzone.dp.ua/en")
 //@At ("http://synergy.devzone.dp.ua/en/#!login")
-@At ("http://mnassa.com/en/#!login")
+//@At ("http://mnassa.com/en/#!login")
 public class LoginSucceedPage extends PageObject {
     }
