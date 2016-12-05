@@ -24,10 +24,11 @@ import java.net.URLDecoder;
 import java.security.Security;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!registration")
-@DefaultUrl("http://mnassa.com/en/#!registration")
+@DefaultUrl("http://synergy.devzone.dp.ua/en/#!registration")
+//@DefaultUrl("http://mnassa.com/en/#!registration")
 @RunWith(SerenityRunner.class)
 public class RegisterPage  extends PageObject {
 
@@ -50,7 +51,8 @@ public class RegisterPage  extends PageObject {
     private final By viaFacebook_SignUp = By.id("fb_btn_login");
     //private final By viaFacebook_Login = By.xpath("//button[@class='btn btn-facebook']");
     private final By viaFacebook_Login = By.id("fb_btn_login");
-
+    private final By viaTwitter_Login = By.cssSelector("a[href*='auth/twitter_authorize']");
+    private final By viaGoogle_Login = By.id("go_btn_login");
 
     // for Organization
     private final By radioBtnOrganization = By.xpath("//div[@class='modal-body']/div[2]/div[2]//label");
@@ -82,6 +84,7 @@ public class RegisterPage  extends PageObject {
     private final By DoneButton = By.xpath("//button[@can-click='step2_validate']");
     private final By OkButton = By.xpath(".//*[@id='auth-modal-welcome']/div/div/div[2]/div[2]/button");
 
+    String parentWindowHandler;
 
     public void viaFacebook_SignUp(WebDriver driver ) {
         //String winHandleBefore = getDriver().getWindowHandle();
@@ -93,6 +96,44 @@ public class RegisterPage  extends PageObject {
         element(viaFacebook_Login).click();
         WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
+    }
+    public void viaTwitter_Login(WebDriver driver ) {
+        String winHandleBefore = getDriver().getWindowHandle();
+        element(viaTwitter_Login).click();
+        WebDriverWait wt = new WebDriverWait (driver, 100);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
+    }
+    public void viaGoogle_Login(WebDriver driver ) {
+        String winHandleBefore = getDriver().getWindowHandle();
+        element(viaGoogle_Login).click();
+        parentWindowHandler = getDriver().getWindowHandle();
+        for(String winHandle : getDriver().getWindowHandles())
+        {
+            getDriver().switchTo().window(winHandle);
+            System.out.println("winHandle " + winHandle);
+        }
+        WebElement continueAs = getDriver().findElement(By.id("submit_approve_access"));
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.elementToBeClickable(continueAs));
+        continueAs.click();
+    }
+
+    public void successReg_Google() {
+        String modalWindowHandle = "";
+        Set<String> handles = getDriver().getWindowHandles();
+        System.out.println("handles " + getDriver().getWindowHandles());
+        for (String handle : handles) {
+            System.out.println("handle " + modalWindowHandle);
+            if (handle.equals(parentWindowHandler))
+                modalWindowHandle = handle;
+
+            getDriver().switchTo().window(modalWindowHandle);
+            System.out.println(getDriver().getCurrentUrl());
+            Assert.assertTrue(getDriver().getTitle().contains("Mnassa"));
+
+            WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+            wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
+        }
     }
 
     public void selectUser( ) {
@@ -113,6 +154,8 @@ public class RegisterPage  extends PageObject {
         wt.until(ExpectedConditions.visibilityOfElementLocated(Email));
     }
     public void enterEmail(String email) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Email));
         find(Email).sendKeys(email);
     }
     public void enterName(String name) {
@@ -434,6 +477,7 @@ public class RegisterPage  extends PageObject {
             System.setProperty("http.proxyPassword", "********");*/
 
             //Session emailSession = Session.getDefaultInstance(properties);
+
              Session emailSession = Session.getDefaultInstance(properties,
                     new Authenticator(){
                         protected PasswordAuthentication getPasswordAuthentication() {

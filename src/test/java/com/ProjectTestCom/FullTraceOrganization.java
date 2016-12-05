@@ -230,7 +230,8 @@ public class FullTraceOrganization {
 
     @Test
     public void stage1_Reg_Company() throws Exception {
-        registerSteps.openRegisterPage();
+        //registerSteps.openRegisterPage();
+        driver.get("http://synergy.devzone.dp.ua/ar/#!registration");
         registerSteps.selectCompany();
         registerSteps.enterEmail(NewEmailOrg);
         registerSteps.enterName(OrganizationFullNameEn);
@@ -238,12 +239,12 @@ public class FullTraceOrganization {
         registerSteps.enterPassword(NewPassword);
         registerSteps.clickDoneButton();
         loginSteps.Sleep(200);
-        registerSteps.checkWelcomeLetter(NewEmailOrg);
+        registerSteps.checkWelcomeLetter_AR(NewEmailOrg);
     }
     @Test
     public void stage2_EditMainDetails(){
-        loginSteps.openLoginPage();
-        //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
+        //loginSteps.openLoginPage();
+        driver.get("http://synergybeta.devzone.dp.ua/en");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -267,14 +268,13 @@ public class FullTraceOrganization {
         accountSettingsSteps.enterBriefInfo(BriefInfo);
         accountSettingsSteps.clickUpdate1(driver);
         //User info page
-        loginSteps.Sleep(70);
+        loginSteps.Sleep(68);
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
         accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
         accountSettingsSteps.checkInfoExists(OrganizationShortName_En_exp,OrganizationShortName_En_now);
         accountSettingsSteps.checkInfoExists(location_exp_ar, location_now_profile);
         accountSettingsSteps.checkInfoExists(location_exp_ar, location_now1);
-        accountSettingsSteps.checkInfoExists(location_now2_exp_ar, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
         accountSettingsSteps.checkInfoExists(count, count_now);
         accountSettingsSteps.checkInfoExists(YearFounder_exp, YearFounder_now);
@@ -320,8 +320,8 @@ public class FullTraceOrganization {
     }
     @Test
     public void stage5_ChangePassword() {
-        loginSteps.openLoginPage();
-        //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
+        //loginSteps.openLoginPage();
+        driver.get("http://synergybeta.devzone.dp.ua/en");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -342,8 +342,8 @@ public class FullTraceOrganization {
     }
        @Test
         public void stage4_addEventSupply_AllFields_byButtonInListing() throws Error{
-            loginSteps.openLoginPage();
-            //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
+            //loginSteps.openLoginPage();
+            driver.get("http://synergybeta.devzone.dp.ua/en");
             loginSteps.PageComplete(driver);
 
             loginSteps.enterLogin(NewEmailOrg);

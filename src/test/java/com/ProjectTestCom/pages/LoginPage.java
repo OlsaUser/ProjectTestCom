@@ -48,8 +48,8 @@ import static org.jruby.util.URLUtil.getPath;
 import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 
-//@DefaultUrl("http://synergy.devzone.dp.ua/en/")
-@DefaultUrl("http://mnassa.com/en/")
+@DefaultUrl("http://synergybeta.devzone.dp.ua/en/")
+//@DefaultUrl("http://mnassa.com/en/")
 @RunWith(SerenityRunner.class)
 public class LoginPage extends PageObject {
     private final By btnForgotPassword = By.xpath("//a[@class='link-forgot-password']");
@@ -78,10 +78,14 @@ public class LoginPage extends PageObject {
         find(Button).click();
         find(LoginLink).click();
         if (find(fieldEmail).isEnabled())
+        {
             find(fieldEmail).waitUntilPresent();
-        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldEmail));
+            WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+            wt.until(ExpectedConditions.visibilityOfElementLocated(fieldEmail));
+            wt.until(ExpectedConditions.presenceOfElementLocated(fieldEmail));
+            find(fieldEmail).waitUntilPresent();
             find(fieldEmail).sendKeys(email);
+        }
     }
 
     public void enterPassword(String password) {
@@ -91,7 +95,7 @@ public class LoginPage extends PageObject {
 
     public void clickEnter(WebDriver driver){
         element(btnEnter).click();
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
     }
 
@@ -166,7 +170,7 @@ public class LoginPage extends PageObject {
                         return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
                     }
                 };
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        WebDriverWait wait = new WebDriverWait(driver, 80);
         wait.until(pageLoadCondition);
     }
 

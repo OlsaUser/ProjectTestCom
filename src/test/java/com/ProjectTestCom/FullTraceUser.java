@@ -37,10 +37,18 @@ public class FullTraceUser {
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String email_now = PropertyLoader.getProperty(propertyFilePath, "email_now");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
+
     private String fb_Email1 = PropertyLoader.getProperty(propertyFilePath, "fb_Email1");
     private String fb_Password1 = PropertyLoader.getProperty(propertyFilePath, "fb_Password1");
+
     private String fb_Email2 = PropertyLoader.getProperty(propertyFilePath, "fb_Email2");
     private String fb_Password2 = PropertyLoader.getProperty(propertyFilePath, "fb_Password2");
+
+    private String tw_Email2 = PropertyLoader.getProperty(propertyFilePath, "tw_Email2");
+    private String tw_Password2 = PropertyLoader.getProperty(propertyFilePath, "tw_Password2");
+
+    private String gg_Email2 = PropertyLoader.getProperty(propertyFilePath, "gg_Email2");
+    private String gg_Password2 = PropertyLoader.getProperty(propertyFilePath, "gg_Password2");
 
     private String registrationFilePath = "src/test/resources/registration.properties";
     private String NewEmailUser = PropertyLoader.getProperty(registrationFilePath, "NewEmailUser");
@@ -210,14 +218,30 @@ public class FullTraceUser {
     public void tearDown() throws Exception {driver.quit();}
 
     @Test
-    public void stage1_Login_Facebook()  throws Exception {
+    public void stage0_Login_Facebook()  throws Exception {
         registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         loginSteps.enterLogin(email);
         registerSteps.viaFacebook_Login(driver);
     }
     @Test
-    public void stage1_Reg_User_Male() throws Exception {
+    public void stage1_Reg_Google()  throws Exception {
+        registerSteps.GoogleLogin(driver, gg_Email2, gg_Password2);
+        loginSteps.openLoginPage();
+        loginSteps.enterLogin(email);
+        registerSteps.viaGoogle_Login(driver);
+        registerSteps.successReg_Google();
+    }
+    @Test
+    public void stage2_Login_Twitter()  throws Exception {
+        registerSteps.TwitterLogin(driver, tw_Email2, tw_Password2);
+        loginSteps.openLoginPage();
+        loginSteps.enterLogin(email);
+        registerSteps.viaTwitter_Login(driver);
+    }
+    @Test
+    public void stage3_Reg_Email_User() throws Exception {
+        registerSteps.openRegisterPage();
         registerSteps.selectUser();
         registerSteps.selectGenderMale();
         registerSteps.clickEmailForm();
@@ -229,41 +253,17 @@ public class FullTraceUser {
         loginSteps.Sleep(200);
         registerSteps.checkWelcomeLetter(NewEmailUser);
     }
-    @Test
-    @Ignore
-    public void stage2_Register_User()  throws IOException {
-        registerSteps.openRegisterPage();
-        loginSteps.PageComplete(driver);
 
-        registerSteps.Step1_UserName(UserNameEn);
-        registerSteps.Step1_Email(NewEmailUser);
-        registerSteps.Step1_Password(NewPassword);
-        registerSteps.Step1_pressButton_Next();
-        registerSteps.Step2_FirstName(FirstNameEn);
-        registerSteps.Step2_LastName(LastNameEn);
-        registerSteps.Step2_Gender(driver, gender_female);
-        registerSteps.Step2_Location(driver, LocationEN);
-        registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.Step3_Ok(driver, NewEmailUser);
-
-        registerSteps.goConfirmLink(driver,NewEmailUser);
-        registerSteps.successRegistration(driver);
-        registerSteps.checkWelcomeLetter(NewEmailUser);
-        WebDriverWait wt = new WebDriverWait (driver, 50);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
-        registerSteps.checkWelcomeLetter(NewEmailUser);
-    }
-    //Facebook User
-    @Ignore
     @Test
-    public void stage3_EditMainDetails()  throws IOException {
+    public void stage4_EditMainDetails()  throws IOException {
        /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
         loginSteps.PageComplete(driver);
         registerSteps.successLogIn(driver);*/
 
-        loginSteps.openLoginPage();
+        //loginSteps.openLoginPage();
+        driver.get("http://synergy.devzone.dp.ua/en");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailUser);
@@ -276,7 +276,7 @@ public class FullTraceUser {
         loginSteps.PageComplete(driver);
 
         accountSettingsSteps.enterFirstName(FirstName_En);
-        accountSettingsSteps.enterLastName(LastName_En);
+        //accountSettingsSteps.enterLastName(LastName_En);
         accountSettingsSteps.enterUserName(UserName_En);
         // accountSettingsSteps.selectGenderFeMale();
         accountSettingsSteps.selectGenderMale(Male);
@@ -308,7 +308,7 @@ public class FullTraceUser {
         accountSettingsSteps.checkInfoExists(birth_exp, birth_now);
     }
     @Test
-    public void stage4_EditContactInfo(){
+    public void stage5_EditContactInfo(){
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -347,7 +347,7 @@ public class FullTraceUser {
         accountSettingsSteps.checkNetworkAccounts();
     }
     @Test
-    public void stage5_AddEducationInfo(){
+    public void stage6_AddEducationInfo(){
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -383,7 +383,7 @@ public class FullTraceUser {
         accountSettingsSteps.checkEducationInfo(InstitutionName,Speciality,location,About);
     }
     @Test
-    public void stage6_AddJobInfo(){
+    public void stage7_AddJobInfo(){
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -413,9 +413,8 @@ public class FullTraceUser {
         jse.executeScript("window.scrollBy(0,500)", "");
         accountSettingsSteps.checkJobInfo(JobName,JobSpeciality,About);
     }
-    //Facebook
     @Test
-    public void stage7_Add_Skills_Interests(){
+    public void stage8_Add_Skills_Interests(){
         /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
@@ -450,7 +449,7 @@ public class FullTraceUser {
     }
 
     @Test
-    public void stage8_addServiceSupply_MAX_byButtonInListing() {
+    public void stage9_addServiceSupply_MAX_byButtonInListing() {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -520,9 +519,8 @@ public class FullTraceUser {
         addItemSteps.checkElementPresents(debitcard);
         addItemSteps.checkElementPresents(cash);
     }
-//Facebook User
     @Test
-    public void stage9_addProductDemand_AR_byButtonFromHeader() throws AWTException {
+    public void stage9a_addProductDemand_AR_byButtonFromHeader() throws AWTException {
         /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
@@ -584,7 +582,7 @@ public class FullTraceUser {
         addItemSteps.checkValueExists(tag1, tag_now);
     }
     @Test
-    public void stage9a_ChangePassword(){
+    public void stage9b_ChangePassword(){
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -603,5 +601,29 @@ public class FullTraceUser {
         accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);
+    }
+    @Test
+    @Ignore
+    public void stage9c_Register_User()  throws IOException {
+        registerSteps.openRegisterPage();
+        loginSteps.PageComplete(driver);
+
+        registerSteps.Step1_UserName(UserNameEn);
+        registerSteps.Step1_Email(NewEmailUser);
+        registerSteps.Step1_Password(NewPassword);
+        registerSteps.Step1_pressButton_Next();
+        registerSteps.Step2_FirstName(FirstNameEn);
+        registerSteps.Step2_LastName(LastNameEn);
+        registerSteps.Step2_Gender(driver, gender_female);
+        registerSteps.Step2_Location(driver, LocationEN);
+        registerSteps.Step2_pressButton_Confirm(driver);
+        registerSteps.Step3_Ok(driver, NewEmailUser);
+
+        registerSteps.goConfirmLink(driver,NewEmailUser);
+        registerSteps.successRegistration(driver);
+        registerSteps.checkWelcomeLetter(NewEmailUser);
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
+        registerSteps.checkWelcomeLetter(NewEmailUser);
     }
 }
