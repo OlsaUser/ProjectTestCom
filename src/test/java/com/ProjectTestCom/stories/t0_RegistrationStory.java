@@ -131,26 +131,54 @@ public class t0_RegistrationStory {
     public void tearDown() throws Exception {driver.quit();}
 
     @Test
-    public void stage1_Register_User()  throws Exception {
+    public void stage1_Reg_User_Male() throws Exception {
+        registerSteps.selectUser();
+        registerSteps.selectGenderMale();
+        registerSteps.clickEmailForm();
+        registerSteps.enterEmail(NewEmailUser);
+        registerSteps.enterName(FirstNameEn);
+        registerSteps.enterUserName(UserNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton();
+        loginSteps.Sleep(200);
+        registerSteps.checkWelcomeLetter(NewEmailUser);
+    }
+
+    @Test
+    public void stage2_Reg_Company() throws Exception {
+        registerSteps.selectCompany();
+        registerSteps.enterEmail(NewEmailOrg);
+        registerSteps.enterName(OrganizationFullNameEn);
+        registerSteps.enterUserName(OrganizationShortNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton();
+        loginSteps.Sleep(200);
+        registerSteps.checkWelcomeLetter(NewEmailOrg);
+    }
+
+    @Test
+    @Ignore
+    public void stage_Register_User()  throws Exception {
         registerSteps.Step1_UserName(UserNameEn);
         registerSteps.Step1_Email(NewEmailUser);
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
         registerSteps.Step2_FirstName(FirstNameEn);
-//        registerSteps.Step2_LastName(LastNameEn);
+        registerSteps.Step2_LastName(LastNameEn);
         registerSteps.Step2_Gender(driver, gender_female);
         registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailUser);
-        /*loginSteps.Sleep(500);
+        loginSteps.Sleep(500);
         registerSteps.goConfirmLink(driver,NewEmailUser);
-        registerSteps.checkWelcomeLetter(NewEmailUser);*/
+        registerSteps.checkWelcomeLetter(NewEmailUser);
         WebDriverWait wt = new WebDriverWait (driver, 50);
         wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
         registerSteps.checkWelcomeLetter(NewEmailUser);
     }
 
     @Test
+    @Ignore
     public void stage3_Register_Organization() throws Exception {
         registerSteps.Step1_selectRadioButton_Organization();
         registerSteps.Step1_UserName(OrganizationShortNameEn);

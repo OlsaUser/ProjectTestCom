@@ -189,7 +189,7 @@ public class t2_AddItemServiceStory {
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         addItemSteps.selectSupply();
         addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
-        addItemSteps.selectCategory2();
+        addItemSteps.selectCategory1();
 
         addItemSteps.collapseMainInfo();
         addItemSteps.selectServiceWillBeAvailableSoon();
@@ -263,7 +263,7 @@ public class t2_AddItemServiceStory {
         addItemSteps.selectSupply();
         addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
 
-        addItemSteps.selectCategory3();
+        addItemSteps.selectCategory1();
 
         addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
@@ -316,7 +316,7 @@ public class t2_AddItemServiceStory {
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         addItemSteps.selectDemand();
         addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
-        addItemSteps.selectCategory2();
+        addItemSteps.selectCategory1();
 
         addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);

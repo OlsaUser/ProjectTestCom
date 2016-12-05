@@ -67,11 +67,13 @@ public class AddPostPage extends PageObject {
     //private final By PostText = By.xpath("//div[@class='feed-list js-feed-list']/div[1]/div[@class='feed-content']/div");
     private final By txtPost = By.xpath("//div[@class='feed-content']/div");
     //private final By txtPost_NewsFeed = By.xpath("//div[@class='feed-content']/div");
-    private final By VideoContent = By.xpath("//div[@class='feed-media-box -video']");
-    private final By AudioContent = By.xpath("//div[@class='feed-media js-feed-media']");
-    private final By widgetAudio = By.xpath("//div[@class='wall-post-media-box']");
+    private final By VideoContent = By.xpath("//div[@class='feed-media js-feed-media']");
+    //private final By AudioContent = By.xpath("//div[@class='feed-media js-feed-media']");
+    private final By AudioContent = By.xpath("//div[@class='feed-audio-item']");
+    private final By widgetAudio = By.xpath("//div[@class='feed-audio-item']");
     private final By widgetVideo = By.xpath("//div[@class='wall-post-media-item is-main']");
-
+    //private final By widgetAudio = By.xpath("//div[@class='wall-post-media-box']");
+    //private final By widgetVideo = By.xpath("//div[@class='wall-post-media-item is-main']");
     private final By mentionDropdown = By.id("mention-dropdown");
     private final By mentionUser = By.xpath("//div[@id='mention-dropdown']/div");
 
@@ -133,10 +135,10 @@ public class AddPostPage extends PageObject {
     }
 
     public void AddTextPost_inGroup(String Text, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 99);
+        WebDriverWait wt = new WebDriverWait (driver, 150);
         wt.until(ExpectedConditions.presenceOfElementLocated(txtCounter));
         //wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
-
+        find(fieldPost).click();
         String el = find(txtCounter). getText();
         waitForTextToAppear(el);
 
@@ -262,7 +264,10 @@ public class AddPostPage extends PageObject {
 
     public void openPostMenu() {find(postMenu).click();}
 
-    public void openRepostMenu() {find(repostMenu).click();}
+    public void openRepostMenu() {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 99);
+        wt.until(ExpectedConditions.elementToBeClickable(repostMenu));
+        find(repostMenu).click();}
 
     public void selectRepostToGroup(WebDriver driver) {
         element(menuRepostToGroup).click();

@@ -121,7 +121,7 @@ public class HeaderPage extends PageObject {
 
     private final By MyMnassaContent = By.xpath("//div[@class='feed container']");
     //private final By MessageContent = By.xpath("//section[@id='cabinet_sect']/cabinet/section/div[2]/div/div[1]/div[1]/a");
-    private final By MessageContent = By.xpath("//div[@class='im-content container']");
+    private final By MessageContent = By.xpath("//div[@class='im-users']/div");
     private final By HomeContent = By.xpath("//div[@class='feed-list js-feed-list']");
     private final By NotificationContent = By.xpath("//section[@id='community_sect']");
     private final By ProfileContent = By.xpath("//div[@id='cabinet_sect']");
@@ -186,18 +186,17 @@ public class HeaderPage extends PageObject {
     }
 
     public void openDiscoverPage (WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
-        find(linkDiscover).waitUntilPresent();
+        WebDriverWait wt = new WebDriverWait (driver, 100);
+        //find(linkDiscover).waitUntilPresent();
         wt.until(ExpectedConditions.elementToBeClickable(linkDiscover));
         find(linkDiscover).click();
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentItem));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentItem));
     }
 
     public void openDiscoverUserActive (WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 150);
        // wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscoverUsersActive));
         find(linkDiscoverUsersActive).click();
-
         wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentUser));
     }
 
@@ -206,16 +205,16 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscoverUsersNew));
         find(linkDiscoverUsersNew).click();
         WebElement el = driver.findElement (DiscoverContentUser);
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentUser));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentUser));
     }
     public void openDiscoverUserPopular (WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 60);
         wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscover));
         find(linkDiscoverUsers).click();
-        wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscoverUsersPopular));
-        find(linkDiscoverUsersPopular).click();
-        driver.manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentUser));
+       // wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscoverUsersPopular));
+       // find(linkDiscoverUsersPopular).click();
+       // driver.manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
+        wt.until(ExpectedConditions.presenceOfElementLocated(DiscoverContentUser));
     }
     public void openDiscoverItemPopular (WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 50);
@@ -234,7 +233,7 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentItem));
         find(linkDiscoverItemsNew).click();
         driver.manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentItem));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentItem));
     }
     public void openDiscoverPostPopular (WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 50);
@@ -246,11 +245,11 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(DiscoverContentPost)));
     }
     public void openDiscoverPostNew (WebDriver driver) {
-        //wt.until(ExpectedConditions.visibilityOfElementLocated(linkDiscoverPosts));
+        WebDriverWait wt = new WebDriverWait (driver, 60);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(linkDiscoverPosts));
         find(linkDiscoverPosts).click();
         //wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentPost));
         //find(linkDiscoverPostsNew).click();
-        WebDriverWait wt = new WebDriverWait (driver, 50);
         wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentPost));
     }
     public void openDiscoverPostTrending (WebDriver driver) {
@@ -267,9 +266,7 @@ public class HeaderPage extends PageObject {
         WebDriverWait wt = new WebDriverWait (driver, 50);
         wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscover));
         find(linkDiscoverGroupPopular).click();
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentGroup));
-        find(linkDiscoverGroupPopular).click();
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentGroup));
+        wt.until(ExpectedConditions.presenceOfElementLocated(DiscoverContentGroup));
     }
 
     public void openDiscoverGroupsNew (WebDriver driver) {
@@ -283,9 +280,10 @@ public class HeaderPage extends PageObject {
     }
 
     public void openMessagePage(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 70);
         wt.until(ExpectedConditions.presenceOfElementLocated(iconMessage));
         find(iconMessage).click();
+        wt.until(ExpectedConditions.presenceOfElementLocated(MessageContent));
         wt.until(ExpectedConditions.visibilityOfElementLocated(MessageContent));
     }
 
@@ -350,7 +348,7 @@ public class HeaderPage extends PageObject {
     }
 
     public void openEventListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 100);
         find(linkEvent).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
     }
@@ -362,7 +360,7 @@ public class HeaderPage extends PageObject {
     }
 
     public void openMyFollowers(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.presenceOfElementLocated(linkFollowers));
         find(linkFollowers).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(FollowerContent));

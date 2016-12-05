@@ -27,8 +27,8 @@ import java.util.concurrent.TimeUnit;
  */
 @RunWith(SerenityRunner.class)
 public class Performance {
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String ServiceListing = PropertyLoader.getProperty(propertyFilePath, "ServiceListing");
@@ -164,8 +164,8 @@ public class Performance {
         loginSteps.pageLoad(DiscoverItemNew);
         headerSteps.openDiscoverItemPopular(driver);
         loginSteps.PageComplete(driver);
-        headerSteps.openDiscoverItemNew(driver);
-        loginSteps.PageComplete(driver);
+       // headerSteps.openDiscoverItemNew(driver);
+       // loginSteps.PageComplete(driver);
 
         headerSteps.openDiscoverPostNew(driver);
         loginSteps.PageComplete(driver);
@@ -211,7 +211,7 @@ public class Performance {
 
         headerSteps.MyGroupWall(driver);
         loginSteps.PageComplete(driver);
-        //loginSteps.pageLoad(MyGroupWall);
+        loginSteps.pageLoad(MyGroupWall);
 
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);

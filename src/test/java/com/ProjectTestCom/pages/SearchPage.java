@@ -13,8 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-@DefaultUrl("http://synergybeta.devzone.dp.ua/en")
-//@DefaultUrl("http://mnassa.com/en")
+//@DefaultUrl("http://synergy.devzone.dp.ua/en")
+@DefaultUrl("http://mnassa.com/en")
 
 @RunWith(SerenityRunner.class)
 public class SearchPage extends PageObject {
@@ -183,6 +183,7 @@ public class SearchPage extends PageObject {
         wt.until(ExpectedConditions.visibilityOfElementLocated(UserListing));
 
         find(FullName).click();
+        wt.until(ExpectedConditions.visibilityOfElementLocated(BriefInfo));
         String i = find(BriefInfo).getText();
         System.out.println(find(BriefInfo).getText());
         Assert.assertTrue(i.contains(info));

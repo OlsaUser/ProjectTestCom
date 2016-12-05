@@ -58,6 +58,7 @@ public class t2_AccountSettings_UserStory {
     private String Symbols = PropertyLoader.getProperty(profileFilePath, "Symbols");
     private String Numbers = PropertyLoader.getProperty(profileFilePath, "Numbers");
     private String Name_51_symbols = PropertyLoader.getProperty(profileFilePath, "Name_51_symbols");
+    private String Name_101_symbols = PropertyLoader.getProperty(profileFilePath, "Name_101_symbols");
     //private String location = PropertyLoader.getProperty(profileFilePath, "location");
     private String Male = PropertyLoader.getProperty(profileFilePath, "Male");
     private String gender_now = PropertyLoader.getProperty(profileFilePath, "gender_now");
@@ -159,7 +160,7 @@ public class t2_AccountSettings_UserStory {
     @Test
     public void stage1_changeAccountSettings_User_MainDetails_EN(){
         accountSettingsSteps.enterFirstName(FirstName_En);
-        accountSettingsSteps.enterLastName(LastName_En);
+        //accountSettingsSteps.enterLastName(LastName_En);
         accountSettingsSteps.enterUserName(UserName_En);
        // accountSettingsSteps.selectGenderFeMale();
         accountSettingsSteps.selectGenderMale(Male);
@@ -194,7 +195,7 @@ public class t2_AccountSettings_UserStory {
     @Test
     public void stage2_changeAccountSettings_User_MainDetails_AR(){
         accountSettingsSteps.enterFirstName(FirstName_Ar);
-        accountSettingsSteps.enterLastName(LastName_Ar);
+        //accountSettingsSteps.enterLastName(LastName_Ar);
         accountSettingsSteps.enterUserName(UserName_En);
         accountSettingsSteps.selectGenderFeMale(Female);
         accountSettingsSteps.selectLanguageEnglish();
@@ -231,9 +232,9 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.clickUpdateError();
         accountSettingsSteps.checkMessage_if_NameWrong(Error_FirstName, driver);
 
-        accountSettingsSteps.enterLastName(Symbols);
+      /*  accountSettingsSteps.enterLastName(Symbols);
         accountSettingsSteps.clickUpdateError();
-        accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName, driver);
+        accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName, driver);*/
 
         accountSettingsSteps.enterUserName(Symbols);
         accountSettingsSteps.clickUpdateError();
@@ -243,32 +244,32 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.clickUpdateError();
         accountSettingsSteps.checkMessage_if_NameWrong(Error_FirstName, driver);
 
-        accountSettingsSteps.enterLastName(Numbers);
+       /* accountSettingsSteps.enterLastName(Numbers);
         accountSettingsSteps.clickUpdateError();
-        accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName, driver);
+        accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName, driver);*/
 
         accountSettingsSteps.enterUserName(Numbers);
         accountSettingsSteps.clickUpdateError();
         accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName, driver);
 
-        accountSettingsSteps.enterFirstName(Name_51_symbols);
-        accountSettingsSteps.clickUpdateError();
-        accountSettingsSteps.checkMessage_if_NameWrong(NoError, driver);
+        accountSettingsSteps.enterFirstName(Name_101_symbols);
+       // accountSettingsSteps.clickUpdateError();
+        //accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
 //last symbol is cut (appears only max 50 symbols)
-        accountSettingsSteps.enterLastName(Name_51_symbols);
-        accountSettingsSteps.enterUserName(Name_51_symbols);
+        //accountSettingsSteps.enterLastName(Name_51_symbols);
+        //accountSettingsSteps.enterUserName(Name_101_symbols);
         //accountSettingsSteps.clickUpdateError();
         //accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
         //accountSettingsSteps.enterUserName(UserName_En);
-        accountSettingsSteps.clickUpdateError();
-        accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
+        //accountSettingsSteps.clickUpdateError();
+        //accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
        // accountSettingsSteps.checkMessage_if_NameWrong(NoError, driver);
        // accountSettingsSteps.clickUpdate1(driver);
         //loginSteps.PageComplete(driver);
-        /*accountSettingsSteps.enterFirstName(FirstName_Ar);
-        accountSettingsSteps.enterLastName(LastName_Ar);
+        accountSettingsSteps.enterFirstName(FirstName_Ar);
+        //accountSettingsSteps.enterLastName(LastName_Ar);
         accountSettingsSteps.enterUserName(Numbers);
-        accountSettingsSteps.clickUpdate1(driver);*/
+        accountSettingsSteps.clickUpdate1(driver);
         //loginSteps.PageComplete(driver);
     }
     @Test

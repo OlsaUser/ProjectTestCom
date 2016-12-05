@@ -8,10 +8,7 @@ import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.pages.Pages;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
@@ -232,34 +229,21 @@ public class FullTraceOrganization {
     public void tearDown() throws Exception {driver.quit();}
 
     @Test
-    public void stage1_Register_Organization() throws Exception {
-        //registerSteps.openRegisterPage();
-        driver.get("http://synergybeta.devzone.dp.ua/ar/#!registration");
-        loginSteps.PageComplete(driver);
-
-        registerSteps.Step1_selectRadioButton_Organization();
-        registerSteps.Step1_UserName(OrganizationShortNameEn);
-        registerSteps.Step1_Email(NewEmailOrg);
-        registerSteps.Step1_Password(NewPassword);
-        registerSteps.Step1_pressButton_Next();
-        registerSteps.Step2_OrganizationFullName(OrganizationFullNameEn);
-        registerSteps.Step2_Founded(Year_2014_ar, driver);
-        registerSteps.Step2_Location(driver, LocationEN);
-        registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.Step3_Ok(driver, NewEmailOrg);
-
-        /*registerSteps.goConfirmLink_AR(driver,NewEmailOrg);
-        registerSteps.checkWelcomeLetter_AR(NewEmailOrg);
-        registerSteps.goLoginButton(driver,NewEmailOrg);*/
-
-        WebDriverWait wt = new WebDriverWait (driver, 50);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
+    public void stage1_Reg_Company() throws Exception {
+        registerSteps.openRegisterPage();
+        registerSteps.selectCompany();
+        registerSteps.enterEmail(NewEmailOrg);
+        registerSteps.enterName(OrganizationFullNameEn);
+        registerSteps.enterUserName(OrganizationShortNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton();
+        loginSteps.Sleep(200);
         registerSteps.checkWelcomeLetter(NewEmailOrg);
     }
     @Test
     public void stage2_EditMainDetails(){
-        //loginSteps.openLoginPage();
-        driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
+        loginSteps.openLoginPage();
+        //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -298,8 +282,8 @@ public class FullTraceOrganization {
     }
     @Test
     public void stage3_EditContactInfo(){
-        //loginSteps.openLoginPage();
-        driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
+        loginSteps.openLoginPage();
+        //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -336,8 +320,8 @@ public class FullTraceOrganization {
     }
     @Test
     public void stage5_ChangePassword() {
-        //loginSteps.openLoginPage();
-        driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
+        loginSteps.openLoginPage();
+        //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
         loginSteps.enterLogin(NewEmailOrg);
@@ -358,8 +342,8 @@ public class FullTraceOrganization {
     }
        @Test
         public void stage4_addEventSupply_AllFields_byButtonInListing() throws Error{
-            //loginSteps.openLoginPage();
-            driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
+            loginSteps.openLoginPage();
+            //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
             loginSteps.PageComplete(driver);
 
             loginSteps.enterLogin(NewEmailOrg);
@@ -439,4 +423,30 @@ public class FullTraceOrganization {
             addItemSteps.checkElementPresents(debitcard);
             addItemSteps.checkElementPresents(cash);
         }
+    @Test
+    @Ignore
+    public void stage1_Register_Organization() throws Exception {
+        //registerSteps.openRegisterPage();
+        driver.get("http://synergybeta.devzone.dp.ua/ar/#!registration");
+        loginSteps.PageComplete(driver);
+
+        registerSteps.Step1_selectRadioButton_Organization();
+        registerSteps.Step1_UserName(OrganizationShortNameEn);
+        registerSteps.Step1_Email(NewEmailOrg);
+        registerSteps.Step1_Password(NewPassword);
+        registerSteps.Step1_pressButton_Next();
+        registerSteps.Step2_OrganizationFullName(OrganizationFullNameEn);
+        registerSteps.Step2_Founded(Year_2014_ar, driver);
+        registerSteps.Step2_Location(driver, LocationEN);
+        registerSteps.Step2_pressButton_Confirm(driver);
+        registerSteps.Step3_Ok(driver, NewEmailOrg);
+
+        /*registerSteps.goConfirmLink_AR(driver,NewEmailOrg);
+        registerSteps.checkWelcomeLetter_AR(NewEmailOrg);
+        registerSteps.goLoginButton(driver,NewEmailOrg);*/
+
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
+        registerSteps.checkWelcomeLetter(NewEmailOrg);
+    }
 }

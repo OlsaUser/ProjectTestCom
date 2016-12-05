@@ -122,7 +122,7 @@ public class t2_AddItemProductStory {
         loginSteps.PageComplete(driver);
         addItemSteps.selectSupply();
         addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
-        addItemSteps.selectCategory2();
+        addItemSteps.selectCategory1();
 
         addItemSteps.collapseMainInfo();
         addItemSteps.selectAvailabilityOutOfStock();
@@ -226,7 +226,7 @@ public class t2_AddItemProductStory {
         loginSteps.PageComplete(driver);
         addItemSteps.openItemSettingsMenu();
         addItemSteps.selectEditMenu();
-        addItemSteps.selectCategory2();
+        addItemSteps.selectCategory1();
         addItemSteps.collapseMainInfo();
 
         addItemSteps.collapseMainDetails();

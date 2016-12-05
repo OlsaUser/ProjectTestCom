@@ -22,6 +22,36 @@ public class RegisterSteps extends ScenarioSteps {
     public void openRegisterPage() { registerPage.open();}
 
     @Step
+    public void selectUser( ) { registerPage.selectUser();}
+
+    @Step
+    public void selectCompany( ) { registerPage.selectCompany();}
+
+    @Step
+    public void selectGenderMale( ) { registerPage.selectGenderMale();}
+
+    @Step
+    public void selectGenderFemale( ) { registerPage.selectGenderFemale();}
+
+    @Step
+    public void clickEmailForm( ) { registerPage.clickEmailForm();}
+
+    @Step
+    public void enterEmail(String email ) { registerPage.enterEmail(email);}
+
+    @Step
+    public void enterName(String name ) { registerPage.enterName(name);}
+
+    @Step
+    public void enterUserName(String userName ) { registerPage.enterUserName(userName);}
+
+    @Step
+    public void enterPassword(String password ) { registerPage.enterPassword(password);}
+
+    @Step
+    public void clickDoneButton( ) { registerPage.clickDoneButton();}
+
+    @Step
     public void viaFacebook_Login(WebDriver driver) { registerPage.viaFacebook_Login(driver);}
 
     @Step

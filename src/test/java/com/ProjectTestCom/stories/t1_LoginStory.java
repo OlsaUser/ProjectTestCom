@@ -145,7 +145,6 @@ public class t1_LoginStory {
     }
 
     @Test
-    @Ignore
     public void loginUser() {
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);

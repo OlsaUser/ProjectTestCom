@@ -48,8 +48,8 @@ import static org.jruby.util.URLUtil.getPath;
 import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 
-@DefaultUrl("http://synergybeta.devzone.dp.ua/en/#!login")
-//@DefaultUrl("http://mnassa.com/en/#!login")
+//@DefaultUrl("http://synergy.devzone.dp.ua/en/")
+@DefaultUrl("http://mnassa.com/en/")
 @RunWith(SerenityRunner.class)
 public class LoginPage extends PageObject {
     private final By btnForgotPassword = By.xpath("//a[@class='link-forgot-password']");
@@ -59,6 +59,9 @@ public class LoginPage extends PageObject {
     private final By lblLoginError = By.xpath("//div[@class='error_message']");
     private final By lblPasswordError = By.xpath("//div[@class='error_message']");
     private final By LogOut = By.xpath("//div[@class='header-user']/div[2]/a[3]");
+
+    private final By Button = By.xpath("//button[@class='header-control -auth']");
+    private final By LoginLink = By.xpath("//button[@data-target='#auth-tab-login']");
 
     String parentWindowHandler;
 
@@ -72,8 +75,12 @@ public class LoginPage extends PageObject {
     }
 
     public void enterLogin(String email) {
+        find(Button).click();
+        find(LoginLink).click();
         if (find(fieldEmail).isEnabled())
-            find(fieldEmail).waitUntilEnabled();
+            find(fieldEmail).waitUntilPresent();
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldEmail));
             find(fieldEmail).sendKeys(email);
     }
 
@@ -159,7 +166,7 @@ public class LoginPage extends PageObject {
                         return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
                     }
                 };
-        WebDriverWait wait = new WebDriverWait(driver, 50);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
         wait.until(pageLoadCondition);
     }
 

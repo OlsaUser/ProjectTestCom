@@ -210,16 +210,27 @@ public class FullTraceUser {
     public void tearDown() throws Exception {driver.quit();}
 
     @Test
-    public void stage1_Register_Facebook()  throws Exception {
+    public void stage1_Login_Facebook()  throws Exception {
         registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
-        registerSteps.openRegisterPage();
-        registerSteps.viaFacebook_SignUp(driver);
-        registerSteps.successRegistrationFb(driver);
-       /* registerSteps.confirmFbReg(driver, fb_Email2, fb_Password2);
-        loginSteps.Sleep(100);
-        registerSteps.successRegistrationFb(driver);*/
+        loginSteps.openLoginPage();
+        loginSteps.enterLogin(email);
+        registerSteps.viaFacebook_Login(driver);
     }
     @Test
+    public void stage1_Reg_User_Male() throws Exception {
+        registerSteps.selectUser();
+        registerSteps.selectGenderMale();
+        registerSteps.clickEmailForm();
+        registerSteps.enterEmail(NewEmailUser);
+        registerSteps.enterName(FirstNameEn);
+        registerSteps.enterUserName(UserNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton();
+        loginSteps.Sleep(200);
+        registerSteps.checkWelcomeLetter(NewEmailUser);
+    }
+    @Test
+    @Ignore
     public void stage2_Register_User()  throws IOException {
         registerSteps.openRegisterPage();
         loginSteps.PageComplete(driver);
@@ -229,15 +240,15 @@ public class FullTraceUser {
         registerSteps.Step1_Password(NewPassword);
         registerSteps.Step1_pressButton_Next();
         registerSteps.Step2_FirstName(FirstNameEn);
-       // registerSteps.Step2_LastName(LastNameEn);
+        registerSteps.Step2_LastName(LastNameEn);
         registerSteps.Step2_Gender(driver, gender_female);
         registerSteps.Step2_Location(driver, LocationEN);
         registerSteps.Step2_pressButton_Confirm(driver);
         registerSteps.Step3_Ok(driver, NewEmailUser);
 
-        /*registerSteps.goConfirmLink(driver,NewEmailUser);
+        registerSteps.goConfirmLink(driver,NewEmailUser);
         registerSteps.successRegistration(driver);
-        registerSteps.checkWelcomeLetter(NewEmailUser);*/
+        registerSteps.checkWelcomeLetter(NewEmailUser);
         WebDriverWait wt = new WebDriverWait (driver, 50);
         wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
         registerSteps.checkWelcomeLetter(NewEmailUser);

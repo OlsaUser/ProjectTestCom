@@ -680,7 +680,7 @@ public class AccountSettingsPage extends PageObject {
         //find(btnOk).waitUntilClickable();
         //find(btnOk).waitUntilPresent();
        // if (find(btnOk).isVisible())
-        WebDriverWait wt1 = new WebDriverWait (driver, 165);
+        WebDriverWait wt1 = new WebDriverWait (driver, 173);
         wt1.until(ExpectedConditions.elementToBeClickable(btnOk));
         find(btnOk).click();
         WebDriverWait wt2 = new WebDriverWait (driver, 150);
