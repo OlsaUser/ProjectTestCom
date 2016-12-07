@@ -161,8 +161,8 @@ public class LoginPage extends PageObject {
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
 
-    /*public void PageComplete(final WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 400);
+   /* public void PageComplete(final WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 80);
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");

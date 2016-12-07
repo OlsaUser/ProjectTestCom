@@ -49,7 +49,10 @@ public class RegisterSteps extends ScenarioSteps {
     public void enterPassword(String password ) { registerPage.enterPassword(password);}
 
     @Step
-    public void clickDoneButton( ) { registerPage.clickDoneButton();}
+    public void clickDoneButton_Ok( ) { registerPage.clickDoneButton_Ok();}
+
+    @Step
+    public void clickDoneButton_Error( ) { registerPage.clickDoneButton_Error();}
 
     @Step
     public void viaFacebook_Login(WebDriver driver) { registerPage.viaFacebook_Login(driver);}

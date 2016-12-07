@@ -249,7 +249,7 @@ public class FullTraceUser {
         registerSteps.enterName(FirstNameEn);
         registerSteps.enterUserName(UserNameEn);
         registerSteps.enterPassword(NewPassword);
-        registerSteps.clickDoneButton();
+        registerSteps.clickDoneButton_Ok();
         loginSteps.Sleep(200);
         registerSteps.checkWelcomeLetter(NewEmailUser);
     }

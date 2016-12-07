@@ -122,10 +122,11 @@ public class t0_RegistrationStory {
 
     @Before
     public void setup() throws IOException {
-        driver.manage().window().maximize();
-        /*System.setProperty("webdriver.gecko.driver","D:\\ProjectTestCom\\src\\drivers\\geckodriver.exe");
-        driver = new FirefoxDriver();*/
 
+        System.setProperty("webdriver.gecko.driver","D:\\ProjectTestCom\\src\\drivers\\geckodriver.exe");
+        //driver = new FirefoxDriver();
+
+        driver.manage().window().maximize();
         registerSteps.openRegisterPage();
         loginSteps.PageComplete(driver);
     }
@@ -142,7 +143,8 @@ public class t0_RegistrationStory {
         registerSteps.enterName(FirstNameEn);
         registerSteps.enterUserName(UserNameEn);
         registerSteps.enterPassword(NewPassword);
-        registerSteps.clickDoneButton();
+        registerSteps.clickDoneButton_Ok();
+        registerSteps.successRegistration(driver);
         loginSteps.Sleep(200);
         registerSteps.checkWelcomeLetter(NewEmailUser);
     }
@@ -154,53 +156,65 @@ public class t0_RegistrationStory {
         registerSteps.enterName(OrganizationFullNameEn);
         registerSteps.enterUserName(OrganizationShortNameEn);
         registerSteps.enterPassword(NewPassword);
-        registerSteps.clickDoneButton();
+        registerSteps.clickDoneButton_Ok();
+        registerSteps.successRegistration(driver);
         loginSteps.Sleep(200);
         registerSteps.checkWelcomeLetter(NewEmailOrg);
     }
-
     @Test
-    @Ignore
-    public void stage_Register_User()  throws Exception {
-        registerSteps.Step1_UserName(UserNameEn);
-        registerSteps.Step1_Email(NewEmailUser);
-        registerSteps.Step1_Password(NewPassword);
-        registerSteps.Step1_pressButton_Next();
-        registerSteps.Step2_FirstName(FirstNameEn);
-        registerSteps.Step2_LastName(LastNameEn);
-        registerSteps.Step2_Gender(driver, gender_female);
-        registerSteps.Step2_Location(driver, LocationEN);
-        registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.Step3_Ok(driver, NewEmailUser);
-        loginSteps.Sleep(500);
-        registerSteps.goConfirmLink(driver,NewEmailUser);
-        registerSteps.checkWelcomeLetter(NewEmailUser);
-        WebDriverWait wt = new WebDriverWait (driver, 50);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
-        registerSteps.checkWelcomeLetter(NewEmailUser);
+    public void stage3_Validation_Company() throws Exception{
+        registerSteps.selectCompany();
+        registerSteps.enterName(OrganizationFullNameEn);
+        registerSteps.enterUserName(OrganizationShortNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton_Error();
+        System.out.println("1.Empty Email");
+        registerSteps.checkValidationMessage(ErrorEmail_Empty, driver);
+
+        registerSteps.enterEmail(NewEmailOrg);
+        registerSteps.clearOrganizationFullName();
+        registerSteps.enterUserName(OrganizationShortNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton_Error();
+        System.out.println("2.Empty Organization FullName");
+        registerSteps.checkValidationMessage(ErrorOrganizationFullName_Empty, driver);
+
+        registerSteps.enterName(OrganizationFullNameEn);
+        registerSteps.clearUserName();
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton_Error();
+        System.out.println("3.Empty Organization UserName");
+        registerSteps.checkValidationMessage(ErrorOrganizationShortName_Empty, driver);
+
+        registerSteps.enterName(OrganizationFullNameEn);
+        registerSteps.enterUserName(OrganizationShortNameEn);
+        registerSteps.clearPassword();
+        registerSteps.clickDoneButton_Error();
+        System.out.println("4.Empty Password");
+        registerSteps.checkValidationMessage(ErrorPassword_Empty, driver);
+
+        registerSteps.clearEmail();
+        registerSteps.enterName(OrganizationFullName_Ar);
+        registerSteps.enterUserName(OrganizationShortNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton_Error();
+        System.out.println("5.OrganizationFullName=Arabian");
+        registerSteps.checkValidationMessage(ErrorEmail_Empty, driver);
+
+        registerSteps.enterName(Symbols);
+        registerSteps.enterUserName(OrganizationShortNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton_Error();
+        System.out.println("6.Organization Name=Symbols");
+        registerSteps.checkValidationMessage(ErrorEmail_Empty, driver);
+
+        registerSteps.enterName(Numbers);
+        registerSteps.enterUserName(OrganizationShortNameEn);
+        registerSteps.enterPassword(NewPassword);
+        registerSteps.clickDoneButton_Error();
+        System.out.println("7.OrganizationFullName=Numbers");
+        registerSteps.checkValidationMessage(ErrorEmail_Empty, driver);
     }
-
-    @Test
-    @Ignore
-    public void stage3_Register_Organization() throws Exception {
-        registerSteps.Step1_selectRadioButton_Organization();
-        registerSteps.Step1_UserName(OrganizationShortNameEn);
-        registerSteps.Step1_Email(NewEmailOrg);
-        registerSteps.Step1_Password(NewPassword);
-        registerSteps.Step1_pressButton_Next();
-        registerSteps.Step2_OrganizationFullName(OrganizationFullNameEn);
-        registerSteps.Step2_Founded(Year_2014, driver);
-        registerSteps.Step2_Location(driver, LocationAR);
-        registerSteps.Step2_pressButton_Confirm(driver);
-        registerSteps.Step3_Ok(driver, NewEmailOrg);
-       /* loginSteps.Sleep(500);
-        registerSteps.goConfirmLink(driver,NewEmailOrg);
-        registerSteps.checkWelcomeLetter(NewEmailOrg);*/
-        WebDriverWait wt = new WebDriverWait (driver, 50);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
-        registerSteps.checkWelcomeLetter(NewEmailUser);
-        }
-
     @Test
     public void stage4_ValidationMessages_User() throws Exception {
         registerSteps.Step1_UserName(UserNameEn);
@@ -334,6 +348,7 @@ public class t0_RegistrationStory {
         registerSteps.checkValidationMessage(ErrorLocation_Empty, driver);
     }
     @Test
+    @Ignore
     public void stage5_ValidationMessages_Organization() throws Exception{
         registerSteps.Step1_selectRadioButton_Organization();
         registerSteps.Step1_UserName(OrganizationShortNameEn);
@@ -375,4 +390,46 @@ public class t0_RegistrationStory {
         System.out.println("7.OrganizationFullName_Numbers");
         //registerSteps.checkValidationMessage(NoError, driver);
     }
+    @Test
+    @Ignore
+    public void stage_Register_User()  throws Exception {
+        registerSteps.Step1_UserName(UserNameEn);
+        registerSteps.Step1_Email(NewEmailUser);
+        registerSteps.Step1_Password(NewPassword);
+        registerSteps.Step1_pressButton_Next();
+        registerSteps.Step2_FirstName(FirstNameEn);
+        registerSteps.Step2_LastName(LastNameEn);
+        registerSteps.Step2_Gender(driver, gender_female);
+        registerSteps.Step2_Location(driver, LocationEN);
+        registerSteps.Step2_pressButton_Confirm(driver);
+        registerSteps.Step3_Ok(driver, NewEmailUser);
+        loginSteps.Sleep(500);
+        registerSteps.goConfirmLink(driver,NewEmailUser);
+        registerSteps.checkWelcomeLetter(NewEmailUser);
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
+        registerSteps.checkWelcomeLetter(NewEmailUser);
+    }
+
+    @Test
+    @Ignore
+    public void stage3_Register_Organization() throws Exception {
+        registerSteps.Step1_selectRadioButton_Organization();
+        registerSteps.Step1_UserName(OrganizationShortNameEn);
+        registerSteps.Step1_Email(NewEmailOrg);
+        registerSteps.Step1_Password(NewPassword);
+        registerSteps.Step1_pressButton_Next();
+        registerSteps.Step2_OrganizationFullName(OrganizationFullNameEn);
+        registerSteps.Step2_Founded(Year_2014, driver);
+        registerSteps.Step2_Location(driver, LocationAR);
+        registerSteps.Step2_pressButton_Confirm(driver);
+        registerSteps.Step3_Ok(driver, NewEmailOrg);
+        loginSteps.Sleep(500);
+        registerSteps.goConfirmLink(driver,NewEmailOrg);
+        registerSteps.checkWelcomeLetter(NewEmailOrg);
+        WebDriverWait wt = new WebDriverWait (driver, 50);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='wall-post-length']")));
+        registerSteps.checkWelcomeLetter(NewEmailUser);
+    }
+
 }

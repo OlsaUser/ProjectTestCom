@@ -59,7 +59,8 @@ public class RegisterPage  extends PageObject {
     private final By fldOrganizationFullName = By.xpath("//input[@name='organization_name']");
     private final By menuFounded = By.xpath("//div[@id='s2id_reg-select-2-founded']");
     private final By FoundedYears = By.xpath("//li[@role='presentation']");
-    private final By lblError = By.xpath("//div[@class='error_message -full-width']");
+    private final By lblError = By.xpath("//span[@class='auth-form-err']");
+    //private final By lblError = By.xpath("//div[@class='error_message -full-width']");
     private final By lblErrorAR = By.xpath("//div[@class='error_message_static -full-width']");
     private final By lblErrorPassword = By.xpath("//div[@class='error_message -full-width hidden-xs']");
 
@@ -139,15 +140,19 @@ public class RegisterPage  extends PageObject {
     public void selectUser( ) {
         find(UserClick).click();
     }
+
     public void selectCompany() {
         find(CompanyClick).click();
     }
+
     public void selectGenderMale( ) {
         find(genderMale).click();
     }
+
     public void selectGenderFemale( ) {
         find(genderFemale).click();
     }
+
     public void clickEmailForm( ) {
         find(EmailLink).click();
         WebDriverWait wt = new WebDriverWait (getDriver(), 50);
@@ -156,121 +161,37 @@ public class RegisterPage  extends PageObject {
     public void enterEmail(String email) {
         WebDriverWait wt = new WebDriverWait (getDriver(), 100);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Email));
+        wt.until(ExpectedConditions.presenceOfElementLocated(Email));
+        find(Email).clear();
         find(Email).sendKeys(email);
     }
     public void enterName(String name) {
+        find(Name).clear();
         find(Name).sendKeys(name);
     }
     public void enterUserName(String userName) {
+        find(UserName).clear();
         find(UserName).sendKeys(userName);
     }
     public void enterPassword(String password) {
+        find(Password).clear();
         find(Password).sendKeys(password);
     }
-    public void clickDoneButton( ) {
+
+    public void clickDoneButton_Ok( ) {
         find(DoneButton).click();
         WebDriverWait wt = new WebDriverWait (getDriver(), 100);
         wt.until(ExpectedConditions.visibilityOfElementLocated(OkButton));
         find(OkButton).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
     }
-
-    public void Step1_selectRadioButton_Organization( ) {
-        element(radioBtnOrganization).click();
-    }
-
-    public void clearUserName() {find(fldUserName).clear();}
-
-    public void clearPassword() {find(fldPassword).clear();}
-
-    public void clearEmail() {find(fldEmail).clear();}
-
-    public void clearFirstName() {find(fldFirstName).clear();}
-
-    public void clearLastName() {find(fldLastName).clear();}
-
-    public void clearOrganizationFullName() {find(fldOrganizationFullName).clear();}
-
-    public void Step1_UserName(String UserName) {
-        find(fldUserName).clear();
-        element(fldUserName).sendKeys(UserName);
-    }
-
-    public void Step1_Email(String Email) {
-        find(fldEmail).clear();
-        element(fldEmail).sendKeys(Email);
-    }
-
-    public void Step1_Password(String Password) {
-        element(fldPassword).sendKeys(Password);
-    }
-
-    public void Step2_FirstName(String FirstName) {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 99);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(fldFirstName));
-        element(fldFirstName).sendKeys(FirstName);
-    }
-
-    public void Step2_OrganizationFullName(String OrganizationFullName) {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 99);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(fldOrganizationFullName));
-        element(fldOrganizationFullName).sendKeys(OrganizationFullName);
-    }
-
-    public void Step2_Gender(WebDriver driver, String gender) {
-        element(fldGender).click();
-        List<WebElement> genderVariant = driver.findElements(menuGender);
-        for (WebElement el : genderVariant) {
-            if (el.getText().contains(gender)) {
-                el.click();
-                break;
-            }
-        }
-    }
-
-    public void Step2_LastName(String LastName) {
-        element(fldLastName).sendKeys(LastName);
-    }
-
-    public void Step2_Founded(String year, WebDriver driver ) {
-        element(menuFounded).click();
-        List <WebElement> years = driver.findElements(FoundedYears);
-        for (WebElement el : years) {
-            if (el.getText().contains(year)) {
-                System.out.println(el.getText());
-                el.click();
-                break;
-            }
-        }
-    }
-
-    public void Step2_Location(WebDriver driver, String location) {
-        element(fldLocation).click();
-        element(fldLocation).sendKeys(location);
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
-        element(Location).click();
-        WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(LocationTag));
-    }
-
-    public void Step1_pressButton_Next( ) {
-        element(btnNext).click();
-    }
-
-    public void Step2_pressButton_Confirm(WebDriver driver) {element(btnConfirm).click();}
-
-    public void Step3_Ok(WebDriver driver, String email) {
-        WebDriverWait wt = new WebDriverWait (driver, 99);
-       /* wt.until(ExpectedConditions.elementToBeClickable(btnOK));
-        wt.until(ExpectedConditions.textToBePresentInElementLocated(SuccessPopup, "After that you will be redirected to this page - page, where you started registration!"));
-        find(btnOK);
-        element(btnOK).click();*/
-    }
+    public void clickDoneButton_Error( ) {find(DoneButton).click();}
 
     public boolean checkValidationMessage(String Message, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 99);
         wt.until(ExpectedConditions.visibilityOfElementLocated(lblError));
+
         boolean r=false;
+
         List <WebElement> messages = driver.findElements (lblError);
         for (WebElement el : messages) {
             if (el.getText().equals(Message)) {
@@ -282,18 +203,6 @@ public class RegisterPage  extends PageObject {
         }
         r=false;
         return r;
-    }
-
-    public void checkValidationMessage_if_UserNameAR(String Message, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.textToBePresentInElementLocated(lblErrorAR,Message));
-        System.out.println("Validation message OK! " + find(lblErrorAR).getText());
-    }
-
-    public void checkValidationMessage_Password(String Message, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.textToBePresentInElementLocated(lblErrorPassword,Message));
-        System.out.println("Validation message OK! " + find(lblErrorPassword).getText());
     }
 
     public void successLogIn(WebDriver driver) {
@@ -552,5 +461,112 @@ public class RegisterPage  extends PageObject {
             }
         }
         return result;
+    }
+
+    /**************************************/
+    /* Old methods*/
+
+    public void Step1_selectRadioButton_Organization( ) {
+        element(radioBtnOrganization).click();
+    }
+
+    public void clearUserName() {find(UserName).clear();}
+
+    public void clearPassword() {find(Password).clear();}
+
+    public void clearEmail() {find(fldEmail).clear();}
+
+    public void clearFirstName() {find(fldFirstName).clear();}
+
+    public void clearLastName() {find(fldLastName).clear();}
+
+    public void clearOrganizationFullName() {find(Name).clear();}
+
+    public void Step1_UserName(String UserName) {
+        find(fldUserName).clear();
+        element(fldUserName).sendKeys(UserName);
+    }
+
+    public void Step1_Email(String Email) {
+        find(fldEmail).clear();
+        element(fldEmail).sendKeys(Email);
+    }
+
+    public void Step1_Password(String Password) {
+        element(fldPassword).sendKeys(Password);
+    }
+
+    public void Step2_FirstName(String FirstName) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 99);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fldFirstName));
+        element(fldFirstName).sendKeys(FirstName);
+    }
+
+    public void Step2_OrganizationFullName(String OrganizationFullName) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 99);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fldOrganizationFullName));
+        element(fldOrganizationFullName).sendKeys(OrganizationFullName);
+    }
+
+    public void Step2_Gender(WebDriver driver, String gender) {
+        element(fldGender).click();
+        List<WebElement> genderVariant = driver.findElements(menuGender);
+        for (WebElement el : genderVariant) {
+            if (el.getText().contains(gender)) {
+                el.click();
+                break;
+            }
+        }
+    }
+
+    public void Step2_LastName(String LastName) {
+        element(fldLastName).sendKeys(LastName);
+    }
+
+    public void Step2_Founded(String year, WebDriver driver ) {
+        element(menuFounded).click();
+        List <WebElement> years = driver.findElements(FoundedYears);
+        for (WebElement el : years) {
+            if (el.getText().contains(year)) {
+                System.out.println(el.getText());
+                el.click();
+                break;
+            }
+        }
+    }
+
+    public void Step2_Location(WebDriver driver, String location) {
+        element(fldLocation).click();
+        element(fldLocation).sendKeys(location);
+        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
+        element(Location).click();
+        WebDriverWait wt = new WebDriverWait (driver, 99);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(LocationTag));
+    }
+
+    public void Step1_pressButton_Next( ) {
+        element(btnNext).click();
+    }
+
+    public void Step2_pressButton_Confirm(WebDriver driver) {element(btnConfirm).click();}
+
+    public void Step3_Ok(WebDriver driver, String email) {
+        WebDriverWait wt = new WebDriverWait (driver, 99);
+       /* wt.until(ExpectedConditions.elementToBeClickable(btnOK));
+        wt.until(ExpectedConditions.textToBePresentInElementLocated(SuccessPopup, "After that you will be redirected to this page - page, where you started registration!"));
+        find(btnOK);
+        element(btnOK).click();*/
+    }
+
+    public void checkValidationMessage_if_UserNameAR(String Message, WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait (driver, 99);
+        wt.until(ExpectedConditions.textToBePresentInElementLocated(lblErrorAR,Message));
+        System.out.println("Validation message OK! " + find(lblErrorAR).getText());
+    }
+
+    public void checkValidationMessage_Password(String Message, WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait (driver, 99);
+        wt.until(ExpectedConditions.textToBePresentInElementLocated(lblErrorPassword,Message));
+        System.out.println("Validation message OK! " + find(lblErrorPassword).getText());
     }
 }

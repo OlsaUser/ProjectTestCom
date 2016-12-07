@@ -237,7 +237,7 @@ public class FullTraceOrganization {
         registerSteps.enterName(OrganizationFullNameEn);
         registerSteps.enterUserName(OrganizationShortNameEn);
         registerSteps.enterPassword(NewPassword);
-        registerSteps.clickDoneButton();
+        registerSteps.clickDoneButton_Ok();
         loginSteps.Sleep(200);
         registerSteps.checkWelcomeLetter_AR(NewEmailOrg);
     }
