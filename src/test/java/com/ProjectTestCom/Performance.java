@@ -27,8 +27,8 @@ import java.util.concurrent.TimeUnit;
  */
 @RunWith(SerenityRunner.class)
 public class Performance {
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String ServiceListing = PropertyLoader.getProperty(propertyFilePath, "ServiceListing");

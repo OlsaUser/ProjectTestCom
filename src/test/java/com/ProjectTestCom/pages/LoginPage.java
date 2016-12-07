@@ -48,8 +48,8 @@ import static org.jruby.util.URLUtil.getPath;
 import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 
-@DefaultUrl("http://synergybeta.devzone.dp.ua/en/")
-//@DefaultUrl("http://mnassa.com/en/")
+//@DefaultUrl("http://synergybeta.devzone.dp.ua/en/")
+@DefaultUrl("http://mnassa.com/en/")
 @RunWith(SerenityRunner.class)
 public class LoginPage extends PageObject {
     private final By btnForgotPassword = By.xpath("//a[@class='link-forgot-password']");
