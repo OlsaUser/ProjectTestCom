@@ -266,6 +266,7 @@ public class FullTraceUser {
         driver.get("http://synergy.devzone.dp.ua/en");
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailUser);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -312,6 +313,7 @@ public class FullTraceUser {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailUser);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -351,6 +353,7 @@ public class FullTraceUser {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailUser);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -387,6 +390,7 @@ public class FullTraceUser {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailUser);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -421,9 +425,11 @@ public class FullTraceUser {
         loginSteps.PageComplete(driver);
         registerSteps.successLogIn(driver);*/
 
+
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailUser);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -453,6 +459,7 @@ public class FullTraceUser {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailUser);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -530,6 +537,7 @@ public class FullTraceUser {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailUser);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -586,6 +594,7 @@ public class FullTraceUser {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailUser);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);

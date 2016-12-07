@@ -14,7 +14,7 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
       <serenity.version>1.0.47</serenity.version>
-   <webdriver.driver>firefox</webdriver.driver>
+      <webdriver.driver>firefox</webdriver.driver>
   </properties>
 
     <dependencies>
@@ -33,17 +33,27 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.53.1</version>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.53.1</version>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>htmlunit-driver</artifactId>
+            <version>2.21</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>2.53.0</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-edge-driver</artifactId>
-            <version>2.53.1</version>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -109,6 +119,7 @@
                     <argLine>-Xmx512m</argLine>
                     <systemPropertyVariables>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
+                        <webdriver.gecko.driver>${project.basedir}/src/drivers/geckodriver.exe</webdriver.gecko.driver>
                         <webdriver.chrome.driver>${project.basedir}/src/drivers/chromedriver.exe</webdriver.chrome.driver>
                         <webdriver.ie.driver>${project.basedir}/src/drivers/IEDriverServer.exe</webdriver.ie.driver>
                     </systemPropertyVariables>

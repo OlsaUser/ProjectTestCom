@@ -247,6 +247,7 @@ public class FullTraceOrganization {
         driver.get("http://synergybeta.devzone.dp.ua/en");
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailOrg);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -286,6 +287,7 @@ public class FullTraceOrganization {
         //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailOrg);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -324,6 +326,7 @@ public class FullTraceOrganization {
         driver.get("http://synergybeta.devzone.dp.ua/en");
         loginSteps.PageComplete(driver);
 
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(NewEmailOrg);
         loginSteps.enterPassword(NewPassword);
         loginSteps.clickEnter(driver);
@@ -346,6 +349,7 @@ public class FullTraceOrganization {
             driver.get("http://synergybeta.devzone.dp.ua/en");
             loginSteps.PageComplete(driver);
 
+           loginSteps.pressLoginLink();
             loginSteps.enterLogin(NewEmailOrg);
             loginSteps.enterPassword(NewPassword);
             loginSteps.clickEnter(driver);

@@ -16,7 +16,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+//import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,7 +47,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.seleniumhq.jetty7.util.LazyList.add;
+//import static org.seleniumhq.jetty7.util.LazyList.add;
 import static org.yecht.LevelStatus.end;
 import static org.yecht.LevelStatus.pause;
 
@@ -1346,10 +1346,10 @@ public class ItemPage extends PageObject {
             //WebElement fieldFrom = driver.findElement(By.xpath("//input[@can-value='mi_ev_date_from']"));
 
 //Включение JavaScript
-        HtmlUnitDriver dr = new HtmlUnitDriver(BrowserVersion.FIREFOX_24, true);
-        dr.setJavascriptEnabled(true);
+       // HtmlUnitDriver dr = new HtmlUnitDriver(BrowserVersion.FIREFOX_24, true);
+       // dr.setJavascriptEnabled(true);
 
-        List<WebElement> columns = dr.findElements(By.xpath("html/body/div[4]/div[3]/table/tbody/tr[5]/td"));
+      /*  List<WebElement> columns = dr.findElements(By.xpath("html/body/div[4]/div[3]/table/tbody/tr[5]/td"));
             if(!columns.isEmpty()){
                 //THEN CLICK ON THE SUBMIT BUTTON
                 for (WebElement cell : columns) {
@@ -1366,7 +1366,7 @@ public class ItemPage extends PageObject {
             }else{
                 //DO SOMETHING ELSE AS SUBMIT BUTTON IS NOT THERE
                 System.out.println("error with Calendar");
-            }
+            }*/
     }
 
     public void selectRegistrationDates(WebDriver driver) {

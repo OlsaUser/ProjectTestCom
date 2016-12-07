@@ -29,6 +29,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerDriverService;
@@ -122,6 +123,8 @@ public class t0_RegistrationStory {
     @Before
     public void setup() throws IOException {
         driver.manage().window().maximize();
+        /*System.setProperty("webdriver.gecko.driver","D:\\ProjectTestCom\\src\\drivers\\geckodriver.exe");
+        driver = new FirefoxDriver();*/
 
         registerSteps.openRegisterPage();
         loginSteps.PageComplete(driver);

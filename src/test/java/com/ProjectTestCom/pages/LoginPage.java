@@ -5,12 +5,12 @@ package com.ProjectTestCom.pages;
 import com.ProjectTestCom.utils.FileWriterUtil;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.sun.net.httpserver.HttpsConfigurator;
-import com.thoughtworks.selenium.webdriven.commands.Check;
+//import com.thoughtworks.selenium.webdriven.commands.Check;
 import groovy.transform.BaseScript;
 import jline.internal.Log;
 import net.serenitybdd.core.pages.PageUrls;
 import net.serenitybdd.junit.runners.SerenityRunner;
-import net.sf.cglib.asm.Constants;
+//import net.sf.cglib.asm.Constants;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.pages.PageObject;
@@ -74,9 +74,16 @@ public class LoginPage extends PageObject {
         parentWindowHandler = getDriver().getWindowHandle();
     }
 
-    public void enterLogin(String email) {
+    public void pressLoginLink( ) {
         find(Button).click();
         find(LoginLink).click();
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldEmail));
+
+    }
+
+    public void enterLogin(String email) {
+
         if (find(fieldEmail).isEnabled())
         {
             find(fieldEmail).waitUntilPresent();

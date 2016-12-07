@@ -27,6 +27,10 @@ public class LoginSteps extends ScenarioSteps {
     @Step
     public void enterLogin(String email) {loginPage.enterLogin(email);}
 
+
+    @Step
+    public void pressLoginLink( ) {loginPage.pressLoginLink();}
+
     @Step
     public void clearLogin() {loginPage.clearLogin();}
 

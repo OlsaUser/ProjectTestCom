@@ -27,8 +27,8 @@ import java.util.concurrent.TimeUnit;
  */
 @RunWith(SerenityRunner.class)
 public class Performance {
-    //private String propertyFilePath = "src/test/resources/login.properties";
-    private String propertyFilePath = "src/test/resources/login_live.properties";
+    private String propertyFilePath = "src/test/resources/login.properties";
+    //private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String ServiceListing = PropertyLoader.getProperty(propertyFilePath, "ServiceListing");
@@ -100,7 +100,7 @@ public class Performance {
         myProfile.setEnableNativeEvents(true);
         Serenity.useFirefoxProfile(myProfile);*/
 
-       /* FirefoxProfile profile = new FirefoxProfile();
+        /*FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("network.proxy.type", 1);
         profile.setPreference("network.proxy.http", "proxy.corp.isddesign.com");
         profile.setPreference("network.proxy.http_port", 8080);
@@ -109,10 +109,13 @@ public class Performance {
         Serenity.useFirefoxProfile(profile);
         driver = new FirefoxDriver(profile);*/
 
+        System.setProperty("webdriver.gecko.driver","D:\\ProjectTestCom\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
