@@ -123,7 +123,9 @@ public class t0_RegistrationStory {
     @Before
     public void setup() throws IOException {
 
-        System.setProperty("webdriver.gecko.driver","D:\\ProjectTestCom/src/drivers/geckodriver.exe");
+        String dir = System.getProperty("user.dir");
+        System.out.println(System.getProperty("user.dir"));
+        System.setProperty("webdriver.gecko.driver",dir + "\\src\\drivers\\geckodriver.exe");
         //driver = new FirefoxDriver();
 
         driver.manage().window().maximize();
