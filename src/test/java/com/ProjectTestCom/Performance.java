@@ -109,7 +109,9 @@ public class Performance {
         Serenity.useFirefoxProfile(profile);
         driver = new FirefoxDriver(profile);*/
 
-        System.setProperty("webdriver.gecko.driver","D:\\ProjectTestCom\\src\\drivers\\geckodriver.exe");
+        String dir = System.getProperty("user.dir");
+        System.out.println(System.getProperty("user.dir"));
+        System.setProperty("webdriver.gecko.driver",dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
