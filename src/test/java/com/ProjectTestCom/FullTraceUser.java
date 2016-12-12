@@ -221,14 +221,14 @@ public class FullTraceUser {
     public void stage0_Login_Facebook()  throws Exception {
         registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
-        loginSteps.enterLogin(email);
+        loginSteps.pressLoginLink();
         registerSteps.viaFacebook_Login(driver);
     }
     @Test
     public void stage1_Reg_Google()  throws Exception {
         registerSteps.GoogleLogin(driver, gg_Email2, gg_Password2);
         loginSteps.openLoginPage();
-        loginSteps.enterLogin(email);
+        loginSteps.pressLoginLink();
         registerSteps.viaGoogle_Login(driver);
         registerSteps.successReg_Google();
     }
@@ -236,34 +236,35 @@ public class FullTraceUser {
     public void stage2_Login_Twitter()  throws Exception {
         registerSteps.TwitterLogin(driver, tw_Email2, tw_Password2);
         loginSteps.openLoginPage();
-        loginSteps.enterLogin(email);
+        loginSteps.pressLoginLink();
         registerSteps.viaTwitter_Login(driver);
     }
     @Test
-    public void stage3_Reg_Email_User() throws Exception {
+    public void stage3_Reg_User() throws Exception {
         registerSteps.openRegisterPage();
         registerSteps.selectUser();
-        registerSteps.selectGenderMale();
+        registerSteps.selectGenderFemale();
         registerSteps.clickEmailForm();
         registerSteps.enterEmail(NewEmailUser);
         registerSteps.enterName(FirstNameEn);
         registerSteps.enterUserName(UserNameEn);
         registerSteps.enterPassword(NewPassword);
-        registerSteps.clickDoneButton_Ok();
+        registerSteps.clickDoneButton();
         loginSteps.Sleep(200);
         registerSteps.checkWelcomeLetter(NewEmailUser);
     }
-
     @Test
-    public void stage4_EditMainDetails()  throws IOException {
-       /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+    public void stage4_EditMainDetails1()  throws Exception {
+        /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+        loginSteps.PageComplete(driver);
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
         registerSteps.viaFacebook_Login(driver);
         loginSteps.PageComplete(driver);
         registerSteps.successLogIn(driver);*/
 
-        //loginSteps.openLoginPage();
-        driver.get("http://synergy.devzone.dp.ua/en");
+        loginSteps.openLoginPage();
+        driver.get("http://mnassa.com/en");
         loginSteps.PageComplete(driver);
 
         loginSteps.pressLoginLink();
@@ -285,22 +286,55 @@ public class FullTraceUser {
         accountSettingsSteps.selectLanguageEnglish();
         accountSettingsSteps.selectBirth();
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,100)", "");
+        jse.executeScript("window.scrollBy(0,15)", "");
         accountSettingsSteps.selectStatusMarried(married);
         // accountSettingsSteps.selectStatusSingle();
-        accountSettingsSteps.selectLocation(location);
+        accountSettingsSteps.selectLocation1(location);
         accountSettingsSteps.enterBriefInfo(BriefInfo);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate1(driver);
         loginSteps.PageComplete(driver);
-        //User info page
+        //UserTrace info page
+       /* headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
+        headerSteps.viewAccountSettings(driver);
+        loginSteps.PageComplete(driver);
+        accountSettingsSteps.checkInfoExists(FirstName_En_exp, FirstName_En_now);
+        accountSettingsSteps.checkInfoExists(UserName_En, UserName_En_now);
+        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now_profile);
+        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now1);
+        //accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
+        accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
+        accountSettingsSteps.checkInfoExists(Male, gender_now);
+        accountSettingsSteps.checkInfoExists(married, status_now);
+        accountSettingsSteps.checkInfoExists(birth_exp, birth_now);*/
+    }
+    @Test
+    public void stage5_EditMainDetails2() throws Exception {
+        /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+        loginSteps.PageComplete(driver);
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+        registerSteps.viaFacebook_Login(driver);
+        loginSteps.PageComplete(driver);
+        registerSteps.successLogIn(driver);*/
+
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.pressLoginLink();
+        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.checkInfoExists(FirstName_En_exp, FirstName_En_now);
         accountSettingsSteps.checkInfoExists(UserName_En, UserName_En_now);
-        accountSettingsSteps.checkInfoExists(location_exp, location_now_profile);
+        accountSettingsSteps.checkInfoExists(location_now2_exp, location_now_profile);
         accountSettingsSteps.checkInfoExists(location_now2_exp, location_now1);
         //accountSettingsSteps.checkInfoExists(location_now2_exp, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
@@ -309,7 +343,7 @@ public class FullTraceUser {
         accountSettingsSteps.checkInfoExists(birth_exp, birth_now);
     }
     @Test
-    public void stage5_EditContactInfo(){
+    public void stage6_EditContactInfo1() throws IOException{
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -335,7 +369,30 @@ public class FullTraceUser {
         //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate2(driver);
 
-        //User info page
+        //UserTrace info page
+       /* headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
+        headerSteps.viewAccountSettings(driver);
+        loginSteps.PageComplete(driver);
+        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        jse.executeScript("window.scrollBy(0,500)", "");
+        accountSettingsSteps.checkInfoExists(mobile_exp, mobile_now);
+        accountSettingsSteps.checkInfoExists(landline_exp, landline_now);
+        accountSettingsSteps.checkInfoExists(WebSite_exp, WebSite_now);
+        accountSettingsSteps.checkInfoExists(NewEmailUser, email_now);
+        accountSettingsSteps.checkNetworkAccounts();*/
+    }
+    @Test
+    public void stage7_EditContactInfo2() throws IOException{
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.pressLoginLink();
+        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
@@ -349,7 +406,7 @@ public class FullTraceUser {
         accountSettingsSteps.checkNetworkAccounts();
     }
     @Test
-    public void stage6_AddEducationInfo(){
+    public void stage8_AddEducationInfo() throws IOException{
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -376,7 +433,7 @@ public class FullTraceUser {
         //loginSteps.PageComplete(driver);
         //accountSettingsSteps.clickUpdate3();
 
-        //User info page
+        //UserTrace info page
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
@@ -386,7 +443,7 @@ public class FullTraceUser {
         accountSettingsSteps.checkEducationInfo(InstitutionName,Speciality,location,About);
     }
     @Test
-    public void stage7_AddJobInfo(){
+    public void stage9_AddJobInfo() throws IOException{
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -418,13 +475,12 @@ public class FullTraceUser {
         accountSettingsSteps.checkJobInfo(JobName,JobSpeciality,About);
     }
     @Test
-    public void stage8_Add_Skills_Interests(){
+    public void stage9a_Add_Skills_Interests1() throws Exception{
         /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
         loginSteps.PageComplete(driver);
         registerSteps.successLogIn(driver);*/
-
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -444,7 +500,32 @@ public class FullTraceUser {
         accountSettingsSteps.enterInterest(Interest,driver);
         accountSettingsSteps.clickUpdate5(driver);
         //loginSteps.PageComplete(driver);
-        //User info page
+        //UserTrace info page
+       /* headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
+        headerSteps.viewAccountSettings(driver);
+        loginSteps.PageComplete(driver);
+        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        jse.executeScript("window.scrollBy(0,500)", "");
+        accountSettingsSteps.checkSkillsInfo(Skill,Interest);*/
+    }
+    @Test
+    public void stage9b_Add_Skills_Interests2() throws Exception{
+        /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
+        loginSteps.openLoginPage();
+        registerSteps.viaFacebook_Login(driver);
+        loginSteps.PageComplete(driver);
+        registerSteps.successLogIn(driver);*/
+
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.pressLoginLink();
+        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewAccountSettings(driver);
@@ -455,7 +536,7 @@ public class FullTraceUser {
     }
 
     @Test
-    public void stage9_addServiceSupply_MAX_byButtonInListing() {
+    public void stage9c_addServiceSupply_MAX_byButtonInListing() throws IOException{
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -504,6 +585,9 @@ public class FullTraceUser {
         addItemSteps.checkItemSaved(driver);
         loginSteps.PageComplete(driver);
 
+        jse1.executeScript("window.scrollBy(0,-400)", "");
+        //сделала больше -200 -> -250
+        //сделала меньше -200 -> -180
         addItemSteps.openItemSettingsMenu();
         addItemSteps.selectViewMenu(driver);
         //проверяем соответствие введенных и отображаемых значений
@@ -527,7 +611,7 @@ public class FullTraceUser {
         addItemSteps.checkElementPresents(cash);
     }
     @Test
-    public void stage9a_addProductDemand_AR_byButtonFromHeader() throws AWTException {
+    public void stage9e_addProductDemand_AR_byButtonFromHeader() throws IOException, Exception, AWTException {
         /*registerSteps.facebookLogin(driver, fb_Email2, fb_Password2);
         loginSteps.openLoginPage();
         registerSteps.viaFacebook_Login(driver);
@@ -555,19 +639,19 @@ public class FullTraceUser {
         addItemSteps.enterTag(tag1);
         addItemSteps.enterLocation(Location);
 
-        addItemSteps.ImageContent();
+      /*  addItemSteps.ImageContent();
         addItemSteps.pressUploadImageLink();
-        loginSteps.uploadImage("tech7.jpg");
-        addItemSteps.CropPopup_ChooseImage();
+        addItemSteps.uploadImage();
+        addItemSteps.CropPopup_ChooseImage();*/
 
         addItemSteps.VideoContent1(VideoContent1);
 
-        addItemSteps.collapseContent();
+        /*addItemSteps.collapseContent();
 
         addItemSteps.collapseContent();
         addItemSteps.FileContent();
         addItemSteps.pressUploadFileLink();
-        loginSteps.uploadImage("SYNERGY_Test Plan.xlsx");
+        addItemSteps.uploadImage();*/
 
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusActivate();
@@ -575,10 +659,11 @@ public class FullTraceUser {
         loginSteps.PageComplete(driver);
         addItemSteps.clickSave(driver);
         addItemSteps.checkItemSaved(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyProductListing(driver);
+        loginSteps.PageComplete(driver);
 
         addItemSteps.openItemSettingsMenu();
         addItemSteps.selectViewMenu(driver);
@@ -590,7 +675,7 @@ public class FullTraceUser {
         addItemSteps.checkValueExists(tag1, tag_now);
     }
     @Test
-    public void stage9b_ChangePassword(){
+    public void stage9i_ChangePassword1() throws IOException{
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
@@ -610,6 +695,15 @@ public class FullTraceUser {
         accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);
+    }
+    @Test
+    public void stage9j_ChangePassword2() throws IOException{
+        loginSteps.openLoginPage();
+        //loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
+        loginSteps.enterLogin(NewEmailUser);
+        loginSteps.enterPassword(NewPassword_change);
+        loginSteps.clickEnter(driver);
     }
     @Test
     @Ignore

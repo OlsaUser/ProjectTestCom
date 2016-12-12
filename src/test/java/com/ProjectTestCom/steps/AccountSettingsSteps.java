@@ -231,6 +231,9 @@ public class AccountSettingsSteps extends ScenarioSteps {
     public void enterBriefInfo(String info ) { accountSettingsPage.enterBriefInfo(info);}
 
     @Step
+    public void selectLocation1(String location) { accountSettingsPage.selectLocation1(location);}
+
+    @Step
     public void clickUpdateError( ) { accountSettingsPage.clickUpdateError();}
 
     @Step

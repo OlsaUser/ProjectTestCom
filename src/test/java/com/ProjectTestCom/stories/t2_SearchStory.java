@@ -33,8 +33,8 @@ public class t2_SearchStory {
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
-    //private String searchFilePath = "src/test/resources/search.properties";
-    private String searchFilePath = "src/test/resources/search_beta.properties";
+    private String searchFilePath = "src/test/resources/search.properties";
+    //private String searchFilePath = "src/test/resources/search_beta.properties";
     private String FullNameEn = PropertyLoader.getProperty(searchFilePath, "FullNameEn");
     private String FullOrganizationNameEn = PropertyLoader.getProperty(searchFilePath, "FullOrganizationNameEn");
     private String FullNameAr = PropertyLoader.getProperty(searchFilePath, "FullNameAr");
@@ -91,6 +91,10 @@ public class t2_SearchStory {
 
     @Before
     public void setup() throws IOException {
+        String dir = System.getProperty("user.dir");
+        System.out.println(System.getProperty("user.dir"));
+        System.setProperty("webdriver.gecko.driver",dir + "\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
 
         footerSteps.openHomePage();

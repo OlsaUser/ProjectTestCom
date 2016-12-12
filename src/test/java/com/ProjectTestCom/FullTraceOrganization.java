@@ -231,20 +231,20 @@ public class FullTraceOrganization {
     @Test
     public void stage1_Reg_Company() throws Exception {
         //registerSteps.openRegisterPage();
-        driver.get("http://synergy.devzone.dp.ua/ar/#!registration");
+        driver.get("http://mnassa.com/ar/#!registration");
         registerSteps.selectCompany();
         registerSteps.enterEmail(NewEmailOrg);
         registerSteps.enterName(OrganizationFullNameEn);
         registerSteps.enterUserName(OrganizationShortNameEn);
         registerSteps.enterPassword(NewPassword);
-        registerSteps.clickDoneButton_Ok();
-        loginSteps.Sleep(200);
+        registerSteps.clickDoneButton();
+        loginSteps.Sleep(300);
         registerSteps.checkWelcomeLetter_AR(NewEmailOrg);
     }
     @Test
-    public void stage2_EditMainDetails(){
-        //loginSteps.openLoginPage();
-        driver.get("http://synergybeta.devzone.dp.ua/en");
+    public void stage2_EditMainDetails1() throws IOException{
+        loginSteps.openLoginPage();
+        driver.get("http://mnassa.com/en");
         loginSteps.PageComplete(driver);
 
         loginSteps.pressLoginLink();
@@ -259,32 +259,45 @@ public class FullTraceOrganization {
 
         accountSettingsSteps.enterOrganizationName(OrganizationName_En_exp);
         accountSettingsSteps.enterOrganizationShortName(OrganizationShortName_En_exp);
-        accountSettingsSteps.selectTypeGovernmental();
         accountSettingsSteps.selectLanguageEnglish_Org();
         accountSettingsSteps.selectLanguageArabian_Org();
         accountSettingsSteps.selectFounded();
-        accountSettingsSteps.selectNumbEmployees(count);
-        // accountSettingsSteps.selectStatusSingle();
-        accountSettingsSteps.selectLocation(location);
+        accountSettingsSteps.selectTypeGovernmental();
+        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        jse.executeScript("window.scrollBy(0,500)", "");
         accountSettingsSteps.enterBriefInfo(BriefInfo);
+        accountSettingsSteps.selectLocation1(location);
+        accountSettingsSteps.selectNumbEmployees(count);
+        //accountSettingsSteps.selectStatusSingle();
         accountSettingsSteps.clickUpdate1(driver);
-        //User info page
-        loginSteps.Sleep(68);
+    }
+    @Test
+    public void stage2_EditMainDetails2() throws IOException{
+        //loginSteps.openLoginPage();
+        driver.get("http://mnassa.com/ar");
+        loginSteps.PageComplete(driver);
+
+        loginSteps.pressLoginLink();
+        loginSteps.enterLogin(NewEmailOrg);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
         accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
         accountSettingsSteps.checkInfoExists(OrganizationShortName_En_exp,OrganizationShortName_En_now);
         accountSettingsSteps.checkInfoExists(location_exp_ar, location_now_profile);
         accountSettingsSteps.checkInfoExists(location_exp_ar, location_now1);
+        //accountSettingsSteps.checkInfoExists(location_now2_exp_ar, location_now2);
         accountSettingsSteps.checkInfoExists(BriefInfo, BriefInfo_now);
         accountSettingsSteps.checkInfoExists(count, count_now);
         accountSettingsSteps.checkInfoExists(YearFounder_exp, YearFounder_now);
-        //accountSettingsSteps.checkMainDetails_Org(OrganizationName_En,OrganizationShortName_En,location,BriefInfo,count);
     }
     @Test
-    public void stage3_EditContactInfo(){
-        loginSteps.openLoginPage();
-        //driver.get("http://synergybeta.devzone.dp.ua/ar/#!login");
+    public void stage3_EditContactInfo1() throws IOException{
+        //loginSteps.openLoginPage();
+        driver.get("http://mnassa.com/ar");
         loginSteps.PageComplete(driver);
 
         loginSteps.pressLoginLink();
@@ -306,10 +319,20 @@ public class FullTraceOrganization {
         accountSettingsSteps.enterLinkedIn(LinkedIn);
         accountSettingsSteps.enterSnapchat(Snapchat);
         accountSettingsSteps.enterWebSite(WebSite_exp);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate2(driver);
-        loginSteps.Sleep(70);
-        //User info page
+    }
+    @Test
+    public void stage3_EditContactInfo2() throws IOException{
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.pressLoginLink();
+        loginSteps.enterLogin(NewEmailOrg);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
@@ -321,9 +344,91 @@ public class FullTraceOrganization {
         accountSettingsSteps.checkNetworkAccounts();
     }
     @Test
-    public void stage5_ChangePassword() {
-        //loginSteps.openLoginPage();
-        driver.get("http://synergybeta.devzone.dp.ua/en");
+    public void stage4_addEventSupply_AllFields_byButtonInListing() throws Error{
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+
+        loginSteps.pressLoginLink();
+        loginSteps.enterLogin(NewEmailOrg);
+        loginSteps.enterPassword(NewPassword);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
+        headerSteps.openMyMnassaPage(driver);
+        headerSteps.openMyEventListing(driver);
+        addItemSteps.openAddItemPageByClickingOnButtonInListing();
+        loginSteps.PageComplete(driver);
+        addItemSteps.selectSupply();
+        addItemSteps.selectCategory2();
+        addItemSteps.selectEventType();
+        //addItemSteps.collapseBasicInfo();
+        //addItemSteps.selectEventDates(driver);
+        //addItemSteps.datePicker( "26-09-2016 16:41",  driver);
+        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
+        //addItemSteps.selectRegistrationDates(driver);
+        //addItemSteps.collapseBasicInfo();
+        //addItemSteps.selectAudienceMales();
+        //addItemSteps.selectAudienceFemales();
+        //addItemSteps.selectAudienceFamilies();
+        addItemSteps.selectAudienceChildren();
+        // addItemSteps.selectAudienceAnyone();
+
+        addItemSteps.enterTag(tag1);
+        addItemSteps.enterOrganizerName(OrganizerName);
+        addItemSteps.enterLocation(Location);
+        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        jse1.executeScript("window.scrollBy(0,500)", "");
+        // addItemSteps.selectRegistrationOpen();
+        //addItemSteps.selectEventCanceled();
+        //addItemSteps.selectEventEnded();
+        addItemSteps.enterAddress(Address);
+        //addItemSteps.selectRegistrationClosed();
+        //addItemSteps.selectTicketTypeFree();
+        addItemSteps.selectTicketTypePaid_ar(ticketPrice);
+        //jse1.executeScript("window.scrollBy(0,-200)", "");
+        addItemSteps.selectMethodMasterCard();
+        addItemSteps.selectMethodPayPal();
+        addItemSteps.selectMethodCash();
+        addItemSteps.selectMethodDebitCard();
+        addItemSteps.selectMethodVisa();
+
+        jse1.executeScript("window.scrollBy(0,300)", "");
+        //addItemSteps.collapseMainDetails();
+        addItemSteps.VideoContent1(VideoContent5);
+        addItemSteps.AudioContent1(AudioContent1);
+
+        addItemSteps.collapseContent();
+        //addItemSteps.ItemStatusActivate();
+        //addItemSteps.ItemStatusDeactivate();
+        addItemSteps.clickSave(driver);
+        addItemSteps.checkItemSaved(driver);
+        loginSteps.PageComplete(driver);
+        jse1.executeScript("window.scrollBy(0,-350)", "");
+        addItemSteps.openItemSettingsMenu();
+        addItemSteps.selectViewMenu(driver);
+
+        //проверяем соответствие введенных и отображаемых значений
+        addItemSteps.checkBreadCrumb(Event,TitleMAX,  driver);
+        addItemSteps.checkValueExists(TitleMAX, title_now);
+        addItemSteps.checkValueExists(DescriptionMAX, description_now);
+        addItemSteps.checkValueExists(ticketPrice, price_now);
+        addItemSteps.checkValueExists(Location_ar, location_now);
+        addItemSteps.checkValueExists(tag1, tag_now);
+        addItemSteps.checkValueExists(OrganizerName, organizerName_now);
+        addItemSteps.checkValueExists("عامل الجذب", eventType_now);
+        addItemSteps.checkValueExists("أطفال", audience_now);
+        addItemSteps.checkElementPresents(visa);
+        addItemSteps.checkElementPresents(mastercard);
+        addItemSteps.checkElementPresents(paypal);
+        addItemSteps.checkElementPresents(debitcard);
+        addItemSteps.checkElementPresents(cash);
+        addItemSteps.checkValueExists(Address, address_now);
+        addItemSteps.checkElementPresents(audio_now_ar);
+
+    }
+    @Test
+    public void stage5_ChangePassword1() throws IOException{
+        loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
 
         loginSteps.pressLoginLink();
@@ -340,93 +445,18 @@ public class FullTraceOrganization {
         accountSettingsSteps.enterCurrentPassword(NewPassword);
         accountSettingsSteps.enterNewPassword(NewPassword_change);
         accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
-        //loginSteps.PageComplete(driver);
+        loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);
     }
-       @Test
-        public void stage4_addEventSupply_AllFields_byButtonInListing() throws Error{
-            //loginSteps.openLoginPage();
-            driver.get("http://synergybeta.devzone.dp.ua/en");
-            loginSteps.PageComplete(driver);
-
-           loginSteps.pressLoginLink();
-            loginSteps.enterLogin(NewEmailOrg);
-            loginSteps.enterPassword(NewPassword);
-            loginSteps.clickEnter(driver);
-            loginSteps.PageComplete(driver);
-
-            headerSteps.openMyMnassaPage(driver);
-            headerSteps.openMyEventListing(driver);
-            addItemSteps.openAddItemPageByClickingOnButtonInListing();
-            loginSteps.PageComplete(driver);
-            addItemSteps.selectSupply();
-            //addItemSteps.collapseBasicInfo();
-            //addItemSteps.selectEventDates(driver);
-            //addItemSteps.datePicker( "26-09-2016 16:41",  driver);
-
-            addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
-            addItemSteps.selectCategory2();
-            addItemSteps.selectEventType();
-
-            //addItemSteps.selectRegistrationDates(driver);
-            //addItemSteps.collapseBasicInfo();
-            //addItemSteps.selectAudienceMales();
-            //addItemSteps.selectAudienceFemales();
-            //addItemSteps.selectAudienceFamilies();
-            addItemSteps.selectAudienceChildren();
-            // addItemSteps.selectAudienceAnyone();
-
-            addItemSteps.enterTag(tag1);
-            addItemSteps.enterOrganizerName(OrganizerName);
-            addItemSteps.enterLocation(Location);
-            JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-            jse1.executeScript("window.scrollBy(0,500)", "");
-            // addItemSteps.selectRegistrationOpen();
-            //addItemSteps.selectEventCanceled();
-            //addItemSteps.selectEventEnded();
-            addItemSteps.enterAddress(Address);
-            //addItemSteps.selectRegistrationClosed();
-            //addItemSteps.selectTicketTypeFree();
-            addItemSteps.selectTicketTypePaid_ar(ticketPrice);
-            //jse1.executeScript("window.scrollBy(0,-200)", "");
-            addItemSteps.selectMethodMasterCard();
-            addItemSteps.selectMethodPayPal();
-            addItemSteps.selectMethodCash();
-            addItemSteps.selectMethodDebitCard();
-            addItemSteps.selectMethodVisa();
-
-            jse1.executeScript("window.scrollBy(0,300)", "");
-            //addItemSteps.collapseMainDetails();
-            addItemSteps.VideoContent1(VideoContent5);
-            addItemSteps.AudioContent1(AudioContent1);
-            //addItemSteps.collapseContent();
-            addItemSteps.ItemStatusActivate();
-            //addItemSteps.ItemStatusDeactivate();
-            addItemSteps.clickSave(driver);
-            addItemSteps.checkItemSaved(driver);
-            loginSteps.PageComplete(driver);
-            jse1.executeScript("window.scrollBy(0,-200)", "");
-            addItemSteps.openItemSettingsMenu();
-            addItemSteps.selectViewMenu(driver);
-
-            //проверяем соответствие введенных и отображаемых значений
-            addItemSteps.checkBreadCrumb(Event,TitleMAX,  driver);
-            addItemSteps.checkValueExists(TitleMAX, title_now);
-            addItemSteps.checkValueExists(DescriptionMAX, description_now);
-            addItemSteps.checkValueExists(ticketPrice, price_now);
-            addItemSteps.checkValueExists(Location_ar, location_now);
-            addItemSteps.checkValueExists(tag1, tag_now);
-            addItemSteps.checkValueExists(OrganizerName, organizerName_now);
-            addItemSteps.checkValueExists("عامل الجذب", eventType_now);
-            addItemSteps.checkValueExists("أطفال", audience_now);
-            addItemSteps.checkValueExists(Address, address_now);
-           addItemSteps.checkElementPresents(audio_now_ar);
-            addItemSteps.checkElementPresents(visa);
-            addItemSteps.checkElementPresents(mastercard);
-            addItemSteps.checkElementPresents(paypal);
-            addItemSteps.checkElementPresents(debitcard);
-            addItemSteps.checkElementPresents(cash);
-        }
+    @Test
+    public void stage6_ChangePassword2() throws IOException{
+        loginSteps.openLoginPage();
+        //loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
+        loginSteps.enterLogin(NewEmailOrg);
+        loginSteps.enterPassword(NewPassword_change);
+        loginSteps.clickEnter(driver);
+    }
     @Test
     @Ignore
     public void stage1_Register_Organization() throws Exception {

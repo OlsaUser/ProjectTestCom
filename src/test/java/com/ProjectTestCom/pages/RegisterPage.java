@@ -177,6 +177,13 @@ public class RegisterPage  extends PageObject {
         find(Password).clear();
         find(Password).sendKeys(password);
     }
+    public void clickDoneButton( ) {
+        find(DoneButton).click();
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(OkButton));
+        find(OkButton).click();
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
+    }
 
     public void clickDoneButton_Ok( ) {
         find(DoneButton).click();
