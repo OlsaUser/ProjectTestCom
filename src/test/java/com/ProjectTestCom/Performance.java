@@ -111,7 +111,7 @@ public class Performance {
 
         String dir = System.getProperty("user.dir");
         System.out.println(System.getProperty("user.dir"));
-        System.setProperty("webdriver.gecko.driver",dir + "\\src\\drivers\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);

@@ -191,7 +191,7 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.elementToBeClickable(linkDiscover));
         find(linkDiscover).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentItem));
-    }
+}
 
     public void openDiscoverUserActive (WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 150);
