@@ -78,6 +78,9 @@ public class t1_ShareItemStory {
 
     @Before
     public void setup() throws IOException {
+        String dir = System.getProperty("user.dir");
+        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
 
         loginSteps.openLoginPage();

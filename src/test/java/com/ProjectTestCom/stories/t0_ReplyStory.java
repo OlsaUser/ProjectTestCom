@@ -58,6 +58,9 @@ public class t0_ReplyStory {
 
     @Before
     public void setup() throws IOException {
+        String dir = System.getProperty("user.dir");
+        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
     }
 
