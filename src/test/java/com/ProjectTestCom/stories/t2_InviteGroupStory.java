@@ -67,6 +67,7 @@ public class t2_InviteGroupStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);

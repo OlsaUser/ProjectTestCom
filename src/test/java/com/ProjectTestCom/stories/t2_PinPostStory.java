@@ -78,6 +78,7 @@ public class t2_PinPostStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);

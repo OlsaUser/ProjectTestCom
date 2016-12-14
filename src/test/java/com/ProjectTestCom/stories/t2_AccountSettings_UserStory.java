@@ -138,6 +138,7 @@ public class t2_AccountSettings_UserStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);

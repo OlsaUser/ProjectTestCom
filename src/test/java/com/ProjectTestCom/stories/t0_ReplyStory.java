@@ -70,6 +70,7 @@ public class t0_ReplyStory {
     @Test
     public void AddMentionPost()  {
         loginSteps.openLoginPage();
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);
@@ -82,6 +83,7 @@ public class t0_ReplyStory {
     @Test
     public void Check_MentionPost()  throws IOException{
         loginSteps.openLoginPage();
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);

@@ -64,6 +64,7 @@ public class t4_DeleteServiceStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);

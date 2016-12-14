@@ -91,6 +91,7 @@ public class t2_AccountSettings_OrgStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);

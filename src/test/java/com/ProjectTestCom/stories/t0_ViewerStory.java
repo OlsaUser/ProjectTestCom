@@ -67,6 +67,7 @@ public class t0_ViewerStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);

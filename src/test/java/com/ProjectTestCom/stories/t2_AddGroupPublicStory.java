@@ -98,6 +98,7 @@ public class t2_AddGroupPublicStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);

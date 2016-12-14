@@ -89,6 +89,7 @@ public class t1_LoginStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
     }
 
  @After

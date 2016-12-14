@@ -86,6 +86,7 @@ public class t1_PermissionGroupLimitedStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
     }
 
     @After

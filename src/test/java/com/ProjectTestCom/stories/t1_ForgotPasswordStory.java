@@ -54,6 +54,8 @@ public class t1_ForgotPasswordStory {
         driver.manage().window().maximize();
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
         loginSteps.openForgotPasswordPage();
         loginSteps.PageComplete(driver);
     }

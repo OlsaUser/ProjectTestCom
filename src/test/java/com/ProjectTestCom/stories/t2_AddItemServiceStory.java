@@ -116,6 +116,8 @@ public class t2_AddItemServiceStory {
         driver.manage().window().maximize();
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);

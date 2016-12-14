@@ -66,6 +66,7 @@ public class t3_ActionsItemStory {
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
