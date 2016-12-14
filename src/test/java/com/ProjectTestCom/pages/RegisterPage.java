@@ -1,6 +1,5 @@
 package com.ProjectTestCom.pages;
 
-import com.sun.mail.imap.IMAPFolder;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
@@ -14,14 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.mail.*;
 import javax.mail.internet.MimeMultipart;
-import javax.validation.constraints.AssertTrue;
-import javax.xml.bind.ValidationException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.net.URLDecoder;
-import java.security.Security;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -62,6 +55,7 @@ public class RegisterPage  extends PageObject {
     private final By lblError = By.xpath("//span[@class='auth-form-err']");
     //private final By lblError = By.xpath("//div[@class='error_message -full-width']");
     private final By lblErrorAR = By.xpath("//div[@class='error_message_static -full-width']");
+    private final By lbErrorAR_new = By.xpath("//span[@class='auth-form-err']");
     private final By lblErrorPassword = By.xpath("//div[@class='error_message -full-width hidden-xs']");
 
     //Check Registration
@@ -507,6 +501,7 @@ public class RegisterPage  extends PageObject {
         WebDriverWait wt = new WebDriverWait (getDriver(), 99);
         wt.until(ExpectedConditions.visibilityOfElementLocated(fldFirstName));
         element(fldFirstName).sendKeys(FirstName);
+
     }
 
     public void Step2_OrganizationFullName(String OrganizationFullName) {
@@ -567,13 +562,15 @@ public class RegisterPage  extends PageObject {
 
     public void checkValidationMessage_if_UserNameAR(String Message, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.textToBePresentInElementLocated(lblErrorAR,Message));
-        System.out.println("Validation message OK! " + find(lblErrorAR).getText());
+        wt.until(ExpectedConditions.textToBePresentInElementLocated(lbErrorAR_new,Message));
+        System.out.println("Validation message OK! " + find(lbErrorAR_new).getText());
     }
 
     public void checkValidationMessage_Password(String Message, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.textToBePresentInElementLocated(lblErrorPassword,Message));
-        System.out.println("Validation message OK! " + find(lblErrorPassword).getText());
+        wt.until(ExpectedConditions.textToBePresentInElementLocated(lblError,Message));
+        System.out.println("Validation message OK! " + find(lblError).getText());
     }
+
+
 }

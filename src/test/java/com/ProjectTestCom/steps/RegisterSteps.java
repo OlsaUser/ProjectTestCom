@@ -6,10 +6,6 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.WebDriver;
 
-import javax.mail.MessagingException;
-import javax.xml.bind.ValidationException;
-import java.io.IOException;
-
 import static org.junit.Assert.assertTrue;
 
 public class RegisterSteps extends ScenarioSteps {
@@ -86,6 +82,9 @@ public class RegisterSteps extends ScenarioSteps {
 
     @Step
     public void clearFirstName() { registerPage.clearFirstName();}
+
+    @Step
+    public void clearName() { registerPage.clearFirstName();}
 
     @Step
     public void clearLastName() { registerPage.clearLastName();}
