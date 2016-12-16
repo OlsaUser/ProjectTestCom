@@ -2,54 +2,32 @@ package com.ProjectTestCom.pages;
 
 //import static org.junit.Assert.fail;
 //import com.ProjectTestCom.utils.DriverScripts;
-import com.ProjectTestCom.utils.FileWriterUtil;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.sun.net.httpserver.HttpsConfigurator;
-//import com.thoughtworks.selenium.webdriven.commands.Check;
-import groovy.transform.BaseScript;
-import jline.internal.Log;
-import net.serenitybdd.core.pages.PageUrls;
 import net.serenitybdd.junit.runners.SerenityRunner;
-//import net.sf.cglib.asm.Constants;
 import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.pages.PageObject;
-import net.thucydides.core.webdriver.Configuration;
-import net.thucydides.core.webdriver.exceptions.ElementNotFoundAfterTimeoutError;
-import org.apache.xpath.operations.Or;
 import org.junit.Assert;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.imageio.ImageIO;
 import javax.mail.MessagingException;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
-import java.util.Properties;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Set;
-import java.lang.System;
-import static java.lang.System.getProperty;
-import static java.lang.System.loadLibrary;
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static junit.framework.TestCase.assertTrue;
-import static org.jruby.util.URLUtil.getPath;
-import static org.junit.Assert.assertFalse;
-import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 
-//@DefaultUrl("http://synergybeta.devzone.dp.ua/en/")
-@DefaultUrl("http://mnassa.com/en/")
+//import com.thoughtworks.selenium.webdriven.commands.Check;
+//import net.sf.cglib.asm.Constants;
+
+@DefaultUrl("http://synergybeta.devzone.dp.ua/en/")
+//@DefaultUrl("http://mnassa.com/en/")
 @RunWith(SerenityRunner.class)
 public class LoginPage extends PageObject {
     private final By btnForgotPassword = By.xpath("//a[@class='link-forgot-password']");
