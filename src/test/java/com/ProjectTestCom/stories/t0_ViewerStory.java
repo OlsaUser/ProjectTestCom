@@ -18,6 +18,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SerenityRunner.class)
 public class t0_ViewerStory {
@@ -64,11 +65,12 @@ public class t0_ViewerStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(1000, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
-
+        loginSteps.PageComplete(driver);
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
@@ -89,6 +91,7 @@ public class t0_ViewerStory {
     @Test
     public void ItemBlock_Viewer() {
         headerSteps.openHomePage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openProductListing(driver);
         addItemSteps.ViewerItemBlock(driver);
     }
@@ -97,12 +100,14 @@ public class t0_ViewerStory {
     public void UserInfo_Viewer() {
         headerSteps.openDiscoverPage(driver);
         driver.get(urlUserProfile_Perform);
+        loginSteps.PageComplete(driver);
         accountSettingsSteps.UserInfo_Viewer(driver);
     }
 
     @Test
     public void DiscoverUser_Viewer() {
         headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openDiscoverUserPopular(driver);
         headerSteps.viewUserListing_Discover(driver);
     }
@@ -110,6 +115,7 @@ public class t0_ViewerStory {
     @Test
     public void DiscoverGroup_Viewer() {
         headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openDiscoverGroupsPopular(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewGroup_Discover(driver);
@@ -118,6 +124,7 @@ public class t0_ViewerStory {
     @Test
     public void DiscoverPost_Viewer() {
         headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openDiscoverPostNew(driver);
         loginSteps.PageComplete(driver);
         headerSteps.viewPost_Discover(driver);

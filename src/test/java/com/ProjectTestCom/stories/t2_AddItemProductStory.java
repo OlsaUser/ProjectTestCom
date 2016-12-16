@@ -24,6 +24,8 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -106,7 +108,8 @@ public class t2_AddItemProductStory {
         String dir = System.getProperty("user.dir");
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
-        driver.manage().window().maximize();;
+        driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -122,6 +125,7 @@ public class t2_AddItemProductStory {
     @Test
     public void stage1_addProductSupply_AllFields_byButtonInListing()  {
         headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openMyProductListing(driver);
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         loginSteps.PageComplete(driver);
@@ -141,7 +145,7 @@ public class t2_AddItemProductStory {
         addItemSteps.enterPrice(Price, Per);
 
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,300)", "");
+        jse1.executeScript("window.scrollBy(0,240)", "");
 
         addItemSteps.selectAdvancedPayment25();
 
@@ -153,7 +157,7 @@ public class t2_AddItemProductStory {
 
         addItemSteps.enterLocation(Location);
 
-        // jse1.executeScript("window.scrollBy(0,300)", "");
+        jse1.executeScript("window.scrollBy(0,-400)", "");
         addItemSteps.selectDeliveryMethodDHL();
         addItemSteps.selectDeliveryMethodTNT();
         addItemSteps.selectDeliveryMethodAramex();
@@ -223,7 +227,6 @@ public class t2_AddItemProductStory {
 
         addItemSteps.collapseContent();
         addItemSteps.ItemStatusActivate();
-        addItemSteps.collapseStatus();
         //addItemSteps.ItemStatusDeactivate();
         addItemSteps.clickSave(driver);
         addItemSteps.checkItemSaved(driver);
@@ -270,6 +273,7 @@ public class t2_AddItemProductStory {
         //addItemSteps.ItemStatusDeactivate();
         addItemSteps.ItemStatusPeriod();
         loginSteps.PageComplete(driver);
+        addItemSteps.collapseStatus();
         addItemSteps.clickSave(driver);
         addItemSteps.checkItemSaved(driver);
         loginSteps.PageComplete(driver);

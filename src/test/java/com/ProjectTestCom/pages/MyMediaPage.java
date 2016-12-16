@@ -95,6 +95,8 @@ public class MyMediaPage extends PageObject {
     public void enterAlbumName(String albumName) {
         String myAlbumPopupHandle = getDriver().getWindowHandle();
         getDriver().switchTo().window(myAlbumPopupHandle);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 150);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldAlbumName));
         clearAlbumName();
         find(fieldAlbumName).sendKeys(albumName);
     }

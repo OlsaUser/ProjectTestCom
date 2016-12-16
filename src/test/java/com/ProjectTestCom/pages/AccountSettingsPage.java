@@ -3,6 +3,7 @@ package com.ProjectTestCom.pages;
 import com.google.common.collect.Iterables;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.pages.PageObject;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -541,6 +542,7 @@ public class AccountSettingsPage extends PageObject {
         clearWebSite();
         WebElement Link = find(fieldWebSite);
         Link.sendKeys(link);
+        Assert.assertTrue(find(fieldWebSite).getAttribute("value").equals(link));
     }
 
     public void clearWebSite() {
@@ -690,10 +692,10 @@ public class AccountSettingsPage extends PageObject {
         //find(btnOk).waitUntilClickable();
         //find(btnOk).waitUntilPresent();
        // if (find(btnOk).isVisible())
-        WebDriverWait wt1 = new WebDriverWait (driver, 173);
+        WebDriverWait wt1 = new WebDriverWait (driver, 160);
         wt1.until(ExpectedConditions.elementToBeClickable(btnOk));
         find(btnOk).click();
-        WebDriverWait wt2 = new WebDriverWait (driver, 150);
+        WebDriverWait wt2 = new WebDriverWait (driver, 160);
         wt2.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
     }
 
@@ -963,7 +965,7 @@ public class AccountSettingsPage extends PageObject {
        find(jobformation).isDisplayed();
        find(skillsInterests).isDisplayed();
 
-       WebDriverWait wt = new WebDriverWait (driver, 50);
+       WebDriverWait wt = new WebDriverWait (driver, 200);
 
        find(userFollowings);
        wt.until(ExpectedConditions.textToBePresentInElementLocated(userFollowings,"Following"));

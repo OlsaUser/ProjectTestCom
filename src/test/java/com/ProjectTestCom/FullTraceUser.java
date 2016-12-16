@@ -23,6 +23,7 @@ import javax.xml.parsers.FactoryConfigurationError;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
@@ -215,6 +216,7 @@ public class FullTraceUser {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
     }
 
     @After

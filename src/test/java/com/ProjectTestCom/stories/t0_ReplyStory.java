@@ -20,6 +20,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SerenityRunner.class)
 public class t0_ReplyStory {
@@ -62,6 +63,7 @@ public class t0_ReplyStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(1000, TimeUnit.SECONDS);
     }
 
     @After
@@ -70,7 +72,9 @@ public class t0_ReplyStory {
     @Test
     public void AddMentionPost()  {
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
+        loginSteps.PageComplete(driver);
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);

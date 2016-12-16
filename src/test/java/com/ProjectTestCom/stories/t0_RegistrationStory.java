@@ -2,6 +2,7 @@ package com.ProjectTestCom.stories;
 
 import com.ProjectTestCom.steps.LoginSteps;
 import com.ProjectTestCom.steps.RegisterSteps;
+import com.ProjectTestCom.utils.FailFastListener;
 import com.ProjectTestCom.utils.PropertyLoader;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
@@ -17,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SerenityRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -104,6 +106,7 @@ public class t0_RegistrationStory {
         //driver = new FirefoxDriver();
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
         registerSteps.openRegisterPage();
         loginSteps.PageComplete(driver);
     }

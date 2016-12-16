@@ -86,6 +86,7 @@ public class t1_LoginStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -93,10 +94,11 @@ public class t1_LoginStory {
     }
 
  @After
-        public void tearDown()   {
-        driver.quit();
-    }
-    /*************************************************************/
+ public void tearDown() throws Exception {
+     driver.quit();
+     //driver.close();
+     driver = null;
+ }
 @Test
     public void checkingLoginErrors() throws MessagingException, IOException{
         loginSteps.enterLogin(wrongEmail);

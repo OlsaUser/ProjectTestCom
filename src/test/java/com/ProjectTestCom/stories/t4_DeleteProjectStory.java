@@ -22,6 +22,8 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 @RunWith(SerenityRunner.class)
 public class t4_DeleteProjectStory {
     private String browserFilePath = "src/test/resources/browser.properties";
@@ -58,6 +60,7 @@ public class t4_DeleteProjectStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);

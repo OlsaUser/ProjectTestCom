@@ -18,6 +18,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
@@ -82,6 +83,7 @@ public class t1_ShareItemStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -101,12 +103,12 @@ public class t1_ShareItemStory {
         headerSteps.openProductListing(driver);
         loginSteps.PageComplete(driver);
         addItemSteps.openViewItemByClickOnBlock(driver);
-
+        loginSteps.PageComplete(driver);
         addItemSteps.pressShareButton(driver);
         addItemSteps.pressShareToWall(driver);
+        loginSteps.Sleep(60);
         addItemSteps.checkInformTextShareItem(driver, placeholderShareItemToWall);
         loginSteps.PageComplete(driver);
-
 
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
@@ -128,6 +130,7 @@ public class t1_ShareItemStory {
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
+        loginSteps.Sleep(60);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderShareItem);
     }
 
@@ -158,8 +161,10 @@ public class t1_ShareItemStory {
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
+        loginSteps.PageComplete(driver);
 
-        headerSteps.openHomePage(driver);
+        //headerSteps.openHomePage(driver);
+        //loginSteps.PageComplete(driver);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyWall(driver);
         loginSteps.PageComplete(driver);

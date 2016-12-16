@@ -18,8 +18,10 @@ import static junit.framework.TestCase.assertTrue;
 
 @RunWith(SerenityRunner.class)
 public class ForgotPasswordPage extends PageObject {
-    private final By fieldEmail = By.xpath("//div[@id='forgot-modal']//input[contains(@type, 'email')]");
-    private final By btnEnter = By.id("do_request");
+    //private final By fieldEmail = By.xpath("//div[@id='forgot-modal']//input[contains(@type, 'email')]");
+    private final By fieldEmail = By.xpath("//input[@can-enter='forgot_validate']");
+    //private final By btnEnter = By.id("do_request");
+    private final By btnEnter = By.xpath("//button[@can-click='forgot_validate']");
     private final By lblEmailError = By.xpath("//div[@class='error_message']");
     private final By SuccessPopup = By.xpath("//div[@id='forgot-modal-success']//div[@class='modal-content']//div[@class='text-center narrow-block-text']");
 

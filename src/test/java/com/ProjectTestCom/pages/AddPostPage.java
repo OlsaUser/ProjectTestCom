@@ -1,5 +1,6 @@
 package com.ProjectTestCom.pages;
 
+import com.gargoylesoftware.htmlunit.Page;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
@@ -109,20 +110,21 @@ public class AddPostPage extends PageObject {
     }
 
     public void AddTextPost(String Text, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 200);
+        WebDriverWait wt = new WebDriverWait (driver, 500);
         wt.until(ExpectedConditions.presenceOfElementLocated(fieldPost));
         find(fieldPost).click();
         //wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
         //find(fieldPost).waitUntilClickable();
         String el = find(txtCounter). getText();
-        waitForTextToAppear(el);
+        //waitForTextToAppear(el);
         wt.until(ExpectedConditions.elementToBeClickable(fieldPost));
         find(fieldPost).sendKeys(Text);
+        wt.until(ExpectedConditions.textToBePresentInElementLocated(fieldPost,Text));
     }
     public void AddMentionPost(String Text, WebDriver driver) {
-
-        WebDriverWait wt = new WebDriverWait (driver, 99);
+        WebDriverWait wt = new WebDriverWait (driver, 400);
         wt.until(ExpectedConditions.presenceOfElementLocated(txtCounter));
+        wt.until(ExpectedConditions.presenceOfElementLocated(fieldPost));
 
         String el = find(txtCounter). getText();
         waitForTextToAppear(el);
@@ -148,15 +150,20 @@ public class AddPostPage extends PageObject {
     }
 
     public void AddVideoLink(String Video) {
+        WebDriverWait wt = new WebDriverWait(getDriver(), 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldVideo));
         clearFieldVideo();
         find(fieldVideo).sendKeys(Video);
     }
 
-    public void AddAudioLink(String Audio) {find(fieldAudio).sendKeys(Audio);
+    public void AddAudioLink(String Audio) {
+        WebDriverWait wt = new WebDriverWait(getDriver(), 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldAudio));
+        find(fieldAudio).sendKeys(Audio);
     }
 
     public void clickVideoPostButton(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 100);
+        WebDriverWait wt = new WebDriverWait(driver, 200);
         wt.until(ExpectedConditions.presenceOfElementLocated(btnAddVideoPost));
         wt.until(ExpectedConditions.visibilityOfElementLocated(btnAddVideoPost));
         find(btnAddVideoPost).click();
@@ -187,7 +194,7 @@ public class AddPostPage extends PageObject {
         find(btnPost).click();
     }
     public void waitWidgetAudio(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 99);
+        WebDriverWait wt = new WebDriverWait(driver, 200);
         wt.until(ExpectedConditions.presenceOfElementLocated(widgetAudio));
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         jse1.executeScript("window.scrollBy(0,300)", "");
@@ -227,8 +234,9 @@ public class AddPostPage extends PageObject {
     public void deletePost(WebDriver driver) {
         element(btnRightMenu).click();
         element(btnDeletePost).click();
-        element(btnDelete_Popup).click();
         WebDriverWait wt = new WebDriverWait (driver, 99);
+        wt.until(visibilityOfElementLocated(btnDelete_Popup));
+        element(btnDelete_Popup).click();
         wt.until(invisibilityOfElementLocated(btnDelete_Popup));
     }
 
@@ -293,28 +301,18 @@ public class AddPostPage extends PageObject {
     }
 
     public void checkPlaceholderTextAfterRepost(WebDriver driver, String placeholder) {
-
-       /* find(placeHolder_ToGroup).containsText("reposted");
-        System.out.println(find(placeHolder_ToGroup).getText());
-        String text = find(placeHolder_ToGroup).getText();
-        Assert.assertTrue("No placeholder",text.contains(placeholderGroup));
-        System.out.println(find(placeHolder_ToGroup).getText());*/
+        WebDriverWait wt = new WebDriverWait (getDriver(), 500);
+        wt.until(ExpectedConditions.presenceOfElementLocated(placeHolder_To));
 
         List<WebElement> text = driver.findElements(placeHolder_To);
         String placeholderText = text.get(1).getText();
-        System.out.println(text.get(1).getText());
         assertTrue("Wrong text after reposting: ", placeholderText.contains(placeholder));
+        System.out.println(text.get(1).getText());
 
-        /*for (WebElement el : Owner) {
-            if (el.getText().contains(placeholderGroup)) {
-                System.out.println(el.getText());
-                break;
-            }
-        }*/
+        getImplicitWaitTimeout();
     }
 
     public void checkCounterRepost(WebDriver driver, String counter) {
-
         List<WebElement> Owner = driver.findElements(counterRepost);
         for (WebElement el : Owner) {
 

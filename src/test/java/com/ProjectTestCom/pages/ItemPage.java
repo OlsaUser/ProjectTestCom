@@ -317,7 +317,7 @@ public class ItemPage extends PageObject {
     private final By ShareItemToGroup = By.xpath("//a[@data-target='#postItemToMyGroupModal']");
     private final By ShareGroupMenu = By.xpath("//div[@id='s2id_post_item_to_group_list']");
     private final By ShareSelectGroup = By.xpath("//div[contains(text(),'Group Title 1')]");
-    private final By ShareItemInformText = By.xpath("//div[@class='user-in']/div");
+    private final By ShareItemInformText = By.xpath("//section[@id='market_sect']/market_app/div[1]/div[1]/div/div[1]/div/div/div/div");
     private final By ShareRepostHeader = By.xpath("//div[@class='feed-head-reaction-text']");
     private final By SharebtnPost = By.xpath("//button[@can-click='post_item_to_group']");
 
@@ -457,7 +457,7 @@ public class ItemPage extends PageObject {
     }
 
     public void clickAddButton(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 400);
+        WebDriverWait wt = new WebDriverWait(driver, 500);
         wt.until(ExpectedConditions.presenceOfElementLocated(buttonAdd_Menu));
         wt.until(ExpectedConditions.elementToBeClickable(buttonAdd_Menu));
         find(buttonAdd_Menu).click();
@@ -480,9 +480,9 @@ public class ItemPage extends PageObject {
             if (listType.getText().contains(ItemType)) {
                 listType.isDisplayed();
                 listType.click();
-                find(Supply).waitUntilClickable();
-                /*WebDriverWait wt = new WebDriverWait (driver, 99);
-                wt.until(ExpectedConditions.presenceOfElementLocated(Supply));*/
+                //find(Supply).waitUntilClickable();
+                WebDriverWait wt = new WebDriverWait (getDriver(), 99);
+                wt.until(ExpectedConditions.presenceOfElementLocated(Supply));
                 break;
             }
         }
@@ -1093,7 +1093,7 @@ public class ItemPage extends PageObject {
     }
 
     public void clickSave(WebDriver driver) {
-        parentWindowHandler = getDriver().getWindowHandle();
+        //parentWindowHandler = getDriver().getWindowHandle();
         find(btnSave).click();
     }
 
@@ -1261,14 +1261,22 @@ public class ItemPage extends PageObject {
 
     public void pressShareButton(WebDriver driver) {
         find(ShareItemMenu).click();
+        WebDriverWait wt = new WebDriverWait(driver, 150);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(ShareItemToWall));
     }
 
     public void pressShareToWall(WebDriver driver) {
         find(ShareItemToWall).click();
+        WebDriverWait wt = new WebDriverWait(driver, 70);
+        Assert.assertTrue(find(ShareItemToWall).isEnabled());
+        wt.until(ExpectedConditions.invisibilityOfElementLocated(ShareItemToWall));
     }
 
     public void pressShareToGroup(WebDriver driver) {
         find(ShareItemToGroup).click();
+        WebDriverWait wt = new WebDriverWait(driver, 70);
+        Assert.assertTrue(find(ShareItemToGroup).isEnabled());
+        wt.until(ExpectedConditions.invisibilityOfElementLocated(ShareItemToGroup));
     }
 
     public void selectGroupInDropdown(WebDriver driver) {
@@ -1285,7 +1293,9 @@ public class ItemPage extends PageObject {
         assertTrue("No share header", i.contains(HeaderShare));
     }
     public void checkInformTextShareItem(WebDriver driver, String placeholderShareItem) throws AssertionError{
-        WebDriverWait wt = new WebDriverWait(driver, 180);
+        WebDriverWait wt = new WebDriverWait(driver, 400);
+        Assert.assertTrue(find(ShareItemInformText).isDisplayed());
+        System.out.println(find(ShareItemInformText).getText());
         wt.until(ExpectedConditions.presenceOfElementLocated(ShareItemInformText));
         wt.until(ExpectedConditions.visibilityOfElementLocated(ShareItemInformText));
         System.out.println("visible");

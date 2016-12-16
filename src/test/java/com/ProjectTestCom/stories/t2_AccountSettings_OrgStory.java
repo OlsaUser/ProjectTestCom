@@ -12,18 +12,22 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.pages.Pages;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 @RunWith(SerenityRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class t2_AccountSettings_OrgStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
@@ -88,6 +92,7 @@ public class t2_AccountSettings_OrgStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -107,7 +112,7 @@ public class t2_AccountSettings_OrgStory {
     public void tearDown() {driver.quit();}
 
     @Test
-    public void changeAccountSettings_Org_MainDetails_EN(){
+    public void stage1_changeAccountSettings_Org_MainDetails_EN(){
         accountSettingsSteps.enterOrganizationName(OrganizationName_En_exp);
         accountSettingsSteps.enterOrganizationShortName(OrganizationShortName_En_exp);
         accountSettingsSteps.selectTypeGovernmental();
@@ -135,7 +140,7 @@ public class t2_AccountSettings_OrgStory {
     }
 
     @Test
-    public void changeAccountSettings_Org_ContactInfo(){
+    public void stage2_changeAccountSettings_Org_ContactInfo(){
         accountSettingsSteps.pressCollapseContactInfo();
         accountSettingsSteps.enterMobilePhone(mobile_exp);
         accountSettingsSteps.enterLandline(landline_exp);
@@ -160,7 +165,7 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.checkNetworkAccounts();
     }
     @Test
-    public void changeAccountSettings_Org_ChangePassword(){
+    public void stage3_changeAccountSettings_Org_ChangePassword(){
         accountSettingsSteps.pressCollapseChangePassword();
         accountSettingsSteps.enterCurrentPassword(password_organization);
         accountSettingsSteps.enterNewPassword(NewPassword_change);
