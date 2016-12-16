@@ -149,6 +149,7 @@ public class t1_ShareItemStory {
         addItemSteps.checkInformTextShareItem(driver, placeholderShareItemToGroup);
         loginSteps.PageComplete(driver);
 
+        loginSteps.Sleep(600);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);

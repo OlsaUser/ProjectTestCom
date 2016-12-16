@@ -123,6 +123,7 @@ public class GroupPage extends PageObject {
     //Visible elements
     private final By GroupContent = By.xpath("//div[@class='group-item']");
     private final By headerWallGroupLink = By.xpath("//div[@class='feed container']");
+    private final By firstPostBlock = By.xpath(".//*[@id='user_sect']/user_app/div[1]/div/div/div[3]/div[2]");
     private final By fieldInterests = By.xpath("//div[@id='s2id_group-interests']//li[last()]/input");
     private final By Skill_1 = By.xpath("//ul[@class='select2-results']/li[1]/div/span");
     private final By fieldSkills = By.xpath("//div[@id='s2id_group-skills']//li[last()]/input");
@@ -278,8 +279,9 @@ public class GroupPage extends PageObject {
         for (WebElement el : Owner) {
             if (el.getAttribute("href").contains(name)) {
                 el.click();
-                WebDriverWait wt = new WebDriverWait(driver, 300);
+                WebDriverWait wt = new WebDriverWait(driver, 800);
                 wt.until(ExpectedConditions.presenceOfElementLocated(headerWallGroupLink));
+                wt.until(ExpectedConditions.presenceOfElementLocated(firstPostBlock));
                 break;
             }
         }

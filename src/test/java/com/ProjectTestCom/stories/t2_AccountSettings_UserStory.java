@@ -148,8 +148,9 @@ public class t2_AccountSettings_UserStory {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
-        headerSteps.openMenuProfile(driver);
-        headerSteps.openAccountSettings(driver);
+        /*headerSteps.openMenuProfile(driver);
+        headerSteps.openAccountSettings(driver);*/
+        getDriver().get("http://synergy.devzone.dp.ua/en/cabinet#!profile");
         loginSteps.PageComplete(driver);
     }
 
@@ -160,7 +161,7 @@ public class t2_AccountSettings_UserStory {
     @Test
     public void stage0_changeAvatar() throws AWTException {
         accountSettingsSteps.pressUploadCoverLink();
-        loginSteps.uploadImage("tech2.jpg");
+        loginSteps.uploadImage("tech7.jpg");
         accountSettingsSteps.CropPopup_ChooseImage();
     }
 
@@ -260,9 +261,9 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName, driver);
 
         accountSettingsSteps.enterFirstName(Name_101_symbols);
-       // accountSettingsSteps.clickUpdateError();
+        // accountSettingsSteps.clickUpdateError();
         //accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
-//last symbol is cut (appears only max 50 symbols)
+        //last symbol is cut (appears only max 50 symbols)
         //accountSettingsSteps.enterLastName(Name_51_symbols);
         //accountSettingsSteps.enterUserName(Name_101_symbols);
         //accountSettingsSteps.clickUpdateError();
@@ -270,8 +271,8 @@ public class t2_AccountSettings_UserStory {
         //accountSettingsSteps.enterUserName(UserName_En);
         //accountSettingsSteps.clickUpdateError();
         //accountSettingsSteps.checkMessage_if_NameWrong(Error_LastName_moreMAX, driver);
-       // accountSettingsSteps.checkMessage_if_NameWrong(NoError, driver);
-       // accountSettingsSteps.clickUpdate1(driver);
+        // accountSettingsSteps.checkMessage_if_NameWrong(NoError, driver);
+        // accountSettingsSteps.clickUpdate1(driver);
         //loginSteps.PageComplete(driver);
         accountSettingsSteps.enterFirstName(FirstName_Ar);
         //accountSettingsSteps.enterLastName(LastName_Ar);
@@ -314,7 +315,7 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.enterEducFromDate();
         accountSettingsSteps.enterEducTillDate();
         accountSettingsSteps.enterSpeciality(Speciality);
-        accountSettingsSteps.enterLocation(location);
+        accountSettingsSteps.enterLocation(location,driver);
         accountSettingsSteps.enterAbout(About);
         accountSettingsSteps.pressSaveNewEduc(driver);
         loginSteps.PageComplete(driver);

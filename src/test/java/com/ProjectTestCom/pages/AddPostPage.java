@@ -110,13 +110,13 @@ public class AddPostPage extends PageObject {
     }
 
     public void AddTextPost(String Text, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 500);
+        WebDriverWait wt = new WebDriverWait (driver, 600);
         wt.until(ExpectedConditions.presenceOfElementLocated(fieldPost));
         find(fieldPost).click();
         //wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
         //find(fieldPost).waitUntilClickable();
         String el = find(txtCounter). getText();
-        //waitForTextToAppear(el);
+        waitForTextToAppear(el);
         wt.until(ExpectedConditions.elementToBeClickable(fieldPost));
         find(fieldPost).sendKeys(Text);
         wt.until(ExpectedConditions.textToBePresentInElementLocated(fieldPost,Text));
@@ -241,7 +241,7 @@ public class AddPostPage extends PageObject {
     }
 
     public void checkTextInPost(String textPost, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 200);
+        WebDriverWait wt = new WebDriverWait (driver, 400);
         wt.until(ExpectedConditions.textToBePresentInElementLocated(txtPost,textPost));
 
         /*WebDriverWait wt = new WebDriverWait (driver, 500);
@@ -301,15 +301,15 @@ public class AddPostPage extends PageObject {
     }
 
     public void checkPlaceholderTextAfterRepost(WebDriver driver, String placeholder) {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 500);
-        wt.until(ExpectedConditions.presenceOfElementLocated(placeHolder_To));
+        WebDriverWait wt = new WebDriverWait (getDriver(), 600);
+        wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='user-photo-icon -reposted']")));
 
         List<WebElement> text = driver.findElements(placeHolder_To);
         String placeholderText = text.get(1).getText();
         assertTrue("Wrong text after reposting: ", placeholderText.contains(placeholder));
         System.out.println(text.get(1).getText());
 
-        getImplicitWaitTimeout();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
     }
 
     public void checkCounterRepost(WebDriver driver, String counter) {

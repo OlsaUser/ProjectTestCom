@@ -76,7 +76,7 @@ public class LoginPage extends PageObject {
     }
 
     public void pressLoginLink( ) {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 300);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 700);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Button));
         find(Button).click();
         wt.until(ExpectedConditions.elementToBeClickable(LoginLink));
@@ -104,7 +104,7 @@ public class LoginPage extends PageObject {
 
     public void clickEnter(WebDriver driver){
         element(btnEnter).click();
-        WebDriverWait wt = new WebDriverWait (driver, 1000);
+        WebDriverWait wt = new WebDriverWait (driver, 1500);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
     }
 
@@ -155,7 +155,7 @@ public class LoginPage extends PageObject {
         robot.delay(20);
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
-        robot.delay(10);
+        robot.delay(13);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
         robot.delay(98);
@@ -183,7 +183,7 @@ public class LoginPage extends PageObject {
                         return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
                     }
                 };
-        WebDriverWait wait = new WebDriverWait(driver, 1000);
+        WebDriverWait wait = new WebDriverWait(driver, 1500);
         wait.until(pageLoadCondition);
     }
 

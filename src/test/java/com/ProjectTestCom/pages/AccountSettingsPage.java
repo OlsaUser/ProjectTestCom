@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.junit.Assert.assertTrue;
@@ -418,9 +419,14 @@ public class AccountSettingsPage extends PageObject {
     }
 
 
-    public void enterLocation(String location) {
+    public void enterLocation(String location,WebDriver driver) {
         find(fieldLocation).sendKeys(location);
+        WebDriverWait wt = new WebDriverWait (driver, 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(EducLocationJeddah));
+        wt.until(ExpectedConditions.elementToBeClickable(EducLocationJeddah));
         find(EducLocationJeddah).click();
+        System.out.println("click");
+        wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='add-ed-form']/div[1]/div[4]/ul/li")));
     }
 
     public void pressSaveNewEduc(WebDriver driver) {
@@ -569,6 +575,8 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public void enterUserName(String UserName) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.presenceOfElementLocated(fieldUserName));
         clearUserName();
         element(fieldUserName).sendKeys(UserName);
     }
@@ -657,7 +665,8 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public void clickUpdate1(WebDriver driver) {
-        //find(btnUpdate1).waitUntilClickable();
+        WebDriverWait wt1 = new WebDriverWait (driver, 200);
+        wt1.until(ExpectedConditions.elementToBeClickable(btnUpdate1));
         find(btnUpdate1).click();
         clickOk(driver);
     }
@@ -689,13 +698,14 @@ public class AccountSettingsPage extends PageObject {
         clickOk(driver);
     }
     public void clickOk(WebDriver driver) {
-        //find(btnOk).waitUntilClickable();
-        //find(btnOk).waitUntilPresent();
-       // if (find(btnOk).isVisible())
-        WebDriverWait wt1 = new WebDriverWait (driver, 160);
+        WebDriverWait wt1 = new WebDriverWait (driver, 2500);
         wt1.until(ExpectedConditions.elementToBeClickable(btnOk));
+        wt1.until(ExpectedConditions.presenceOfElementLocated(btnOk));
+        driver.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
+        find(btnOk);
         find(btnOk).click();
-        WebDriverWait wt2 = new WebDriverWait (driver, 160);
+        System.out.println("click");
+        WebDriverWait wt2 = new WebDriverWait (driver, 100);
         wt2.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
     }
 

@@ -97,14 +97,15 @@ public class t2_AccountSettings_OrgStory {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
-
+        loginSteps.PageComplete(driver);
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
-        headerSteps.openMenuProfile(driver);
-        headerSteps.openAccountSettings(driver);
+       /* headerSteps.openMenuProfile(driver);
+        headerSteps.openAccountSettings(driver);*/
+        getDriver().get("http://synergy.devzone.dp.ua/en/cabinet#!profile");
         loginSteps.PageComplete(driver);
     }
 
@@ -125,7 +126,7 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.enterBriefInfo(BriefInfo);
         accountSettingsSteps.clickUpdate1(driver);
         //User info page
-        loginSteps.Sleep(70);
+        //loginSteps.Sleep(70);
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
         accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
@@ -170,7 +171,7 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.enterCurrentPassword(password_organization);
         accountSettingsSteps.enterNewPassword(NewPassword_change);
         accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
-        //loginSteps.PageComplete(driver);
+        loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);
     }
 }

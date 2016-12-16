@@ -431,7 +431,7 @@ public class FullTraceUser {
         accountSettingsSteps.enterEducFromDate();
         accountSettingsSteps.enterEducTillDate();
         accountSettingsSteps.enterSpeciality(Speciality);
-        accountSettingsSteps.enterLocation(location);
+        accountSettingsSteps.enterLocation(location,driver);
         accountSettingsSteps.enterAbout(About);
         accountSettingsSteps.pressSaveNewEduc(driver);
         loginSteps.PageComplete(driver);

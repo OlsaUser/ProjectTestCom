@@ -8,6 +8,8 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-remote-driver/3.0.1/selenium-remote-driver-3.0.1-sources.jar!/" />
+      <root url="file://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-support/3.0.1" />
+      <root url="file://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-support/3.0.1" />
     </SOURCES>
   </library>
 </component>

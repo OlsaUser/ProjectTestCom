@@ -174,7 +174,7 @@ public class AccountSettingsSteps extends ScenarioSteps {
     public void pressSaveNewEduc ( WebDriver driver) { accountSettingsPage.pressSaveNewEduc(driver);}
 
     @Step
-    public void enterLocation (String location) { accountSettingsPage.enterLocation(location);}
+    public void enterLocation (String location,WebDriver driver) { accountSettingsPage.enterLocation(location, driver);}
 
     @Step
     public void enterEducFromDate ( ) { accountSettingsPage.enterEducFromDate();}

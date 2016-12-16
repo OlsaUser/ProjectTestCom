@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -189,12 +190,11 @@ public class HeaderPage extends PageObject {
         WebDriverWait wt1 = new WebDriverWait (getDriver(), 500);
         wt1.until(ExpectedConditions.elementToBeClickable(linkMyMnassa));
         wt1.until(ExpectedConditions.presenceOfElementLocated(linkMyMnassa));
-        //Assert.assertTrue(find(linkMyMnassa).waitUntilClickable());
+
         find(linkMyMnassa).waitUntilClickable();
         find(linkMyMnassa).click();
         WebDriverWait wt2 = new WebDriverWait (getDriver(), 600);
         wt2.until(ExpectedConditions.visibilityOfElementLocated(MyMnassaContent));
-        //Assert.assertTrue(find(MyMnassaContent).isDisplayed());
     }
 
     public void openDiscoverPage (WebDriver driver) {
@@ -315,17 +315,20 @@ public class HeaderPage extends PageObject {
     }
 
     public void openMenuProfile(WebDriver driver ) {
-        WebDriverWait wt = new WebDriverWait (driver, 300);
-        wt.until(ExpectedConditions.elementToBeClickable(menuProfile));
-        find(menuProfile).waitUntilClickable();
+        WebDriverWait wt = new WebDriverWait (driver, 500);
+        //wt.until(ExpectedConditions.presenceOfElementLocated(menuProfile));
         find(menuProfile).click();
+
+        /*WebElement link = driver.findElement(menuProfile);
+        Actions builder = new Actions(driver);
+        builder.moveToElement(link).build().perform();*/
     }
 
     public void openAccountSettings(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 300);
+        WebDriverWait wt = new WebDriverWait (driver, 600);
         //wt.until(ExpectedConditions.presenceOfElementLocated(menuAccountSettings));
-        //wt.until(ExpectedConditions.visibilityOfElementLocated(menuAccountSettings));
-        //wt.until(ExpectedConditions.elementToBeClickable(menuAccountSettings));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(menuAccountSettings));
+        wt.until(ExpectedConditions.elementToBeClickable(menuAccountSettings));
         find(menuAccountSettings).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(ProfileContent));
         wt.until(ExpectedConditions.presenceOfElementLocated(ProfileContent));
