@@ -142,8 +142,8 @@ public class t2_AddItemProjectStory {
         headerSteps.openMyPartnershipListing(driver);
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
@@ -178,8 +178,8 @@ public class t2_AddItemProjectStory {
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         loginSteps.PageComplete(driver);
         addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);

@@ -187,7 +187,7 @@ public class HeaderPage extends PageObject {
     }
 
     public void openMyMnassaPage(WebDriver driver) {
-        WebDriverWait wt1 = new WebDriverWait (getDriver(), 500);
+        WebDriverWait wt1 = new WebDriverWait (getDriver(), 800);
         wt1.until(ExpectedConditions.elementToBeClickable(linkMyMnassa));
         wt1.until(ExpectedConditions.presenceOfElementLocated(linkMyMnassa));
 

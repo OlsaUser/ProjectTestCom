@@ -117,6 +117,7 @@ public class t2_AddItemProductStory {
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
     }
 
     @After
@@ -130,8 +131,8 @@ public class t2_AddItemProductStory {
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         loginSteps.PageComplete(driver);
         addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.selectAvailabilityOutOfStock();
@@ -215,8 +216,8 @@ public class t2_AddItemProductStory {
         loginSteps.PageComplete(driver);
 
         addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, DescriptionNull);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(Title, DescriptionNull);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.enterPrice(Price, PerNull);
@@ -259,8 +260,8 @@ public class t2_AddItemProductStory {
         headerSteps.openMyProductListing(driver);
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);

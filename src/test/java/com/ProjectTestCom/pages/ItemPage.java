@@ -481,7 +481,7 @@ public class ItemPage extends PageObject {
                 listType.isDisplayed();
                 listType.click();
                 //find(Supply).waitUntilClickable();
-                WebDriverWait wt = new WebDriverWait (getDriver(), 99);
+                WebDriverWait wt = new WebDriverWait (getDriver(), 200);
                 wt.until(ExpectedConditions.presenceOfElementLocated(Supply));
                 break;
             }
@@ -509,6 +509,9 @@ public class ItemPage extends PageObject {
 
     public void enterTag(String Tag) {
         find(fieldTag).sendKeys(Tag);
+        WebDriverWait wt = new WebDriverWait(getDriver(), 400);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Tag1));
+        wt.until(ExpectedConditions.presenceOfElementLocated(Tag1));
         find(Tag1).click();
     }
 
@@ -520,8 +523,12 @@ public class ItemPage extends PageObject {
 
     public void enterAddress(String address) {
         find(Address).sendKeys(address);
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 500);
+        wt1.until(ExpectedConditions.presenceOfElementLocated(AddressStreet));
+        wt1.until(ExpectedConditions.elementToBeClickable(AddressStreet));
+        Assert.assertTrue(find(AddressStreet).isVisible());
         find(AddressStreet).click();
+
     }
 
     public void clearTitle() {
@@ -533,13 +540,17 @@ public class ItemPage extends PageObject {
     }
 
     public void selectCategory1() {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 100);
+        wt1.until(ExpectedConditions.elementToBeClickable(menuCategory));
         find(menuCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         String categoryName = find(Category1).getText();
         find(Category1).click();
 
+        WebDriverWait wt2 = new WebDriverWait(getDriver(), 100);
+        wt2.until(ExpectedConditions.elementToBeClickable(menuSubCategory));
         find(menuSubCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         String subcategoryName = find(SubCategory1).getText();
         find(SubCategory1).click();
         category.clear();
@@ -552,6 +563,8 @@ public class ItemPage extends PageObject {
         String categoryName = find(Category2).getText();
         find(Category2).click();
 
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 100);
+        wt1.until(ExpectedConditions.elementToBeClickable(menuSubCategory));
         find(menuSubCategory).click();
         getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
         String subcategoryName = find(SubCategory2).getText();
@@ -575,6 +588,8 @@ public class ItemPage extends PageObject {
     }
 
     public void enterPrice(String value, String Per) {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 500);
+        wt1.until(ExpectedConditions.elementToBeClickable(Fixed));
         find(Fixed).click();
         clearPrice();
         find(fieldPrice).sendKeys(value);
@@ -1030,6 +1045,8 @@ public class ItemPage extends PageObject {
         jse.executeScript("window.scrollBy(0,700)", "");*/
     }
     public void AudioContent5(String AudioLink1, String AudioLink2, String AudioLink3, String AudioLink4, String AudioLink5) {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 150);
+        wt1.until(ExpectedConditions.visibilityOfElementLocated(ContentAudio));
         find(ContentAudio).click();
         clearAudio();
         find(fieldAudioLink1).sendKeys(AudioLink1);
@@ -1098,7 +1115,7 @@ public class ItemPage extends PageObject {
     }
 
     public void checkItemSaved(WebDriver driver){
-        WebDriverWait wt = new WebDriverWait (driver, 400);
+        WebDriverWait wt = new WebDriverWait (driver, 600);
         wt.until(ExpectedConditions.presenceOfElementLocated(SuccessPopupOk));
         wt.until(ExpectedConditions.visibilityOfElementLocated(SuccessPopupOk));
         wt.until(ExpectedConditions.elementToBeClickable(SuccessPopupOk));

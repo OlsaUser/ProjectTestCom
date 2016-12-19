@@ -47,7 +47,7 @@ public class GroupPage extends PageObject {
 
     private final By btnSave = By.xpath("//button[@can-click='upd_group']");
     private final By CreateandShareInformation = By.xpath("//span[@class='feed-placeholder-title-text']");
-    private final By fieldNameGroup = By.xpath("//input[@can-value='mcou_title']");
+    private final By fieldNameGroup = By.xpath("//input[@id='group-title']");
     private final By TypeLimited = By.xpath("//label[@for='mcou-permission-limited']");
     private final By TypePrivate = By.xpath("//label[@for='mcou-permission-private']");
     private final By TypePublic = By.xpath("//label[@for='mcou-permission-public']");
@@ -167,7 +167,7 @@ public class GroupPage extends PageObject {
         find(fieldSkills).click();
         find(fieldSkills).sendKeys(skill);
 
-        WebDriverWait wt = new WebDriverWait (driver, 80);
+        WebDriverWait wt = new WebDriverWait (driver, 400);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Skill_1));
         find(Skill_1).click();
         wt.until(ExpectedConditions.invisibilityOfElementLocated(Skill_1));
@@ -177,7 +177,7 @@ public class GroupPage extends PageObject {
         find(fieldInterests).click();
         find(fieldInterests).sendKeys(interest);
 
-        WebDriverWait wt = new WebDriverWait (driver, 80);
+        WebDriverWait wt = new WebDriverWait (driver, 400);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Interest_1));
         find(Interest_1).click();
         wt.until(ExpectedConditions.invisibilityOfElementLocated(Interest_1));
@@ -188,7 +188,7 @@ public class GroupPage extends PageObject {
         if (find(btnAddGroup).isPresent())
         find(btnAddGroup).click();
 
-        WebDriverWait wt = new WebDriverWait(getDriver(), 99);
+        WebDriverWait wt = new WebDriverWait(getDriver(), 500);
         wt.until(ExpectedConditions.visibilityOfElementLocated(headerGroupIcon));
         //wt.until(ExpectedConditions.visibilityOfElementLocated(thirdLimeMenu));
 
@@ -227,10 +227,12 @@ public class GroupPage extends PageObject {
     }*/
 
     public void enterNameGroup(String NameGroup, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 99);
+        WebDriverWait wt = new WebDriverWait(driver, 500);
+        wt.until(ExpectedConditions.presenceOfElementLocated(fieldNameGroup));
         wt.until(ExpectedConditions.elementToBeClickable(fieldNameGroup));
-              clearNameGroup();
-              find(fieldNameGroup).sendKeys(NameGroup);
+        //clearNameGroup();
+        find(fieldNameGroup).sendKeys(NameGroup);
+        find(fieldNameGroup).click();
     }
 
     public void selectTypeLimited(WebDriver driver, String dscLimitedGroup) throws Error  {
@@ -267,7 +269,7 @@ public class GroupPage extends PageObject {
         element(btnSave).click();
         find(btnSave).waitUntilNotVisible();
 
-        WebDriverWait wt = new WebDriverWait(driver, 25);
+        WebDriverWait wt = new WebDriverWait(driver, 150);
         wt.until(ExpectedConditions.textToBePresentInElementLocated(CreateandShareInformation,
                 "Create and share any information with Mnassa community"));
     }
@@ -281,7 +283,7 @@ public class GroupPage extends PageObject {
                 el.click();
                 WebDriverWait wt = new WebDriverWait(driver, 800);
                 wt.until(ExpectedConditions.presenceOfElementLocated(headerWallGroupLink));
-                wt.until(ExpectedConditions.presenceOfElementLocated(firstPostBlock));
+                //wt.until(ExpectedConditions.presenceOfElementLocated(firstPostBlock));
                 break;
             }
         }
@@ -424,8 +426,9 @@ public class GroupPage extends PageObject {
     //not actual
     public void clickbtnSettingsEdit(WebDriver driver) {
         element(btnSettingsEdit).click();
-        WebDriverWait wt = new WebDriverWait(driver, 99);
+        WebDriverWait wt = new WebDriverWait(driver, 500);
         wt.until(ExpectedConditions.invisibilityOfElementLocated(EditGroupPopup));
+        wt.until(ExpectedConditions.presenceOfElementLocated(fieldNameGroup));
     }
 
     public void clickbtnSettingsInvite() {element(buttonInvite).click();}

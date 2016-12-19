@@ -104,8 +104,9 @@ public class LoginPage extends PageObject {
 
     public void clickEnter(WebDriver driver){
         element(btnEnter).click();
-        WebDriverWait wt = new WebDriverWait (driver, 1500);
+        WebDriverWait wt = new WebDriverWait (driver, 1800);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(HomeContent));
     }
 
     public void clickLogOut() {element(LogOut).click();}
