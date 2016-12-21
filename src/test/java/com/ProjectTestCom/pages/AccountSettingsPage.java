@@ -665,7 +665,7 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public void clickUpdate1(WebDriver driver) {
-        WebDriverWait wt1 = new WebDriverWait (driver, 200);
+        WebDriverWait wt1 = new WebDriverWait (driver, 250);
         wt1.until(ExpectedConditions.elementToBeClickable(btnUpdate1));
         find(btnUpdate1).click();
         clickOk(driver);

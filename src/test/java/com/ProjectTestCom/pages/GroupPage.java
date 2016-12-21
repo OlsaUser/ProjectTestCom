@@ -48,7 +48,7 @@ public class GroupPage extends PageObject {
 
     private final By btnSave = By.xpath("//button[@can-click='upd_group']");
     private final By CreateandShareInformation = By.xpath("//span[@class='feed-placeholder-title-text']");
-    private final By fieldNameGroup = By.xpath("//input[@id='group-title']");
+    private final By fieldNameGroup = By.id("group-title");
     private final By TypeLimited = By.xpath("//label[@for='mcou-permission-limited']");
     private final By TypePrivate = By.xpath("//label[@for='mcou-permission-private']");
     private final By TypePublic = By.xpath("//label[@for='mcou-permission-public']");
@@ -228,12 +228,12 @@ public class GroupPage extends PageObject {
     }*/
 
     public void enterNameGroup(String NameGroup, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 200);
+        WebDriverWait wt = new WebDriverWait(driver, 450);
         wt.until(visibilityOfElementLocated(fieldNameGroup));
         wt.until(ExpectedConditions.elementToBeClickable(fieldNameGroup));
         //clearNameGroup();
         find(fieldNameGroup).sendKeys(NameGroup);
-        find(fieldNameGroup).click();
+        //find(fieldNameGroup).click();
     }
 
     public void selectTypeLimited(WebDriver driver, String dscLimitedGroup) throws Error  {

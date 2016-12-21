@@ -60,11 +60,15 @@ public class t4_DeleteAlbumStory {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
+
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyMedia(driver);
+        loginSteps.PageComplete(driver);
     }
 
     @After
@@ -76,7 +80,7 @@ public class t4_DeleteAlbumStory {
         addAlbumSteps.openSettingsMenu();
         addAlbumSteps.selectDeleteMenu();
         addAlbumSteps.clickDeleteButton();
-        addAlbumSteps.clickAlbumDeleted(driver);
+        addAlbumSteps.checkAlbumDeleted(driver);
     }
     @Test
     public void viewAlbum_Settings_CancelDeleteAlbum() {

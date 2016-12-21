@@ -92,7 +92,7 @@ public class t2_AccountSettings_OrgStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1800, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -103,9 +103,10 @@ public class t2_AccountSettings_OrgStory {
         loginSteps.clickEnter(driver);
         //loginSteps.PageComplete(driver);
 
-        //headerSteps.openMenuProfile(driver);
-        //headerSteps.openAccountSettings(driver);
-        getDriver().get("http://synergy.devzone.dp.ua/en/cabinet#!profile");
+        headerSteps.openDiscoverPage(driver);
+        headerSteps.openMenuProfile(driver);
+        headerSteps.openAccountSettings(driver);
+        //getDriver().get("http://synergy.devzone.dp.ua/en/cabinet#!profile");
         loginSteps.PageComplete(driver);
     }
 

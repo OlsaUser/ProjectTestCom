@@ -185,7 +185,7 @@ public class LoginPage extends PageObject {
                         return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
                     }
                 };
-        WebDriverWait wait = new WebDriverWait(driver, 1500);
+        WebDriverWait wait = new WebDriverWait(driver, 1700);
         wait.until(pageLoadCondition);
     }
 

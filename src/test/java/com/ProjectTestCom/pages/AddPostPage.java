@@ -113,7 +113,7 @@ public class AddPostPage extends PageObject {
     public void AddTextPost(String Text, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 600);
         wt.until(ExpectedConditions.presenceOfElementLocated(fieldPost));
-        //wt.until(visibilityOfElementLocated(WallContent));
+        wt.until(visibilityOfElementLocated(WallContent));
 
         find(fieldPost).click();
         //wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
@@ -276,12 +276,12 @@ public class AddPostPage extends PageObject {
     }
 
     public void checkContentInPost(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 99);
+        WebDriverWait wt = new WebDriverWait (driver, 200);
         wt.until(ExpectedConditions.visibilityOfElementLocated(widgetVideo));
     }
 
     public void checkAudioContentInPost(WebDriver driver) {
-        WebDriverWait ww = new WebDriverWait (driver, 99);
+        WebDriverWait ww = new WebDriverWait (driver, 200);
         ww.until(ExpectedConditions.visibilityOfElementLocated(AudioContent));
     }
 

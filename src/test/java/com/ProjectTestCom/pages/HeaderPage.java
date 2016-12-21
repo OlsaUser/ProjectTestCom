@@ -317,10 +317,9 @@ public class HeaderPage extends PageObject {
     }
 
     public void openMenuProfile(WebDriver driver)  {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 800);
+        element(menuProfile).click();
+        /*WebDriverWait wt = new WebDriverWait (getDriver(), 800);
         wt.until(ExpectedConditions.presenceOfElementLocated(menuProfile));
-        //find(menuProfile).click();
-       // wt.until(ExpectedConditions.presenceOfElementLocated(menuAccountSettings));
         System.out.println("1");
         WebElement element=getDriver().findElement(menuProfile);
         String javaScript = "var evObj = document.createEvent('MouseEvents');" +
@@ -333,24 +332,28 @@ public class HeaderPage extends PageObject {
         WebElement element2=getDriver().findElement(menuAccountSettings);
         ((JavascriptExecutor)getDriver()).executeScript(javaScript, element2);
         find(menuAccountSettings).click();
-        System.out.println("3 2");
+        System.out.println("3 2");*/
     }
 
     public void openAccountSettings(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 10);
+        element(menuAccountSettings).click();
+        WebDriverWait wt = new WebDriverWait (getDriver(), 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(ProfileContent));
+
+       /* WebDriverWait wt = new WebDriverWait (driver, 10);
         wt.until(ExpectedConditions.presenceOfElementLocated(menuAccountSettings));
-       /* wt.until(ExpectedConditions.visibilityOfElementLocated(menuAccountSettings));
-        wt.until(ExpectedConditions.elementToBeClickable(menuAccountSettings));*/
+        wt.until(ExpectedConditions.visibilityOfElementLocated(menuAccountSettings));
+        wt.until(ExpectedConditions.elementToBeClickable(menuAccountSettings));
         System.out.println("4");
         find(menuAccountSettings).click();
-        /*wt.until(ExpectedConditions.visibilityOfElementLocated(ProfileContent));
-        wt.until(ExpectedConditions.presenceOfElementLocated(ProfileContent));*/
+        wt.until(ExpectedConditions.visibilityOfElementLocated(ProfileContent));
+        wt.until(ExpectedConditions.presenceOfElementLocated(ProfileContent));
         WebElement element=find(menuAccountSettings);
         String javaScript = "var evObj = document.createEvent('MouseEvents');" +
                 "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
                 "arguments[0].dispatchEvent(evObj);";
         ((JavascriptExecutor)getDriver()).executeScript(javaScript, element);
-        find(menuAccountSettings).click();
+        find(menuAccountSettings).click();*/
     }
 
     public void openGroupsListing(WebDriver driver) {

@@ -61,7 +61,10 @@ public class MyMediaPage extends PageObject {
 
     public void openSettingsMenu() {element(SettingsMenu).click();}
 
-    public void selectDeleteMenu() {element(DeleteMenu).click();}
+    public void selectDeleteMenu() {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 200);
+        wt.until(ExpectedConditions.presenceOfElementLocated(DeleteMenu));
+        element(DeleteMenu).click();}
 
     public void selectEditMenu(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 200);
@@ -79,11 +82,14 @@ public class MyMediaPage extends PageObject {
     }
 
     public void clickDeleteButton() {
-        element(btnDelete).click();
+        WebDriverWait wt = new WebDriverWait (getDriver(), 350);
+        wt.until(ExpectedConditions.presenceOfElementLocated(btnDelete));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(btnDelete));
+        find(btnDelete).click();
     }
 
-    public void clickAlbumDeleted(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 99);
+    public void checkAlbumDeleted(WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait (driver, 200);
         wt.until(ExpectedConditions.invisibilityOfElementLocated(btnDelete));
         wt.until(ExpectedConditions.visibilityOfElementLocated(MediaContent));
     }

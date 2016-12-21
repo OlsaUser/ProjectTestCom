@@ -68,14 +68,16 @@ public class t3_AddAudioPostStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1800, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
+
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
     }
 
     @After
@@ -143,8 +145,9 @@ public class t3_AddAudioPostStory {
     }*/
 
     @Test
-    public void AudioPostMyGroupWall() throws IOException{
+    public void AudioPostMyGroupWall() {
         headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
         addGroupSteps.openGroupWall(driver, Group1);
@@ -178,7 +181,8 @@ public class t3_AddAudioPostStory {
     @Test
     public void AudioPostMyWall() {
         headerSteps.openMyMnassaPage(driver);
-       // headerSteps.openMyWall(driver);
+        loginSteps.PageComplete(driver);
+
         addPostSteps.AddTextPost(textPostAr, driver);
         addPostSteps.openAudioPopup();
         addPostSteps.AddAudioLink(AudioLink);
