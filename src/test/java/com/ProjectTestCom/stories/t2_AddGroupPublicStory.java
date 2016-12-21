@@ -98,7 +98,7 @@ public class t2_AddGroupPublicStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(450, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);

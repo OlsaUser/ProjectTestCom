@@ -13,6 +13,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+
 @DefaultUrl("http://synergy.devzone.dp.ua/en")
 //@DefaultUrl("http://mnassa.com/en")
 
@@ -88,7 +91,7 @@ public class SearchPage extends PageObject {
         find(fldSearch).clear();
         element(fldSearch).sendKeys(text);
         WebDriverWait wt = new WebDriverWait (getDriver(), 600);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Search_Popup));
+        wt.until(visibilityOfElementLocated(Search_Popup));
         wt.until(ExpectedConditions.presenceOfElementLocated(Search_Popup));
         wt.until(ExpectedConditions.presenceOfElementLocated(result_User));
        /* WebElement el = find(Search_Popup);
@@ -96,9 +99,15 @@ public class SearchPage extends PageObject {
     }
 
     public void selectSearchResult_byUser(String text, WebDriver driver) {
-        element(result_User).click();
-        WebDriverWait wt = new WebDriverWait (driver, 300);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(UserListing));
+        WebElement element = driver.findElement(result_User);
+        element.click();
+
+        WebDriverWait wt = new WebDriverWait (getDriver(), 300);
+        // ждём исчезновения кнопки, то есть "выгрузки" страницы
+        wt.until(stalenessOf(element));
+        // ждём загрузки следующей страницы
+        wt.until(visibilityOfElementLocated(UserListing));
+
         //find(inListing_Users).containsText(text);
        // wt.until(ExpectedConditions.textToBePresentInElementLocated(inListing_Users,text));
     }
@@ -106,7 +115,7 @@ public class SearchPage extends PageObject {
     public void selectSearchResult_byOrganization(String text, WebDriver driver) {
         element(result_Organization).click();
         WebDriverWait wt = new WebDriverWait (driver, 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(UserListing));
+        wt.until(visibilityOfElementLocated(UserListing));
         //wt.until(ExpectedConditions.textToBePresentInElementLocated(inListing_Users,text));
     }
 
@@ -123,15 +132,15 @@ public class SearchPage extends PageObject {
     }
     public void selectSearchResult_ProductItem(String text, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(result_Item_Product));
+        wt.until(visibilityOfElementLocated(result_Item_Product));
         System.out.println(element(result_Item_Product).getText());
         element(result_Item_Product).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        wt.until(visibilityOfElementLocated(ItemListing));
     }
 
     public boolean checkSearchResult_Item(String text, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (getDriver(), 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(itemTitle));
+        wt.until(visibilityOfElementLocated(itemTitle));
         List<WebElement> titles = driver.findElements(itemTitle);
         for (WebElement el : titles) {
             System.out.println(el.getText());
@@ -144,7 +153,7 @@ public class SearchPage extends PageObject {
 
     public void checkSearchResult_ItemDescription(String text, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        wt.until(visibilityOfElementLocated(ItemListing));
 
         find(ItemBlock).click();
         String name = find(ItemDescription).getText();
@@ -154,7 +163,7 @@ public class SearchPage extends PageObject {
 
     public void checkSearchResult_ItemTags(String tag, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        wt.until(visibilityOfElementLocated(ItemListing));
 
         find(ItemBlock).click();
         String name = find(ItemTags).getText();
@@ -165,7 +174,7 @@ public class SearchPage extends PageObject {
     public void checkSearchResult_FullName(String text, WebDriver driver) {
         System.out.println(text);
         WebDriverWait wt = new WebDriverWait (driver, 350);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(UserListing));
+        wt.until(visibilityOfElementLocated(UserListing));
         wt.until(ExpectedConditions.presenceOfElementLocated(FullName));
         System.out.println(find(FullName).getText());
         String name=find(FullName).getText();
@@ -174,29 +183,29 @@ public class SearchPage extends PageObject {
 
     public void checkSearchResult_UserName(String username, WebDriver driver) {
         WebDriverWait wt1 = new WebDriverWait (driver, 300);
-        wt1.until(ExpectedConditions.visibilityOfElementLocated(UserListing));
+        wt1.until(visibilityOfElementLocated(UserListing));
 
             find(FullName).click();
-            WebDriverWait wt2 = new WebDriverWait (driver, 300);
-            wt2.until(ExpectedConditions.visibilityOfElementLocated(UserName));
+            WebDriverWait wt2 = new WebDriverWait (driver, 600);
+            wt2.until(visibilityOfElementLocated(UserName));
             String name = find(UserName).getText();
             System.out.println(find(UserName).getText());
             Assert.assertTrue(name.contains(username));
     }
 
     public void checkSearchResult_BriefInfo(String info, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(UserListing));
+        WebDriverWait wt = new WebDriverWait (driver, 600);
+        wt.until(visibilityOfElementLocated(UserListing));
 
         find(FullName).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(BriefInfo));
+        wt.until(visibilityOfElementLocated(BriefInfo));
         String i = find(BriefInfo).getText();
         System.out.println(find(BriefInfo).getText());
         Assert.assertTrue(i.contains(info));
     }
     public void checkSearchResult_Skill(String skill, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(UserListing));
+        WebDriverWait wt = new WebDriverWait (driver, 600);
+        wt.until(visibilityOfElementLocated(UserListing));
 
         find(FullName).click();
        /* String i = find(ListOfSkills).getText();
@@ -213,7 +222,7 @@ public class SearchPage extends PageObject {
 
     public void checkSearchResult_GroupTitle(String group, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(groupBlock));
+        wt.until(visibilityOfElementLocated(groupBlock));
 
         System.out.println(find(groupTitle).getText());
         String name=find(groupTitle).getText();
@@ -222,7 +231,7 @@ public class SearchPage extends PageObject {
 
     public void checkSearchResult_GroupDescription(String group, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(groupBlock));
+        wt.until(visibilityOfElementLocated(groupBlock));
 
         find(groupBlock).click();
         System.out.println(find(groupDescription).getText());
@@ -233,51 +242,51 @@ public class SearchPage extends PageObject {
     public void selectSearchResult_ServiceItem(String text, WebDriver driver) {
         element(result_Item_Service).click();
         WebDriverWait wt = new WebDriverWait (driver, 300);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(linkService));
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        wt.until(visibilityOfElementLocated(linkService));
+        wt.until(visibilityOfElementLocated(ItemListing));
     }
 
     public void selectSearchResult_EventItem(String text, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 300);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(result_Item_Event));
+        wt.until(visibilityOfElementLocated(result_Item_Event));
         element(result_Item_Event).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        wt.until(visibilityOfElementLocated(ItemListing));
     }
 
     public void selectSearchResult_PartnershipItem(String text, WebDriver driver) {
         element(result_Item_Project).click();
         WebDriverWait wt = new WebDriverWait (driver, 300);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        wt.until(visibilityOfElementLocated(ItemListing));
     }
 
     public void selectSearchResult_ProductTag(String text, WebDriver driver) {
         element(result_Item_Product_Tag).click();
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        WebDriverWait wt = new WebDriverWait (driver, 400);
+        wt.until(visibilityOfElementLocated(ItemListing));
     }
 
     public void selectSearchResult_ServiceTag(String text, WebDriver driver) {
         element(result_Item_Service_Tag).click();
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        WebDriverWait wt = new WebDriverWait (driver, 400);
+        wt.until(visibilityOfElementLocated(ItemListing));
     }
 
     public void selectSearchResult_EventTag(String text, WebDriver driver) {
         element(result_Item_Event_Tag).click();
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        WebDriverWait wt = new WebDriverWait (driver, 400);
+        wt.until(visibilityOfElementLocated(ItemListing));
     }
 
     public void selectSearchResult_PartnershipTag(String text, WebDriver driver) {
         element(result_Item_Partnership_Tag).click();
-        WebDriverWait wt = new WebDriverWait (driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemListing));
+        WebDriverWait wt = new WebDriverWait (driver, 400);
+        wt.until(visibilityOfElementLocated(ItemListing));
     }
 
     public void selectSearchResult_Group(String title, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(result_Groups));
+        wt.until(visibilityOfElementLocated(result_Groups));
         element(result_Groups).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(groupBlock));
+        wt.until(visibilityOfElementLocated(groupBlock));
     }
 }

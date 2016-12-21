@@ -30,6 +30,7 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileReader;
@@ -48,6 +49,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 //import static org.seleniumhq.jetty7.util.LazyList.add;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.yecht.LevelStatus.end;
 import static org.yecht.LevelStatus.pause;
 
@@ -435,7 +437,7 @@ public class ItemPage extends PageObject {
 
     public void clickDeleteButton(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 200);
-        wt.until(ExpectedConditions.elementToBeClickable(btnDelete));
+        wt.until(elementToBeClickable(btnDelete));
         find(btnDelete);
         find(btnDelete).waitUntilClickable();
         element(btnDelete).click();
@@ -459,7 +461,7 @@ public class ItemPage extends PageObject {
     public void clickAddButton(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 500);
         wt.until(ExpectedConditions.presenceOfElementLocated(buttonAdd_Menu));
-        wt.until(ExpectedConditions.elementToBeClickable(buttonAdd_Menu));
+        wt.until(elementToBeClickable(buttonAdd_Menu));
         find(buttonAdd_Menu).click();
         wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(types));
     }
@@ -525,10 +527,13 @@ public class ItemPage extends PageObject {
         find(Address).sendKeys(address);
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 500);
         wt1.until(ExpectedConditions.presenceOfElementLocated(AddressStreet));
-        wt1.until(ExpectedConditions.elementToBeClickable(AddressStreet));
-        Assert.assertTrue(find(AddressStreet).isVisible());
-        find(AddressStreet).click();
+        WebElement element=find(AddressStreet);
+        String javaScript = "var evObj = document.createEvent('MouseEvents');" +
+                "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+                "arguments[0].dispatchEvent(evObj);";
 
+        ((JavascriptExecutor)getDriver()).executeScript(javaScript, element);
+        find(AddressStreet).click();
     }
 
     public void clearTitle() {
@@ -540,17 +545,15 @@ public class ItemPage extends PageObject {
     }
 
     public void selectCategory1() {
-        WebDriverWait wt1 = new WebDriverWait(getDriver(), 100);
-        wt1.until(ExpectedConditions.elementToBeClickable(menuCategory));
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 200);
+        wt1.until(elementToBeClickable(menuCategory));
         find(menuCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         String categoryName = find(Category1).getText();
         find(Category1).click();
 
-        WebDriverWait wt2 = new WebDriverWait(getDriver(), 100);
-        wt2.until(ExpectedConditions.elementToBeClickable(menuSubCategory));
+        WebDriverWait wt2 = new WebDriverWait(getDriver(), 200);
+        wt2.until(elementToBeClickable(menuSubCategory));
         find(menuSubCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         String subcategoryName = find(SubCategory1).getText();
         find(SubCategory1).click();
         category.clear();
@@ -564,7 +567,7 @@ public class ItemPage extends PageObject {
         find(Category2).click();
 
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 100);
-        wt1.until(ExpectedConditions.elementToBeClickable(menuSubCategory));
+        wt1.until(elementToBeClickable(menuSubCategory));
         find(menuSubCategory).click();
         getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
         String subcategoryName = find(SubCategory2).getText();
@@ -589,7 +592,7 @@ public class ItemPage extends PageObject {
 
     public void enterPrice(String value, String Per) {
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 500);
-        wt1.until(ExpectedConditions.elementToBeClickable(Fixed));
+        wt1.until(elementToBeClickable(Fixed));
         find(Fixed).click();
         clearPrice();
         find(fieldPrice).sendKeys(value);
@@ -818,7 +821,7 @@ public class ItemPage extends PageObject {
         }
     public void pressUploadImageLink() throws AWTException{
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 80);
-        wt1.until(ExpectedConditions.elementToBeClickable(imageLink));
+        wt1.until(elementToBeClickable(imageLink));
         find(imageLink).click();
     }
 
@@ -830,7 +833,7 @@ public class ItemPage extends PageObject {
 
     public void pressUploadFileLink() throws AWTException{
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 80);
-        wt1.until(ExpectedConditions.elementToBeClickable(fileLink));
+        wt1.until(elementToBeClickable(fileLink));
         find(fileLink).click();
     }
     public void checkUploadedFile() {
@@ -906,7 +909,7 @@ public class ItemPage extends PageObject {
 
     public void VideoContent1(String VideoLink1) {
         WebDriverWait wt = new WebDriverWait(getDriver(), 60);
-        wt.until(ExpectedConditions.elementToBeClickable(ContentVideo));
+        wt.until(elementToBeClickable(ContentVideo));
         find(ContentVideo).click();
         clearVideo();
         find(fieldVideoLink1).sendKeys(VideoLink1);
@@ -1118,9 +1121,9 @@ public class ItemPage extends PageObject {
         WebDriverWait wt = new WebDriverWait (driver, 600);
         wt.until(ExpectedConditions.presenceOfElementLocated(SuccessPopupOk));
         wt.until(ExpectedConditions.visibilityOfElementLocated(SuccessPopupOk));
-        wt.until(ExpectedConditions.elementToBeClickable(SuccessPopupOk));
+        wt.until(elementToBeClickable(SuccessPopupOk));
 
-        WebElement el= find(SuccessPopupOk);
+        WebElement el= wt.until(elementToBeClickable(SuccessPopupOk));
         if (el.isEnabled())
            el.click();
            //find(SuccessPopupOk).waitUntilNotVisible();

@@ -39,6 +39,7 @@ public class AddPostPage extends PageObject {
     private final By MyGroupWall = By.xpath("//div[@class='gallery-page-list']/div[@class='gallery-list']/div[1]");
     //private final By fieldPost = By.xpath("//textarea[@can-input='count_post']");
     private final By fieldPost = By.xpath("//textarea[@name='mcot_text']");
+    private final By WallContent = By.xpath("//div[@class='feed-item fade in js-m-block']");
     private final By txtCounter = By.xpath("//span[@class='wall-post-length']");
     //private final By txtPost = By.xpath("//div[@class='wall-post-area-back js-text-back custom-dir-invert-child']");
 
@@ -112,6 +113,8 @@ public class AddPostPage extends PageObject {
     public void AddTextPost(String Text, WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 600);
         wt.until(ExpectedConditions.presenceOfElementLocated(fieldPost));
+        //wt.until(visibilityOfElementLocated(WallContent));
+
         find(fieldPost).click();
         //wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
         //find(fieldPost).waitUntilClickable();
@@ -137,10 +140,10 @@ public class AddPostPage extends PageObject {
     }
 
     public void AddTextPost_inGroup(String Text, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 150);
-        wt.until(ExpectedConditions.presenceOfElementLocated(txtCounter));
+        WebDriverWait wt = new WebDriverWait (driver, 200);
         //wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
         find(fieldPost).click();
+        wt.until(ExpectedConditions.presenceOfElementLocated(txtCounter));
         String el = find(txtCounter). getText();
         waitForTextToAppear(el);
 
@@ -207,28 +210,40 @@ public class AddPostPage extends PageObject {
     }
 
     public void addComment(String comment, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 99);
-        wt.until(ExpectedConditions.presenceOfElementLocated(linkComment));
+        WebDriverWait wt = new WebDriverWait (driver, 100);
+        wt.until(visibilityOfElementLocated(linkComment));
         element(linkComment).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldComment));
+
+        wt.until(visibilityOfElementLocated(fieldComment));
         find(fieldComment).sendKeys(comment);
-        element(btnPostComment).click();
-        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,100)", "");
-        wt.until(ExpectedConditions.elementToBeClickable(txtComment));
+
+        WebElement btnPost=driver.findElement(btnPostComment);
+        element(btnPost).click();
+
+       /* JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        jse1.executeScript("window.scrollBy(0,100)", "");*/
+        wt.until(visibilityOfElementLocated(txtComment));
     }
 
     public void deleteComment(WebDriver driver) {
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         jse1.executeScript("window.scrollBy(0,150)", "");
 
-        WebElement menu = driver.findElement(txtComment);
+        /*WebElement menu = driver.findElement(txtComment);
         Actions action = new Actions(driver);
         action.moveToElement(menu).perform();
+        find(btnDelete).click();*/
+
+        WebElement element=find(txtComment);
+        String javaScript = "var evObj = document.createEvent('MouseEvents');" +
+                "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+                "arguments[0].dispatchEvent(evObj);";
+
+        ((JavascriptExecutor)getDriver()).executeScript(javaScript, element);
         find(btnDelete).click();
 
         WebDriverWait wt = new WebDriverWait (driver, 150);
-        wt.until(invisibilityOfElementLocated(txtComment));
+        //wt.until(invisibilityOfElementLocated(txtComment));
     }
 
     public void deletePost(WebDriver driver) {
@@ -308,8 +323,7 @@ public class AddPostPage extends PageObject {
         String placeholderText = text.get(1).getText();
         assertTrue("Wrong text after reposting: ", placeholderText.contains(placeholder));
         System.out.println(text.get(1).getText());
-
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
     }
 
     public void checkCounterRepost(WebDriver driver, String counter) {

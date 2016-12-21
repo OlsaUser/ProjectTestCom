@@ -101,10 +101,10 @@ public class t2_AccountSettings_OrgStory {
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
-       /* headerSteps.openMenuProfile(driver);
-        headerSteps.openAccountSettings(driver);*/
+        //headerSteps.openMenuProfile(driver);
+        //headerSteps.openAccountSettings(driver);
         getDriver().get("http://synergy.devzone.dp.ua/en/cabinet#!profile");
         loginSteps.PageComplete(driver);
     }

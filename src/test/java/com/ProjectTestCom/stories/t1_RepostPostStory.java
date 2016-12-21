@@ -80,7 +80,7 @@ public class t1_RepostPostStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -145,7 +145,7 @@ public class t1_RepostPostStory {
 
         //Checking repost on Group Wall/
         loginSteps.PageComplete(driver);
-        loginSteps.Sleep(1000);
+        //loginSteps.Sleep(1000);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
@@ -223,7 +223,7 @@ public class t1_RepostPostStory {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group1);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         addPostSteps.AddTextPost(textPostAr, driver);
         addPostSteps.openVideoPopup();

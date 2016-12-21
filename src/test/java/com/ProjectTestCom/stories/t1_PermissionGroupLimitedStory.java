@@ -155,7 +155,7 @@ public class t1_PermissionGroupLimitedStory {
         headerSteps.openNotificationPage(driver);
         addGroupSteps.checkRequestedPermission(driver, NameGroupLimitedMax, RequestedPermissionLimited);
         addGroupSteps.pressAccept(driver);
-        headerSteps.openMenuProfile(driver);
+        //headerSteps.openMenuProfile(driver);
         //loginSteps.clickLogOut();
     }
     @Test

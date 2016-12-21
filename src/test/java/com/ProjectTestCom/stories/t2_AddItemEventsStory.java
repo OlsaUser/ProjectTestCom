@@ -140,7 +140,7 @@ public class t2_AddItemEventsStory {
         //JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         //jse1.executeScript("window.scrollBy(0,-400)", "");
         addItemSteps.enterTag(tag1);
-        jse1.executeScript("window.scrollBy(0,500)", "");
+        jse1.executeScript("window.scrollBy(0,600)", "");
         addItemSteps.enterOrganizerName(OrganizerName);
         addItemSteps.selectTicketTypePaid(ticketPrice);
         addItemSteps.enterLocation(Location);

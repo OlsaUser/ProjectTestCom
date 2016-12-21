@@ -47,6 +47,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.jruby.util.URLUtil.getPath;
 import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 @DefaultUrl("http://synergy.devzone.dp.ua/en/")
 //@DefaultUrl("http://mnassa.com/en/")
@@ -104,9 +105,9 @@ public class LoginPage extends PageObject {
 
     public void clickEnter(WebDriver driver){
         element(btnEnter).click();
-        WebDriverWait wt = new WebDriverWait (driver, 1800);
+        WebDriverWait wt = new WebDriverWait (driver, 900);
+        wt.until(visibilityOfElementLocated(HomeContent));
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
-        wt.until(ExpectedConditions.visibilityOfElementLocated(HomeContent));
     }
 
     public void clickLogOut() {element(LogOut).click();}
