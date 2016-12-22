@@ -113,6 +113,7 @@ public class t2_AddItemEventsStory {
     @After
     public void tearDown() {driver.quit();
     }
+
     @Test
     public void stage1_addEventSupply_AllFields_byButtonInListing() throws Error{
         headerSteps.openMyMnassaPage(driver);
@@ -123,11 +124,12 @@ public class t2_AddItemEventsStory {
         //addItemSteps.collapseBasicInfo();
         //addItemSteps.selectEventDates(driver);
         //addItemSteps.datePicker( "26-09-2016 16:41",  driver);
-
-        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
-        addItemSteps.selectCategory2();
+        addItemSteps.selectCategory1();
         addItemSteps.selectEventType();
-
+        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
+        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        jse1.executeScript("window.scrollBy(0,-500)", "");
+        addItemSteps.collapseMainInfo();
         //addItemSteps.selectRegistrationDates(driver);
         //addItemSteps.collapseBasicInfo();
         //addItemSteps.selectAudienceMales();
@@ -135,19 +137,20 @@ public class t2_AddItemEventsStory {
         //addItemSteps.selectAudienceFamilies();
         addItemSteps.selectAudienceChildren();
         // addItemSteps.selectAudienceAnyone();
-
+        //JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        //jse1.executeScript("window.scrollBy(0,-400)", "");
         addItemSteps.enterTag(tag1);
+        jse1.executeScript("window.scrollBy(0,600)", "");
         addItemSteps.enterOrganizerName(OrganizerName);
+        addItemSteps.selectTicketTypePaid(ticketPrice);
         addItemSteps.enterLocation(Location);
-        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,500)", "");
         // addItemSteps.selectRegistrationOpen();
         //addItemSteps.selectEventCanceled();
         //addItemSteps.selectEventEnded();
         addItemSteps.enterAddress(Address);
         //addItemSteps.selectRegistrationClosed();
         //addItemSteps.selectTicketTypeFree();
-        addItemSteps.selectTicketTypePaid(ticketPrice);
+
         //jse1.executeScript("window.scrollBy(0,-200)", "");
         addItemSteps.selectMethodMasterCard();
         addItemSteps.selectMethodPayPal();
@@ -193,9 +196,11 @@ public class t2_AddItemEventsStory {
         addItemSteps.selectItemType(Event, driver);
         loginSteps.PageComplete(driver);
         addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(Title, DescriptionNull);
         addItemSteps.selectCategory1();
-        //addItemSteps.collapseBasicInfo();
+        addItemSteps.enterBasicInfo(Title, DescriptionNull);
+        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        jse1.executeScript("window.scrollBy(0,-500)", "");
+        addItemSteps.collapseMainInfo();
         addItemSteps.collapseMainDetails();
         addItemSteps.VideoContent1(VideoContent3);
         addItemSteps.collapseContent();
@@ -208,6 +213,7 @@ public class t2_AddItemEventsStory {
         addItemSteps.selectViewMenu(driver);
         //проверяем соответствие введенных и отображаемых значений
         addItemSteps.checkBreadCrumb(Event,Title, driver);
+        jse1.executeScript("window.scrollBy(0,700)", "");
         addItemSteps.addComment(driver, Comment);
         addItemSteps.checkCommentAdded(Comment);
     }
@@ -218,8 +224,8 @@ public class t2_AddItemEventsStory {
         headerSteps.openMyEventListing(driver);
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
         addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
         addItemSteps.enterLocation(Location);

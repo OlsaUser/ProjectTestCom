@@ -18,7 +18,6 @@ import javax.validation.constraints.AssertTrue;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -33,7 +32,7 @@ public class FavoritesPage extends PageObject {
 
     public int openFavoritesPageAndCheck(WebDriver driver) {
         element(menuFavorites).click();
-        WebDriverWait wt = new WebDriverWait (getDriver(), 99);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 200);
         wt.until(ExpectedConditions.visibilityOfElementLocated(FirstItemInFavorite));
         count++;
         String lCount = String.valueOf(count);
@@ -57,9 +56,8 @@ public class FavoritesPage extends PageObject {
     }
     public void pressFavoriteIconOnItem(WebElement star, WebDriver driver) {
         star.click();
-        //find(emptyPlace).click();
-        //find(emptyPlace).click();
-        //checkFavoriteIconWasPressed(star);
+        /*find(emptyPlace).click();
+        checkFavoriteIconWasPressed(star);*/
         openMenu();
         openFavoritesPageAndCheck(driver);
         System.out.println("Success!");

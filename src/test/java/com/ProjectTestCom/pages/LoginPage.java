@@ -47,6 +47,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.jruby.util.URLUtil.getPath;
 import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 @DefaultUrl("http://synergy.devzone.dp.ua/en/")
 //@DefaultUrl("http://mnassa.com/en/")
@@ -58,7 +59,8 @@ public class LoginPage extends PageObject {
     private final By fieldPassword = By.id("login_password");
     private final By btnEnter = By.id("do_login");
     private final By lblLoginError = By.xpath("//div[@class='error_message']");
-    private final By lblPasswordError = By.xpath("//div[@class='error_message']");
+    //private final By lblPasswordError = By.xpath("//div[@class='error_message']");
+    private final By lblPasswordError = By.xpath("//span[@class='auth-form-err']");
     private final By LogOut = By.xpath("//div[@class='header-user']/div[2]/a[3]");
 
     private final By Button = By.xpath("//button[@class='header-control -auth']");
@@ -76,7 +78,7 @@ public class LoginPage extends PageObject {
     }
 
     public void pressLoginLink( ) {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 300);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 700);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Button));
         find(Button).click();
         wt.until(ExpectedConditions.elementToBeClickable(LoginLink));
@@ -104,7 +106,8 @@ public class LoginPage extends PageObject {
 
     public void clickEnter(WebDriver driver){
         element(btnEnter).click();
-        WebDriverWait wt = new WebDriverWait (driver, 1000);
+        WebDriverWait wt = new WebDriverWait (driver, 900);
+        wt.until(visibilityOfElementLocated(HomeContent));
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
     }
 
@@ -155,7 +158,7 @@ public class LoginPage extends PageObject {
         robot.delay(20);
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
-        robot.delay(10);
+        robot.delay(13);
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
         robot.delay(98);
@@ -183,7 +186,7 @@ public class LoginPage extends PageObject {
                         return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
                     }
                 };
-        WebDriverWait wait = new WebDriverWait(driver, 1000);
+        WebDriverWait wait = new WebDriverWait(driver, 1700);
         wait.until(pageLoadCondition);
     }
 

@@ -65,7 +65,7 @@ public class t2_InviteGroupStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1000, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -117,10 +117,7 @@ public class t2_InviteGroupStory {
         addGroupSteps.SelectAndInvite(text, driver);
         loginSteps.PageComplete(driver);
         addGroupSteps.checkInvited(driver);
-        loginSteps.PageComplete(driver);
-
-       // loginSteps.PageComplete(driver);
-       // loginSteps.Sleep(50);
+        //loginSteps.PageComplete(driver);
 
         addGroupSteps.Invite_Skills(skill, driver);
         addGroupSteps.SelectAndInvite(UserName, driver);

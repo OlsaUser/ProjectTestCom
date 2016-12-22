@@ -52,7 +52,7 @@ public class LoginSteps extends ScenarioSteps {
     public void Sleep(int time) {loginPage.Sleep(time);}
 
     @Step
-    public void PageComplete(final WebDriver driver) {loginPage.PageComplete(driver);}
+    public void PageComplete(WebDriver driver) {loginPage.PageComplete(driver);}
 
     @Step
     public void uploadImage(String image) throws AWTException {loginPage.uploadImage(image);}

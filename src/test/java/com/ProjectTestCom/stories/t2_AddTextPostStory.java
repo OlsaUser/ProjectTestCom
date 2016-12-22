@@ -15,6 +15,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
@@ -69,7 +70,7 @@ public class t2_AddTextPostStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(1000, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -93,12 +94,14 @@ public class t2_AddTextPostStory {
         addPostSteps.checkTextInPost(textPostMin,driver);
 
         headerSteps.openMyMnassaPage(driver);
-        headerSteps.openMyWall(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         addPostSteps.checkTextInPost(textPostMin, driver);
 
+        JavascriptExecutor jse1 = (JavascriptExecutor)driver;
+        jse1.executeScript("window.scrollBy(0,150)", "");
+
         addPostSteps.addComment(Comment, driver);
-        addPostSteps.deleteComment(driver);
+        //addPostSteps.deleteComment(driver);
     }
 
     @Test
@@ -115,7 +118,7 @@ public class t2_AddTextPostStory {
 
         addPostSteps.addComment(Comment, driver);
         loginSteps.PageComplete(driver);
-        addPostSteps.deleteComment(driver);
+        //addPostSteps.deleteComment(driver);
     }
 
  /*   @Test
@@ -191,21 +194,19 @@ public class t2_AddTextPostStory {
 
         addPostSteps.addComment(Comment, driver);
         loginSteps.PageComplete(driver);
-        addPostSteps.deleteComment(driver);
+        //addPostSteps.deleteComment(driver);
     }
 
     @Test
     public void textPostArMyWall_DeleteCommentiPost() throws IOException{
         headerSteps.openMyMnassaPage(driver);
-        loginSteps.PageComplete(driver);
-
         addPostSteps.AddTextPost(textPostAr, driver);
         addPostSteps.clickPostButton();
         loginSteps.PageComplete(driver);
         addPostSteps.checkTextInPost(textPostAr, driver);
 
         addPostSteps.addComment(Comment, driver);
-        addPostSteps.deleteComment(driver);
+        //addPostSteps.deleteComment(driver);
         addPostSteps.deletePost(driver);
     }
 //Adding post with MAX lengh

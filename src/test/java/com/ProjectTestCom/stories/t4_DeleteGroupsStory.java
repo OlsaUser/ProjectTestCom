@@ -64,15 +64,19 @@ public class t4_DeleteGroupsStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
+
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
     }

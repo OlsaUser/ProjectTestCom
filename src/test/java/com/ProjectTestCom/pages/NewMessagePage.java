@@ -59,6 +59,8 @@ public class NewMessagePage extends PageObject {
     }
 
     public void PressSendButton(WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait (driver, 200);
+        wt.until(ExpectedConditions.elementToBeClickable(btnSend));
         element(btnSend).click();
     }
 

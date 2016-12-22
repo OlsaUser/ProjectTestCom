@@ -92,19 +92,21 @@ public class t2_AccountSettings_OrgStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1800, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
-
+        loginSteps.PageComplete(driver);
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
+        //getDriver().get("http://synergy.devzone.dp.ua/en/cabinet#!profile");
         loginSteps.PageComplete(driver);
     }
 
@@ -125,7 +127,7 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.enterBriefInfo(BriefInfo);
         accountSettingsSteps.clickUpdate1(driver);
         //User info page
-        loginSteps.Sleep(70);
+        //loginSteps.Sleep(70);
         headerSteps.openDiscoverPage(driver);
         headerSteps.viewAccountSettings(driver);
         accountSettingsSteps.checkInfoExists(OrganizationName_En_exp,OrganizationName_En_now);
@@ -150,7 +152,7 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.enterLinkedIn(LinkedIn);
         accountSettingsSteps.enterSnapchat(Snapchat);
         accountSettingsSteps.enterWebSite(WebSite_exp);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate2(driver);
         //loginSteps.Sleep(70);
         //User info page

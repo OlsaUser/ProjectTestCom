@@ -20,12 +20,17 @@ import static junit.framework.TestCase.assertTrue;
 public class ForgotPasswordPage extends PageObject {
     //private final By fieldEmail = By.xpath("//div[@id='forgot-modal']//input[contains(@type, 'email')]");
     private final By fieldEmail = By.xpath("//input[@can-enter='forgot_validate']");
-    //private final By btnEnter = By.id("do_request");
-    private final By btnEnter = By.xpath("//button[@can-click='forgot_validate']");
-    private final By lblEmailError = By.xpath("//div[@class='error_message']");
-    private final By SuccessPopup = By.xpath("//div[@id='forgot-modal-success']//div[@class='modal-content']//div[@class='text-center narrow-block-text']");
+    private final By btnEnter = By.id("do_request");
+    //private final By btnEnter = By.xpath("//button[@can-click='forgot_validate']");
+    //private final By btnEnter = By.xpath("//button[@can-click='forgot_validate']");
+    //private final By lblEmailError = By.xpath("//div[@class='error_message']");
+    private final By lblEmailError = By.xpath("//span[@class='auth-form-err']");
+    //private final By SuccessPopup = By.xpath("//div[@id='forgot-modal-success']//div[@class='modal-content']//div[@class='text-center narrow-block-text']");
+    private final By SuccessPopup = By.xpath(".//*[@id='auth-modal-forgot-success']/div/div/div[2]/p");
 
     public void enterEmail(String email) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 400);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldEmail));
         find(fieldEmail).clear();
         find(fieldEmail).sendKeys(email);
     }
@@ -35,8 +40,8 @@ public class ForgotPasswordPage extends PageObject {
         }
 
     public void checkIfEmailSucceed() {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(SuccessPopup));
+        WebDriverWait wt = new WebDriverWait (getDriver(), 500);
+        wt.until(ExpectedConditions.presenceOfElementLocated(SuccessPopup));
         wt.until(ExpectedConditions.textToBePresentInElementLocated(SuccessPopup, "The link to enter the site was successfully sent to "));
     }
 

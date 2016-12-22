@@ -30,6 +30,7 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileReader;
@@ -48,6 +49,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 //import static org.seleniumhq.jetty7.util.LazyList.add;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.yecht.LevelStatus.end;
 import static org.yecht.LevelStatus.pause;
 
@@ -435,7 +437,7 @@ public class ItemPage extends PageObject {
 
     public void clickDeleteButton(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 200);
-        wt.until(ExpectedConditions.elementToBeClickable(btnDelete));
+        wt.until(elementToBeClickable(btnDelete));
         find(btnDelete);
         find(btnDelete).waitUntilClickable();
         element(btnDelete).click();
@@ -459,7 +461,7 @@ public class ItemPage extends PageObject {
     public void clickAddButton(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 500);
         wt.until(ExpectedConditions.presenceOfElementLocated(buttonAdd_Menu));
-        wt.until(ExpectedConditions.elementToBeClickable(buttonAdd_Menu));
+        wt.until(elementToBeClickable(buttonAdd_Menu));
         find(buttonAdd_Menu).click();
         wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(types));
     }
@@ -481,7 +483,7 @@ public class ItemPage extends PageObject {
                 listType.isDisplayed();
                 listType.click();
                 //find(Supply).waitUntilClickable();
-                WebDriverWait wt = new WebDriverWait (getDriver(), 99);
+                WebDriverWait wt = new WebDriverWait (getDriver(), 200);
                 wt.until(ExpectedConditions.presenceOfElementLocated(Supply));
                 break;
             }
@@ -509,6 +511,9 @@ public class ItemPage extends PageObject {
 
     public void enterTag(String Tag) {
         find(fieldTag).sendKeys(Tag);
+        WebDriverWait wt = new WebDriverWait(getDriver(), 400);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(Tag1));
+        wt.until(ExpectedConditions.presenceOfElementLocated(Tag1));
         find(Tag1).click();
     }
 
@@ -520,7 +525,14 @@ public class ItemPage extends PageObject {
 
     public void enterAddress(String address) {
         find(Address).sendKeys(address);
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 500);
+        wt1.until(ExpectedConditions.presenceOfElementLocated(AddressStreet));
+        WebElement element=find(AddressStreet);
+        String javaScript = "var evObj = document.createEvent('MouseEvents');" +
+                "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+                "arguments[0].dispatchEvent(evObj);";
+
+        ((JavascriptExecutor)getDriver()).executeScript(javaScript, element);
         find(AddressStreet).click();
     }
 
@@ -533,13 +545,15 @@ public class ItemPage extends PageObject {
     }
 
     public void selectCategory1() {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 200);
+        wt1.until(elementToBeClickable(menuCategory));
         find(menuCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
         String categoryName = find(Category1).getText();
         find(Category1).click();
 
+        WebDriverWait wt2 = new WebDriverWait(getDriver(), 200);
+        wt2.until(elementToBeClickable(menuSubCategory));
         find(menuSubCategory).click();
-        getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
         String subcategoryName = find(SubCategory1).getText();
         find(SubCategory1).click();
         category.clear();
@@ -552,6 +566,8 @@ public class ItemPage extends PageObject {
         String categoryName = find(Category2).getText();
         find(Category2).click();
 
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 100);
+        wt1.until(elementToBeClickable(menuSubCategory));
         find(menuSubCategory).click();
         getDriver().manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
         String subcategoryName = find(SubCategory2).getText();
@@ -575,6 +591,8 @@ public class ItemPage extends PageObject {
     }
 
     public void enterPrice(String value, String Per) {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 500);
+        wt1.until(elementToBeClickable(Fixed));
         find(Fixed).click();
         clearPrice();
         find(fieldPrice).sendKeys(value);
@@ -803,7 +821,7 @@ public class ItemPage extends PageObject {
         }
     public void pressUploadImageLink() throws AWTException{
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 80);
-        wt1.until(ExpectedConditions.elementToBeClickable(imageLink));
+        wt1.until(elementToBeClickable(imageLink));
         find(imageLink).click();
     }
 
@@ -815,7 +833,7 @@ public class ItemPage extends PageObject {
 
     public void pressUploadFileLink() throws AWTException{
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 80);
-        wt1.until(ExpectedConditions.elementToBeClickable(fileLink));
+        wt1.until(elementToBeClickable(fileLink));
         find(fileLink).click();
     }
     public void checkUploadedFile() {
@@ -891,7 +909,7 @@ public class ItemPage extends PageObject {
 
     public void VideoContent1(String VideoLink1) {
         WebDriverWait wt = new WebDriverWait(getDriver(), 60);
-        wt.until(ExpectedConditions.elementToBeClickable(ContentVideo));
+        wt.until(elementToBeClickable(ContentVideo));
         find(ContentVideo).click();
         clearVideo();
         find(fieldVideoLink1).sendKeys(VideoLink1);
@@ -1030,6 +1048,8 @@ public class ItemPage extends PageObject {
         jse.executeScript("window.scrollBy(0,700)", "");*/
     }
     public void AudioContent5(String AudioLink1, String AudioLink2, String AudioLink3, String AudioLink4, String AudioLink5) {
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 150);
+        wt1.until(ExpectedConditions.visibilityOfElementLocated(ContentAudio));
         find(ContentAudio).click();
         clearAudio();
         find(fieldAudioLink1).sendKeys(AudioLink1);
@@ -1098,12 +1118,12 @@ public class ItemPage extends PageObject {
     }
 
     public void checkItemSaved(WebDriver driver){
-        WebDriverWait wt = new WebDriverWait (driver, 400);
+        WebDriverWait wt = new WebDriverWait (driver, 600);
         wt.until(ExpectedConditions.presenceOfElementLocated(SuccessPopupOk));
         wt.until(ExpectedConditions.visibilityOfElementLocated(SuccessPopupOk));
-        wt.until(ExpectedConditions.elementToBeClickable(SuccessPopupOk));
+        wt.until(elementToBeClickable(SuccessPopupOk));
 
-        WebElement el= find(SuccessPopupOk);
+        WebElement el= wt.until(elementToBeClickable(SuccessPopupOk));
         if (el.isEnabled())
            el.click();
            //find(SuccessPopupOk).waitUntilNotVisible();

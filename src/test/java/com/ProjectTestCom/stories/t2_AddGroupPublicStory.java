@@ -61,6 +61,7 @@ public class t2_AddGroupPublicStory {
     private String Interest_new = PropertyLoader.getProperty(propertyGroupPath, "Interest_new");
     private String dscLimitedGroup = PropertyLoader.getProperty(propertyGroupPath, "dscLimitedGroup");
     private String Group1 = PropertyLoader.getProperty(propertyGroupPath, "Group1");
+    private String Group2 = PropertyLoader.getProperty(propertyGroupPath, "Group2");
     private String Group3 = PropertyLoader.getProperty(propertyGroupPath, "Group3");
 
     private String href_NameGroupEn = PropertyLoader.getProperty(propertyGroupPath, "href_NameGroupEn");
@@ -97,7 +98,7 @@ public class t2_AddGroupPublicStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(450, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -106,7 +107,6 @@ public class t2_AddGroupPublicStory {
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
-        loginSteps.PageComplete(driver);
         loginSteps.PageComplete(driver);
     }
 
@@ -128,7 +128,7 @@ public class t2_AddGroupPublicStory {
     public void stage1_addGroupPublicAr(){
         addItemSteps.clickAddButton(driver);
         addGroupSteps.clickAddGroupButton();
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         addGroupSteps.enterNameGroup(NameGroupAr, driver);
         addGroupSteps.enterShortDescription(ShortDescriptionAr);
@@ -147,7 +147,7 @@ public class t2_AddGroupPublicStory {
     public void stage2_addGroupPublicMax(){
         addItemSteps.clickAddButton(driver);
         addGroupSteps.clickAddGroupButton();
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         addGroupSteps.enterNameGroup(maxNameGroup,driver);
         addGroupSteps.enterShortDescription(maxShortDescription);
@@ -168,7 +168,7 @@ public class t2_AddGroupPublicStory {
     public void stage3_addGroupPublicName() {
         addItemSteps.clickAddButton(driver);
         addGroupSteps.clickAddGroupButton();
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         addGroupSteps.enterNameGroup(NameGroupEn, driver);
         addGroupSteps.enterShortDescription(ShortDescriptionNull);
@@ -188,7 +188,7 @@ public class t2_AddGroupPublicStory {
     public void stage4_wrongNameGroupPublic() {
         addItemSteps.clickAddButton(driver);
         addGroupSteps.clickAddGroupButton();
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         addGroupSteps.enterNameGroup(wrongNameGroup,driver);
         addGroupSteps.clickCreateError();
@@ -202,8 +202,10 @@ public class t2_AddGroupPublicStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.openGroupWall(driver, Group3);
+        addGroupSteps.openGroupWall(driver, Group2);
         addGroupSteps.clickbtnSettingsEdit(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.Sleep(500);
         addGroupSteps.enterNameGroup(NameGroupEn,driver);
         addGroupSteps.enterShortDescription(ShortDescriptionEn);
         addGroupSteps.enterGroupInterest(Interest_new, driver);
@@ -218,7 +220,7 @@ public class t2_AddGroupPublicStory {
         headerSteps.openMyGroupsListing(driver);
         loginSteps.PageComplete(driver);
 
-        addGroupSteps.openGroupWall(driver, Group3);
+        addGroupSteps.openGroupWall(driver, Group2);
         //addGroupSteps.clickSettings();
         addGroupSteps.clickbtnSettingsEdit(driver);
         addGroupSteps.deleteGroupInterest(driver);

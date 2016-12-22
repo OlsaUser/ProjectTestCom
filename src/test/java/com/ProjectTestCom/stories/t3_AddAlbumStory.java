@@ -59,11 +59,12 @@ public class t3_AddAlbumStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1800, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
+
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
         loginSteps.clickEnter(driver);
@@ -102,12 +103,12 @@ public class t3_AddAlbumStory {
         addAlbumSteps.checkAlbumNameErrorPresent(lblAlbumNameError, driver);
     }
     @Test
-    public void viewAlbum_pressAddPhoto()throws IOException {
+    public void viewAlbum_pressAddPhoto()throws Exception {
         addAlbumSteps.openViewAlbumPage();
         addAlbumSteps.pressAddPhotoBtn(driver);
     }
     @Test
-    public void viewAlbum_Settings_Edit()throws IOException {
+    public void viewAlbum_Settings_Edit()throws Exception {
         addAlbumSteps.openViewAlbumPage();
         addAlbumSteps.openSettingsMenu();
         addAlbumSteps.selectEditMenu(driver);

@@ -34,7 +34,7 @@ public class AddAlbumSteps extends ScenarioSteps {
     public void clickDeleteButton() { myMediaPage.clickDeleteButton();}
 
     @Step
-    public void clickAlbumDeleted(WebDriver driver) { myMediaPage.clickAlbumDeleted(driver);}
+    public void checkAlbumDeleted(WebDriver driver) { myMediaPage.checkAlbumDeleted(driver);}
 
     @Step
     public void clickCancelButton(WebDriver driver) { myMediaPage.clickCancelButton(driver);}

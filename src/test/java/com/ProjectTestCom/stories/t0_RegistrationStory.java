@@ -103,10 +103,9 @@ public class t0_RegistrationStory {
         String dir = System.getProperty("user.dir");
         System.out.println(System.getProperty("user.dir"));
         System.setProperty("webdriver.gecko.driver",dir + "\\src\\drivers\\geckodriver.exe");
-        //driver = new FirefoxDriver();
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
         registerSteps.openRegisterPage();
         loginSteps.PageComplete(driver);
     }

@@ -7,8 +7,10 @@ import net.thucydides.core.pages.PageObject;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static jdk.nashorn.internal.parser.TokenType.OR;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 /**
  * Created by olsa on 5/18/2016.
@@ -52,6 +55,7 @@ public class HeaderPage extends PageObject {
     private final By iconNotification = By.cssSelector("a[href*='#!activity']");
     private final By iconMessage = By.cssSelector("a[href*='cabinet#!threads']");
     private final By menuProfile = By.xpath("//div[@class='header-user']");
+    //private final By menuProfile = By.xpath("//div[@class='header-control -usermenu hidden-sm hidden-xs']");
     private final By menuAccountSettings = By.xpath("//div[@class='header-user']/div[2]/a[2]");
     private final By menuFavorites = By.xpath("//div[@class='header-user']/div[2]/a[@href='http://mnassa.com/en/usernameondevzonebetalensy_tomson_1#!favorites']");
 
@@ -186,15 +190,13 @@ public class HeaderPage extends PageObject {
     }
 
     public void openMyMnassaPage(WebDriver driver) {
-        WebDriverWait wt1 = new WebDriverWait (getDriver(), 500);
-        wt1.until(ExpectedConditions.elementToBeClickable(linkMyMnassa));
-        wt1.until(ExpectedConditions.presenceOfElementLocated(linkMyMnassa));
-        //Assert.assertTrue(find(linkMyMnassa).waitUntilClickable());
+        WebDriverWait wt = new WebDriverWait (getDriver(), 500);
+        wt.until(ExpectedConditions.elementToBeClickable(linkMyMnassa));
+        wt.until(ExpectedConditions.presenceOfElementLocated(linkMyMnassa));
+
         find(linkMyMnassa).waitUntilClickable();
         find(linkMyMnassa).click();
-        WebDriverWait wt2 = new WebDriverWait (getDriver(), 600);
-        wt2.until(ExpectedConditions.visibilityOfElementLocated(MyMnassaContent));
-        //Assert.assertTrue(find(MyMnassaContent).isDisplayed());
+        wt.until(visibilityOfElementLocated(MyMnassaContent));
     }
 
     public void openDiscoverPage (WebDriver driver) {
@@ -308,27 +310,50 @@ public class HeaderPage extends PageObject {
     }
 
     public void openNotificationPage(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
+        WebDriverWait wt = new WebDriverWait (driver, 500);
         wt.until(ExpectedConditions.elementToBeClickable(iconNotification));
         find(iconNotification).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(NotificationContent));
     }
 
-    public void openMenuProfile(WebDriver driver ) {
-        WebDriverWait wt = new WebDriverWait (driver, 300);
-        wt.until(ExpectedConditions.elementToBeClickable(menuProfile));
-        find(menuProfile).waitUntilClickable();
-        find(menuProfile).click();
+    public void openMenuProfile(WebDriver driver)  {
+        element(menuProfile).click();
+        /*WebDriverWait wt = new WebDriverWait (getDriver(), 800);
+        wt.until(ExpectedConditions.presenceOfElementLocated(menuProfile));
+        System.out.println("1");
+        WebElement element=getDriver().findElement(menuProfile);
+        String javaScript = "var evObj = document.createEvent('MouseEvents');" +
+                "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+                "arguments[0].dispatchEvent(evObj);";
+        System.out.println("2");
+        ((JavascriptExecutor)getDriver()).executeScript(javaScript, element);
+        System.out.println("3 1");
+        //find(menuProfile).click();
+        WebElement element2=getDriver().findElement(menuAccountSettings);
+        ((JavascriptExecutor)getDriver()).executeScript(javaScript, element2);
+        find(menuAccountSettings).click();
+        System.out.println("3 2");*/
     }
 
     public void openAccountSettings(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 300);
-        //wt.until(ExpectedConditions.presenceOfElementLocated(menuAccountSettings));
-        //wt.until(ExpectedConditions.visibilityOfElementLocated(menuAccountSettings));
-        //wt.until(ExpectedConditions.elementToBeClickable(menuAccountSettings));
+        element(menuAccountSettings).click();
+        WebDriverWait wt = new WebDriverWait (getDriver(), 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(ProfileContent));
+
+       /* WebDriverWait wt = new WebDriverWait (driver, 10);
+        wt.until(ExpectedConditions.presenceOfElementLocated(menuAccountSettings));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(menuAccountSettings));
+        wt.until(ExpectedConditions.elementToBeClickable(menuAccountSettings));
+        System.out.println("4");
         find(menuAccountSettings).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(ProfileContent));
         wt.until(ExpectedConditions.presenceOfElementLocated(ProfileContent));
+        WebElement element=find(menuAccountSettings);
+        String javaScript = "var evObj = document.createEvent('MouseEvents');" +
+                "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+                "arguments[0].dispatchEvent(evObj);";
+        ((JavascriptExecutor)getDriver()).executeScript(javaScript, element);
+        find(menuAccountSettings).click();*/
     }
 
     public void openGroupsListing(WebDriver driver) {

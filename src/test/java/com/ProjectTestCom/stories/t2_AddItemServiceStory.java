@@ -116,7 +116,7 @@ public class t2_AddItemServiceStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -138,8 +138,8 @@ public class t2_AddItemServiceStory {
         loginSteps.PageComplete(driver);
         addItemSteps.selectSupply();
         loginSteps.PageComplete(driver);
-        addItemSteps.enterBasicInfo(Title, DescriptionNull);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(Title, DescriptionNull);
 
         addItemSteps.collapseMainInfo();
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
@@ -196,8 +196,8 @@ public class t2_AddItemServiceStory {
         headerSteps.openMyServiceListing(driver);
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.selectServiceWillBeAvailableSoon();
@@ -207,11 +207,11 @@ public class t2_AddItemServiceStory {
         addItemSteps.enterTag(tag1);
         addItemSteps.selectYearsOfExperienceMore();
         addItemSteps.enterPrice(PriceMAX, PerMAX);
-
-        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,100)", "");
         addItemSteps.selectAdvancedPayment100();
+        JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+        //jse1.executeScript("window.scrollBy(0,400)", "");
         addItemSteps.enterLocation(Location);
+
         addItemSteps.selectMethodVisa();
         addItemSteps.selectMethodMasterCard();
         addItemSteps.selectMethodPayPal();
@@ -225,7 +225,7 @@ public class t2_AddItemServiceStory {
         addItemSteps.VideoContent5(VideoContent5, VideoContent2, VideoContent3, VideoContent4, VideoContent1);
         loginSteps.Sleep(100);
         //Скролим страницу вверх
-        //jse1.executeScript("window.scrollBy(0,-900)", "");
+        jse1.executeScript("window.scrollBy(0,-450)", "");
         addItemSteps.AudioContent5(AudioContent1,AudioContent2, AudioContent3, AudioContent4, AudioContent5);
         jse1.executeScript("window.scrollBy(0,-450)", "");
         addItemSteps.collapseContent();
@@ -269,9 +269,8 @@ public class t2_AddItemServiceStory {
         addItemSteps.selectItemType(Service, driver);
         loginSteps.PageComplete(driver);
         addItemSteps.selectSupply();
-        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
-
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);
@@ -280,7 +279,7 @@ public class t2_AddItemServiceStory {
         addItemSteps.enterLocation(Location);
 
         addItemSteps.VideoContent3(VideoContent5, VideoContent2, VideoContent3);
-        addItemSteps.AudioContent3(AudioContent1, AudioContent2, AudioContent3);
+        addItemSteps.AudioContent3(AudioContent2, AudioContent2, AudioContent3);
 
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusDeactivate();
@@ -304,8 +303,8 @@ public class t2_AddItemServiceStory {
         addItemSteps.selectItemType(Service, driver);
         loginSteps.PageComplete(driver);
         addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(Title, DescriptionNull);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(Title, DescriptionNull);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.collapseMainDetails();
@@ -323,8 +322,8 @@ public class t2_AddItemServiceStory {
         headerSteps.openMyServiceListing(driver);
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         addItemSteps.selectDemand();
-        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
         addItemSteps.selectCategory1();
+        addItemSteps.enterBasicInfo(TitleAR, DescriptionAR);
 
         addItemSteps.collapseMainInfo();
         addItemSteps.enterTag(tag1);

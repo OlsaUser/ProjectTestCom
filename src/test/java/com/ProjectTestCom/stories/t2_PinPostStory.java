@@ -75,8 +75,11 @@ public class t2_PinPostStory {
 
     @Before
     public void setup() throws IOException {
+        String dir = System.getProperty("user.dir");
+        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1500, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -137,7 +140,7 @@ public class t2_PinPostStory {
         addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
 
-        addPostSteps.AddTextPost(textPostMin, driver);
+        addPostSteps.AddTextPost_inGroup(textPostMin, driver);
         addPostSteps.openVideoPopup();
         addPostSteps.AddVideoLink(VideoLink);
         addPostSteps.clickVideoPostButton(driver);
@@ -146,7 +149,7 @@ public class t2_PinPostStory {
         addPostSteps.checkContentInPost(driver);
 
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,200)", "");
+        jse.executeScript("window.scrollBy(0,1400)", "");
 
         addPostSteps.openPostMenu();
         addPostSteps.selectPin();

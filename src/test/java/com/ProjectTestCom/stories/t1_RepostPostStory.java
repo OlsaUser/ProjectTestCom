@@ -80,7 +80,7 @@ public class t1_RepostPostStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -115,7 +115,7 @@ public class t1_RepostPostStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
-        loginSteps.Sleep(100);
+        //loginSteps.Sleep(100);
         //Checking repost on Group Wall
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
@@ -145,6 +145,7 @@ public class t1_RepostPostStory {
 
         //Checking repost on Group Wall/
         loginSteps.PageComplete(driver);
+        //loginSteps.Sleep(1000);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
@@ -153,9 +154,6 @@ public class t1_RepostPostStory {
     }
     @Test
     public void stage1_repostFromNewsFeedToWall() throws IOException {
-        /*headerSteps.openHomePage(driver);
-        loginSteps.PageComplete(driver);*/
-
         //JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         //jse1.executeScript("window.scrollBy(0,300)", "");
 
@@ -163,7 +161,7 @@ public class t1_RepostPostStory {
         addPostSteps.selectRepostToWall(driver);
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
         loginSteps.PageComplete(driver);
-
+        loginSteps.Sleep(700);
         //Checking repost on Wall/
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyWall(driver);
@@ -189,7 +187,9 @@ public class t1_RepostPostStory {
 
         //Checking repost on Group Wall/
         loginSteps.PageComplete(driver);
+        loginSteps.Sleep(700);
         headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);
@@ -209,9 +209,10 @@ public class t1_RepostPostStory {
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         //Checking repost on Wall/
-
+        loginSteps.Sleep(800);
         headerSteps.openMyMnassaPage(driver);
-        driver.navigate().refresh();
+        loginSteps.PageComplete(driver);
+        //driver.navigate().refresh();
         headerSteps.openMyWall(driver);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMaxEn, HeaderRepost);
@@ -222,7 +223,7 @@ public class t1_RepostPostStory {
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group1);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
 
         addPostSteps.AddTextPost(textPostAr, driver);
         addPostSteps.openVideoPopup();
@@ -242,9 +243,9 @@ public class t1_RepostPostStory {
         addPostSteps.pressPostButton();
         loginSteps.PageComplete(driver);
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
-        loginSteps.Sleep(100);
         //Checking repost on Group Wall/
         loginSteps.PageComplete(driver);
+        loginSteps.Sleep(700);
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
@@ -267,7 +268,7 @@ public class t1_RepostPostStory {
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         //Checking repost on Wall/
-
+        loginSteps.Sleep(700);
         headerSteps.openMyMnassaPage(driver);
         driver.navigate().refresh();
         headerSteps.openMyWall(driver);
@@ -297,6 +298,7 @@ public class t1_RepostPostStory {
     @Test
     public void stage9_repostFromGroupToWallToGroupWall() throws IOException {
         headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group1);
         loginSteps.PageComplete(driver);
@@ -314,10 +316,9 @@ public class t1_RepostPostStory {
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         //Checking repost on Wall/
+        loginSteps.Sleep(700);
         headerSteps.openMyMnassaPage(driver);
         driver.navigate().refresh();
-        headerSteps.openMyWall(driver);
-        loginSteps.PageComplete(driver);
         addPostSteps.checkOwnRepostExists(driver,textPost, HeaderRepost);
         addPostSteps.checkCounterRepost(driver, "1");
 
@@ -326,8 +327,8 @@ public class t1_RepostPostStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
-        //loginSteps.Sleep(50);
 
+        loginSteps.Sleep(600);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
@@ -355,6 +356,7 @@ public class t1_RepostPostStory {
         //Checking repost on Group Wall/
 
         jse1.executeScript("window.scrollBy(0,-500)", "");
+        loginSteps.Sleep(700);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
@@ -366,8 +368,9 @@ public class t1_RepostPostStory {
         addPostSteps.selectRepostToWall(driver);
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
+        loginSteps.Sleep(700);
+        //driver.navigate().refresh();
         headerSteps.openMyMnassaPage(driver);
-        driver.navigate().refresh();
         headerSteps.openMyWall(driver);
         loginSteps.PageComplete(driver);
         addPostSteps.checkRepostExists(driver,textPostMin, HeaderRepost);

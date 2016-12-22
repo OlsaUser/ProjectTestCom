@@ -94,6 +94,7 @@ public class t2_PermissionGroupPrivateStory {
     public void stage1_addGroupPrivateMax() {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
@@ -123,6 +124,9 @@ public class t2_PermissionGroupPrivateStory {
     @Test
     public void stage2_checkSubscribeGroupPrivate() {
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
+
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);
@@ -144,6 +148,7 @@ public class t2_PermissionGroupPrivateStory {
     public void stage3_checkNotificationOwner() {
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
@@ -153,12 +158,13 @@ public class t2_PermissionGroupPrivateStory {
         headerSteps.openNotificationPage(driver);
         addGroupSteps.checkRequestedPermission(driver, NameGroupPrivateMax, RequestedPermissionPrivate);
         addGroupSteps.pressAccept(driver);
-        headerSteps.openMenuProfile(driver);
-        loginSteps.clickLogOut();
     }
     @Test
     public void stage4_checkNotificationUser() {
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
+
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);
@@ -177,7 +183,7 @@ public class t2_PermissionGroupPrivateStory {
         loginSteps.PageComplete(driver);
         addGroupSteps.checkMemberPri(driver, NameGroupPrivateMax);
 
-        addPostSteps.AddTextPost(textPostMin, driver);
+        addPostSteps.AddTextPost_inGroup(textPostMin, driver);
         addPostSteps.clickPostButton();
         loginSteps.PageComplete(driver);
         addPostSteps.checkTextInPost(textPostMin, driver);
@@ -185,6 +191,9 @@ public class t2_PermissionGroupPrivateStory {
     @Test
     public void stage5_checkUnSubscribe() throws IOException{
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
+
         loginSteps.enterLogin(email_organization);
         loginSteps.enterPassword(password_organization);
         loginSteps.clickEnter(driver);

@@ -22,6 +22,7 @@ import static junit.framework.TestCase.assertTrue;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.assertj.core.util.Objects.areEqual;
 import static org.junit.Assert.assertFalse;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 /**
  * Created by olsa on 4/28/2016.
@@ -47,7 +48,7 @@ public class GroupPage extends PageObject {
 
     private final By btnSave = By.xpath("//button[@can-click='upd_group']");
     private final By CreateandShareInformation = By.xpath("//span[@class='feed-placeholder-title-text']");
-    private final By fieldNameGroup = By.xpath("//input[@can-value='mcou_title']");
+    private final By fieldNameGroup = By.id("group-title");
     private final By TypeLimited = By.xpath("//label[@for='mcou-permission-limited']");
     private final By TypePrivate = By.xpath("//label[@for='mcou-permission-private']");
     private final By TypePublic = By.xpath("//label[@for='mcou-permission-public']");
@@ -123,6 +124,7 @@ public class GroupPage extends PageObject {
     //Visible elements
     private final By GroupContent = By.xpath("//div[@class='group-item']");
     private final By headerWallGroupLink = By.xpath("//div[@class='feed container']");
+    private final By firstPostBlock = By.xpath(".//*[@id='user_sect']/user_app/div[1]/div/div/div[3]/div[2]");
     private final By fieldInterests = By.xpath("//div[@id='s2id_group-interests']//li[last()]/input");
     private final By Skill_1 = By.xpath("//ul[@class='select2-results']/li[1]/div/span");
     private final By fieldSkills = By.xpath("//div[@id='s2id_group-skills']//li[last()]/input");
@@ -166,8 +168,8 @@ public class GroupPage extends PageObject {
         find(fieldSkills).click();
         find(fieldSkills).sendKeys(skill);
 
-        WebDriverWait wt = new WebDriverWait (driver, 80);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Skill_1));
+        WebDriverWait wt = new WebDriverWait (driver, 400);
+        wt.until(visibilityOfElementLocated(Skill_1));
         find(Skill_1).click();
         wt.until(ExpectedConditions.invisibilityOfElementLocated(Skill_1));
     }
@@ -176,8 +178,8 @@ public class GroupPage extends PageObject {
         find(fieldInterests).click();
         find(fieldInterests).sendKeys(interest);
 
-        WebDriverWait wt = new WebDriverWait (driver, 80);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Interest_1));
+        WebDriverWait wt = new WebDriverWait (driver, 400);
+        wt.until(visibilityOfElementLocated(Interest_1));
         find(Interest_1).click();
         wt.until(ExpectedConditions.invisibilityOfElementLocated(Interest_1));
     }
@@ -187,8 +189,8 @@ public class GroupPage extends PageObject {
         if (find(btnAddGroup).isPresent())
         find(btnAddGroup).click();
 
-        WebDriverWait wt = new WebDriverWait(getDriver(), 99);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(headerGroupIcon));
+        WebDriverWait wt = new WebDriverWait(getDriver(), 500);
+        wt.until(visibilityOfElementLocated(headerGroupIcon));
         //wt.until(ExpectedConditions.visibilityOfElementLocated(thirdLimeMenu));
 
         assertTrue("Error! Wrong counter of Members",find(headerInfoMembers).containsText("0 Members"));
@@ -226,10 +228,12 @@ public class GroupPage extends PageObject {
     }*/
 
     public void enterNameGroup(String NameGroup, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 99);
+        WebDriverWait wt = new WebDriverWait(driver, 450);
+        wt.until(visibilityOfElementLocated(fieldNameGroup));
         wt.until(ExpectedConditions.elementToBeClickable(fieldNameGroup));
-              clearNameGroup();
-              find(fieldNameGroup).sendKeys(NameGroup);
+        //clearNameGroup();
+        find(fieldNameGroup).sendKeys(NameGroup);
+        //find(fieldNameGroup).click();
     }
 
     public void selectTypeLimited(WebDriver driver, String dscLimitedGroup) throws Error  {
@@ -266,7 +270,7 @@ public class GroupPage extends PageObject {
         element(btnSave).click();
         find(btnSave).waitUntilNotVisible();
 
-        WebDriverWait wt = new WebDriverWait(driver, 25);
+        WebDriverWait wt = new WebDriverWait(driver, 150);
         wt.until(ExpectedConditions.textToBePresentInElementLocated(CreateandShareInformation,
                 "Create and share any information with Mnassa community"));
     }
@@ -278,8 +282,10 @@ public class GroupPage extends PageObject {
         for (WebElement el : Owner) {
             if (el.getAttribute("href").contains(name)) {
                 el.click();
-                WebDriverWait wt = new WebDriverWait(driver, 300);
-                wt.until(ExpectedConditions.presenceOfElementLocated(headerWallGroupLink));
+                WebDriverWait wt = new WebDriverWait(driver, 800);
+                wt.until(visibilityOfElementLocated(headerWallGroupLink));
+                //wt.until(ExpectedConditions.presenceOfElementLocated(headerWallGroupLink));
+                //wt.until(ExpectedConditions.presenceOfElementLocated(firstPostBlock));
                 break;
             }
         }
@@ -292,7 +298,7 @@ public class GroupPage extends PageObject {
 
                     el.click();
                     WebDriverWait wt = new WebDriverWait(driver, 99);
-                    wt.until(ExpectedConditions.visibilityOfElementLocated(btnSettingsEdit));
+                    wt.until(visibilityOfElementLocated(btnSettingsEdit));
                     break;
                 }
                 else NameError :  System.out.println("Oops!  There are no group with EN Name");
@@ -300,7 +306,7 @@ public class GroupPage extends PageObject {
          }
     public void viewerGroupLimited(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(headerGroupIcon));
+        wt.until(visibilityOfElementLocated(headerGroupIcon));
         find(headerGroupIcon);
         find(thirdLimeMenu).waitUntilPresent();
         find(headerInfoMembers);
@@ -313,7 +319,7 @@ public class GroupPage extends PageObject {
     }
     public void viewerGroupPrivate(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(headerGroupIcon));
+        wt.until(visibilityOfElementLocated(headerGroupIcon));
         find(headerGroupIcon);
         find(thirdLimeMenu).waitUntilPresent();
         find(headerInfoMembers);
@@ -330,7 +336,7 @@ public class GroupPage extends PageObject {
         find(btnSubscribe).click();
         find(headerInfoMembers);
         WebDriverWait wt = new WebDriverWait(driver, 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Group_PlaceholderHeader));
+        wt.until(visibilityOfElementLocated(Group_PlaceholderHeader));
     }
     public void pressUnSubscribe(WebDriver driver) {
         find(btnUnSubscribe).click();
@@ -344,7 +350,7 @@ public class GroupPage extends PageObject {
 
     public void pressOkSubs(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 250);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(btnOKUnSubsc));
+        wt.until(visibilityOfElementLocated(btnOKUnSubsc));
         System.out.println("1");
         find(btnOKUnSubsc).click();
         System.out.println("2");
@@ -354,17 +360,17 @@ public class GroupPage extends PageObject {
     }
     public void pressOKUnJoin(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 150);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(btnOKUnJoin));
+        wt.until(visibilityOfElementLocated(btnOKUnJoin));
 
         find(btnOKUnJoin).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Group_PlaceholderHeader));
+        wt.until(visibilityOfElementLocated(Group_PlaceholderHeader));
         //find(btnOKUnJoin).waitUntilNotVisible();
     }
     public void pressRequestJoin(WebDriver driver) {
         find(btnRequestJoin).click();
         find(headerInfoMembers);
         WebDriverWait wt = new WebDriverWait(driver, 150);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(Group_PlaceholderHeader));
+        wt.until(visibilityOfElementLocated(Group_PlaceholderHeader));
     }
 
     public void checkPlaceholder_Subscribed(WebDriver driver) {
@@ -394,7 +400,7 @@ public class GroupPage extends PageObject {
     public void checkConfirmedRequest(WebDriver driver, String GroupName, String text) {
         //System.out.println(GroupName);
         WebDriverWait wt = new WebDriverWait(driver, 99);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(RequestedPermissionNotification));
+        wt.until(visibilityOfElementLocated(RequestedPermissionNotification));
         System.out.println(find(RequestedPermissionNotification).getText());
         String header=find(RequestedPermissionNotification).getText();
       //  assertTrue("Wrong Requested Permission in notification",find(RequestedPermissionNotification).containsText(text + " " + GroupName + "."));
@@ -422,8 +428,9 @@ public class GroupPage extends PageObject {
     //not actual
     public void clickbtnSettingsEdit(WebDriver driver) {
         element(btnSettingsEdit).click();
-        WebDriverWait wt = new WebDriverWait(driver, 99);
+        WebDriverWait wt = new WebDriverWait(driver, 500);
         wt.until(ExpectedConditions.invisibilityOfElementLocated(EditGroupPopup));
+        wt.until(ExpectedConditions.presenceOfElementLocated(fieldNameGroup));
     }
 
     public void clickbtnSettingsInvite() {element(buttonInvite).click();}
@@ -436,7 +443,7 @@ public class GroupPage extends PageObject {
 
     public void clickInviteButton(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 100);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ListofUser));
+        wt.until(visibilityOfElementLocated(ListofUser));
 
         find(buttonSelectAll).click();
         wt.until(ExpectedConditions.elementToBeClickable(buttonInviteSelected));
@@ -454,13 +461,14 @@ public class GroupPage extends PageObject {
         }*/
     }
     public void pressInviteInPopup(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 20);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(InviteInPopup));
+        WebDriverWait wt = new WebDriverWait(driver, 200);
+        wt.until(ExpectedConditions.elementToBeClickable(InviteInPopup));
 
         find(InviteInPopup).click();
+        wt.until(invisibilityOfElementLocated(InviteInPopup));
         wt.until(ExpectedConditions.presenceOfElementLocated(ListofUser));
-        find(labelInvited);
-        //wt.until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelInvited));
+        wt.until(visibilityOfElementLocated(labelInvited));
+        //find(labelInvited);
     }
 
     public void clickInviteMyFollowings(WebDriver driver) {
@@ -494,7 +502,7 @@ public class GroupPage extends PageObject {
         WebDriverWait wt = new WebDriverWait(driver, 150);
         wt.until(ExpectedConditions.presenceOfElementLocated(DropdownUserName));
         wt.until(ExpectedConditions.elementToBeClickable(DropdownUserName));
-        wt.until(ExpectedConditions.visibilityOfElementLocated(DropdownUserName));
+        wt.until(visibilityOfElementLocated(DropdownUserName));
         find(DropdownOrganizations).click();
     }
 
@@ -513,9 +521,12 @@ public class GroupPage extends PageObject {
         element(fieldUserName).click();
         element(fieldUserName).clear();
         element(fieldUserName).sendKeys(UserName);
-        WebDriverWait wt = new WebDriverWait(driver, 99);
-        wt.until(ExpectedConditions.presenceOfElementLocated(DropdownInterests));
-        find(DropdownInterests).click();
+
+        WebElement element = driver.findElement(DropdownInterests);
+        WebDriverWait wt = new WebDriverWait(driver, 200);
+        wt.until(visibilityOfElementLocated(DropdownInterests));
+        element.click();
+        wt.until(stalenessOf(element));
     }
 
     public void SelectAndInvite(String UserName, WebDriver driver) {
@@ -619,7 +630,7 @@ public class GroupPage extends PageObject {
 
     public void checkTextOnUserGroupMemberPage(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait(driver, 300);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(linkGroupMembers));
+        wt.until(visibilityOfElementLocated(linkGroupMembers));
         find(linkGroupMembers).click();
         find(labelOwner).isDisplayed();
         find(btnFollowing).isDisplayed();

@@ -484,6 +484,8 @@ public class RegisterPage  extends PageObject {
     public void clearOrganizationFullName() {find(Name).clear();}
 
     public void Step1_UserName(String UserName) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fldUserName));
         find(fldUserName).clear();
         element(fldUserName).sendKeys(UserName);
     }
