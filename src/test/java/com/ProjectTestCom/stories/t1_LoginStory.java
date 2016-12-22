@@ -100,6 +100,7 @@ public class t1_LoginStory {
      driver = null;
  }
 @Test
+@Ignore
     public void checkingLoginErrors() throws MessagingException, IOException{
         loginSteps.enterLogin(wrongEmail);
         loginSteps.enterPassword(password);
@@ -151,6 +152,7 @@ public class t1_LoginStory {
     }
 
     @Test
+    @Ignore
     public void loginUser() {
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);

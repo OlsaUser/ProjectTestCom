@@ -23,9 +23,7 @@ public class ForgotPasswordSteps extends ScenarioSteps {
     }
 
     @Step
-    public void checkIfEmailSucceed() {
-        forgotPasswordPage.checkIfEmailSucceed();
-    }
+    public void checkIfEmailSucceed() {forgotPasswordPage.checkIfEmailSucceed();}
 
     @Step
     public void checkEmailErrorPresent(String text) {forgotPasswordPage.checkEmailErrorPresent(text);}

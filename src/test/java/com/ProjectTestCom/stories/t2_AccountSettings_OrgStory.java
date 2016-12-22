@@ -152,7 +152,7 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.enterLinkedIn(LinkedIn);
         accountSettingsSteps.enterSnapchat(Snapchat);
         accountSettingsSteps.enterWebSite(WebSite_exp);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate2(driver);
         //loginSteps.Sleep(70);
         //User info page
@@ -172,7 +172,7 @@ public class t2_AccountSettings_OrgStory {
         accountSettingsSteps.enterCurrentPassword(password_organization);
         accountSettingsSteps.enterNewPassword(NewPassword_change);
         accountSettingsSteps.enterNewConfirmPassword(NewConfirmPassword);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate6(driver);
     }
 }

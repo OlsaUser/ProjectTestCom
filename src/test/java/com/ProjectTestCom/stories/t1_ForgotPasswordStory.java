@@ -52,13 +52,13 @@ public class t1_ForgotPasswordStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1500, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
         loginSteps.openForgotPasswordPage();
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
     }
 
     @After

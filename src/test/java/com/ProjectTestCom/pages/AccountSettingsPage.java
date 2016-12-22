@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.junit.Assert.assertTrue;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 @RunWith(SerenityRunner.class)
 public class AccountSettingsPage extends PageObject {
@@ -202,7 +203,7 @@ public class AccountSettingsPage extends PageObject {
     }
     public void CropPopup_ChooseImage() throws AWTException {
         WebDriverWait wt1 = new WebDriverWait(getDriver(), 60);
-        wt1.until(ExpectedConditions.visibilityOfElementLocated(img_crop_wrap));
+        wt1.until(visibilityOfElementLocated(img_crop_wrap));
         wt1.until(ExpectedConditions.presenceOfElementLocated(img_crop_wrap));
         find(btnUpdateCover).click();
         WebDriverWait wt2 = new WebDriverWait (getDriver(), 500);
@@ -422,7 +423,7 @@ public class AccountSettingsPage extends PageObject {
     public void enterLocation(String location,WebDriver driver) {
         find(fieldLocation).sendKeys(location);
         WebDriverWait wt = new WebDriverWait (driver, 200);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(EducLocationJeddah));
+        wt.until(visibilityOfElementLocated(EducLocationJeddah));
         wt.until(ExpectedConditions.elementToBeClickable(EducLocationJeddah));
         find(EducLocationJeddah).click();
         System.out.println("click");
@@ -442,7 +443,7 @@ public class AccountSettingsPage extends PageObject {
             find(btnOk).waitUntilNotVisible();}*/
 
         WebDriverWait wt = new WebDriverWait (driver, 800);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(btnOkEd));
+        wt.until(visibilityOfElementLocated(btnOkEd));
         find(btnOkEd).waitUntilClickable();
         if (find(btnOkEd).isVisible())
             find(btnOkEd).click();
@@ -545,10 +546,14 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public void enterWebSite(String link) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 150);
+        wt.until(ExpectedConditions.presenceOfElementLocated(fieldWebSite));
         clearWebSite();
         WebElement Link = find(fieldWebSite);
         Link.sendKeys(link);
-        Assert.assertTrue(find(fieldWebSite).getAttribute("value").equals(link));
+        String s=find(fieldWebSite).getAttribute("value");
+        System.out.println(s);
+        assertTrue(s.equals(link));
     }
 
     public void clearWebSite() {
@@ -575,10 +580,12 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public void enterUserName(String UserName) {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 400);
         wt.until(ExpectedConditions.presenceOfElementLocated(fieldUserName));
-        clearUserName();
-        element(fieldUserName).sendKeys(UserName);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldUserName));
+        find(fieldUserName).sendKeys("");
+        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldUserName));
+        find(fieldUserName).sendKeys(UserName);
     }
 
     public void clearUserName() {
@@ -635,17 +642,19 @@ public class AccountSettingsPage extends PageObject {
 
     public void selectLocation(String location) {
         find(Location).sendKeys(location);
-        find(LocationJeddah).click();
         WebDriverWait wt = new WebDriverWait (getDriver(), 900);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldJeddah));
+        wt.until(visibilityOfElementLocated(LocationJeddah));
+        wt.until(presenceOfElementLocated(LocationJeddah));
+        find(LocationJeddah).click();
+        wt.until(visibilityOfElementLocated(fieldJeddah));
         find(fieldJeddah).waitUntilVisible();
     }
     public void selectLocation1(String location ) {
         find(Location).sendKeys(location);
         WebDriverWait wt = new WebDriverWait (getDriver(), 980);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(LocationJeddah));
+        wt.until(visibilityOfElementLocated(LocationJeddah));
         find(LocationJeddah).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(fieldJeddah1));
+        wt.until(visibilityOfElementLocated(fieldJeddah1));
         wt.until(ExpectedConditions.presenceOfElementLocated(fieldJeddah1));
         find(fieldJeddah1).waitUntilVisible();
     }
@@ -665,48 +674,55 @@ public class AccountSettingsPage extends PageObject {
     }
 
     public void clickUpdate1(WebDriver driver) {
-        WebDriverWait wt1 = new WebDriverWait (driver, 250);
-        wt1.until(ExpectedConditions.elementToBeClickable(btnUpdate1));
         find(btnUpdate1).click();
+        WebDriverWait wt1 = new WebDriverWait (getDriver(), 198);
+        wt1.until(presenceOfElementLocated(btnOk));
         clickOk(driver);
     }
     public void clickUpdate2(WebDriver driver) {
-        //find(btnUpdate2).waitUntilClickable();
         find(btnUpdate2).click();
+        WebDriverWait wt1 = new WebDriverWait (getDriver(), 198);
+        wt1.until(presenceOfElementLocated(btnOk));
         clickOk(driver);
     }
     public void clickUpdate3(WebDriver driver) {
         find(btnUpdate3).waitUntilClickable();
         find(btnUpdate3).click();
+        WebDriverWait wt1 = new WebDriverWait (getDriver(), 198);
+        wt1.until(presenceOfElementLocated(btnOk));
         clickOk(driver);
     }
 
     public void clickUpdate4(WebDriver driver) {
         find(btnUpdate4).waitUntilClickable();
         find(btnUpdate4).click();
+        WebDriverWait wt1 = new WebDriverWait (getDriver(), 198);
+        wt1.until(presenceOfElementLocated(btnOk));
         clickOk(driver);
         //find(btnUpdate4).waitUntilClickable();
     }
     public void clickUpdate5(WebDriver driver) {
         //find(btnUpdate5).waitUntilClickable();
         find(btnUpdate5).click();
+        WebDriverWait wt1 = new WebDriverWait (getDriver(), 198);
+        wt1.until(presenceOfElementLocated(btnOk));
         clickOk(driver);
     }
     public void clickUpdate6(WebDriver driver) {
         //find(btnUpdate6).waitUntilClickable();
         find(btnUpdate6).click();
+        WebDriverWait wt1 = new WebDriverWait (getDriver(), 198);
+        wt1.until(presenceOfElementLocated(btnOk));
         clickOk(driver);
     }
     public void clickOk(WebDriver driver) {
-        WebDriverWait wt1 = new WebDriverWait (driver, 2500);
-        wt1.until(ExpectedConditions.elementToBeClickable(btnOk));
-        wt1.until(ExpectedConditions.presenceOfElementLocated(btnOk));
-        driver.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
-        find(btnOk);
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 800);
+        wt1.until(presenceOfElementLocated(btnOk));
+        wt1.until(elementToBeClickable(btnOk));
+        wt1.until(visibilityOfElementLocated(btnOk));
         find(btnOk).click();
-        System.out.println("click");
-        WebDriverWait wt2 = new WebDriverWait (driver, 100);
-        wt2.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
+        find(btnOk).click();
+        wt1.until(ExpectedConditions.invisibilityOfElementLocated(btnOk));
     }
 
     public boolean checkInfoExists(String info_exp, String info_now) {

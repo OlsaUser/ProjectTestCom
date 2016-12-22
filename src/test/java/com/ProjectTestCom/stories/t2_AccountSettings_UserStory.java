@@ -182,7 +182,7 @@ public class t2_AccountSettings_UserStory {
        // accountSettingsSteps.selectStatusSingle();
         accountSettingsSteps.selectLocation(location);
         accountSettingsSteps.enterBriefInfo(BriefInfo);
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate1(driver);
         //loginSteps.PageComplete(driver);
         //User info page
@@ -217,7 +217,6 @@ public class t2_AccountSettings_UserStory {
         //loginSteps.PageComplete(driver);
         accountSettingsSteps.clickUpdate1(driver);
         //loginSteps.PageComplete(driver);
-
         //User info page
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);

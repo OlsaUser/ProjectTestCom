@@ -59,7 +59,8 @@ public class LoginPage extends PageObject {
     private final By fieldPassword = By.id("login_password");
     private final By btnEnter = By.id("do_login");
     private final By lblLoginError = By.xpath("//div[@class='error_message']");
-    private final By lblPasswordError = By.xpath("//div[@class='error_message']");
+    //private final By lblPasswordError = By.xpath("//div[@class='error_message']");
+    private final By lblPasswordError = By.xpath("//span[@class='auth-form-err']");
     private final By LogOut = By.xpath("//div[@class='header-user']/div[2]/a[3]");
 
     private final By Button = By.xpath("//button[@class='header-control -auth']");
