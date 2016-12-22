@@ -45,8 +45,9 @@ public class AdminPanelPage  extends PageObject {
     //Methods
     public void RolesOpen() {
         element(RolesTAb).click();
-        WebDriverWait wt = new WebDriverWait(getDriver(), 200);
+        WebDriverWait wt = new WebDriverWait(getDriver(), 700);
         wt.until(ExpectedConditions.presenceOfElementLocated(RolesCont));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(RolesCont));
     }
 
     public void AdmPanelOpen() {
@@ -60,6 +61,8 @@ public class AdminPanelPage  extends PageObject {
     public void InputName(String roleName) {
         WebDriverWait wt = new WebDriverWait(getDriver(), 700);
         wt.until(ExpectedConditions.elementToBeClickable(NameField));
+        wt.until(ExpectedConditions.presenceOfElementLocated(NameField));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(NameField));
         element(NameField).clear();
         element(NameField).sendKeys(roleName);
         wt = new WebDriverWait(getDriver(), 200);
@@ -180,18 +183,17 @@ public class AdminPanelPage  extends PageObject {
     }
 
     public void DeleteButtonClick() {
-        WebDriverWait wt = new WebDriverWait(getDriver(), 300);
+        WebDriverWait wt = new WebDriverWait(getDriver(), 500);
         wt.until(ExpectedConditions.elementToBeClickable(DeleteButton));
         getDriver().findElement(DeleteButton).click();
     }
 
     public void CheckDeletedrole(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(getDriver(), 300);
+        WebDriverWait wt = new WebDriverWait(getDriver(), 500);
         wt.until(ExpectedConditions.elementToBeClickable(AddRoleButton));
 
        String Role = find(RolesCont).getText();
         Assert.assertFalse("role is presented", Role.contains("Autotest"));
     }
-
 }
 

@@ -66,7 +66,7 @@ public class t4_AdminPanelStory {
         loginSteps.PageComplete(driver);
         AdminPanelSteps.getURL();
         AdminPanelSteps.openRoleTab();
-
+        loginSteps.PageComplete(driver);
     }
 
     @After
@@ -127,6 +127,4 @@ public class t4_AdminPanelStory {
         AdminPanelSteps.DeletedRoleCheck(driver);
 
             }
-
-
     }
