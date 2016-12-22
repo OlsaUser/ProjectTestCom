@@ -1,8 +1,9 @@
 package com.ProjectTestCom.stories;
 
-import com.ProjectTestCom.steps.*;
+import com.ProjectTestCom.steps.AddGroupSteps;
+import com.ProjectTestCom.steps.HeaderSteps;
+import com.ProjectTestCom.steps.LoginSteps;
 import com.ProjectTestCom.utils.PropertyLoader;
-import net.serenitybdd.core.Serenity;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
@@ -12,11 +13,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -52,7 +50,7 @@ public class t3_MemberGroupPageStory {
     @Before
     public void setup() throws IOException {
         String dir = System.getProperty("user.dir");
-        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver",dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(1600, TimeUnit.SECONDS);
