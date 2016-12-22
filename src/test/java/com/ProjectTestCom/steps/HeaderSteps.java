@@ -15,6 +15,9 @@ public class HeaderSteps {
     public void openMyMnassaPage(WebDriver driver) { headerPage.openMyMnassaPage(driver);}
 
     @Step
+    public void clickLogo( ) { headerPage.clickLogo();}
+
+    @Step
     public void openDiscoverPage(WebDriver driver) { headerPage.openDiscoverPage(driver);}
 
     @Step

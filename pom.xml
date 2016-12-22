@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ProjectTestCom</groupId>
     <artifactId>com-test</artifactId>
@@ -10,12 +10,12 @@
     <name>ProjectTestCom</name>
     <url>http://maven.apache.org</url>
 
-  <properties>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-      <serenity.version>1.0.47</serenity.version>
-      <webdriver.driver>firefox</webdriver.driver>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <serenity.version>1.0.47</serenity.version>
+        <webdriver.driver>firefox</webdriver.driver>
+    </properties>
 
     <dependencies>
 
@@ -65,11 +65,11 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.18</version>
         </dependency>
-               <dependency>
-        <groupId>net.serenity-bdd</groupId>
-        <artifactId>core</artifactId>
-        <version>${serenity.version}</version>
-    </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>core</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-junit</artifactId>
@@ -97,6 +97,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -104,8 +105,19 @@
                 <configuration>
                     <skipTests>true</skipTests>
                     <runOrder>alphabetical</runOrder>
-                </configuration>
+                    <threadCount>1</threadCount>
+                    <includes>
+                        <include>**/*Story.java</include>
+                    </includes>
+                        <properties>
+                            <property>
+                                <name>listener</name>
+                                <value>com.jeeatwork.java.examples.junit.failfast.FailFastListener</value>
+                            </property>
+                        </properties>
+                    </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -133,6 +145,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -142,6 +155,7 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>

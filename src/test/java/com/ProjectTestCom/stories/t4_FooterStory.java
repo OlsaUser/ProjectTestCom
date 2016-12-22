@@ -22,6 +22,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
@@ -51,7 +52,11 @@ public class t4_FooterStory {
 
     @Before
     public void setup() throws IOException {
+        String dir = System.getProperty("user.dir");
+        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         footerSteps.openHomePage();
         loginSteps.PageComplete(driver);

@@ -48,9 +48,15 @@ public class t1_ForgotPasswordStory {
 
     @Before
     public void setup() {
+        String dir = System.getProperty("user.dir");
+        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
         loginSteps.openForgotPasswordPage();
         loginSteps.PageComplete(driver);
     }

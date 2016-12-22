@@ -125,7 +125,7 @@ public class Performance {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws Exception{
         if (driver != null) {
             driver.quit();
         }

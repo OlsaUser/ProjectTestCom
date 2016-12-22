@@ -28,12 +28,12 @@ public class FavoritesPage extends PageObject {
     private final By menuFavorites = By.xpath("//div[@class='header-user']/div[2]/a[1]");
     private final By iconFavorite = By.xpath("//button[@can-click='handle_favorite']");
     private final By emptyPlace = By.xpath("//div[@class='filter-results-count']");
-    private final By FirstItemInFavorite = By.xpath("//div[@class='row']/div[1]/div[1]/a");
+    private final By FirstItemInFavorite = By.xpath("//section[@id='user_sect']/user_app/div[1]/section/div/div/div[1]/a");
     private int count=0;
 
     public int openFavoritesPageAndCheck(WebDriver driver) {
         element(menuFavorites).click();
-        WebDriverWait wt = new WebDriverWait (driver, 99);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 99);
         wt.until(ExpectedConditions.visibilityOfElementLocated(FirstItemInFavorite));
         count++;
         String lCount = String.valueOf(count);
@@ -57,9 +57,9 @@ public class FavoritesPage extends PageObject {
     }
     public void pressFavoriteIconOnItem(WebElement star, WebDriver driver) {
         star.click();
-        find(emptyPlace).click();
-        find(emptyPlace).click();
-        checkFavoriteIconWasPressed(star);
+        //find(emptyPlace).click();
+        //find(emptyPlace).click();
+        //checkFavoriteIconWasPressed(star);
         openMenu();
         openFavoritesPageAndCheck(driver);
         System.out.println("Success!");

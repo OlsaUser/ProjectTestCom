@@ -15,7 +15,7 @@ public class RegisterSteps extends ScenarioSteps {
     FacebookPage facebookPage;
 
     @Step
-    public void openRegisterPage() { registerPage.open();}
+    public void openRegisterPage() {registerPage.open();}
 
     @Step
     public void selectUser( ) { registerPage.selectUser();}

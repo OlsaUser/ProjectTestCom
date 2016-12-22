@@ -19,6 +19,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SerenityRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -79,14 +80,23 @@ public class t1_PermissionGroupLimitedStory {
 
     @Before
     public void setup()throws IOException {
+        String dir = System.getProperty("user.dir");
+        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(1000, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
     }
 
     @After
-    public void tearDown() {driver.quit();}
+    public void tearDown() throws Exception {
+        //driver.quit();
+        driver.close();
+        driver = null;
+    }
 
     @Test
     public void stage1_addGroupLimitedMax() {
@@ -146,7 +156,7 @@ public class t1_PermissionGroupLimitedStory {
         addGroupSteps.checkRequestedPermission(driver, NameGroupLimitedMax, RequestedPermissionLimited);
         addGroupSteps.pressAccept(driver);
         headerSteps.openMenuProfile(driver);
-        loginSteps.clickLogOut();
+        //loginSteps.clickLogOut();
     }
     @Test
     public void stage4_checkNotificationUser() {

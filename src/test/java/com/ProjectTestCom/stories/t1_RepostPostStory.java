@@ -21,6 +21,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
@@ -75,10 +76,15 @@ public class t1_RepostPostStory {
 
     @Before
     public void setup() throws IOException {
+        String dir = System.getProperty("user.dir");
+        System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
+
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
 
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
@@ -121,14 +127,6 @@ public class t1_RepostPostStory {
 
     @Test
     public void stage2_repostFromNewsFeedToGroup() throws IOException {
-        headerSteps.openHomePage(driver);
-        loginSteps.PageComplete(driver);
-
-      /*  addPostSteps.AddTextPost(textPostMin, driver);
-        addPostSteps.clickPostButton();
-        loginSteps.PageComplete(driver);
-        addPostSteps.checkTextInNewsFeed(textPostMin, driver);*/
-
         addPostSteps.AddTextPost(textPostMin, driver);
         addPostSteps.openAudioPopup();
         addPostSteps.AddAudioLink(AudioLink);
@@ -146,7 +144,7 @@ public class t1_RepostPostStory {
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
         //Checking repost on Group Wall/
-
+        loginSteps.PageComplete(driver);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
@@ -155,13 +153,12 @@ public class t1_RepostPostStory {
     }
     @Test
     public void stage1_repostFromNewsFeedToWall() throws IOException {
-        headerSteps.openHomePage(driver);
-        loginSteps.PageComplete(driver);
+        /*headerSteps.openHomePage(driver);
+        loginSteps.PageComplete(driver);*/
 
         //JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
         //jse1.executeScript("window.scrollBy(0,300)", "");
 
-        //addPostSteps.openRepostMenu();
         addPostSteps.openRepostMenu();
         addPostSteps.selectRepostToWall(driver);
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
@@ -191,7 +188,7 @@ public class t1_RepostPostStory {
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
 
         //Checking repost on Group Wall/
-
+        loginSteps.PageComplete(driver);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
@@ -247,7 +244,7 @@ public class t1_RepostPostStory {
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
         loginSteps.Sleep(100);
         //Checking repost on Group Wall/
-
+        loginSteps.PageComplete(driver);
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
@@ -329,9 +326,9 @@ public class t1_RepostPostStory {
         addPostSteps.selectGroupInDropdown();
         addPostSteps.pressPostButton();
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderGroup);
-        loginSteps.Sleep(50);
+        //loginSteps.Sleep(50);
 
-       // headerSteps.openMyMnassaPage(driver);
+        headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyGroupsListing(driver);
         addGroupSteps.openGroupWall(driver, Group2);
         loginSteps.PageComplete(driver);

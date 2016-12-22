@@ -16,6 +16,10 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
+import org.junit.runner.Description;
+import org.junit.runner.notification.Failure;
+import org.junit.runner.notification.RunListener;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -42,12 +46,6 @@ public class TestMail {
         }
     }
 
-    /*@Test
-        public static void main(String ... arhgs){
-            public  void main(){
-            RegisterPage.provideCode("lensytosakish.1@gmail.com");
-            RegisterPage.checkWelcomeLetter("lensytosakish.1@gmail.com");
-    }*/
     @Test
     public void facebook() {
         driver.get("https://www.facebook.com/");

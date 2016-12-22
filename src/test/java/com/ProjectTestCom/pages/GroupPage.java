@@ -412,7 +412,7 @@ public class GroupPage extends PageObject {
 
     public void pressAccept(WebDriver driver) {
         find(btnAccept).click();
-        WebDriverWait wt = new WebDriverWait(driver, 99);
+        WebDriverWait wt = new WebDriverWait(driver, 120);
         wt.until(ExpectedConditions.presenceOfElementLocated(lblAccepted));
     }
 
