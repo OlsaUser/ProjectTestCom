@@ -2,7 +2,6 @@ package com.ProjectTestCom.stories;
 
 import com.ProjectTestCom.steps.LoginSteps;
 import com.ProjectTestCom.steps.RegisterSteps;
-import com.ProjectTestCom.utils.FailFastListener;
 import com.ProjectTestCom.utils.PropertyLoader;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
@@ -18,7 +17,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+
+//import com.ProjectTestCom.utils.FailFastListener;
 
 @RunWith(SerenityRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

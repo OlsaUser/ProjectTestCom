@@ -25,12 +25,14 @@ import java.io.IOException;
 
 public class t4_AdminPanelStory {
     private String propertyFilePath = "src/test/resources/admin.properties";
+    private String propertyFilepath_new="src/test/resources/login.properties";
     private String email_a = PropertyLoader.getProperty(propertyFilePath, "email_a");
     private String password_a = PropertyLoader.getProperty(propertyFilePath, "password_a");
     private String RoleNameEN = PropertyLoader.getProperty(propertyFilePath, "RoleNameEN");
     private String DescriptionNameEN = PropertyLoader.getProperty(propertyFilePath, "DescriptionNameEN");
     private String textName= PropertyLoader.getProperty(propertyFilePath, "textName");
     private String textDescription= PropertyLoader.getProperty(propertyFilePath, "textDescription");
+    private String email= PropertyLoader.getProperty(propertyFilepath_new, "email");
 
     @Managed
     WebDriver driver;
@@ -65,7 +67,6 @@ public class t4_AdminPanelStory {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
         AdminPanelSteps.getURL();
-        AdminPanelSteps.openRoleTab();
         loginSteps.PageComplete(driver);
     }
 
@@ -81,19 +82,25 @@ public class t4_AdminPanelStory {
        // HeaderSteps.openMenuProfile(driver);
         // Thread.sleep(100);
       //  AdminPanelSteps.OpenPanel();
+       // AdminPanelSteps.openRoleTab();
+        loginSteps.PageComplete(driver);
+
         AdminPanelSteps.AddName(RoleNameEN);
         AdminPanelSteps.AddDescription(DescriptionNameEN);
         AdminPanelSteps.AddRole();
         AdminPanelSteps.ScrollToAddedRole(driver, element);
         AdminPanelSteps.clickNewRole();
         AdminPanelSteps.CheckAddedRole(driver, RoleNameEN, element);
-
-    }
-
-    @Test
-    public void stage2_EditRole() throws Exception {
+        //loginSteps.Sleep(1000);
+//    }
+//
+//    @Test
+//    public void stage2_EditRole() throws Exception {
         //HeaderSteps.openMenuProfile(driver);
        //AdminPanelSteps.OpenPanel();
+
+//        AdminPanelSteps.openRoleTab();
+//        loginSteps.PageComplete(driver);
         AdminPanelSteps.ScrollToAddedRole(driver, element);
         AdminPanelSteps.clickNewRole();
         AdminPanelSteps.clickPermission();
@@ -109,19 +116,78 @@ public class t4_AdminPanelStory {
         AdminPanelSteps.InputNewName(textName, driver);
         AdminPanelSteps.InputNewDescription(textDescription, driver);
         AdminPanelSteps.SaveChangesButton();
-        AdminPanelSteps.CheckEdited(driver, textName, element);
+       AdminPanelSteps.CheckAddedRole(driver, textName, element);
 
        // AdminPanelSteps.DoubleClickAddedRole(driver);
 
     }
 
+
+
     @Test
-    public void stage3_DeleteRole() throws Exception{
+    public void stage2_Assign_Remove_Role() throws Exception{
+        AdminPanelSteps.OpenUsersTab();
+        AdminPanelSteps.SearchUser(email);
+        AdminPanelSteps.clickSearch();
+        loginSteps.PageComplete(driver);
+        AdminPanelSteps.OpenRoleList();
+        AdminPanelSteps.ScrollToCheckbox(driver, element);
+        AdminPanelSteps.AssignRole();
+        AdminPanelSteps.SaveAssign();
+        AdminPanelSteps.ConfirmAssign();
+//        AdminPanelSteps.clickSearch();
+//        loginSteps.PageComplete(driver);
+        //    }
+//
+//        @Test
+//        public void stage4_AssignRole() throws Exception {
+        AdminPanelSteps.RefreshPageU(driver);
+        loginSteps.PageComplete(driver);
+        AdminPanelSteps.InputedSelectRole();
+        AdminPanelSteps.InputRoleName(textName);
+        AdminPanelSteps.RoleSelection();
+        AdminPanelSteps.CheckAddedAddedRole();
+
+       // }
+//
+//    @Test
+//    public void stage3_RemoveRole() throws Exception {
+        AdminPanelSteps.RefreshPageU(driver);
+       // AdminPanelSteps.OpenUsersTab();
+        AdminPanelSteps.SearchUser(email);
+        AdminPanelSteps.clickSearch();
+        loginSteps.PageComplete(driver);
+        AdminPanelSteps.OpenRoleList();
+        AdminPanelSteps.AssignRole();
+        AdminPanelSteps.SaveAssign();
+        AdminPanelSteps.ConfirmAssign();
+//        AdminPanelSteps.clickSearch();
+//        loginSteps.PageComplete(driver);
+//    }
+//
+//     @Test
+//    public void stage6_CheckRemove_Role() throws Exception {
+        AdminPanelSteps.RefreshPageU(driver);
+         AdminPanelSteps.InputedSelectRole();
+         AdminPanelSteps.InputRoleName(textName);
+         AdminPanelSteps.RoleSelection();
+         AdminPanelSteps.CheckRemovedRole_step();
+
+     }
+           //  AdminPanelSteps.checkRole(driver,element);
+//      AdminPanelSteps.CheckAssignRole();
+   //     AdminPanelSteps.fgdfgddg();
+              //  loginSteps.PageComplete(driver);
+
+    @Test
+    public void stage4_DeleteRole() throws Exception{
+        AdminPanelSteps.openRoleTab();
+        loginSteps.PageComplete(driver);
         AdminPanelSteps.ScrollToAddedRole(driver, element);
         AdminPanelSteps.clickNewRole();
         AdminPanelSteps.DeleteNewRole();
         AdminPanelSteps.CancelDeleteRole();
-
+        loginSteps.Sleep(500);
         AdminPanelSteps.DeleteNewRole();
         AdminPanelSteps.ClickDeleteButton();
         AdminPanelSteps.DeletedRoleCheck(driver);
