@@ -49,10 +49,7 @@ public class AdminPanelSteps extends ScenarioSteps {
     @Step
     public void CancelCangesButton(){AdminPanelPage.CancelChanges();}
 
-    @Step
-    public void CheckEdited(WebDriver driver, String EditedRole, WebElement element){assertTrue(AdminPanelPage.CheckEditedRole(driver, EditedRole, element));}
-
-    @Step
+        @Step
     public void InputNewName(String text, WebDriver driver){AdminPanelPage.ChangeName(text, driver);}
 
     @Step
@@ -79,5 +76,55 @@ public class AdminPanelSteps extends ScenarioSteps {
     @Step
     public void getURL(){AdminPanelPage.needURL();}
 
+    @Step
+    public void OpenUsersTab(){AdminPanelPage.UsersOpen();}
 
+    @Step
+    public void SearchUser(String Username){AdminPanelPage.InputUsername(Username);}
+
+    @Step
+    public void clickSearch(){AdminPanelPage.clickSearchButton();
+    }
+
+    @Step
+    public void OpenRoleList(){AdminPanelPage.clickRolesList();}
+
+    @Step
+    public void AssignRole(){AdminPanelPage.clickCheckBox();}
+
+    @Step
+    public void CancelAssign(){AdminPanelPage.clickCancelButton();}
+
+    @Step
+    public void SaveAssign(){AdminPanelPage.clickSaveButton();}
+
+    @Step
+    public void ConfirmAssign(){AdminPanelPage.clickButtonOK();}
+
+    @Step
+    public void CheckAssignRole(){AdminPanelPage.checkSelectedCheckbox();}
+
+    @Step
+    public void ScrollToCheckbox(WebDriver driver, WebElement element){AdminPanelPage.scrolltoRoleelement(driver, element);}
+
+    @Step
+    public void checkRole(WebDriver driver, WebElement element){ assertTrue(AdminPanelPage.SelectedCheck(driver, element));}
+
+    @Step
+    public void InputedSelectRole(){AdminPanelPage.InputSelectRole();}
+
+    @Step
+    public void RoleSelection(){AdminPanelPage.SelectionFromDropdown();}
+
+    @Step
+    public void CheckAddedAddedRole(){AdminPanelPage.CheckAddedRole();}
+
+    @Step
+    public void InputRoleName(String text){AdminPanelPage.SendRoleName(text);}
+
+    @Step
+    public void CheckRemovedRole_step(){AdminPanelPage.CheckRemovedRole();}
+
+    @Step
+    public void RefreshPageU(WebDriver driver){AdminPanelPage.RefreshUsers(driver);}
 }
