@@ -4,6 +4,7 @@ package com.ProjectTestCom.pages;
 //import com.ProjectTestCom.utils.DriverScripts;
 import com.ProjectTestCom.utils.FileWriterUtil;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import com.sun.net.httpserver.HttpsConfigurator;
 //import com.thoughtworks.selenium.webdriven.commands.Check;
 import groovy.transform.BaseScript;
@@ -49,8 +50,8 @@ import static org.junit.Assert.assertFalse;
 import static org.openqa.grid.common.RegistrationRequest.TIME_OUT;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-@DefaultUrl("http://synergy.devzone.dp.ua/en/")
-//@DefaultUrl("http://mnassa.com/en/")
+//@DefaultUrl("http://synergy.devzone.dp.ua/en/")
+@DefaultUrl("http://mnassa.com/en/")
 @RunWith(SerenityRunner.class)
 public class LoginPage extends PageObject {
     //private final By btnForgotPassword = By.xpath("//a[@class='link-forgot-password']");
@@ -71,6 +72,7 @@ public class LoginPage extends PageObject {
     //Visible elements
     private final By HomeContent = By.xpath("//div[@class='feed container']");
     private final By Counter = By.xpath("//span[@class='wall-post-length']");
+    private final By Header = By.xpath("//div[@class='nav-back']");
 
     public void openForgotPasswordPage() {
         element(btnForgotPassword).click();
@@ -78,7 +80,7 @@ public class LoginPage extends PageObject {
     }
 
     public void pressLoginLink( ) {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 700);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 800);
         wt.until(ExpectedConditions.visibilityOfElementLocated(Button));
         find(Button).click();
         wt.until(ExpectedConditions.elementToBeClickable(LoginLink));
@@ -106,7 +108,8 @@ public class LoginPage extends PageObject {
 
     public void clickEnter(WebDriver driver){
         element(btnEnter).click();
-        WebDriverWait wt = new WebDriverWait (driver, 900);
+        WebDriverWait wt = new WebDriverWait (driver, 800);
+        wt.until(visibilityOfElementLocated(Header));
         wt.until(visibilityOfElementLocated(HomeContent));
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
     }
@@ -166,19 +169,6 @@ public class LoginPage extends PageObject {
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
 
-   /*     public void PageComplete(final WebDriver driver) {
-
-        WebDriverWait wait = new WebDriverWait(driver, 600);
-
-        wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver wdriver) {
-                return ((JavascriptExecutor) driver).executeScript(
-                        "return document.readyState"
-                ).equals("complete");
-            }
-        });
-    }*/
-
     public void PageComplete(WebDriver driver) {
         ExpectedCondition<Boolean> pageLoadCondition = new
                 ExpectedCondition<Boolean>() {
@@ -186,7 +176,7 @@ public class LoginPage extends PageObject {
                         return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
                     }
                 };
-        WebDriverWait wait = new WebDriverWait(driver, 1700);
+        WebDriverWait wait = new WebDriverWait(driver, 3500);
         wait.until(pageLoadCondition);
     }
 
@@ -224,6 +214,35 @@ public class LoginPage extends PageObject {
         getDriver().switchTo().window(modalWindowHandle);
     }
 
+    public void pageLoadi() throws IOException {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        final Long Prerequest;
+        final Long Request;
+        final Long Response;
+        final Long DOMLoading;
+        final Long DOMComplete;
+        final Long Load;
+        final Long Processing;
+
+        Prerequest = (Long) js.executeScript("return (window.performance.timing.requestStart-window.performance.timing.navigationStart);");
+
+        Request = (Long) js.executeScript("return (window.performance.timing.responseStart - window.performance.timing.requestStart) ;");
+        System.out.println("Request " + Request);
+
+        Response = (Long) js.executeScript("return (window.performance.timing.responseEnd - window.performance.timing.responseStart) ;");
+        System.out.println("Response " + Response);
+
+        DOMLoading = (Long) js.executeScript("return (window.performance.timing.domInteractive -window.performance.timing.responseEnd) ;");
+        System.out.println("DOMLoading " + DOMLoading);
+
+        DOMComplete = (Long) js.executeScript("return (window.performance.timing.domComplete - window.performance.timing.domInteractive) ;");
+        System.out.println("DOMComplete " + DOMComplete);
+
+        Load = (Long) js.executeScript("return (window.performance.timing.loadEventEnd - window.performance.timing.domComplete) ;");
+        System.out.println("Load " + Load);
+
+        System.out.println("Total " + (Prerequest + Request + Response + DOMLoading + DOMComplete + Load));
+    }
     public void pageLoad(String args) throws IOException {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         final Long loadEventEnd;

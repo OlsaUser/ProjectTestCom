@@ -14,10 +14,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static jdk.nashorn.internal.parser.TokenType.OR;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 /**
@@ -101,7 +103,7 @@ public class HeaderPage extends PageObject {
     private final By MyEventListing = By.xpath("//div[@class='nav-list-items']/a[5]/span");
     private final By linkMyGroups = By.xpath("//div[@class='nav-list-items']/a[6]/span");
     private final By MyPartnershipListing = By.xpath("//div[@class='nav-list-items']/a[7]/span");
-    private final By linkMyMedia = By.xpath("//div[@class='nav-list-items']/a[8]/span");
+    private final By linkMyMedia = By.xpath("//div[@class='nav-list-items']/a[7]/span");
     //Third line Menu (User Profile)
     private final By linkUserWall = By.xpath("//div[@class='nav-list-items']/a[2]");
     private final By UserProductListing = By.xpath("//div[@class='nav-list-items']/a[3]");
@@ -109,7 +111,7 @@ public class HeaderPage extends PageObject {
     private final By UserEventListing = By.xpath("//div[@class='nav-list-items']/a[5]");
     private final By linkUserGroups = By.xpath("//div[@class='nav-list-items']/a[6]");
     private final By UserPartnershipListing = By.xpath("//div[@class='nav-list-items']/a[7]");
-    private final By linkUserMedia = By.xpath("//div[@class='nav-list-items']/a[8]");
+    private final By linkUserMedia = By.xpath("//div[@class='nav-list-items']/a[7]");
 
     /*private final By linkUserWall = By.xpath("//div[@class='nav-list']/a[2]");
     private final By UserProductListing = By.xpath("//div[@class='nav-list']/a[3]");
@@ -185,27 +187,47 @@ public class HeaderPage extends PageObject {
 
     public void clickLogo( ) {
         find(logo).click();
-        WebDriverWait wt2 = new WebDriverWait (getDriver(), 300);
-        wt2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-target='#home-learn-more']")));
+        WebDriverWait wt = new WebDriverWait (getDriver(), 500);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@style='background-image: url(http://mnassa.com/res/timthumb.php?src=/upl/items/559c0a654dafb779020715f2/featured/o_1adq4eis61njvmj5mra19o1c032h.jpg&w=1920']")));
     }
 
     public void openMyMnassaPage(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 500);
+        WebDriverWait wt = new WebDriverWait (driver, 200);
         wt.until(ExpectedConditions.elementToBeClickable(linkMyMnassa));
         wt.until(ExpectedConditions.presenceOfElementLocated(linkMyMnassa));
 
         find(linkMyMnassa).waitUntilClickable();
         find(linkMyMnassa).click();
         wt.until(visibilityOfElementLocated(MyMnassaContent));
+        wt.until(visibilityOfAllElementsLocatedBy(By.xpath("//a[@class='user-photo']")));
     }
 
     public void openDiscoverPage (WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 500);
-        //find(linkDiscover).waitUntilPresent();
+        WebDriverWait wt = new WebDriverWait (driver, 8000);
         wt.until(ExpectedConditions.elementToBeClickable(linkDiscover));
         find(linkDiscover).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentItem));
+
+        // (1) - Start
+        //long startTime = System.currentTimeMillis();
+        long start_time = new Date().getTime();
+        System.out.println ("Start Time: " + start_time);
+
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='card-user-photo']")));
+
+        // (2) - End
+        long request_time = new Date().getTime() - start_time;
+        System.out.println("End Time: " + request_time);
 }
+    public void openDiscoverItemPopular (WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        //wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscover));
+        //find(linkDiscoverItems).click();
+        //wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentItem));
+        find(linkDiscoverItemsPopular).isPresent();
+        find(linkDiscoverItemsPopular).click();
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a[href='http://mnassa.com/en/discover#!items/popular']")));
+        wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(DiscoverContentItem)));
+    }
 
     public void openDiscoverUserActive (WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 150);
@@ -218,28 +240,25 @@ public class HeaderPage extends PageObject {
         WebDriverWait wt = new WebDriverWait (driver, 500);
         wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscoverUsersNew));
         find(linkDiscoverUsersNew).click();
-        WebElement el = driver.findElement (DiscoverContentUser);
+        //WebElement el = driver.findElement (DiscoverContentUser);
         wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentUser));
     }
     public void openDiscoverUserPopular (WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 500);
         wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscover));
         find(linkDiscoverUsers).click();
-       // wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscoverUsersPopular));
-       // find(linkDiscoverUsersPopular).click();
-       // driver.manage().timeouts().implicitlyWait(99, TimeUnit.SECONDS);
+
+        // (1) - Start
+        long start_time = new Date().getTime();
+
         wt.until(ExpectedConditions.presenceOfElementLocated(DiscoverContentUser));
+        wt.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='user-thumbnail-username text-overflow']")));
+
+        // (2) - End
+        long request_time = new Date().getTime() - start_time;
+        System.out.println("End Time: " + request_time);
     }
-    public void openDiscoverItemPopular (WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 500);
-        wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscover));
-        find(linkDiscoverItems).click();
-        wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentItem));
-        find(linkDiscoverItemsPopular).isPresent();
-        find(linkDiscoverItemsPopular).click();
-        wt.until(ExpectedConditions.presenceOfElementLocated(DiscoverContentItem));
-        wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(DiscoverContentItem)));
-    }
+
     public void openDiscoverItemNew (WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 500);
         wt.until(ExpectedConditions.visibilityOfElementLocated(linkDiscover));
@@ -262,9 +281,16 @@ public class HeaderPage extends PageObject {
         WebDriverWait wt = new WebDriverWait (driver, 500);
         wt.until(ExpectedConditions.visibilityOfElementLocated(linkDiscoverPosts));
         find(linkDiscoverPosts).click();
-        //wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentPost));
-        //find(linkDiscoverPostsNew).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentPost));
+
+        // (1) - Start
+        long start_time = new Date().getTime();
+
+        //wt.until(ExpectedConditions.visibilityOfElementLocated(DiscoverContentPost));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='user-photo']")));
+
+        // (2) - End
+        long request_time = new Date().getTime() - start_time;
+        System.out.println("End Time: " + request_time);
     }
     public void openDiscoverPostTrending (WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 500);
@@ -280,7 +306,17 @@ public class HeaderPage extends PageObject {
         WebDriverWait wt = new WebDriverWait (driver, 500);
         wt.until(ExpectedConditions.presenceOfElementLocated(linkDiscover));
         find(linkDiscoverGroupPopular).click();
-        wt.until(ExpectedConditions.presenceOfElementLocated(DiscoverContentGroup));
+
+        // (1) - Start
+        long start_time = new Date().getTime();
+
+
+        //wt.until(ExpectedConditions.presenceOfElementLocated(DiscoverContentGroup));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='group-item-info']")));
+
+        // (2) - End
+        long request_time = new Date().getTime() - start_time;
+        System.out.println("End Time: " + request_time);
     }
 
     public void openDiscoverGroupsNew (WebDriver driver) {
@@ -289,13 +325,13 @@ public class HeaderPage extends PageObject {
         find(linkDiscoverGroupPopular).click();
         wt.until(ExpectedConditions.elementToBeClickable(DiscoverContentGroup));
         find(linkDiscoverGroupNew).click();
-        driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
-        wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(DiscoverContentGroup)));
+        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+        wt.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='group-item']"))));
     }
 
     public void openMessagePage(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 70);
-        wt.until(ExpectedConditions.presenceOfElementLocated(iconMessage));
+        WebDriverWait wt = new WebDriverWait (driver, 100);
+        wt.until(ExpectedConditions.elementToBeClickable(iconMessage));
         find(iconMessage).click();
         wt.until(ExpectedConditions.presenceOfElementLocated(MessageContent));
         wt.until(ExpectedConditions.visibilityOfElementLocated(MessageContent));
@@ -308,9 +344,24 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.visibilityOfElementLocated(HomeContent));
         wt.until(ExpectedConditions.visibilityOfElementLocated(Counter));
     }
+    public void openViewItemPage(String url) {
+        getDriver().get(url);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 110);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@class='item-content-title']")));
+    }
+    public void openViewUserInfoPage(String url) {
+        getDriver().get(url);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//a[@class='collapse-link ']")));
+    }
+    public void openViewGroupPage(String url) {
+        getDriver().get(url);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='user-photo']")));
+    }
 
     public void openNotificationPage(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 500);
+        WebDriverWait wt = new WebDriverWait (driver, 600);
         wt.until(ExpectedConditions.elementToBeClickable(iconNotification));
         find(iconNotification).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(NotificationContent));
@@ -337,8 +388,9 @@ public class HeaderPage extends PageObject {
 
     public void openAccountSettings(WebDriver driver) {
         element(menuAccountSettings).click();
-        WebDriverWait wt = new WebDriverWait (getDriver(), 200);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
         wt.until(ExpectedConditions.visibilityOfElementLocated(ProfileContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//address[@class='user-data info-gray-text']")));
 
        /* WebDriverWait wt = new WebDriverWait (driver, 10);
         wt.until(ExpectedConditions.presenceOfElementLocated(menuAccountSettings));
@@ -365,34 +417,39 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.visibilityOfElementLocated(GroupContent));
     }
     public void MyGroupWall(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.presenceOfElementLocated(GroupWall));
        // wt.until(ExpectedConditions.textToBePresentInElementLocated(linkOwner,"Owner"));
         find(GroupWall).click();
-        //wt.until(ExpectedConditions.visibilityOfElementLocated(GroupWallContent));
+        //wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='feed-placeholder-title-text']")));
         wt.until(ExpectedConditions.visibilityOfElementLocated(PlaceHolderWall));
     }
 
     public void openProductListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
         find(linkProduct).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),' ADD Product ')]")));
+        wt.equals(driver.getCurrentUrl().equals("http://products.mnassa.com/en/marketplace"));
     }
 
     public void openServiceListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.elementToBeClickable(linkService));
         find(linkService).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'   ADD Service ')]")));
+        wt.equals(driver.getCurrentUrl().equals("http://services.mnassa.com/en/marketplace"));
     }
 
     public void openEventListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.elementToBeClickable(linkEvent));
         find(linkEvent).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'   ADD Event ')]")));
+        wt.equals(driver.getCurrentUrl().equals("http://events.mnassa.com/en/marketplace"));
     }
 
     public void openPartnershipListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 500);
         find(linkPartnership).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
     }
@@ -412,13 +469,16 @@ public class HeaderPage extends PageObject {
     }
 
     public void viewAccountSettings(WebDriver driver) {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
+        wt.until(ExpectedConditions.elementToBeClickable(linkUserName));
         find(linkUserName).click();
-        WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.visibilityOfElementLocated(ViewUserContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='collapse-link ']")));
+
     }
 
     public void openMyWall(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
+        WebDriverWait wt = new WebDriverWait (driver, 200);
         wt.until(ExpectedConditions.presenceOfElementLocated(linkMyWall));
         find(linkMyWall).click();
         wt.until(ExpectedConditions.visibilityOfElementLocated(WallContent));
@@ -429,21 +489,21 @@ public class HeaderPage extends PageObject {
         WebDriverWait wt = new WebDriverWait (getDriver(), 100);
         wt.until(ExpectedConditions.presenceOfElementLocated(MyProductListing));
         find(MyProductListing).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),' ADD Product ')]")));
     }
 
     public void openMyServiceListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 100);
         wt.until(ExpectedConditions.presenceOfElementLocated(MyServiceListing));
         find(MyServiceListing).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'   ADD Service ')]")));
     }
 
     public void openMyEventListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 100);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 80);
         wt.until(ExpectedConditions.presenceOfElementLocated(MyEventListing));
         find(MyEventListing).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'   ADD Event ')]")));
     }
 
     public void openMyGroupsListing(WebDriver driver) {
@@ -452,7 +512,7 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.visibilityOfElementLocated(linkMyGroups));
         find(linkMyGroups).waitUntilClickable();
         find(linkMyGroups).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(GroupContent));
+        wt.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(GroupContent));
     }
 
     public void openMyPartnershipListing(WebDriver driver) {
@@ -477,22 +537,22 @@ public class HeaderPage extends PageObject {
         wt.until(ExpectedConditions.elementToBeClickable(UserWallContent));
     }
     public void openUserProductListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.presenceOfElementLocated(UserProductListing));
         find(UserProductListing).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'135')]")));
     }
     public void openUserServiceListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.presenceOfElementLocated(UserServiceListing));
         find(UserServiceListing).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'182')]")));
     }
     public void openUserEventListing(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 50);
+        WebDriverWait wt = new WebDriverWait (driver, 100);
         wt.until(ExpectedConditions.presenceOfElementLocated(UserEventListing));
         find(UserEventListing).click();
-        wt.until(ExpectedConditions.visibilityOfElementLocated(ItemContent));
+        wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'27')]")));
     }
     public void openUserGroupListing(WebDriver driver) {
         WebDriverWait wt = new WebDriverWait (driver, 50);

@@ -148,7 +148,7 @@ public class t3_ActionsItemStory {
         addItemSteps.checkCommentAdded(Comment);
 
         //loginSteps.Sleep(80);
-        loginSteps.PageComplete(driver);
+       /*loginSteps.PageComplete(driver);
         headerSteps.openMyMnassaPage(driver);
         headerSteps.openMyPartnershipListing(driver);
         loginSteps.PageComplete(driver);
@@ -156,7 +156,7 @@ public class t3_ActionsItemStory {
         addItemSteps.openItemSettingsMenu();
         addItemSteps.selectViewMenu(driver);
         addItemSteps.addComment(driver, Comment);
-        addItemSteps.checkCommentAdded(Comment);
+        addItemSteps.checkCommentAdded(Comment);*/
 
         //loginSteps.Sleep(80);
         loginSteps.PageComplete(driver);

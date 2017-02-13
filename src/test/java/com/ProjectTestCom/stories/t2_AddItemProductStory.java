@@ -42,8 +42,8 @@ public class t2_AddItemProductStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
@@ -109,7 +109,7 @@ public class t2_AddItemProductStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1800, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -268,7 +268,7 @@ public class t2_AddItemProductStory {
         addItemSteps.enterLocation(Location);
 
         addItemSteps.collapseMainDetails();
-        addItemSteps.VideoContent1(VideoContent2);
+        //addItemSteps.VideoContent1(VideoContent2);
        // addItemSteps.AudioContent3(AudioContent1, AudioContent2, AudioContent3);
         addItemSteps.collapseContent();
         //addItemSteps.ItemStatusDeactivate();

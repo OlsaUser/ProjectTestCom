@@ -31,8 +31,8 @@ public class t2_AddTextPostStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
@@ -187,7 +187,7 @@ public class t2_AddTextPostStory {
         addPostSteps.openGroupWall();
         loginSteps.PageComplete(driver);
 
-        addPostSteps.AddTextPost(textPostAr, driver);
+        addPostSteps.AddTextPost_inGroup(textPostAr, driver);
         addPostSteps.clickPostButton();
         loginSteps.PageComplete(driver);
         addPostSteps.checkTextInPost(textPostAr, driver);

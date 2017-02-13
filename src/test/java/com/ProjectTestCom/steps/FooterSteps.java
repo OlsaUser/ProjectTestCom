@@ -15,7 +15,7 @@ public class FooterSteps extends ScenarioSteps {
     @Step
     public void openHomePage() { footerPage.open();
         WebDriverWait wt = new WebDriverWait (getDriver(), 300);
-        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='page-body']/section/div[2]/nav/div/button[1]")));}
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@style='background-image: url(http://mnassa.com/res/timthumb.php?src=/upl/items/559c0a654dafb779020715f2/featured/o_1adq4eis61njvmj5mra19o1c032h.jpg&w=1920)']")));}
 
     @Step
     public void openAbout(WebDriver driver, String url) { footerPage.openAbout(driver, url);}

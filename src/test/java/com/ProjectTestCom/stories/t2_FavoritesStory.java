@@ -29,8 +29,8 @@ public class t2_FavoritesStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
-    private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
@@ -88,11 +88,11 @@ public class t2_FavoritesStory {
         loginSteps.PageComplete(driver);
         favoritesSteps.pressIcon_addToFavorite(driver);
 
-        headerSteps.openHomePage(driver);
+       /* headerSteps.openHomePage(driver);
         loginSteps.PageComplete(driver);
         headerSteps.openPartnershipListing(driver);
         loginSteps.PageComplete(driver);
-        favoritesSteps.pressIcon_addToFavorite(driver);
+        favoritesSteps.pressIcon_addToFavorite(driver);*/
             }
 
     @Test

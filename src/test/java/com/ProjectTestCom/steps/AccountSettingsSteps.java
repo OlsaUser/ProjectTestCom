@@ -6,6 +6,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import javax.validation.constraints.AssertTrue;
 import java.awt.*;
 
 import static junit.framework.TestCase.assertTrue;
@@ -78,7 +79,7 @@ public class AccountSettingsSteps extends ScenarioSteps {
     public void  Del_job_modal(WebDriver driver) { accountSettingsPage.Del_job_modal(driver);}
 
     @Step
-    public void  checkMessage_if_NameWrong(String Message, WebDriver driver) { Assert.assertTrue(accountSettingsPage.checkMessage_if_NameWrong(Message,driver));}
+    public void  checkMessage_if_NameWrong(String Message, WebDriver driver) { accountSettingsPage.checkMessage_if_NameWrong(Message,driver);}
 
     @Step
     public void  enterCurrentPassword(String password) { accountSettingsPage.enterCurrentPassword(password);}

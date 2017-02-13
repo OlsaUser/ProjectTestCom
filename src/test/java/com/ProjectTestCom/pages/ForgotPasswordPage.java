@@ -40,7 +40,7 @@ public class ForgotPasswordPage extends PageObject {
         }
 
     public void checkIfEmailSucceed() {
-        WebDriverWait wt = new WebDriverWait (getDriver(), 500);
+        WebDriverWait wt = new WebDriverWait (getDriver(), 400);
         wt.until(ExpectedConditions.presenceOfElementLocated(SuccessPopup));
         wt.until(ExpectedConditions.textToBePresentInElementLocated(SuccessPopup, "The link to enter the site was successfully sent to "));
     }

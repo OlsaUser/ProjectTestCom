@@ -40,7 +40,7 @@ public class GroupPage extends PageObject {
     //private final By btnDelete = By.xpath("//div[@id='group-delete']//div[@class='text-center']/button[2]");
     private final By btnCancel = By.xpath("//div[@id='group-delete']//div[@class='text-center']/button[1]");
     //private final By btnAddGroup = By.xpath("//a[@can-click='ins_group_modal']");
-    private final By btnAddGroup = By.xpath("//div[@class='header-dropdown']/a[5]");
+    private final By btnAddGroup = By.xpath("//div[@class='header-dropdown']/a[4]");
     private final By thirdLimeMenu = By.xpath("//div[@id='nav-list-in']");
     private final By headerInfoMembers = By.xpath("//div[@class='header-info-followers']/div[1]");
     private final By headerInfoPosts = By.xpath("//div[@class='header-info-followers']/div[2]");
@@ -228,7 +228,7 @@ public class GroupPage extends PageObject {
     }*/
 
     public void enterNameGroup(String NameGroup, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 450);
+        WebDriverWait wt = new WebDriverWait(driver, 500);
         wt.until(visibilityOfElementLocated(fieldNameGroup));
         wt.until(ExpectedConditions.elementToBeClickable(fieldNameGroup));
         //clearNameGroup();

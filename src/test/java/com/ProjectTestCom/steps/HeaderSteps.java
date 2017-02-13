@@ -54,6 +54,15 @@ public class HeaderSteps {
     public void openHomePage(WebDriver driver) { headerPage.openHomePage(driver);}
 
     @Step
+    public void openViewItemPage(String url) { headerPage.openViewItemPage(url);}
+
+    @Step
+    public void openViewUserInfoPage(String url) { headerPage.openViewUserInfoPage(url);}
+
+    @Step
+    public void openViewGroupPage(String url) { headerPage.openViewGroupPage(url);}
+
+    @Step
     public void openMessagePage(WebDriver driver) { headerPage.openMessagePage(driver);}
 
     @Step

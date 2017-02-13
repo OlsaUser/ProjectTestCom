@@ -87,9 +87,12 @@ public class SearchSteps extends ScenarioSteps {
     public void selectSearchResult_Group(String title, WebDriver driver) {searchPage.selectSearchResult_Group(title, driver);}
 
     @Step
+    public void GroupExists(WebDriver driver) {searchPage.GroupExists(driver);}
+
+    @Step
     public void checkSearchResult_GroupTitle(String group, WebDriver driver) {searchPage.checkSearchResult_GroupTitle(group, driver);}
 
     @Step
-    public void checkSearchResult_GroupDescription(String group, WebDriver driver) {searchPage.checkSearchResult_GroupDescription(group, driver);}
+    public void checkSearchResult_GroupDescription(WebDriver driver) {searchPage.checkSearchResult_GroupDescription(driver);}
 }
 

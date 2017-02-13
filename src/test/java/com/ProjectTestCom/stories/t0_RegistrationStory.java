@@ -2,7 +2,6 @@ package com.ProjectTestCom.stories;
 
 import com.ProjectTestCom.steps.LoginSteps;
 import com.ProjectTestCom.steps.RegisterSteps;
-import com.ProjectTestCom.utils.FailFastListener;
 import com.ProjectTestCom.utils.PropertyLoader;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
@@ -16,9 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 @RunWith(SerenityRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -27,8 +24,8 @@ public class t0_RegistrationStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
@@ -207,8 +204,9 @@ public class t0_RegistrationStory {
         registerSteps.checkValidationMessage(ErrorEmail_Empty, driver);
 
         registerSteps.enterEmail(EmailUser);
-        registerSteps.clearUserName();
-        registerSteps.Step1_UserName(UserName_AR);
+        //registerSteps.clearUserName();
+        //registerSteps.Step1_UserName(UserName_AR);
+        registerSteps.enterUserName(UserName_AR);
         registerSteps.clickDoneButton_Error();
         System.out.println("2.ErrorUserName_Ar");
         registerSteps.checkValidationMessage_if_UserNameAR(ErrorUserName_Ar, driver);

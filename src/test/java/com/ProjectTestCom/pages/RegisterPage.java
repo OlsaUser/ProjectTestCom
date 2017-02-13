@@ -20,8 +20,8 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-@DefaultUrl("http://synergybeta.devzone.dp.ua/en/#!registration")
-//@DefaultUrl("http://mnassa.com/en/#!registration")
+//@DefaultUrl("http://synergy.devzone.dp.ua/en/#!registration")
+@DefaultUrl("http://mnassa.com/en/#!registration")
 @RunWith(SerenityRunner.class)
 public class RegisterPage  extends PageObject {
 
@@ -136,6 +136,8 @@ public class RegisterPage  extends PageObject {
     }
 
     public void selectCompany() {
+        WebDriverWait wt = new WebDriverWait (getDriver(), 200);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(CompanyClick));
         find(CompanyClick).click();
     }
 
@@ -185,10 +187,13 @@ public class RegisterPage  extends PageObject {
         wt.until(ExpectedConditions.visibilityOfElementLocated(OkButton));
         find(OkButton).click();
     }
-    public void clickDoneButton_Error( ) {find(DoneButton).click();}
+    public void clickDoneButton_Error( ) {
+        WebDriverWait wt = new WebDriverWait(getDriver(), 300);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(DoneButton));
+        find(DoneButton).click();}
 
     public boolean checkValidationMessage(String Message, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 99);
+        WebDriverWait wt = new WebDriverWait(driver, 300);
         wt.until(ExpectedConditions.visibilityOfElementLocated(lblError));
 
         boolean r=false;

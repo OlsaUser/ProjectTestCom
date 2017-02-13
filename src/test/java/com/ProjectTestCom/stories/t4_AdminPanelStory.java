@@ -126,5 +126,5 @@ public class t4_AdminPanelStory {
         AdminPanelSteps.ClickDeleteButton();
         AdminPanelSteps.DeletedRoleCheck(driver);
 
-            }
-    }
+ }
+}

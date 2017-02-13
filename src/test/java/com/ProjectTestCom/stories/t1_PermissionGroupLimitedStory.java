@@ -27,8 +27,8 @@ public class t1_PermissionGroupLimitedStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String email_organization = PropertyLoader.getProperty(propertyFilePath, "email_organization");
@@ -84,7 +84,7 @@ public class t1_PermissionGroupLimitedStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(1000, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1800, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -182,8 +182,8 @@ public class t1_PermissionGroupLimitedStory {
         addGroupSteps.openGroupWall(driver, href_NameGroupLimitedMax);
         loginSteps.PageComplete(driver);
         addGroupSteps.checkMemberLim(driver, NameGroupLimitedMax);
-
-        addPostSteps.AddTextPost(textPostMin, driver);
+        loginSteps.Sleep(150);
+        addPostSteps.AddTextPost_inGroup(textPostMin, driver);
         addPostSteps.clickPostButton();
         loginSteps.PageComplete(driver);
         addPostSteps.checkTextInPost(textPostMin, driver);

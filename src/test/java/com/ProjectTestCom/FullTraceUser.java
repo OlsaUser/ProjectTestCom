@@ -33,8 +33,8 @@ public class FullTraceUser {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String email_now = PropertyLoader.getProperty(propertyFilePath, "email_now");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
@@ -278,6 +278,7 @@ public class FullTraceUser {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
@@ -358,6 +359,7 @@ public class FullTraceUser {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
@@ -421,6 +423,7 @@ public class FullTraceUser {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
@@ -458,6 +461,7 @@ public class FullTraceUser {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
@@ -496,6 +500,7 @@ public class FullTraceUser {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);

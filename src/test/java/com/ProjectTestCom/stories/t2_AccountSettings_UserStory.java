@@ -40,8 +40,8 @@ public class t2_AccountSettings_UserStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String email_now = PropertyLoader.getProperty(propertyFilePath, "email_now");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
@@ -233,11 +233,12 @@ public class t2_AccountSettings_UserStory {
         accountSettingsSteps.checkInfoExists(birth_exp, birth_now);
     }
     @Test
-    public void stage3_changeAccountSettings_User_MainDetails_Errors(){
+    public void stageC_changeAccountSettings_User_MainDetails_Errors(){
         accountSettingsSteps.enterFirstName(Symbols);
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("window.scrollBy(0,200)", "");
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,150)", "");
         accountSettingsSteps.clickUpdateError();
+        jse.executeScript("window.scrollBy(0,-350)", "");
         accountSettingsSteps.checkMessage_if_NameWrong(Error_FirstName, driver);
 
       /*  accountSettingsSteps.enterLastName(Symbols);
@@ -334,7 +335,7 @@ public class t2_AccountSettings_UserStory {
     @Test
     public void stage6_changeAccountSettings_User_Education_Edit(){
         accountSettingsSteps.pressCollapseEducationInfo();
-        loginSteps.PageComplete(driver);
+        //loginSteps.PageComplete(driver);
         accountSettingsSteps.Edit_ed();
         accountSettingsSteps.Ed_EditName(InstitutionName_new);
         accountSettingsSteps.Ed_EditSpeciality(Speciality_new);

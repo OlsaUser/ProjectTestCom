@@ -114,9 +114,10 @@ public class Performance {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1800, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
         loginSteps.pressLoginLink();
         loginSteps.enterLogin(email);
         loginSteps.enterPassword(password);
@@ -130,6 +131,59 @@ public class Performance {
             driver.quit();
         }
     }
+    @Test
+    public void Discover() throws IOException {
+        headerSteps.openDiscoverPage(driver);
+        loginSteps.pageLoadi();
+
+        headerSteps.openDiscoverPostNew(driver);
+        loginSteps.pageLoad(DiscoverPostNew);
+
+        headerSteps.openDiscoverUserPopular(driver);
+        loginSteps.pageLoad(DiscoverUserPopular);
+
+        headerSteps.openDiscoverGroupsPopular(driver);
+        loginSteps.pageLoad(DiscoverGroupsPopular);
+
+        //(2)
+        headerSteps.openDiscoverPage(driver);
+        loginSteps.pageLoad(DiscoverItemNew);
+
+        headerSteps.openDiscoverPostNew(driver);
+        loginSteps.pageLoad(DiscoverPostNew);
+
+        headerSteps.openDiscoverUserPopular(driver);
+        loginSteps.pageLoad(DiscoverUserPopular);
+
+        headerSteps.openDiscoverGroupsPopular(driver);;
+        loginSteps.pageLoad(DiscoverGroupsPopular);
+
+        //(3)
+        headerSteps.openDiscoverPage(driver);
+        loginSteps.pageLoad(DiscoverItemNew);
+
+        headerSteps.openDiscoverPostNew(driver);
+        loginSteps.pageLoad(DiscoverPostNew);
+
+        headerSteps.openDiscoverUserPopular(driver);
+        loginSteps.pageLoad(DiscoverUserPopular);
+
+        headerSteps.openDiscoverGroupsPopular(driver);;
+        loginSteps.pageLoad(DiscoverGroupsPopular);
+
+        //(4)
+        headerSteps.openDiscoverPage(driver);
+        loginSteps.pageLoad(DiscoverItemNew);
+
+        headerSteps.openDiscoverPostNew(driver);
+        loginSteps.pageLoad(DiscoverPostNew);
+
+        headerSteps.openDiscoverUserPopular(driver);
+        loginSteps.pageLoad(DiscoverUserPopular);
+
+        headerSteps.openDiscoverGroupsPopular(driver);;
+        loginSteps.pageLoad(DiscoverGroupsPopular);
+    }
 
     @Test
     public void PerformanceTest() throws IOException {
@@ -139,17 +193,13 @@ public class Performance {
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(ProductListing);
 
+        headerSteps.openServiceListing(driver);
+       loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(ServiceListing);
+
         headerSteps.openEventListing(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(EventListing);
-
-        headerSteps.openPartnershipListing(driver);
-        loginSteps.PageComplete(driver);
-        loginSteps.pageLoad(PartnershipListing);
-
-        headerSteps.openServiceListing(driver);
-        loginSteps.PageComplete(driver);
-        loginSteps.pageLoad(ServiceListing);
 
         headerSteps.openMessagePage(driver);
         loginSteps.PageComplete(driver);
@@ -167,32 +217,22 @@ public class Performance {
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(DiscoverItemNew);
-        headerSteps.openDiscoverItemPopular(driver);
-        loginSteps.PageComplete(driver);
-       // headerSteps.openDiscoverItemNew(driver);
-       // loginSteps.PageComplete(driver);
 
         headerSteps.openDiscoverPostNew(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(DiscoverPostNew);
-        headerSteps.openDiscoverPostTrending(driver);
-        loginSteps.PageComplete(driver);
-        headerSteps.openDiscoverPostPopular(driver);
-        loginSteps.PageComplete(driver);
 
         headerSteps.openDiscoverUserPopular(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(DiscoverUserPopular);
-        headerSteps.openDiscoverUserActive(driver);
-        loginSteps.PageComplete(driver);
-        headerSteps.openDiscoverUserNew(driver);
-        loginSteps.PageComplete(driver);
 
         headerSteps.openDiscoverGroupsPopular(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(DiscoverGroupsPopular);
-        headerSteps.openDiscoverGroupsNew(driver);
+
+        headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyMnassa);
 
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
@@ -201,7 +241,6 @@ public class Performance {
 
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
-        loginSteps.pageLoad(MyMnassa);
 
         headerSteps.openMyMedia(driver);
         loginSteps.PageComplete(driver);
@@ -221,21 +260,17 @@ public class Performance {
         headerSteps.openMyMnassaPage(driver);
         loginSteps.PageComplete(driver);
 
-        headerSteps.openMyServiceListing(driver);
-        loginSteps.PageComplete(driver);
-        loginSteps.pageLoad(MyServiceListing);
-
         headerSteps.openMyProductListing(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(MyProductListing);
 
+        headerSteps.openMyServiceListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyServiceListing);
+
         headerSteps.openMyEventListing(driver);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(MyEventListing);
-
-        headerSteps.openMyPartnershipListing(driver);
-        loginSteps.PageComplete(driver);
-        loginSteps.pageLoad(MyPartnershipListing);
 
         headerSteps.openDiscoverPage(driver);
         loginSteps.PageComplete(driver);
@@ -243,16 +278,16 @@ public class Performance {
 //User Info page
         headerSteps.viewAccountSettings(driver);
         loginSteps.PageComplete(driver);
-        loginSteps.pageLoad(viewAccountSettings);
 
-        driver.get(urlUserProfile_Perform);
-        headerSteps.openUserWallPage(driver);
+        headerSteps.openViewUserInfoPage(urlUserProfile_Perform);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(viewAccountSettings);
+        /*headerSteps.openUserWallPage(driver);
         headerSteps.openUserProductListing(driver);
         headerSteps.openUserServiceListing(driver);
         headerSteps.openUserEventListing(driver);
         headerSteps.openUserGroupListing(driver);
-        headerSteps.openUserPartnershipListing(driver);
-        headerSteps.openUserMediaPage(driver);
+        headerSteps.openUserMediaPage(driver);*/
 
         headerSteps.openMyFollowers(driver);
         loginSteps.PageComplete(driver);
@@ -269,14 +304,132 @@ public class Performance {
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(Groups);
 
-        driver.get(urlItem);
+        headerSteps.openViewItemPage(urlItem);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(viewItem);
 
-        headerSteps.openHomePage(driver);
-        loginSteps.PageComplete(driver);
-        driver.get(urlGroupPage);
+        headerSteps.openViewGroupPage(urlGroupPage);
         loginSteps.PageComplete(driver);
         loginSteps.pageLoad(MyGroupWall);
+
+        /**************************************************************************************************************/
+
+     /*   headerSteps.openHomePage(driver);
+        loginSteps.PageComplete(driver);
+        headerSteps.openProductListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(ProductListing);
+
+        headerSteps.openServiceListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(ServiceListing);
+
+        headerSteps.openEventListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(EventListing);
+
+        headerSteps.openMessagePage(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(Message);
+
+        headerSteps.openNotificationPage(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(NotificationPage);
+
+        headerSteps.openHomePage(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(HomePage);
+
+//Discover pages
+        headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(DiscoverItemNew);
+
+        headerSteps.openDiscoverPostNew(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(DiscoverPostNew);
+
+        headerSteps.openDiscoverUserPopular(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(DiscoverUserPopular);
+
+        headerSteps.openDiscoverGroupsPopular(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(DiscoverGroupsPopular);
+
+        headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyMnassa);
+
+        headerSteps.openMenuProfile(driver);
+        headerSteps.openAccountSettings(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(AccountSettings);
+
+        headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
+
+        headerSteps.openMyMedia(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyMedia);
+
+        headerSteps.openMyWall(driver);
+        loginSteps.pageLoad(MyWall);
+
+        headerSteps.openMyGroupsListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyGroups);
+
+        headerSteps.MyGroupWall(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyGroupWall);
+
+        headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
+
+        headerSteps.openMyProductListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyProductListing);
+
+        headerSteps.openMyServiceListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyServiceListing);
+
+        headerSteps.openMyEventListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyEventListing);
+
+        headerSteps.openDiscoverPage(driver);
+        loginSteps.PageComplete(driver);
+
+        headerSteps.viewAccountSettings(driver);
+        loginSteps.PageComplete(driver);
+
+        headerSteps.openViewUserInfoPage(urlUserProfile_Perform);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(viewAccountSettings);
+
+        headerSteps.openMyFollowers(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyFollowers);
+
+        headerSteps.openMyFollowings(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyFollowings);
+
+        headerSteps.openHomePage(driver);
+        loginSteps.PageComplete(driver);
+
+        headerSteps.openGroupsListing(driver);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(Groups);
+
+        headerSteps.openViewItemPage(urlItem);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(viewItem);
+
+        headerSteps.openViewGroupPage(urlGroupPage);
+        loginSteps.PageComplete(driver);
+        loginSteps.pageLoad(MyGroupWall);*/
     }
 }

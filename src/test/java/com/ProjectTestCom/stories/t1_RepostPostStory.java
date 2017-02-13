@@ -31,8 +31,8 @@ public class t1_RepostPostStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
-    private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String urlUserProfile1 = PropertyLoader.getProperty(propertyFilePath, "urlUserProfile1");
@@ -221,11 +221,13 @@ public class t1_RepostPostStory {
     @Test
     public void stage5_repostFromGroupToGroup() throws IOException {
         headerSteps.openMyMnassaPage(driver);
+        loginSteps.PageComplete(driver);
         headerSteps.openMyGroupsListing(driver);
+        loginSteps.PageComplete(driver);
         addGroupSteps.openGroupWall(driver, Group1);
         //loginSteps.PageComplete(driver);
 
-        addPostSteps.AddTextPost(textPostAr, driver);
+        addPostSteps.AddTextPost_inGroup(textPostAr, driver);
         addPostSteps.openVideoPopup();
         addPostSteps.AddVideoLink(VideoLink);
         addPostSteps.clickVideoPostButton(driver);
@@ -257,6 +259,7 @@ public class t1_RepostPostStory {
     @Test
     public void stage8_repostFromUserWallToWall() throws IOException {
         driver.get(urlUserProfile1);
+        loginSteps.PageComplete(driver);
         //driver.get("http://mnassa.com/en/kindasindi");
         headerSteps.openUserWallPage(driver);
 
@@ -268,7 +271,7 @@ public class t1_RepostPostStory {
         addPostSteps.checkPlaceholderTextAfterRepost(driver, placeholderWall);
 
         //Checking repost on Wall/
-        loginSteps.Sleep(700);
+        //loginSteps.Sleep(700);
         headerSteps.openMyMnassaPage(driver);
         driver.navigate().refresh();
         headerSteps.openMyWall(driver);

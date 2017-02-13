@@ -29,13 +29,13 @@ public class t2_SearchStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
 
-    //private String searchFilePath = "src/test/resources/search.properties";
-    private String searchFilePath = "src/test/resources/search_beta.properties";
+    private String searchFilePath = "src/test/resources/search.properties";
+    //private String searchFilePath = "src/test/resources/search_beta.properties";
     private String FullNameEn = PropertyLoader.getProperty(searchFilePath, "FullNameEn");
     private String FullOrganizationNameEn = PropertyLoader.getProperty(searchFilePath, "FullOrganizationNameEn");
     private String FullNameAr = PropertyLoader.getProperty(searchFilePath, "FullNameAr");
@@ -100,9 +100,10 @@ public class t2_SearchStory {
         System.setProperty("webdriver.gecko.driver",dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(1500, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(1850, TimeUnit.SECONDS);
 
         footerSteps.openHomePage();
+        driver.manage().timeouts().pageLoadTimeout(4000, TimeUnit.SECONDS);
         loginSteps.PageComplete(driver);
     }
 
@@ -192,9 +193,9 @@ public class t2_SearchStory {
     public void stage5_searchBy_Skill_Interest() throws IOException {
         searchSteps.clickField_searchBy(Interest_User, driver);
         searchSteps.selectSearchResult_byUser(Interest_User, driver);
-        loginSteps.PageComplete(driver);
+        /*loginSteps.PageComplete(driver);
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,600)", "");
+        jse1.executeScript("window.scrollBy(0,600)", "");*/
         searchSteps.checkSearchResult_Skill(Interest_User, driver);
 
         searchSteps.clickField_searchBy(Skill_User, driver);
@@ -223,12 +224,6 @@ public class t2_SearchStory {
 
         headerSteps.clickLogo();
         loginSteps.PageComplete(driver);
-        searchSteps.clickField_searchBy(ProjectTitle, driver);
-        searchSteps.selectSearchResult_PartnershipItem(ProjectTitle, driver);
-        searchSteps.checkSearchResult_Item(ProjectTitle,driver);
-
-        headerSteps.clickLogo();
-        loginSteps.PageComplete(driver);
         searchSteps.clickField_searchBy(ProductTitle_Ar, driver);
         searchSteps.selectSearchResult_ProductItem(ProductTitle_Ar, driver);
         searchSteps.checkSearchResult_Item(ProductTitle_Ar,driver);
@@ -244,18 +239,6 @@ public class t2_SearchStory {
         searchSteps.clickField_searchBy(EventTitle_Ar, driver);
         searchSteps.selectSearchResult_EventItem(EventTitle_Ar, driver);
         searchSteps.checkSearchResult_Item(EventTitle_Ar,driver);
-
-        headerSteps.clickLogo();
-        loginSteps.PageComplete(driver);
-        searchSteps.clickField_searchBy(ProjectTitle_Ar, driver);
-        searchSteps.selectSearchResult_PartnershipItem(ProjectTitle_Ar, driver);
-        searchSteps.checkSearchResult_Item(ProjectTitle_Ar,driver);
-        searchSteps.closeResult(driver);
-
-       /* searchSteps.clickField_searchBy(NotExistValue, driver);
-        searchSteps.selectSearchResult_PartnershipItem(NotExistValue, driver);
-        searchSteps.checkEmptySearchResult_Item(NotExistValue, driver);
-        searchSteps.closeResult(driver);*/
     }
     @Test
     public void searchBy_Item_Description() throws IOException {
@@ -264,26 +247,21 @@ public class t2_SearchStory {
         loginSteps.PageComplete(driver);
         searchSteps.checkSearchResult_ItemDescription(ProductDescription, driver);
 
-        headerSteps.clickLogo();
-        loginSteps.PageComplete(driver);
+       /* headerSteps.clickLogo();
+        driver.manage().timeouts().pageLoadTimeout(3000, TimeUnit.SECONDS);*/
+        //loginSteps.PageComplete(driver);
         searchSteps.clickField_searchBy(ServiceDescription, driver);
         searchSteps.selectSearchResult_ServiceItem(ServiceDescription, driver);
         loginSteps.PageComplete(driver);
         searchSteps.checkSearchResult_ItemDescription(ServiceDescription, driver);
 
-        headerSteps.clickLogo();
-        loginSteps.PageComplete(driver);
+        /*headerSteps.clickLogo();
+        driver.manage().timeouts().pageLoadTimeout(3000, TimeUnit.SECONDS);*/
+        //loginSteps.PageComplete(driver);
         searchSteps.clickField_searchBy(EventDescription, driver);
         searchSteps.selectSearchResult_EventItem(EventDescription, driver);
         loginSteps.PageComplete(driver);
         searchSteps.checkSearchResult_ItemDescription(EventDescription, driver);
-
-        headerSteps.clickLogo();
-        loginSteps.PageComplete(driver);
-        searchSteps.clickField_searchBy(ProjectDescription, driver);
-        searchSteps.selectSearchResult_PartnershipItem(ProjectDescription, driver);
-        loginSteps.PageComplete(driver);
-        searchSteps.checkSearchResult_ItemDescription(ProjectDescription, driver);
     }
 
     @Test
@@ -303,10 +281,10 @@ public class t2_SearchStory {
         loginSteps.PageComplete(driver);
         searchSteps.checkSearchResult_ItemTags(EventTag, driver);
 
-        searchSteps.clickField_searchBy(PartnershipTag, driver);
+       /* searchSteps.clickField_searchBy(PartnershipTag, driver);
         searchSteps.selectSearchResult_PartnershipTag(PartnershipTag, driver);
         loginSteps.PageComplete(driver);
-        searchSteps.checkSearchResult_ItemTags(PartnershipTag, driver);
+        searchSteps.checkSearchResult_ItemTags(PartnershipTag, driver);*/
     }
     @Test
     public void searchBy_GroupTitle() throws IOException {
@@ -323,21 +301,31 @@ public class t2_SearchStory {
 
     @Test
     public void searchBy_GroupDescription() throws IOException {
+        loginSteps.openLoginPage();
+        loginSteps.PageComplete(driver);
+        loginSteps.pressLoginLink();
+
+        loginSteps.enterLogin(email);
+        loginSteps.enterPassword(password);
+        loginSteps.clickEnter(driver);
+        loginSteps.PageComplete(driver);
+
         searchSteps.clickField_searchBy(GroupDescription, driver);
         searchSteps.selectSearchResult_Group(GroupDescription, driver);
         loginSteps.PageComplete(driver);
-        searchSteps.checkSearchResult_GroupDescription(GroupDescription, driver);
+        searchSteps.checkSearchResult_GroupDescription(driver);
     }
 
     @Test
     public void searchBy_GroupSkill() throws IOException {
         searchSteps.clickField_searchBy(GroupSkill, driver);
         searchSteps.selectSearchResult_Group(GroupSkill, driver);
-        loginSteps.PageComplete(driver);
+        searchSteps.GroupExists(driver);
+        //loginSteps.PageComplete(driver);
 
         searchSteps.clickField_searchBy(GroupInterest, driver);
         searchSteps.selectSearchResult_Group(GroupInterest, driver);
-        loginSteps.PageComplete(driver);
+        searchSteps.GroupExists(driver);
     }
 }
 

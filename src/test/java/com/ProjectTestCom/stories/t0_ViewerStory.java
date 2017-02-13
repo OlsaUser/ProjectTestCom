@@ -25,8 +25,8 @@ public class t0_ViewerStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
     private String urlUserProfile_Perform = PropertyLoader.getProperty(propertyFilePath, "urlUserProfile_Perform");
@@ -65,7 +65,7 @@ public class t0_ViewerStory {
         System.setProperty("webdriver.gecko.driver", dir + "\\src\\drivers\\geckodriver.exe");
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(1000, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(1900, TimeUnit.SECONDS);
 
         loginSteps.openLoginPage();
         loginSteps.PageComplete(driver);
@@ -98,7 +98,7 @@ public class t0_ViewerStory {
 
     @Test
     public void UserInfo_Viewer() {
-        headerSteps.openDiscoverPage(driver);
+        //headerSteps.openDiscoverPage(driver);
         driver.get(urlUserProfile_Perform);
         loginSteps.PageComplete(driver);
         accountSettingsSteps.UserInfo_Viewer(driver);

@@ -61,6 +61,9 @@ public class LoginSteps extends ScenarioSteps {
     public void pageLoad(String args) throws IOException {loginPage.pageLoad(args);}
 
     @Step
+    public void pageLoadi( ) throws IOException {loginPage.pageLoadi();}
+
+    @Step
     public void checkLoginErrorPresent(String text)throws MessagingException, IOException {loginPage.checkLoginErrorPresent(text);}
 
     @Step

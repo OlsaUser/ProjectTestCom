@@ -32,8 +32,8 @@ public class FullTraceOrganization {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String email_now = PropertyLoader.getProperty(propertyFilePath, "email_now");
     private String password = PropertyLoader.getProperty(propertyFilePath, "password");
@@ -258,6 +258,7 @@ public class FullTraceOrganization {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
@@ -311,6 +312,7 @@ public class FullTraceOrganization {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
@@ -364,12 +366,13 @@ public class FullTraceOrganization {
         addItemSteps.openAddItemPageByClickingOnButtonInListing();
         loginSteps.PageComplete(driver);
         addItemSteps.selectSupply();
-        addItemSteps.selectCategory2();
+        addItemSteps.selectCategory1();
         addItemSteps.selectEventType();
         //addItemSteps.collapseBasicInfo();
         //addItemSteps.selectEventDates(driver);
         //addItemSteps.datePicker( "26-09-2016 16:41",  driver);
         addItemSteps.enterBasicInfo(TitleMAX, DescriptionMAX);
+        addItemSteps.enterTag(tag1);
         //addItemSteps.selectRegistrationDates(driver);
         //addItemSteps.collapseBasicInfo();
         //addItemSteps.selectAudienceMales();
@@ -378,15 +381,15 @@ public class FullTraceOrganization {
         addItemSteps.selectAudienceChildren();
         // addItemSteps.selectAudienceAnyone();
 
-        addItemSteps.enterTag(tag1);
         addItemSteps.enterOrganizerName(OrganizerName);
-        addItemSteps.enterLocation(Location);
+        //addItemSteps.enterLocation(Location);
         JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
-        jse1.executeScript("window.scrollBy(0,500)", "");
+        jse1.executeScript("window.scrollBy(0,400)", "");
+
         // addItemSteps.selectRegistrationOpen();
         //addItemSteps.selectEventCanceled();
         //addItemSteps.selectEventEnded();
-        addItemSteps.enterAddress(Address);
+        //addItemSteps.enterAddress(Address);
         //addItemSteps.selectRegistrationClosed();
         //addItemSteps.selectTicketTypeFree();
         addItemSteps.selectTicketTypePaid_ar(ticketPrice);
@@ -442,6 +445,7 @@ public class FullTraceOrganization {
         loginSteps.clickEnter(driver);
         loginSteps.PageComplete(driver);
 
+        headerSteps.openDiscoverPage(driver);
         headerSteps.openMenuProfile(driver);
         headerSteps.openAccountSettings(driver);
         loginSteps.PageComplete(driver);
@@ -466,7 +470,7 @@ public class FullTraceOrganization {
     @Ignore
     public void stage1_Register_Organization() throws Exception {
         //registerSteps.openRegisterPage();
-        driver.get("http://synergybeta.devzone.dp.ua/ar/#!registration");
+        driver.get("http://mnassa.com/ar/#!registration");
         loginSteps.PageComplete(driver);
 
         registerSteps.Step1_selectRadioButton_Organization();

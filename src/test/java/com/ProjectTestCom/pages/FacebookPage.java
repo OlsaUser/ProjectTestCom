@@ -36,7 +36,7 @@ public class FacebookPage  extends PageObject {
             e1.printStackTrace();
         }
         try {
-            driver.findElement(By.xpath("//span[text()='News Feed']"));
+            driver.findElement(By.id("appsNav"));
         } catch (WebDriverException e) {
             Assert.fail();
         }
@@ -66,18 +66,21 @@ public class FacebookPage  extends PageObject {
         WebElement email = driver.findElement(By.id("Email"));
         email.sendKeys(Email);
         driver.findElement(By.id("next")).click();
-
+        WebDriverWait wt = new WebDriverWait (driver, 100);
+        wt.until(ExpectedConditions.visibilityOfElementLocated(By.id("Passwd")));
         WebElement pass = driver.findElement(By.id("Passwd"));
         pass.sendKeys(Password);
         driver.findElement(By.id("signIn")).click();
 
         try {
-            Thread.sleep(800);
+            Thread.sleep(1000);
         } catch (InterruptedException e1) {
 // TODO Auto-generated catch block
             e1.printStackTrace();
         }
         try {
+            WebDriverWait wait = new WebDriverWait (driver, 100);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(":5")));
             driver.findElement(By.id(":5"));
         } catch (WebDriverException e) {
             Assert.fail();

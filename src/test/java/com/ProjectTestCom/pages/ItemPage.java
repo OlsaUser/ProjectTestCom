@@ -436,12 +436,12 @@ public class ItemPage extends PageObject {
     }
 
     public void clickDeleteButton(WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait(driver, 200);
+        WebDriverWait wt = new WebDriverWait(driver, 300);
         wt.until(elementToBeClickable(btnDelete));
         find(btnDelete);
         find(btnDelete).waitUntilClickable();
         element(btnDelete).click();
-        //find(btnDelete).click();
+        find(btnDelete).click();
         //wt.until(ExpectedConditions.invisibilityOfElementLocated(btnDelete));
         wt.until(ExpectedConditions.visibilityOfElementLocated(btnOKinSuccessPopup));
     }
@@ -545,7 +545,7 @@ public class ItemPage extends PageObject {
     }
 
     public void selectCategory1() {
-        WebDriverWait wt1 = new WebDriverWait(getDriver(), 200);
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 300);
         wt1.until(elementToBeClickable(menuCategory));
         find(menuCategory).click();
         String categoryName = find(Category1).getText();

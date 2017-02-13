@@ -140,7 +140,7 @@ public class AddPostPage extends PageObject {
     }
 
     public void AddTextPost_inGroup(String Text, WebDriver driver) {
-        WebDriverWait wt = new WebDriverWait (driver, 200);
+        WebDriverWait wt = new WebDriverWait (driver, 210);
         //wt.until(ExpectedConditions.presenceOfElementLocated(HomeContent));
         find(fieldPost).click();
         wt.until(ExpectedConditions.presenceOfElementLocated(txtCounter));

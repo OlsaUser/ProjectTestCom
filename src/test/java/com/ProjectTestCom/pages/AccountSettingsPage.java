@@ -310,14 +310,15 @@ public class AccountSettingsPage extends PageObject {
         clickOkEd(driver);
     }
 
-    public boolean checkMessage_if_NameWrong(String Message, WebDriver driver) {
-        List<WebElement> messages = driver.findElements (lblErrorName);
+    public void checkMessage_if_NameWrong(String Message, WebDriver driver) {
+
+        List<WebElement> messages = driver.findElements(lblErrorName);
         for (WebElement el : messages) {
-            if (el.getText().contains(Message)) {
-                return true;
+            if (el.getText().equals(Message)) {
+                System.out.println("Validation message OK! " + el.getText());
+                break;
             }
         }
-        return false;
     }
 
     public void enterCurrentPassword(String password) {
@@ -424,7 +425,7 @@ public class AccountSettingsPage extends PageObject {
         find(fieldLocation).sendKeys(location);
         WebDriverWait wt = new WebDriverWait (driver, 200);
         wt.until(visibilityOfElementLocated(EducLocationJeddah));
-        wt.until(ExpectedConditions.elementToBeClickable(EducLocationJeddah));
+        wt.until(ExpectedConditions.presenceOfElementLocated(EducLocationJeddah));
         find(EducLocationJeddah).click();
         System.out.println("click");
         wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='add-ed-form']/div[1]/div[4]/ul/li")));
@@ -675,7 +676,7 @@ public class AccountSettingsPage extends PageObject {
 
     public void clickUpdate1(WebDriver driver) {
         find(btnUpdate1).click();
-        WebDriverWait wt1 = new WebDriverWait (getDriver(), 198);
+        WebDriverWait wt1 = new WebDriverWait (getDriver(), 180);
         wt1.until(presenceOfElementLocated(btnOk));
         clickOk(driver);
     }
@@ -716,7 +717,7 @@ public class AccountSettingsPage extends PageObject {
         clickOk(driver);
     }
     public void clickOk(WebDriver driver) {
-        WebDriverWait wt1 = new WebDriverWait(getDriver(), 800);
+        WebDriverWait wt1 = new WebDriverWait(getDriver(), 500);
         wt1.until(presenceOfElementLocated(btnOk));
         wt1.until(elementToBeClickable(btnOk));
         wt1.until(visibilityOfElementLocated(btnOk));

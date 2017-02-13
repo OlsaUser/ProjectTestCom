@@ -27,7 +27,7 @@ public class WebTest {
   @Before
   public void setUp() throws Exception {
      driver = new FirefoxDriver();
-     baseUrl = "http://synergy.devzone.dp.ua";
+     baseUrl = "http://synergybeta.devzone.dp.ua/en";
      driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
       /*FirefoxProfile myProfile = new FirefoxProfile(new File("D:/SeleniumProfile"));

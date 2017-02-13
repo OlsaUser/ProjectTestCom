@@ -25,8 +25,8 @@ public class t1_ForgotPasswordStory {
     private String browserFilePath = "src/test/resources/browser.properties";
     private String BrowserProfile = PropertyLoader.getProperty(browserFilePath, "BrowserProfile");
 
-    private String propertyFilePath = "src/test/resources/login.properties";
-    //private String propertyFilePath = "src/test/resources/login_live.properties";
+    //private String propertyFilePath = "src/test/resources/login.properties";
+    private String propertyFilePath = "src/test/resources/login_live.properties";
     private String email = PropertyLoader.getProperty(propertyFilePath, "email");
     private String wrongEmail = PropertyLoader.getProperty(propertyFilePath, "wrongEmail");
     private String emailOrg = PropertyLoader.getProperty(propertyFilePath, "email_organization");
